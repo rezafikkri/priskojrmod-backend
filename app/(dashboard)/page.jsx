@@ -1,3 +1,4 @@
+import { CardWithForm } from "@/components/card-with-form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -53,6 +54,7 @@ export default function Home() {
         </div>
 
         <Button>Test Button</Button>
+        <CardWithForm />
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a

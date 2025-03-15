@@ -5,22 +5,28 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from '../ui/dropdown-menu';
 import { ChevronDown } from 'lucide-react';
 import {
   User,
   LogOut,
 } from 'lucide-react';
 import ToggleTheme from './toggle-theme';
+import { Separator } from '../ui/separator';
+import SidebarTriggerPJM from './sidebar-trigger-pjm';
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center font-extrabold text-xl">
-          <img src="https://res.cloudinary.com/priskojrmod/image/upload/q_auto/PriskoJrMod.png" alt="Prisko Jr Mod Logo" width={30} height={30} />
-          <span className="ms-2">Prisko Jr Mod</span>
-        </Link>
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm h-(--header-height)">
+      <div className="mx-auto flex items-center justify-between px-4 md:px-6 h-full">
+        <div className="flex gap-0.5 items-center">
+          <SidebarTriggerPJM />
+          <Separator className="!h-5" orientation="vertical" />
+          <Link href="/" className="flex items-center font-extrabold text-xl gap-2 ps-3">
+            <img src="https://res.cloudinary.com/priskojrmod/image/upload/q_auto/PriskoJrMod.png" alt="Prisko Jr Mod Logo" width={30} height={30} />
+            <span className="text-zinc-800 dark:text-zinc-200">Prisko Jr Mod</span>
+          </Link>
+        </div>
         <div className="flex gap-2.5 items-center h-9">
           <ToggleTheme />
           <DropdownMenu>
@@ -33,7 +39,7 @@ export default function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-45 [&_a]:hover:cursor-pointer" align="end">
               <DropdownMenuItem asChild>
-                <Link href=""><User /> Profile Settings</Link>
+                <Link href=""><User /> Settings</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
