@@ -18,7 +18,7 @@ export default function Dashboard() {
         </div>
         <div className="flex gap-3 items-center text-zinc-700">
           <time className="font-medium">16 Maret, 2025</time>
-          <div className="rounded-full bg-zinc-100/90 p-3">
+          <div className="rounded-md bg-zinc-100/90 p-2">
             <CalendarFold size={22} />
           </div>
         </div>

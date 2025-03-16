@@ -97,12 +97,12 @@ export default function ChartTransactions() {
                 <stop
                   offset="5%"
                   stopColor="var(--color-sales)"
-                  stopOpacity={0.8}
+                  stopOpacity={0.5}
                 />
                 <stop
-                  offset="95%"
+                  offset="100%"
                   stopColor="var(--color-sales)"
-                  stopOpacity={0.1}
+                  stopOpacity={0}
                 />
               </linearGradient>
             </defs>

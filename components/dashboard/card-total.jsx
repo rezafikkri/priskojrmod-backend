@@ -24,7 +24,7 @@ export function CardTotal({
           <small>Until today</small>
         </CardFooter>
       </div>
-      <div className="me-6 bg-green-100/60 p-3 text-green-800 rounded-md">
+      <div className="me-6 bg-primary/7 p-3 text-primary rounded-md border border-dashed border-primary/30">
         {icon}
       </div>
     </Card>
