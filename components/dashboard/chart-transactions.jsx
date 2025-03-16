@@ -71,6 +71,7 @@ export default function ChartTransactions() {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              minTickGap={32}
               tickFormatter={(value) => {
                 return new Date(value).toLocaleDateString("en-US", {
                   year: '2-digit',

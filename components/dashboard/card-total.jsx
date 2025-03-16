@@ -12,7 +12,7 @@ export function CardTotal({
   icon,
 }) {
   return (
-    <Card className="shadow-none flex-1 flex-row gap-2 items-center">
+    <Card className="shadow-none lg:flex-1 flex-row gap-2 items-center max-lg:w-full">
       <div className="flex-1 flex flex-col gap-3">
         <CardHeader>
           <CardTitle>Total {title}</CardTitle>
