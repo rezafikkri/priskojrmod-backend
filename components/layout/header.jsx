@@ -24,7 +24,7 @@ export default function Header() {
           <Separator className="!h-5" orientation="vertical" />
           <Link href="/" className="flex items-center font-extrabold text-xl gap-2 ps-3">
             <img src="https://res.cloudinary.com/priskojrmod/image/upload/q_auto/PriskoJrMod.png" alt="Prisko Jr Mod Logo" width={30} height={30} />
-            <span className="text-zinc-800 dark:text-zinc-200">Prisko Jr Mod</span>
+            <span className="text-zinc-700 dark:text-zinc-200">Prisko Jr Mod</span>
           </Link>
         </div>
         <div className="flex gap-2.5 items-center h-9">
