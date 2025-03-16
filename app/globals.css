@@ -6,7 +6,6 @@
 
 @theme inline {
   --color-background: var(--background);
-  --color-main-background: var(--main-background);
   --color-foreground: var(--foreground);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -45,7 +44,6 @@
 
 :root {
   --background: #FDFDFD;
-  --main-background: #F8F8F8;
   --foreground: hsl(240 10% 3.9%);
   --card: #FDFDFD;
   --card-foreground: hsl(240 10% 3.9%);
@@ -70,11 +68,11 @@
   --chart-3: hsl(197 37% 24%);
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
-  --sidebar: #FDFDFD;
+  --sidebar: #F8F8F8;
   --sidebar-foreground: hsl(240 5.3% 26.1%);
   --sidebar-primary: hsl(240 5.9% 10%);
   --sidebar-primary-foreground: hsl(0 0% 98%);
-  --sidebar-accent: hsl(240 4.8% 95.9%);
+  --sidebar-accent: #F2F2F2;
   --sidebar-accent-foreground: hsl(240 5.9% 10%);
   --sidebar-border: hsl(220 13% 91%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
@@ -127,6 +125,6 @@
 
   button:not(:disabled),
   [role="button"]:not(:disabled) {
-    cursor: pointer;
+    cursor: pointer !important;
   }
 }

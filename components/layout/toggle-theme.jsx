@@ -5,9 +5,12 @@ import {
   Moon,
   Sun,
 } from 'lucide-react';
-import { Button } from '../ui/button';
+import { cn } from "@/lib/utils"
 
-export default function ToggleTheme() {
+export default function ToggleTheme({
+  className,
+  ...props
+}) {
   const { theme, setTheme } = useTheme();
 
   function handleTheme() {
@@ -19,14 +22,17 @@ export default function ToggleTheme() {
   }
 
   return (
-    <Button
-      variant="ghost"
+    <button
+      className={cn([
+        className,
+        'w-full',
+      ])}
+      {...props}
       onClick={handleTheme}
-      className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-200"
     >
       <Sun className="hidden dark:inline-block" />
       <Moon className="inline-block dark:hidden" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
+      <span>Toggle theme</span>
+    </button>
   );
 }

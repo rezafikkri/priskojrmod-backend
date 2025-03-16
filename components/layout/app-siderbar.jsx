@@ -8,7 +8,13 @@ import {
 import {
   Sidebar,
   SidebarContent,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarFooter,
 } from '../ui/sidebar';
+import Link from 'next/link';
 import Category from '../icon/category';
 import Key from '../icon/key';
 import LockPassword from '../icon/lock-password';
@@ -16,6 +22,7 @@ import NavSidebarGroup from './nav-sidebar-group';
 import NavSidebar from './nav-sidebar';
 import UserDollar from '../icon/user-dollar';
 import Script from '../icon/script';
+import { NavUser } from './nav-user';
 
 // Menu items.
 const items = {
@@ -48,12 +55,27 @@ const items = {
 
 export function AppSidebar() {
   return (
-    <Sidebar className="top-(--header-height) !h-[calc(100svh-var(--header-height))]">
-      <SidebarContent className="ps-4 pe-1 pt-4 pb-2">
+    <Sidebar variant="inset">
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" asChild>
+              <Link href="/" className="flex items-center gap-2">
+                <img src="https://res.cloudinary.com/priskojrmod/image/upload/q_auto/PriskoJrMod.png" alt="Prisko Jr Mod Logo" width={25} height={25} />
+                <span className="font-semibold">Prisko Jr Mod</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+      <SidebarContent>
         <NavSidebar items={items.nav} collapsibleItems={items.document} />
         <NavSidebarGroup label="Product" items={items.product} />
         <NavSidebarGroup label="Application" items={items.application} />
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser />
+      </SidebarFooter>
     </Sidebar>
   )
 }

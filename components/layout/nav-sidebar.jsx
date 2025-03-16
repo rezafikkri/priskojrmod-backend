@@ -16,7 +16,7 @@ import { ChevronRight } from 'lucide-react';
 
 export default function NavSidebar({ items, collapsibleItems }) {
   return (
-    <SidebarMenu className="px-2">
+    <SidebarMenu className="p-2">
       {items.map(item => (
         <SidebarMenuItem key={item.title}>
           <SidebarMenuButton asChild>

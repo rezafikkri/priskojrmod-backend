@@ -3,7 +3,7 @@ import '../globals.css';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { ThemeProvider } from '@/components/theme-provider';
-import { SidebarProvider } from '@/components/ui/sidebar';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/layout/app-siderbar';
 
 const montserrat = Montserrat({
@@ -23,26 +23,22 @@ export default function RootLayout({ children }) {
       <body
         className={`${montserrat.variable}`}
       >
-        <div className="[--header-height:calc(theme(spacing.14))]">
-        <SidebarProvider className="flex flex-col">
+        <SidebarProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="light"
             disableTransitionOnChange
           >
-            <Header />
-          </ThemeProvider>
-          <div className="flex flex-1">
             <AppSidebar />
-            <div className="flex-1 flex flex-col min-h-screen">
-              <main className="flex-1 bg-main-background p-6">
-                {children}
-              </main>
-              <Footer />
+          </ThemeProvider>
+          <SidebarInset className="min-h-screen">
+            <Header />
+            <div className="flex-1 p-4">
+              {children}
             </div>
-          </div>
+            <Footer />
+          </SidebarInset>
         </SidebarProvider>
-        </div>
       </body>
     </html>
   );

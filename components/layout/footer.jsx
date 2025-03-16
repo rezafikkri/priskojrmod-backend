@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="px-7 py-3 border-t text-sm text-zinc-600">
-      &copy; 2025 Prisko Jr Mod
+    <footer className="p-4 text-sm text-zinc-500">
+      <span>Copyright &copy; 2025 Prisko Jr Mod</span>
     </footer>
   );
 }
