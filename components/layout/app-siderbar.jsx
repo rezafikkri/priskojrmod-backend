@@ -55,7 +55,7 @@ const items = {
 
 export function AppSidebar() {
   return (
-    <Sidebar variant="inset">
+    <Sidebar variant="inset" className="h-full">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
