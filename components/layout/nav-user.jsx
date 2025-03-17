@@ -38,7 +38,7 @@ export function NavUser() {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground focus-visible:ring-0"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src="https://res.cloudinary.com/priskojrmod/image/upload/q_auto/profile.png" alt="Profile" />
@@ -80,7 +80,7 @@ export function NavUser() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="" className="focus:bg-red-50 cursor-pointer"><LogOut /> Sign Out</Link>
+              <Link href="" className="focus:bg-red-50 dark:focus:bg-red-300/8 cursor-pointer"><LogOut /> Sign Out</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
