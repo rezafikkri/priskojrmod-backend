@@ -28,12 +28,19 @@ import { NavUser } from './nav-user';
 const items = {
   nav: [
     { title: 'Transactions', url: '/transactions', icon: Activity },
-    { title: 'Customers', url: '/customers', icon: UserDollar },
     { title: 'Backup', url: '/backup', icon: DatabaseBackup },
   ],
+  customers: {
+    title: 'Customers',
+    icon: <UserDollar />,
+    subItems: [
+      { title: 'Lists', url: '/customers' },
+      { title: 'Feedback', url: '/feedback' },
+    ],
+  },
   document: {
     title: 'Document',
-    icon: Script,
+    icon: <Script />,
     subItems: [
       { title: 'T&C', url: '/tnc', },
       { title: 'Privacy Policy', url: '/pp' },
@@ -69,7 +76,7 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavSidebar items={items.nav} collapsibleItems={items.document} />
+        <NavSidebar items={items.nav} collapsibleItems={[items.customers, items.document]} />
         <NavSidebarGroup label="Product" items={items.product} />
         <NavSidebarGroup label="Application" items={items.application} />
       </SidebarContent>
