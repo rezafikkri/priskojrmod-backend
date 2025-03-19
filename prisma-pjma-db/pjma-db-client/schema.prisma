@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// This schema is for priskojrmod_app database
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../prisma-pjma-db/pjma-db-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL_PJMA")
+}
+
+model SecretKeyLicense {
+  id          BigInt       @id @default(autoincrement())
+  key         String       @db.VarChar(100)
+  created_at  BigInt
+  version     String       @db.VarChar(20)
+  license_key LicenseKey[]
+
+  @@map("secret_key_license")
+}
+
+model LicenseKey {
+  id                String           @id @default(uuid(7)) @db.Uuid
+  secret_key        SecretKeyLicense @relation(fields: [secret_key_id], references: [id])
+  secret_key_id     BigInt
+  key               String
+  used_for_activate Boolean
+  used_for_download Boolean
+
+  @@map("license_key")
+}

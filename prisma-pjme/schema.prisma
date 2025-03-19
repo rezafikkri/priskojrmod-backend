@@ -1,0 +1,215 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// This schema is for priskojrmod_ecommerce database
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../prisma-pjme-db/pjme-db-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL_PJME")
+}
+
+model Admin {
+  id          String  @id @db.VarChar(255)
+  firstName   String  @db.VarChar(100)
+  lastName    String  @db.VarChar(100)
+  email       String  @db.VarChar(100)
+  phoneNumber String  @db.VarChar(20)
+  picture     String? @db.VarChar(255)
+
+  donation_links DonationLink[]
+  products       Product[]
+
+  @@map("admins")
+}
+
+enum CurrencyCode {
+  IDR
+  USD
+}
+
+model DonationLink {
+  id            Int          @id @default(autoincrement())
+  admin_id      String       @db.VarChar(255)
+  currency_code CurrencyCode
+  link          String       @db.VarChar(100)
+
+  admin Admin @relation(fields: [admin_id], references: [id], onDelete: Cascade)
+
+  @@map("donation_links")
+}
+
+model Owner {
+  id          Int    @id @default(autoincrement())
+  first_name  String @db.VarChar(100)
+  last_name   String @db.VarChar(100)
+  sm_username String @db.VarChar(100)
+  picture     String @db.VarChar(255)
+
+  products Product[]
+
+  @@map("owners")
+}
+
+model Customer {
+  id           String  @id @db.VarChar(255)
+  first_name   String  @db.VarChar(100)
+  last_name    String  @db.VarChar(100)
+  email        String  @db.VarChar(100)
+  password     String? @db.VarChar(100)
+  phone_number String  @db.VarChar(20)
+  picture      String? @db.VarChar(255)
+  last_active  BigInt
+
+  @@map("customers")
+}
+
+model License {
+  id         Int    @id @default(autoincrement())
+  content    String
+  updated_at BigInt
+
+  products Product[]
+
+  @@map("licenses")
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(100)
+  slug String @db.VarChar(100)
+
+  products Product[]
+
+  @@map("categories")
+}
+
+enum PriceType {
+  paid
+  free
+}
+
+model Product {
+  id            String    @id @default(uuid(7)) @db.Uuid
+  category_id   Int
+  admin_id      String    @db.VarChar(255)
+  owner_id      Int
+  license_id    Int
+  name          String    @db.VarChar(150)
+  slug          String    @db.VarChar(150)
+  description   String
+  changelog     String?
+  price_type    PriceType
+  download_link String?   @db.VarChar(255)
+  released_at   BigInt
+  updated_at    BigInt
+
+  admin    Admin    @relation(fields: [admin_id], references: [id])
+  category Category @relation(fields: [category_id], references: [id])
+  owner    Owner    @relation(fields: [owner_id], references: [id])
+  license  License  @relation(fields: [license_id], references: [id])
+
+  product_discounts ProductDiscount?
+  product_coupons   ProductCoupon?
+  product_images    ProductImage[]
+  product_variants  ProductVariant[]
+
+  @@map("products")
+}
+
+model ProductDiscount {
+  id         String @id @default(uuid(7)) @db.Uuid
+  product_id String @unique @db.Uuid
+  discount   String @db.VarChar(4)
+  expired_at BigInt
+
+  product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
+
+  @@map("product_discounts")
+}
+
+model ProductCoupon {
+  id         String @id @default(uuid(7)) @db.Uuid
+  product_id String @unique @db.Uuid
+  code       String @db.VarChar(150)
+  discount   String @db.VarChar(4)
+  expired_at BigInt
+
+  product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
+
+  @@map("product_coupons")
+}
+
+model ProductImage {
+  id           String  @id @default(uuid(7)) @db.Uuid
+  product_id   String  @db.Uuid
+  url          String  @db.VarChar(255)
+  is_thumbnail Boolean
+  width        Int     @db.SmallInt
+  height       Int     @db.SmallInt
+
+  product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
+
+  @@map("product_images")
+}
+
+model ProductVariant {
+  id            String  @id @default(uuid(7)) @db.Uuid
+  product_id    String  @db.Uuid
+  name          String  @db.VarChar(100)
+  download_link String? @db.VarChar(255)
+
+  product        Product        @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  product_prices ProductPrice[]
+
+  @@map("product_variants")
+}
+
+model ProductPrice {
+  id            String       @id @default(uuid(7)) @db.Uuid
+  variant_id    String       @db.Uuid
+  currency_code CurrencyCode
+  price         Int
+
+  variant ProductVariant @relation(fields: [variant_id], references: [id], onDelete: Cascade)
+
+  @@map("product_prices")
+}
+
+model AboutUs {
+  id      Int    @id @default(autoincrement()) @db.SmallInt
+  content String
+
+  @@map("about_us")
+}
+
+model PrivacyPolicy {
+  id         Int    @id @default(autoincrement()) @db.SmallInt
+  content    String
+  updated_at BigInt
+
+  @@map("privacy_policy")
+}
+
+model TermsandConditions {
+  id         Int    @id @default(autoincrement()) @db.SmallInt
+  content    String
+  updated_at BigInt
+
+  @@map("terms_and_conditions")
+}
+
+model FAQ {
+  id      String @id @default(uuid(7)) @db.Uuid
+  title   String @db.VarChar(150)
+  content String
+
+  @@map("faq")
+}
