@@ -2478,28 +2478,28 @@ export namespace Prisma {
 
   export type AdminMinAggregateOutputType = {
     id: string | null
-    firstName: string | null
-    lastName: string | null
+    first_name: string | null
+    last_name: string | null
     email: string | null
-    phoneNumber: string | null
+    phone_number: string | null
     picture: string | null
   }
 
   export type AdminMaxAggregateOutputType = {
     id: string | null
-    firstName: string | null
-    lastName: string | null
+    first_name: string | null
+    last_name: string | null
     email: string | null
-    phoneNumber: string | null
+    phone_number: string | null
     picture: string | null
   }
 
   export type AdminCountAggregateOutputType = {
     id: number
-    firstName: number
-    lastName: number
+    first_name: number
+    last_name: number
     email: number
-    phoneNumber: number
+    phone_number: number
     picture: number
     _all: number
   }
@@ -2507,28 +2507,28 @@ export namespace Prisma {
 
   export type AdminMinAggregateInputType = {
     id?: true
-    firstName?: true
-    lastName?: true
+    first_name?: true
+    last_name?: true
     email?: true
-    phoneNumber?: true
+    phone_number?: true
     picture?: true
   }
 
   export type AdminMaxAggregateInputType = {
     id?: true
-    firstName?: true
-    lastName?: true
+    first_name?: true
+    last_name?: true
     email?: true
-    phoneNumber?: true
+    phone_number?: true
     picture?: true
   }
 
   export type AdminCountAggregateInputType = {
     id?: true
-    firstName?: true
-    lastName?: true
+    first_name?: true
+    last_name?: true
     email?: true
-    phoneNumber?: true
+    phone_number?: true
     picture?: true
     _all?: true
   }
@@ -2607,10 +2607,10 @@ export namespace Prisma {
 
   export type AdminGroupByOutputType = {
     id: string
-    firstName: string
-    lastName: string
+    first_name: string
+    last_name: string
     email: string
-    phoneNumber: string
+    phone_number: string | null
     picture: string | null
     _count: AdminCountAggregateOutputType | null
     _min: AdminMinAggregateOutputType | null
@@ -2633,10 +2633,10 @@ export namespace Prisma {
 
   export type AdminSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    firstName?: boolean
-    lastName?: boolean
+    first_name?: boolean
+    last_name?: boolean
     email?: boolean
-    phoneNumber?: boolean
+    phone_number?: boolean
     picture?: boolean
     donation_links?: boolean | Admin$donation_linksArgs<ExtArgs>
     products?: boolean | Admin$productsArgs<ExtArgs>
@@ -2645,32 +2645,32 @@ export namespace Prisma {
 
   export type AdminSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    firstName?: boolean
-    lastName?: boolean
+    first_name?: boolean
+    last_name?: boolean
     email?: boolean
-    phoneNumber?: boolean
+    phone_number?: boolean
     picture?: boolean
   }, ExtArgs["result"]["admin"]>
 
   export type AdminSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    firstName?: boolean
-    lastName?: boolean
+    first_name?: boolean
+    last_name?: boolean
     email?: boolean
-    phoneNumber?: boolean
+    phone_number?: boolean
     picture?: boolean
   }, ExtArgs["result"]["admin"]>
 
   export type AdminSelectScalar = {
     id?: boolean
-    firstName?: boolean
-    lastName?: boolean
+    first_name?: boolean
+    last_name?: boolean
     email?: boolean
-    phoneNumber?: boolean
+    phone_number?: boolean
     picture?: boolean
   }
 
-  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "phoneNumber" | "picture", ExtArgs["result"]["admin"]>
+  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "first_name" | "last_name" | "email" | "phone_number" | "picture", ExtArgs["result"]["admin"]>
   export type AdminInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     donation_links?: boolean | Admin$donation_linksArgs<ExtArgs>
     products?: boolean | Admin$productsArgs<ExtArgs>
@@ -2687,10 +2687,10 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      firstName: string
-      lastName: string
+      first_name: string
+      last_name: string
       email: string
-      phoneNumber: string
+      phone_number: string | null
       picture: string | null
     }, ExtArgs["result"]["admin"]>
     composites: {}
@@ -3118,10 +3118,10 @@ export namespace Prisma {
    */ 
   interface AdminFieldRefs {
     readonly id: FieldRef<"Admin", 'String'>
-    readonly firstName: FieldRef<"Admin", 'String'>
-    readonly lastName: FieldRef<"Admin", 'String'>
+    readonly first_name: FieldRef<"Admin", 'String'>
+    readonly last_name: FieldRef<"Admin", 'String'>
     readonly email: FieldRef<"Admin", 'String'>
-    readonly phoneNumber: FieldRef<"Admin", 'String'>
+    readonly phone_number: FieldRef<"Admin", 'String'>
     readonly picture: FieldRef<"Admin", 'String'>
   }
     
@@ -5949,7 +5949,7 @@ export namespace Prisma {
     last_name: string
     email: string
     password: string | null
-    phone_number: string
+    phone_number: string | null
     picture: string | null
     last_active: bigint
     _count: CustomerCountAggregateOutputType | null
@@ -6028,7 +6028,7 @@ export namespace Prisma {
       last_name: string
       email: string
       password: string | null
-      phone_number: string
+      phone_number: string | null
       picture: string | null
       last_active: bigint
     }, ExtArgs["result"]["customer"]>
@@ -19751,10 +19751,10 @@ export namespace Prisma {
 
   export const AdminScalarFieldEnum: {
     id: 'id',
-    firstName: 'firstName',
-    lastName: 'lastName',
+    first_name: 'first_name',
+    last_name: 'last_name',
     email: 'email',
-    phoneNumber: 'phoneNumber',
+    phone_number: 'phone_number',
     picture: 'picture'
   };
 
@@ -20049,10 +20049,10 @@ export namespace Prisma {
     OR?: AdminWhereInput[]
     NOT?: AdminWhereInput | AdminWhereInput[]
     id?: StringFilter<"Admin"> | string
-    firstName?: StringFilter<"Admin"> | string
-    lastName?: StringFilter<"Admin"> | string
+    first_name?: StringFilter<"Admin"> | string
+    last_name?: StringFilter<"Admin"> | string
     email?: StringFilter<"Admin"> | string
-    phoneNumber?: StringFilter<"Admin"> | string
+    phone_number?: StringNullableFilter<"Admin"> | string | null
     picture?: StringNullableFilter<"Admin"> | string | null
     donation_links?: DonationLinkListRelationFilter
     products?: ProductListRelationFilter
@@ -20060,10 +20060,10 @@ export namespace Prisma {
 
   export type AdminOrderByWithRelationInput = {
     id?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
+    first_name?: SortOrder
+    last_name?: SortOrder
     email?: SortOrder
-    phoneNumber?: SortOrder
+    phone_number?: SortOrderInput | SortOrder
     picture?: SortOrderInput | SortOrder
     donation_links?: DonationLinkOrderByRelationAggregateInput
     products?: ProductOrderByRelationAggregateInput
@@ -20071,24 +20071,24 @@ export namespace Prisma {
 
   export type AdminWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    email?: string
     AND?: AdminWhereInput | AdminWhereInput[]
     OR?: AdminWhereInput[]
     NOT?: AdminWhereInput | AdminWhereInput[]
-    firstName?: StringFilter<"Admin"> | string
-    lastName?: StringFilter<"Admin"> | string
-    email?: StringFilter<"Admin"> | string
-    phoneNumber?: StringFilter<"Admin"> | string
+    first_name?: StringFilter<"Admin"> | string
+    last_name?: StringFilter<"Admin"> | string
+    phone_number?: StringNullableFilter<"Admin"> | string | null
     picture?: StringNullableFilter<"Admin"> | string | null
     donation_links?: DonationLinkListRelationFilter
     products?: ProductListRelationFilter
-  }, "id">
+  }, "id" | "email">
 
   export type AdminOrderByWithAggregationInput = {
     id?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
+    first_name?: SortOrder
+    last_name?: SortOrder
     email?: SortOrder
-    phoneNumber?: SortOrder
+    phone_number?: SortOrderInput | SortOrder
     picture?: SortOrderInput | SortOrder
     _count?: AdminCountOrderByAggregateInput
     _max?: AdminMaxOrderByAggregateInput
@@ -20100,10 +20100,10 @@ export namespace Prisma {
     OR?: AdminScalarWhereWithAggregatesInput[]
     NOT?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Admin"> | string
-    firstName?: StringWithAggregatesFilter<"Admin"> | string
-    lastName?: StringWithAggregatesFilter<"Admin"> | string
+    first_name?: StringWithAggregatesFilter<"Admin"> | string
+    last_name?: StringWithAggregatesFilter<"Admin"> | string
     email?: StringWithAggregatesFilter<"Admin"> | string
-    phoneNumber?: StringWithAggregatesFilter<"Admin"> | string
+    phone_number?: StringNullableWithAggregatesFilter<"Admin"> | string | null
     picture?: StringNullableWithAggregatesFilter<"Admin"> | string | null
   }
 
@@ -20225,7 +20225,7 @@ export namespace Prisma {
     last_name?: StringFilter<"Customer"> | string
     email?: StringFilter<"Customer"> | string
     password?: StringNullableFilter<"Customer"> | string | null
-    phone_number?: StringFilter<"Customer"> | string
+    phone_number?: StringNullableFilter<"Customer"> | string | null
     picture?: StringNullableFilter<"Customer"> | string | null
     last_active?: BigIntFilter<"Customer"> | bigint | number
   }
@@ -20236,24 +20236,24 @@ export namespace Prisma {
     last_name?: SortOrder
     email?: SortOrder
     password?: SortOrderInput | SortOrder
-    phone_number?: SortOrder
+    phone_number?: SortOrderInput | SortOrder
     picture?: SortOrderInput | SortOrder
     last_active?: SortOrder
   }
 
   export type CustomerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    email?: string
     AND?: CustomerWhereInput | CustomerWhereInput[]
     OR?: CustomerWhereInput[]
     NOT?: CustomerWhereInput | CustomerWhereInput[]
     first_name?: StringFilter<"Customer"> | string
     last_name?: StringFilter<"Customer"> | string
-    email?: StringFilter<"Customer"> | string
     password?: StringNullableFilter<"Customer"> | string | null
-    phone_number?: StringFilter<"Customer"> | string
+    phone_number?: StringNullableFilter<"Customer"> | string | null
     picture?: StringNullableFilter<"Customer"> | string | null
     last_active?: BigIntFilter<"Customer"> | bigint | number
-  }, "id">
+  }, "id" | "email">
 
   export type CustomerOrderByWithAggregationInput = {
     id?: SortOrder
@@ -20261,7 +20261,7 @@ export namespace Prisma {
     last_name?: SortOrder
     email?: SortOrder
     password?: SortOrderInput | SortOrder
-    phone_number?: SortOrder
+    phone_number?: SortOrderInput | SortOrder
     picture?: SortOrderInput | SortOrder
     last_active?: SortOrder
     _count?: CustomerCountOrderByAggregateInput
@@ -20280,7 +20280,7 @@ export namespace Prisma {
     last_name?: StringWithAggregatesFilter<"Customer"> | string
     email?: StringWithAggregatesFilter<"Customer"> | string
     password?: StringNullableWithAggregatesFilter<"Customer"> | string | null
-    phone_number?: StringWithAggregatesFilter<"Customer"> | string
+    phone_number?: StringNullableWithAggregatesFilter<"Customer"> | string | null
     picture?: StringNullableWithAggregatesFilter<"Customer"> | string | null
     last_active?: BigIntWithAggregatesFilter<"Customer"> | bigint | number
   }
@@ -20944,10 +20944,10 @@ export namespace Prisma {
 
   export type AdminCreateInput = {
     id: string
-    firstName: string
-    lastName: string
+    first_name: string
+    last_name: string
     email: string
-    phoneNumber: string
+    phone_number?: string | null
     picture?: string | null
     donation_links?: DonationLinkCreateNestedManyWithoutAdminInput
     products?: ProductCreateNestedManyWithoutAdminInput
@@ -20955,10 +20955,10 @@ export namespace Prisma {
 
   export type AdminUncheckedCreateInput = {
     id: string
-    firstName: string
-    lastName: string
+    first_name: string
+    last_name: string
     email: string
-    phoneNumber: string
+    phone_number?: string | null
     picture?: string | null
     donation_links?: DonationLinkUncheckedCreateNestedManyWithoutAdminInput
     products?: ProductUncheckedCreateNestedManyWithoutAdminInput
@@ -20966,10 +20966,10 @@ export namespace Prisma {
 
   export type AdminUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     donation_links?: DonationLinkUpdateManyWithoutAdminNestedInput
     products?: ProductUpdateManyWithoutAdminNestedInput
@@ -20977,10 +20977,10 @@ export namespace Prisma {
 
   export type AdminUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     donation_links?: DonationLinkUncheckedUpdateManyWithoutAdminNestedInput
     products?: ProductUncheckedUpdateManyWithoutAdminNestedInput
@@ -20988,28 +20988,28 @@ export namespace Prisma {
 
   export type AdminCreateManyInput = {
     id: string
-    firstName: string
-    lastName: string
+    first_name: string
+    last_name: string
     email: string
-    phoneNumber: string
+    phone_number?: string | null
     picture?: string | null
   }
 
   export type AdminUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AdminUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -21121,7 +21121,7 @@ export namespace Prisma {
     last_name: string
     email: string
     password?: string | null
-    phone_number: string
+    phone_number?: string | null
     picture?: string | null
     last_active: bigint | number
   }
@@ -21132,7 +21132,7 @@ export namespace Prisma {
     last_name: string
     email: string
     password?: string | null
-    phone_number: string
+    phone_number?: string | null
     picture?: string | null
     last_active: bigint | number
   }
@@ -21143,7 +21143,7 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
-    phone_number?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     last_active?: BigIntFieldUpdateOperationsInput | bigint | number
   }
@@ -21154,7 +21154,7 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
-    phone_number?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     last_active?: BigIntFieldUpdateOperationsInput | bigint | number
   }
@@ -21165,7 +21165,7 @@ export namespace Prisma {
     last_name: string
     email: string
     password?: string | null
-    phone_number: string
+    phone_number?: string | null
     picture?: string | null
     last_active: bigint | number
   }
@@ -21176,7 +21176,7 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
-    phone_number?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     last_active?: BigIntFieldUpdateOperationsInput | bigint | number
   }
@@ -21187,7 +21187,7 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
-    phone_number?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     last_active?: BigIntFieldUpdateOperationsInput | bigint | number
   }
@@ -21876,28 +21876,28 @@ export namespace Prisma {
 
   export type AdminCountOrderByAggregateInput = {
     id?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
+    first_name?: SortOrder
+    last_name?: SortOrder
     email?: SortOrder
-    phoneNumber?: SortOrder
+    phone_number?: SortOrder
     picture?: SortOrder
   }
 
   export type AdminMaxOrderByAggregateInput = {
     id?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
+    first_name?: SortOrder
+    last_name?: SortOrder
     email?: SortOrder
-    phoneNumber?: SortOrder
+    phone_number?: SortOrder
     picture?: SortOrder
   }
 
   export type AdminMinOrderByAggregateInput = {
     id?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
+    first_name?: SortOrder
+    last_name?: SortOrder
     email?: SortOrder
-    phoneNumber?: SortOrder
+    phone_number?: SortOrder
     picture?: SortOrder
   }
 
@@ -23518,20 +23518,20 @@ export namespace Prisma {
 
   export type AdminCreateWithoutDonation_linksInput = {
     id: string
-    firstName: string
-    lastName: string
+    first_name: string
+    last_name: string
     email: string
-    phoneNumber: string
+    phone_number?: string | null
     picture?: string | null
     products?: ProductCreateNestedManyWithoutAdminInput
   }
 
   export type AdminUncheckedCreateWithoutDonation_linksInput = {
     id: string
-    firstName: string
-    lastName: string
+    first_name: string
+    last_name: string
     email: string
-    phoneNumber: string
+    phone_number?: string | null
     picture?: string | null
     products?: ProductUncheckedCreateNestedManyWithoutAdminInput
   }
@@ -23554,20 +23554,20 @@ export namespace Prisma {
 
   export type AdminUpdateWithoutDonation_linksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     products?: ProductUpdateManyWithoutAdminNestedInput
   }
 
   export type AdminUncheckedUpdateWithoutDonation_linksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     products?: ProductUncheckedUpdateManyWithoutAdminNestedInput
   }
@@ -23766,20 +23766,20 @@ export namespace Prisma {
 
   export type AdminCreateWithoutProductsInput = {
     id: string
-    firstName: string
-    lastName: string
+    first_name: string
+    last_name: string
     email: string
-    phoneNumber: string
+    phone_number?: string | null
     picture?: string | null
     donation_links?: DonationLinkCreateNestedManyWithoutAdminInput
   }
 
   export type AdminUncheckedCreateWithoutProductsInput = {
     id: string
-    firstName: string
-    lastName: string
+    first_name: string
+    last_name: string
     email: string
-    phoneNumber: string
+    phone_number?: string | null
     picture?: string | null
     donation_links?: DonationLinkUncheckedCreateNestedManyWithoutAdminInput
   }
@@ -23940,20 +23940,20 @@ export namespace Prisma {
 
   export type AdminUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     donation_links?: DonationLinkUpdateManyWithoutAdminNestedInput
   }
 
   export type AdminUncheckedUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     donation_links?: DonationLinkUncheckedUpdateManyWithoutAdminNestedInput
   }

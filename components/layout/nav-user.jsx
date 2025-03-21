@@ -6,11 +6,6 @@ import {
   User,
 } from 'lucide-react';
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/components/ui/avatar';
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
@@ -27,9 +22,13 @@ import {
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import ToggleTheme from './toggle-theme';
+import { signOut, useSession } from 'next-auth/react';
 
 export function NavUser() {
   const { isMobile } = useSidebar()
+  const { data: session } = useSession();
+
+  if (!session) return null;
 
   return (
     <SidebarMenu>
@@ -40,13 +39,16 @@ export function NavUser() {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src="https://res.cloudinary.com/priskojrmod/image/upload/q_auto/profile.png" alt="Profile" />
-                <AvatarFallback className="rounded-lg">Profile</AvatarFallback>
-              </Avatar>
+              <img
+                src={session.user.image}
+                alt={session.user.name}
+                loading="lazy"
+                decoding="async"
+                className="size-8 rounded-full"
+              />
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">Reza</span>
-                <span className="truncate text-xs">fikkri.reza@gmail.com</span>
+                <span className="truncate font-semibold">{session.user.name}</span>
+                <span className="truncate text-xs">{session.user.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -59,10 +61,13 @@ export function NavUser() {
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src="https://res.cloudinary.com/priskojrmod/image/upload/q_auto/profile.png" alt="Profile" />
-                  <AvatarFallback className="rounded-lg">Profile</AvatarFallback>
-                </Avatar>
+                <img
+                  src={session.user.image}
+                  alt={session.user.name}
+                  loading="lazy"
+                  decoding="async"
+                  className="size-8 rounded-full"
+                />
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Reza</span>
                   <span className="truncate text-xs">fikkri.reza@gmail.com</span>
@@ -80,7 +85,7 @@ export function NavUser() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="" className="focus:bg-red-50 dark:focus:bg-red-300/8 cursor-pointer"><LogOut /> Sign Out</Link>
+              <button onClick={() => signOut({ callbackUrl: '/signin' })} className="w-full focus:bg-red-50 dark:focus:bg-red-300/8"><LogOut /> Sign Out</button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

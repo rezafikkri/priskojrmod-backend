@@ -5,6 +5,7 @@ import Footer from '@/components/layout/footer';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/layout/app-siderbar';
+import SessionProvider from '@/components/session-provider';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -23,22 +24,24 @@ export default function RootLayout({ children }) {
       <body
         className={`${montserrat.variable}`}
       >
-        <SidebarProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            disableTransitionOnChange
-          >
-            <AppSidebar />
-          </ThemeProvider>
-          <SidebarInset className="min-h-screen">
-            <Header />
-            <div className="flex-1 p-4">
-              {children}
-            </div>
-            <Footer />
-          </SidebarInset>
-        </SidebarProvider>
+        <SessionProvider>
+          <SidebarProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              disableTransitionOnChange
+            >
+              <AppSidebar />
+            </ThemeProvider>
+            <SidebarInset className="min-h-screen">
+              <Header />
+              <div className="flex-1 p-4">
+                {children}
+              </div>
+              <Footer />
+            </SidebarInset>
+          </SidebarProvider>
+        </SessionProvider>
       </body>
     </html>
   );

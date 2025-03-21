@@ -18,10 +18,10 @@ datasource db {
 
 model Admin {
   id          String  @id @db.VarChar(255)
-  firstName   String  @db.VarChar(100)
-  lastName    String  @db.VarChar(100)
-  email       String  @db.VarChar(100)
-  phoneNumber String  @db.VarChar(20)
+  first_name   String  @db.VarChar(100)
+  last_name    String  @db.VarChar(100)
+  email       String  @db.VarChar(100) @unique
+  phone_number String?  @db.VarChar(20)
   picture     String? @db.VarChar(255)
 
   donation_links DonationLink[]
@@ -62,9 +62,9 @@ model Customer {
   id           String  @id @db.VarChar(255)
   first_name   String  @db.VarChar(100)
   last_name    String  @db.VarChar(100)
-  email        String  @db.VarChar(100)
+  email        String  @db.VarChar(100) @unique
   password     String? @db.VarChar(100)
-  phone_number String  @db.VarChar(20)
+  phone_number String?  @db.VarChar(20)
   picture      String? @db.VarChar(255)
   last_active  BigInt
 
