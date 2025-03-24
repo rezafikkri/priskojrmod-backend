@@ -20,7 +20,8 @@ model SecretKeyLicense {
   id          BigInt       @id @default(autoincrement())
   key         String       @db.VarChar(100)
   created_at  BigInt
-  version     String       @db.VarChar(20)
+  app_name    String       @db.VarChar(50)
+
   license_key LicenseKey[]
 
   @@map("secret_key_license")

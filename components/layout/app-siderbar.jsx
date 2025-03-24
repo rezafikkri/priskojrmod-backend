@@ -55,8 +55,8 @@ const items = {
     { title: 'Products', url: '/products', icon: Package },
   ],
   application: [
-    { title: 'Secret Key', url: '#', icon: LockPassword },
-    { title: 'License Key', url: '#', icon: Key },
+    { title: 'Secret Key', url: '/secret-key', icon: LockPassword },
+    { title: 'License Key', url: '/license-key', icon: Key },
   ],
 };
 

@@ -32,14 +32,14 @@ export default function RootLayout({ children }) {
               disableTransitionOnChange
             >
               <AppSidebar />
+              <SidebarInset className="min-h-screen">
+                <Header />
+                <div className="flex-1 p-4">
+                  {children}
+                </div>
+                <Footer />
+              </SidebarInset>
             </ThemeProvider>
-            <SidebarInset className="min-h-screen">
-              <Header />
-              <div className="flex-1 p-4">
-                {children}
-              </div>
-              <Footer />
-            </SidebarInset>
           </SidebarProvider>
         </SessionProvider>
       </body>

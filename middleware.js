@@ -1,6 +1,14 @@
 import { getToken } from 'next-auth/jwt';
 import { withAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';
+import { CsrfError, createCsrfProtect } from '@edge-csrf/nextjs';
+
+// initalize csrf protection method
+const csrfProtect = createCsrfProtect({
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+  },
+});
 
 export default withAuth(
   async function middleware(req) {
@@ -11,7 +19,16 @@ export default withAuth(
       return NextResponse.redirect(new URL('/', req.url));
     }
 
-    return NextResponse.next();
+    const response = NextResponse.next();
+
+    try {
+      await csrfProtect(req, response);
+    } catch (err) {
+      if (err instanceof CsrfError) return new NextResponse('invalid csrf token', { status: 403 });
+      throw err;
+    }
+
+    return response;
   },
   {
     callbacks: {

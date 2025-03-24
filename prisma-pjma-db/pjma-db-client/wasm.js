@@ -121,7 +121,7 @@ exports.Prisma.SecretKeyLicenseScalarFieldEnum = {
   id: 'id',
   key: 'key',
   created_at: 'created_at',
-  version: 'version'
+  app_name: 'app_name'
 };
 
 exports.Prisma.LicenseKeyScalarFieldEnum = {

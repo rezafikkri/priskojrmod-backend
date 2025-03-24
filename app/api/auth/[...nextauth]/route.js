@@ -2,7 +2,7 @@ import NextAuth from 'next-auth';
 import pjmeDBPrismaClient from '@/lib/pjme-prisma-client';
 import GoogleProvider from 'next-auth/providers/google';
 
-const authOptions = {
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
@@ -16,6 +16,7 @@ const authOptions = {
   session: {
     strategy: 'jwt',
   },
+  theme: { colorScheme: 'light' },
   callbacks: {
     async redirect({ url, baseUrl }) {
       // If redirect URL is specified with relative path
@@ -41,7 +42,7 @@ const authOptions = {
           },
         });
 
-        token.userId = profile.pub;
+        token.userId = profile.sub;
         token.picture = user.picture;
         token.first_name = profile.given_name;
         token.accessToken = account.access_token;
