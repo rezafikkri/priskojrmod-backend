@@ -31,6 +31,7 @@ model LicenseKey {
   id                String           @id @default(uuid(7)) @db.Uuid
   secret_key        SecretKeyLicense @relation(fields: [secret_key_id], references: [id])
   secret_key_id     BigInt
+  email             String           @unique @db.VarChar(100)
   key               String
   used_for_activate Boolean
   used_for_download Boolean
