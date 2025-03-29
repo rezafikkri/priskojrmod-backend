@@ -19,8 +19,10 @@ import { secretKeySchema } from '@/lib/validators/secret-key-validator';
 import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
 import Link from 'next/link';
+import random32Bytes from '@/actions/random-32-bytes-actions';
+import { addSecretKey } from '@/actions/secret-key-actions';
 
-export default function CreateForm({ csrfToken }) {
+export default function CreateForm() {
   const form = useForm({
     resolver: zodResolver(secretKeySchema),
     defaultValues: {
@@ -31,30 +33,20 @@ export default function CreateForm({ csrfToken }) {
   const isSubmitting = form.formState.isSubmitting;
   const [loadingKey, setLoadingKey] = useState(false);
 
-  async function handleSubmit(values) {
-    await new Promise((resolve) => {
-      setTimeout(() => resolve(true), 8000);
-    });
-    const res = await fetch('/api/secret-key', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrfToken },
-      body: JSON.stringify(values),
-    });
-    const resJson = await res.json();
-
-    if (resJson.status === 'success') {
+  async function handleSubmit(data) {
+    const add = await addSecretKey(data);
+    if (add.status === 'success') {
       form.reset();
       toast.success('Secret Key created successfully.');
     } else {
-      toast.error('Failed to create Secret Key.');
+      toast.error('Failed to create Secret Key. Please try again.');
     }
   }
 
   async function handleGenerateKey() {
     setLoadingKey(true);
   
-    const res = await fetch('/api/random-32-bytes');
-    const key = await res.json();
+    const key = await random32Bytes();
     form.setValue('key', key.random);
     form.clearErrors('key');
 

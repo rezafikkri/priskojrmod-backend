@@ -61,7 +61,7 @@
   --destructive-foreground: hsl(0 0% 98%);
   --border: hsl(240 5.9% 90%);
   --input: hsl(240 5.9% 90%);
-  --ring: hsl(142.1 76.2% 36.3%);
+  --ring: #22c55e;
   --radius: 0.5rem;
   --chart-1: #16a34a;
   --chart-2: hsl(173 58% 39%);

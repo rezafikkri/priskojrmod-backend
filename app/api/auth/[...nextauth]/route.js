@@ -21,6 +21,19 @@ export const authOptions = {
     async redirect({ url, baseUrl }) {
       // If redirect URL is specified with relative path
       if (url.startsWith('/')) return `${baseUrl}${url}`;
+
+      // if user access protected page, and force redirect to /signin
+      // because not signin yet, then redirect back to page is want user access
+      // if user sign in success
+      const alreadyRedirected = /callbackUrl=/.test(url);
+      if (alreadyRedirected) {
+        const callbackUrl = decodeURIComponent(url.split('callbackUrl=')[1]);
+        if (new URL(callbackUrl).origin === baseUrl) return callbackUrl;
+      }
+
+      // Allows callback URLs on the same origin
+      if (new URL(url).origin === baseUrl) return url
+
       return baseUrl;
     },
     async signIn({ profile }) {
