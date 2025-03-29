@@ -1,10 +1,13 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import DataTable from '@/components/secret-key/data-table';
-import { getSecretKeys } from '@/lib/services/secret-key-service';
+import verifySession from '@/lib/verifySession';
+import SecretKeysTable from '@/components/secret-key/secret-keys-table';
+import { Suspense } from 'react';
+import TableSekeleton from '@/components/loadings/table-skeleton';
 
 export default async function SecretKey() {
-  const secretKeys = await getSecretKeys();
+  const session = await verifySession();
+  if (!session) return null;
 
   return (
     <>
@@ -14,8 +17,10 @@ export default async function SecretKey() {
       <Button asChild variant="outline" className="mb-7">
         <Link href="/secret-key/create">Create Secret</Link>
       </Button>
-
-      <DataTable secretKeys={secretKeys} />
+      
+      <Suspense fallback={<TableSekeleton />}>
+        <SecretKeysTable />
+      </Suspense>
     </>
   );
 }
