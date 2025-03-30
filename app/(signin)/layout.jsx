@@ -12,6 +12,9 @@ const montserrat = Montserrat({
 
 export const metadata = {
   title: 'Sign In - Prisko Jr Mod',
+  robots: {
+    index: false,
+  },
 };
 
 export default function RootLayout({ children }) {
