@@ -1,5 +1,9 @@
 import CreateForm from '@/components/secret-key/create-form';
 
+export const metadata = {
+  title: 'Create Secret Key - Prisko Jr Mod',
+};
+
 export default async function CreateSecretKey() {
   return (
     <>

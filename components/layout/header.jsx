@@ -1,3 +1,6 @@
+'use client';
+
+import { generateBreadcrumb } from '@/lib/utils';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,8 +11,14 @@ import {
 } from '../ui/breadcrumb';
 import { Separator } from '../ui/separator';
 import { SidebarTrigger } from '../ui/sidebar';
+import { usePathname } from 'next/navigation';
+import { Fragment } from 'react';
+import Link from 'next/link';
 
 export default function Header() {
+  const pathname = usePathname();
+  const breadCrumb = generateBreadcrumb((pathname));
+
   return (
     <header className="flex h-16 shrink-0 items-center gap-2">
       <div className="flex items-center gap-2 px-4">
@@ -17,15 +26,24 @@ export default function Header() {
         <Separator orientation="vertical" className="mr-2 !h-4" />
         <Breadcrumb>
           <BreadcrumbList>
-            {/* <BreadcrumbItem className="hidden md:block"> */}
-            {/*   <BreadcrumbLink href="#"> */}
-            {/*     Building Your Application */}
-            {/*   </BreadcrumbLink> */}
-            {/* </BreadcrumbItem> */}
-            {/* <BreadcrumbSeparator className="hidden md:block" /> */}
-            <BreadcrumbItem>
-              <BreadcrumbPage>Dashboard</BreadcrumbPage>
-            </BreadcrumbItem>
+            {breadCrumb.map(bc =>
+              bc.path ? (
+                <BreadcrumbItem className="hidden md:block" key={bc.breadCrumb}>
+                  <BreadcrumbLink asChild>
+                    <Link href={bc.path}>{bc.breadCrumb}</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+              ) : (
+                <Fragment key={bc.breadCrumb}>
+                  {breadCrumb.length > 1 &&
+                    <BreadcrumbSeparator className="hidden md:block" />
+                  }
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>{bc.breadCrumb}</BreadcrumbPage>
+                  </BreadcrumbItem>
+                </Fragment>
+              )
+            )}
           </BreadcrumbList>
         </Breadcrumb>
       </div>

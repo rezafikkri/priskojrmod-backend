@@ -5,6 +5,10 @@ import SecretKeysTable from '@/components/secret-key/secret-keys-table';
 import { Suspense } from 'react';
 import TableSekeleton from '@/components/loadings/table-skeleton';
 
+export const metadata = {
+  title: 'Secret Key - Prisko Jr Mod',
+};
+
 export default async function SecretKey() {
   const session = await verifySession();
   if (!session) return null;

@@ -15,7 +15,10 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: 'Dashboard - Prisko Jr Mod',
+  title: {
+    template: '%s - Prisko Jr Mod',
+    default: 'Dashboard - Prisko Jr Mod',
+  },
   robots: {
     index: false,
   },
