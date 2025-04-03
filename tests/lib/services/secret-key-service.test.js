@@ -28,6 +28,10 @@ beforeAll(() => {
     secretKeySchema: { parse: vi.fn() },
   }));
 
+  vi.mock('uuid', () => ({
+    v7: () => 'uuidv7',
+  }));
+
   vi.mock('next/cache', () => ({
     revalidatePath: () => {},
     unstable_cache: () => {},
@@ -44,7 +48,7 @@ describe('createSecretKey function', () => {
     const verifySession = (await import('@/lib/verifySession')).default;
     const { pjmaDBPrismaClient } = await import('@/lib/pjma-prisma-client');
 
-    verifySession.mockResolvedValue(null);
+    verifySession.mockResolvedValue(false);
 
     await expect(createSecretKey({ key: 'test-key', app_name: 'test-app' })).rejects.toThrow('Unauthenticated');
 
@@ -67,6 +71,7 @@ describe('createSecretKey function', () => {
       data: {
         key: 'test-key',
         app_name: 'test-app',
+        product_id: 'uuidv7',
         created_at: expect.any(BigInt),
       },
     });
@@ -78,7 +83,7 @@ describe('deleteSecretKey function', () => {
     const verifySession = (await import('@/lib/verifySession')).default;
     const { pjmaDBPrismaClient } = await import('@/lib/pjma-prisma-client');
 
-    verifySession.mockResolvedValue(null);
+    verifySession.mockResolvedValue(false);
 
     await expect(deleteSecretKey('secret-key-id')).rejects.toThrow('Unauthenticated');
 
@@ -92,7 +97,7 @@ describe('deleteSecretKey function', () => {
 
     verifySession.mockResolvedValue({ isAuth: true, userId: '123' });
 
-    const result = await deleteSecretKey('secret-key-id');
+    await deleteSecretKey('secret-key-id');
 
     expect(pjmaDBPrismaClient.SecretKeyLicense.delete).toHaveBeenCalledWith({
       where: { id: 'secret-key-id' },
