@@ -3,5 +3,5 @@ import { getSecretKeys } from '@/lib/services/secret-key-service';
 
 export default async function SecretKeysTable() {
   const secretKeys = await getSecretKeys();
-  return  <DataTable secretKeys={JSON.parse(secretKeys)} />;
+  return  <DataTable secretKeys={secretKeys} />;
 }

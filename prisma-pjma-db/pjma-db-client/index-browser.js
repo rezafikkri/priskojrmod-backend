@@ -119,6 +119,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.SecretKeyLicenseScalarFieldEnum = {
   id: 'id',
+  product_id: 'product_id',
   key: 'key',
   created_at: 'created_at',
   app_name: 'app_name'

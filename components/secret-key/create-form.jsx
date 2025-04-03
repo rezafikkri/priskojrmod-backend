@@ -98,12 +98,13 @@ export default function CreateForm() {
                 <FormControl>
                   <Input disabled={isSubmitting} {...field} className="shadow-none" />
                 </FormControl>
+                <FormDescription>One application product can only have one secret key.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
           <Button asChild variant="outline" className="me-3 mb-0">
-            <Link href="/secret-key">Back</Link>
+            <Link href="/secret-key">Cancel</Link>
           </Button>
           <div className="relative inline-block">
             <Button
@@ -111,7 +112,7 @@ export default function CreateForm() {
               className={`disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''}`}
               disabled={isSubmitting}
             >
-              <span className={isSubmitting ? 'opacity-0' : ''}>Save</span>
+              <span className={isSubmitting ? 'opacity-0' : ''}>Create</span>
             </Button>
             {isSubmitting && 
               <div className="absolute h-full top-0 left-0 right-0 flex justify-center items-center">

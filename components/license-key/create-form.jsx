@@ -1,0 +1,172 @@
+'use client';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form';
+import { Input } from '../ui/input';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select';
+import { licenseKeySchema } from '@/lib/validators/license-key-validator';
+import { Toaster } from '../ui/sonner';
+import { toast } from 'sonner';
+import Link from 'next/link';
+import { Button } from '../ui/button';
+import { Loader2 } from 'lucide-react';
+import { addLicenseKey } from '@/actions/license-key-actions';
+
+export default function CreateForm({
+  secretKeys
+}) {
+  const form = useForm({
+    resolver: zodResolver(licenseKeySchema),
+    defaultValues: {
+      secret_key_id: '',
+      name: '',
+      email: '',
+      type: 'online',
+    },
+  });
+
+  const isSubmitting = form.formState.isSubmitting;
+
+  async function handleSubmit(data) {
+    const add = await addLicenseKey(data);
+    if (add.status === 'success') {
+      form.reset();
+      toast.success('License Key created successfully.');
+    } else if (add.status === 'error' && add.isField) {
+      form.setError('email', { type: 'validate', message: add.message });
+    } else {
+      toast.error(add.message);
+    }
+  }
+
+  return (
+    <>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 lg:max-w-2/3 mb-10">
+          <FormField
+            control={form.control}
+            name="secret_key_id"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Secret Key</FormLabel>
+                <Select onValueChange={field.onChange} value={field.value} disabled={isSubmitting}>
+                  <FormControl>
+                    <SelectTrigger className="w-full shadow-none">
+                      <SelectValue placeholder="Select a Secret Key" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {secretKeys.map(secretKey => (
+                      <SelectItem
+                        key={secretKey.id}
+                        value={secretKey.id}
+                      >
+                        {secretKey.app_name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormDescription>Select Secret Key based on application name!</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input disabled={isSubmitting} {...field} className="shadow-none" />
+                </FormControl>
+                <FormDescription>Customer name.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input type="email" disabled={isSubmitting} {...field} className="shadow-none" />
+                </FormControl>
+                <FormDescription>Customer email.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="type"
+            render={({ field }) => (
+              <FormItem className="space-y-3">
+                <FormLabel>Type</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    className="flex space-x-2"
+                    disabled={isSubmitting}
+                  >
+                    <FormItem className="flex items-center space-x-1 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="online" />
+                      </FormControl>
+                      <FormLabel className="font-normal">Online</FormLabel>
+                    </FormItem>
+                    <FormItem className="flex items-center space-x-1 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="offline" />
+                      </FormControl>
+                      <FormLabel className="font-normal">Offline</FormLabel>
+                    </FormItem>
+                  </RadioGroup>
+                </FormControl>
+                <FormDescription>Select activation type: online or offline!</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button asChild variant="outline" className="me-3 mb-0">
+            <Link href="/license-key">Cancel</Link>
+          </Button>
+          <div className="relative inline-block">
+            <Button
+              type="submit"
+              className={`disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''}`}
+              disabled={isSubmitting}
+            >
+              <span className={isSubmitting ? 'opacity-0' : ''}>Create</span>
+            </Button>
+            {isSubmitting && 
+              <div className="absolute h-full top-0 left-0 right-0 flex justify-center items-center">
+                <Loader2 className="animate-spin text-primary-foreground" size={16} />
+              </div>
+            }
+          </div>
+        </form>
+      </Form>
+      <Toaster richColors />
+    </>
+  );
+}

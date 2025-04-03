@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Create Secret Key - Prisko Jr Mod',
 };
 
-export default async function CreateSecretKey() {
+export default function CreateSecretKey() {
   return (
     <>
       <h1 className="text-xl mb-7 font-bold">Create Secret Key</h1>
