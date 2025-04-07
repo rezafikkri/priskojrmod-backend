@@ -1,10 +1,6 @@
 import { getLicenseKeys } from '@/lib/services/license-key-service';
 
 export async function GET(req) {
-  await new Promise(resolve => {
-    setTimeout(() => resolve(true), 4000);
-  });
-
   const searchParams = req.nextUrl.searchParams;
   const pageIndex = parseInt(searchParams.get('pi'));
   const pageSize = parseInt(searchParams.get('ps'));

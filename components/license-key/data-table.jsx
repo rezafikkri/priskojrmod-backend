@@ -128,8 +128,7 @@ export default function DataTable({
 
   return (
     <>
-      <div className="rounded-md border relative">
-        <div className={`absolute bg-background/50 top-0 bottom-0 left-0 right-0 z-0 rounded-md opacity-0 ${loading ? 'z-1 opacity-100' : ''}`} />
+      <div className="rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
