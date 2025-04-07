@@ -27,7 +27,7 @@ import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Loader2 } from 'lucide-react';
 import { addLicenseKey } from '@/actions/license-key-actions';
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQueryClient } from '@tanstack/react-query'
 
 export default function CreateForm({
   secretKeys
