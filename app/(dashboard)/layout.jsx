@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/layout/app-siderbar';
 import SessionProvider from '@/components/session-provider';
+import ReactQueryProvider from '@/components/react-query-provider';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -41,7 +42,9 @@ export default function RootLayout({ children }) {
               <SidebarInset className="min-h-screen overflow-x-hidden">
                 <Header />
                 <div className="flex-1 p-4 mb-25">
-                  {children}
+                  <ReactQueryProvider>
+                    {children}
+                  </ReactQueryProvider>
                 </div>
                 <Footer />
               </SidebarInset>

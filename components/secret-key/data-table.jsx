@@ -120,10 +120,7 @@ export default function DataTable({ secretKeys: data }) {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
+                <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="p-3">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}

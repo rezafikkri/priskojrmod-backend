@@ -27,10 +27,14 @@ import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Loader2 } from 'lucide-react';
 import { addLicenseKey } from '@/actions/license-key-actions';
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 export default function CreateForm({
   secretKeys
 }) {
+  // Get QueryClient from the context
+  const queryClient = useQueryClient()
+
   const form = useForm({
     resolver: zodResolver(licenseKeySchema),
     defaultValues: {
@@ -48,6 +52,7 @@ export default function CreateForm({
     if (add.status === 'success') {
       form.reset();
       toast.success('License Key created successfully.');
+      queryClient.invalidateQueries({ queryKey: ['licenseKeys'] })
     } else if (add.status === 'error' && add.isField) {
       form.setError('email', { type: 'validate', message: add.message });
     } else {
