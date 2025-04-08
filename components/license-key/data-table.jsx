@@ -38,6 +38,7 @@ export default function DataTable({
   pageInfo,
   onPagination,
   pagination,
+  isPlaceholderData,
 }) {
   // table definition
   const columns = useMemo(() => [
@@ -188,7 +189,7 @@ export default function DataTable({
             variant="outline"
             size="sm"
             onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
+            disabled={isPlaceholderData || !table.getCanNextPage()}
           >
             Next
           </Button>

@@ -12,6 +12,7 @@ function makeQueryClient() {
       queries: {
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
+        retry: false,
       },
     },
   })

@@ -50,9 +50,9 @@ export default function CreateForm({
   async function handleSubmit(data) {
     const add = await addLicenseKey(data);
     if (add.status === 'success') {
+      await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] })
       form.reset();
       toast.success('License Key created successfully.');
-      queryClient.invalidateQueries({ queryKey: ['licenseKeys'] })
     } else if (add.status === 'error' && add.isField) {
       form.setError('email', { type: 'validate', message: add.message });
     } else {
