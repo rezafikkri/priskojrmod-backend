@@ -156,7 +156,8 @@ export default function DataTable({
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={`px-3 py-3 ${cell.column.id === 'actions' ? 'text-right' : '' }`}>
+                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' }`}
+                    >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}

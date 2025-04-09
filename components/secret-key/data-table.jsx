@@ -79,10 +79,16 @@ export default function DataTable({ secretKeys: data }) {
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuContent align="end" className="px-1.5">
+              <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
               <DropdownMenuItem asChild>
-                <Button onClick={() => handleDelete(row.original.id)} variant="ghost" className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal">Delete</Button>
+                <Button
+                  onClick={() => handleDelete(row.original.id)}
+                  variant="ghost"
+                  className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal text-base h-auto p-2"
+                >
+                  Delete
+                </Button>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -100,12 +106,15 @@ export default function DataTable({ secretKeys: data }) {
     <>
       <div className="rounded-md border relative">
         <div className={`absolute bg-background/50 top-0 bottom-0 left-0 right-0 z-0 rounded-md opacity-0 ${loading ? 'z-1 opacity-100' : ''}`} />
-        <Table>
+        <Table className="text-base">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className="bg-muted/50">
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="px-3 text-zinc-600 dark:text-zinc-400">
+                  <TableHead
+                    key={header.id}
+                    className="px-3 py-2.5 h-auto text-zinc-600 dark:text-zinc-400"
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -122,7 +131,10 @@ export default function DataTable({ secretKeys: data }) {
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="p-3">
+                    <TableCell
+                      key={cell.id}
+                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' }`}
+                    >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
@@ -138,7 +150,15 @@ export default function DataTable({ secretKeys: data }) {
           </TableBody>
         </Table>
       </div>
-      <Toaster richColors />
+      <Toaster
+        richColors
+        toastOptions={{
+          classNames: {
+            title: 'text-[15px]',
+            description: 'text-[15px]',
+          },
+        }}
+      />
     </>
   );
 }

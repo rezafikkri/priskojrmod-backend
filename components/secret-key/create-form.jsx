@@ -62,26 +62,30 @@ export default function CreateForm() {
             name="key"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Secret Key</FormLabel>
+                <FormLabel className="text-base">Secret Key</FormLabel>
                 <div className="flex w-full items-center">
                   <FormControl>
-                    <Input disabled={isSubmitting} className="-me-[1px] shadow-none rounded-e-none z-3 relativ" {...field} />
+                    <Input
+                      disabled={isSubmitting}
+                      className="md:text-base h-auto px-3 py-1.5 -me-[1px] shadow-none rounded-e-none z-3 relativ"
+                      {...field}
+                    />
                   </FormControl>
                   <div className="relative">
                     <Button
                       variant="secondary"
                       type="button"
                       onClick={handleGenerateKey}
-                      className={`border rounded-s-none ${loadingKey ? 'disabled:opacity-100 transition-none' : ''}`}
+                      className={`h-auto text-base px-3 py-1.5 border rounded-s-none ${loadingKey ? 'disabled:opacity-100 transition-none' : ''}`}
                       disabled={loadingKey || isSubmitting}
                     >
                       <span className={loadingKey ? 'opacity-0' : ''}>Generate</span>
                     </Button>
-                    {loadingKey && 
+                    {loadingKey && (
                       <div className="absolute h-full top-0 left-0 right-0 flex justify-center items-center">
                         <Loader2 className="animate-spin" size={16} />
                       </div>
-                    }
+                    )}
                   </div>
                 </div>
                 <FormDescription>Click Generate button to generate Secret Key!</FormDescription>
@@ -94,35 +98,47 @@ export default function CreateForm() {
             name="app_name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Application Name</FormLabel>
+                <FormLabel className="text-base">Application Name</FormLabel>
                 <FormControl>
-                  <Input disabled={isSubmitting} {...field} className="shadow-none" />
+                  <Input disabled={isSubmitting} {...field} className="md:text-base h-auto px-3 py-1.5 shadow-none" />
                 </FormControl>
                 <FormDescription>One application product can only have one secret key.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button asChild variant="outline" className="me-3 mb-0">
+          <Button
+            asChild
+            variant="outline"
+            className="me-3 mb-0 h-auto text-base px-3 py-1.5"
+          >
             <Link href="/secret-key">Cancel</Link>
           </Button>
           <div className="relative inline-block">
             <Button
               type="submit"
-              className={`disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''}`}
+              className={`h-auto text-base px-3 py-1.5 disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''} border border-primary`}
               disabled={isSubmitting}
             >
               <span className={isSubmitting ? 'opacity-0' : ''}>Create</span>
             </Button>
-            {isSubmitting && 
+            {isSubmitting && (
               <div className="absolute h-full top-0 left-0 right-0 flex justify-center items-center">
                 <Loader2 className="animate-spin text-primary-foreground" size={16} />
               </div>
-            }
+            )}
           </div>
         </form>
       </Form>
-      <Toaster richColors />
+      <Toaster
+        richColors
+        toastOptions={{
+          classNames: {
+            title: 'text-[15px]',
+            description: 'text-[15px]',
+          },
+        }}
+      />
     </>
   );
 }

@@ -162,7 +162,7 @@ export default function CreateForm({
           <div className="relative inline-block">
             <Button
               type="submit"
-              className={`disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''} h-auto text-base px-3 py-1.5`}
+              className={`disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''} h-auto text-base px-3 py-1.5 border border-primary`}
               disabled={isSubmitting}
             >
               <span className={isSubmitting ? 'opacity-0' : ''}>Create</span>
@@ -184,7 +184,6 @@ export default function CreateForm({
           },
         }}
       />
-
     </>
   );
 }
