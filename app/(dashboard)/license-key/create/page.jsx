@@ -9,7 +9,7 @@ export const metadata = {
 export default function CreateLicenseKey() {
   return (
     <>
-      <h1 className="text-xl mb-7 font-bold">Create License Key</h1>
+      <h1 className="text-2xl mb-7 font-bold">Create License Key</h1>
       <Suspense fallback={<FormSkeleton />}>
         <LicenseKeyForm />
       </Suspense>

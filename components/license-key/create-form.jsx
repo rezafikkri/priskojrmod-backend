@@ -69,10 +69,13 @@ export default function CreateForm({
             name="secret_key_id"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Secret Key</FormLabel>
-                <Select onValueChange={field.onChange} value={field.value} disabled={isSubmitting}>
+                <FormLabel className="text-base">Secret Key</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  value={field.value} disabled={isSubmitting}
+                >
                   <FormControl>
-                    <SelectTrigger className="w-full shadow-none">
+                    <SelectTrigger className="w-full shadow-none text-base h-auto! px-3 py-1.5">
                       <SelectValue placeholder="Select a Secret Key" />
                     </SelectTrigger>
                   </FormControl>
@@ -81,6 +84,7 @@ export default function CreateForm({
                       <SelectItem
                         key={secretKey.id}
                         value={secretKey.id}
+                        className="text-base"
                       >
                         {secretKey.app_name}
                       </SelectItem>
@@ -97,9 +101,9 @@ export default function CreateForm({
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel className="text-base">Name</FormLabel>
                 <FormControl>
-                  <Input disabled={isSubmitting} {...field} className="shadow-none" />
+                  <Input disabled={isSubmitting} {...field} className="shadow-none md:text-base h-auto px-3 py-1.5" />
                 </FormControl>
                 <FormDescription>Customer name.</FormDescription>
                 <FormMessage />
@@ -111,9 +115,9 @@ export default function CreateForm({
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className="text-base">Email</FormLabel>
                 <FormControl>
-                  <Input type="email" disabled={isSubmitting} {...field} className="shadow-none" />
+                  <Input type="email" disabled={isSubmitting} {...field} className="shadow-none md:text-base h-auto px-3 py-1.5" />
                 </FormControl>
                 <FormDescription>Customer email.</FormDescription>
                 <FormMessage />
@@ -125,7 +129,7 @@ export default function CreateForm({
             name="type"
             render={({ field }) => (
               <FormItem className="space-y-3">
-                <FormLabel>Type</FormLabel>
+                <FormLabel className="text-base">Type</FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
@@ -137,13 +141,13 @@ export default function CreateForm({
                       <FormControl>
                         <RadioGroupItem value="online" />
                       </FormControl>
-                      <FormLabel className="font-normal">Online</FormLabel>
+                      <FormLabel className="font-normal text-base">Online</FormLabel>
                     </FormItem>
                     <FormItem className="flex items-center space-x-1 space-y-0">
                       <FormControl>
                         <RadioGroupItem value="offline" />
                       </FormControl>
-                      <FormLabel className="font-normal">Offline</FormLabel>
+                      <FormLabel className="font-normal text-base">Offline</FormLabel>
                     </FormItem>
                   </RadioGroup>
                 </FormControl>
@@ -152,13 +156,13 @@ export default function CreateForm({
               </FormItem>
             )}
           />
-          <Button asChild variant="outline" className="me-3 mb-0">
+          <Button asChild variant="outline" className="me-3 mb-0 h-auto text-base px-3 py-1.5">
             <Link href="/license-key">Cancel</Link>
           </Button>
           <div className="relative inline-block">
             <Button
               type="submit"
-              className={`disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''}`}
+              className={`disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''} h-auto text-base px-3 py-1.5`}
               disabled={isSubmitting}
             >
               <span className={isSubmitting ? 'opacity-0' : ''}>Create</span>
@@ -171,7 +175,16 @@ export default function CreateForm({
           </div>
         </form>
       </Form>
-      <Toaster richColors />
+      <Toaster
+        richColors
+        toastOptions={{
+          classNames: {
+            title: 'text-[15px]',
+            description: 'text-[15px]',
+          },
+        }}
+      />
+
     </>
   );
 }

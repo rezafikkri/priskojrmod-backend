@@ -49,7 +49,7 @@ export default function DataTable({
     {
       accessorKey: 'key',
       header: 'License Key',
-      cell: ({ row }) => row.getValue('key').substring(0, 40) + '...',
+      cell: ({ row }) => row.getValue('key').substring(0, 30) + '...',
     },
     {
       accessorKey: 'used_for_activate',
@@ -57,7 +57,7 @@ export default function DataTable({
       cell: ({ row }) => (
         <div className="text-center">{
           row.getValue('used_for_activate')
-            ? <Check className="size-4.5 inline-block" />
+            ? <Check className="size-4 inline-block" />
             : <Dot className="size-4 text-zinc-300/50 dark:text-zinc-800 inline-block" />
         }</div>
       ),
@@ -68,7 +68,7 @@ export default function DataTable({
       cell: ({ row }) => (
         <div className="text-center">{
           row.getValue('used_for_download')
-            ? <Check className="size-4.5 inline-block" />
+            ? <Check className="size-4 inline-block" />
             : <Dot className="size-4 text-zinc-300/50 dark:text-zinc-800 inline-block" />
         }</div>
       ),
@@ -89,16 +89,15 @@ export default function DataTable({
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-40">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuSeparator />
+            <DropdownMenuContent align="end" className="min-w-50 px-1.5">
+              <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
               <DropdownMenuItem asChild>
-                <Button variant="ghost" className="w-full justify-start focus-visible:ring-0 font-normal">Edit</Button>
+                <Button variant="ghost" className="w-full justify-start focus-visible:ring-0 font-normal text-base h-auto py-2">Edit</Button>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Button
                   variant="ghost"
-                  className="w-full justify-start focus-visible:ring-0 font-normal"
+                  className="w-full justify-start focus-visible:ring-0 font-normal text-base h-auto py-2"
                   onClick={() => navigator.clipboard.writeText(row.getValue('key'))}
                 >
                   Copy License Key
@@ -106,7 +105,7 @@ export default function DataTable({
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Button onClick={() => handleDelete(row.original.id)} variant="ghost" className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal">Delete</Button>
+                <Button onClick={() => handleDelete(row.original.id)} variant="ghost" className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal text-base h-auto py-2">Delete</Button>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -130,14 +129,14 @@ export default function DataTable({
   return (
     <>
       <div className="rounded-md border">
-        <Table>
+        <Table className="text-base">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className="bg-muted/50">
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className="px-3 text-zinc-600 dark:text-zinc-400"
+                    className="px-3 py-2.5 text-zinc-600 dark:text-zinc-400 h-auto"
                   >
                     {header.isPlaceholder
                       ? null
@@ -157,7 +156,7 @@ export default function DataTable({
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' }`}>
+                      className={`px-3 py-3 ${cell.column.id === 'actions' ? 'text-right' : '' }`}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
@@ -175,13 +174,14 @@ export default function DataTable({
       </div>
 
       <div className="flex gap-5 justify-between mt-4 items-center">
-        <span className="text-sm text-muted-foreground">{pageInfo}</span>
+        <span className="text-muted-foreground">{pageInfo}</span>
         <div className="space-x-2">
           <Button
             variant="outline"
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            className="h-auto text-base px-3 py-1.5"
           >
             Previous
           </Button>
@@ -190,6 +190,7 @@ export default function DataTable({
             size="sm"
             onClick={() => table.nextPage()}
             disabled={isPlaceholderData || !table.getCanNextPage()}
+            className="h-auto text-base px-3 py-1.5"
           >
             Next
           </Button>
