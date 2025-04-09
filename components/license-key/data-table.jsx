@@ -116,7 +116,7 @@ export default function DataTable({
   const table = useReactTable({
     data: licenseKeys,
     columns,
-    rowCount: rowCount,
+    rowCount,
     state: {
       pagination,
     },

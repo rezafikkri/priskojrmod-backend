@@ -1,10 +1,10 @@
-import { getLicenseKeys } from '@/lib/services/license-key-service';
+import { countLicenseKeys, getLicenseKeys } from '@/lib/services/license-key-service';
 
 export async function GET(req) {
   const searchParams = req.nextUrl.searchParams;
   const pageIndex = parseInt(searchParams.get('pi'));
   const pageSize = parseInt(searchParams.get('ps'));
-  const licenseKey = await getLicenseKeys({
+  const licenseKeys = await getLicenseKeys({
     select: {
       id: true,
       email: true,
@@ -16,6 +16,13 @@ export async function GET(req) {
     pageIndex,
     pageSize,
   });
+  const numberLicenseKeys = await countLicenseKeys();
 
-  return Response.json(licenseKey);
+  return Response.json({
+    message: 'success',
+    data: {
+      licenseKeys,
+      rowCount: numberLicenseKeys,
+    },
+  });
 }

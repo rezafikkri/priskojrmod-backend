@@ -33,7 +33,17 @@ export default function LicenseKeysTable() {
     setPagination(dataPagination);
   }
 
-  const dataQuery = useQuery({
+  // dataN is data normal without filter (ex. search by email)
+  // same to other *N 
+  const {
+    data: dataN,
+    isLoading: isLoadingN,
+    isFetching: isFetchingN,
+    status: statusN,
+    isError: isErrorN,
+    error: errorN,
+    isPlaceholderData: isPlaceholderDataN,
+  } = useQuery({
     queryKey: ['licenseKeys', pagination],
     queryFn: async () => {
       let toastId;
@@ -41,7 +51,7 @@ export default function LicenseKeysTable() {
         toastId = toast.loading('Loading License Keys...');
       }
 
-      const res = await fetch(`/api/license-key?pi=${pagination.pageIndex}&ps=${pagination.pageSize}`);
+      const res = await fetch(`/api/license-keys?pi=${pagination.pageIndex}&ps=${pagination.pageSize}`);
       const resJson = await res.json();
 
       if (toastId) {
@@ -63,10 +73,10 @@ export default function LicenseKeysTable() {
     return generatePageInfo({
       pageSize: pagination.pageSize,
       pageIndex: pagination.pageIndex,
-      totalData: dataQuery.data?.rowCount,
-      totalDataPerPage: dataQuery.data?.licenseKeys?.length,
+      totalData: dataN?.data?.rowCount,
+      totalDataPerPage: dataN?.data?.licenseKeys?.length,
     });
-  }, [dataQuery.data]);
+  }, [dataN]);
 
   return (
     <>
@@ -78,33 +88,33 @@ export default function LicenseKeysTable() {
           <Input
             placeholder="Search with email..."
             className="z-3 -me-[1px] rounded-e-none shadow-none md:text-base h-auto px-3 py-1.5"
-            disabled={dataQuery.isLoading}
+            disabled={isLoadingN}
           />
           <Button
             type="button"
             variant="secondary"
             className="border shadow-none rounded-s-none h-auto text-base px-3 py-1.5"
-            disabled={dataQuery.isLoading}
+            disabled={isLoadingN}
           >
             <Search />
           </Button>
         </div>
       </div>
 
-      {(dataQuery.status === 'pending') || (dataQuery.isFetching && !isRerender.current) ? (
+      {(statusN === 'pending') || (isFetchingN && !isRerender.current) ? (
         <TablePaginationSekeleton />
-      ) : dataQuery.isError ? (
+      ) : isErrorN ? (
         <Alert variant="destructive" className="border-destructive/50 text-base">
           <AlertCircle className="h-4 w-4" />
-          <AlertTitle>{dataQuery.error.message}</AlertTitle>
+          <AlertTitle>{errorN.message}</AlertTitle>
         </Alert>
       ) : (
         <DataTable
-          licenseKey={dataQuery.data}
+          licenseKey={dataN.data}
           pageInfo={pageInfo}
           onPagination={handlePagination}
           pagination={pagination}
-          isPlaceholderData={dataQuery.isPlaceholderData}
+          isPlaceholderData={isPlaceholderDataN}
         />
       )}
 
