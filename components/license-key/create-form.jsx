@@ -157,7 +157,7 @@ export default function CreateForm({
             )}
           />
           <Button asChild variant="outline" className="me-3 mb-0 h-auto text-base px-3 py-1.5">
-            <Link href="/license-key">Cancel</Link>
+            <Link href="/license-key">Back</Link>
           </Button>
           <div className="relative inline-block">
             <Button
