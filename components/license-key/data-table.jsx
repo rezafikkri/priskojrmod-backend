@@ -39,6 +39,7 @@ export default function DataTable({
   onPagination,
   pagination,
   isPlaceholderData,
+  searchKey,
 }) {
   // table definition
   const columns = useMemo(() => [
@@ -174,29 +175,37 @@ export default function DataTable({
         </Table>
       </div>
 
-      <div className="flex gap-5 justify-between mt-4 items-center">
-        <span className="text-muted-foreground">{pageInfo}</span>
-        <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-            className="h-auto text-base px-3 py-1.5"
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={isPlaceholderData || !table.getCanNextPage()}
-            className="h-auto text-base px-3 py-1.5"
-          >
-            Next
-          </Button>
+      {pageInfo ? (
+        <div className="flex gap-5 justify-between mt-4 items-center h-9.5">
+          <span className="text-muted-foreground">{pageInfo}</span>
+          {!searchKey ? (
+            <div className="space-x-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
+                className="h-auto text-base px-3 py-1.5"
+              >
+                Previous
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => table.nextPage()}
+                disabled={isPlaceholderData || !table.getCanNextPage()}
+                className="h-auto text-base px-3 py-1.5"
+              >
+                Next
+              </Button>
+            </div>
+          ) : null}
         </div>
-      </div>
+      ) : null}
+
+      {(searchKey && licenseKeys.length < rowCount && licenseKeys.length > 0) ? (
+        <p className="mt-5 inline-block text-muted-foreground text-sm"><b>Info</b>: If you haven't found the License Key you're looking for, please use a more specific email!</p>
+      ) : null}
     </>
   );
 }

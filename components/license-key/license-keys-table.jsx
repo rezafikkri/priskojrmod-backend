@@ -3,12 +3,13 @@
 import {
   keepPreviousData,
   useQuery,
+  useQueryClient,
 } from '@tanstack/react-query';
 import { generatePageInfo } from '@/lib/utils';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
-import { Search, AlertCircle } from 'lucide-react';
+import { Search, AlertCircle, X } from 'lucide-react';
 import DataTable from './data-table';
 import { useMemo, useRef, useState } from 'react';
 import TablePaginationSekeleton from '../loadings/table-pagination-skeleton';
@@ -19,13 +20,24 @@ import {
   Alert,
   AlertTitle,
 } from '@/components/ui/alert';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export default function LicenseKeysTable() {
+  const queryClient = useQueryClient();
   const isRerender = useRef(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchedLicenseKey, setSearchedLicenseKey] = useState(null);
+  const searchRef = useRef(null);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 30,
   });
+
   function handlePagination(dataPagination) {
     if (!isRerender.current) {
       isRerender.current = true;
@@ -33,16 +45,48 @@ export default function LicenseKeysTable() {
     setPagination(dataPagination);
   }
 
-  // dataN is data normal without filter (ex. search by email)
-  // same to other *N 
+  async function handleSubmitSearch() {
+    const key = searchRef.current.value;
+
+    if (key.trim() === '') return false;    
+    
+    setIsSearching(true);
+    try {
+      const result = await queryClient.fetchQuery({
+        queryKey: ['licenseKeysSearch', key],
+        queryFn: async () => {
+          const res = await fetch(`/api/license-keys?sk=${key}`);
+          const resJson = await res.json();
+          return resJson;
+        },
+        staleTime: 10000,
+        gcTime: 10000,
+      });
+      setSearchedLicenseKey(result.data);
+    } catch (err) {
+      console.error(err);
+    }
+    setIsSearching(false);
+  }
+
+  function handleEnterSearch(e) {
+    if (e.key === 'Enter') {
+      handleSubmitSearch();
+    }
+  }
+
+  function handleClearSearchInput() {
+    setSearchedLicenseKey(null);
+    searchRef.current.value = '';
+  }
+
   const {
-    data: dataN,
-    isLoading: isLoadingN,
-    isFetching: isFetchingN,
-    status: statusN,
-    isError: isErrorN,
-    error: errorN,
-    isPlaceholderData: isPlaceholderDataN,
+    data: dataLK,
+    isFetching: isFetchingLK,
+    status: statusLK,
+    isError: isErrorLK,
+    error: errorLK,
+    isPlaceholderData: isPlaceholderDataLK,
   } = useQuery({
     queryKey: ['licenseKeys', pagination],
     queryFn: async () => {
@@ -66,17 +110,26 @@ export default function LicenseKeysTable() {
     placeholderData: keepPreviousData,
     staleTime: 1000 * 30,
     gcTime: 1000 * 60 * 3,
+    enabled: !searchedLicenseKey,
   });
+
+  let licenseKey;
+  if (searchedLicenseKey) {
+    licenseKey = searchedLicenseKey;
+  } else if (dataLK) {
+    licenseKey = dataLK.data;
+  }
 
   // generate pageInfo like this: 1-10 of 20
   const pageInfo = useMemo(() => {
     return generatePageInfo({
       pageSize: pagination.pageSize,
       pageIndex: pagination.pageIndex,
-      totalData: dataN?.data?.rowCount,
-      totalDataPerPage: dataN?.data?.licenseKeys?.length,
+      totalData: licenseKey?.rowCount,
+      totalDataPerPage: licenseKey?.licenseKeys?.length,
+      searchKey: searchRef?.current?.value,
     });
-  }, [dataN]);
+  }, [licenseKey]);
 
   return (
     <>
@@ -84,37 +137,61 @@ export default function LicenseKeysTable() {
         <Button asChild variant="outline" className="w-full md:w-auto h-auto text-base px-3 py-1.5">
           <Link href="/license-key/create">Create License</Link>
         </Button>
-        <div className="w-full lg:w-1/3 flex shadow-xs rounded-md">
-          <Input
-            placeholder="Search with email..."
-            className="z-3 -me-[1px] rounded-e-none shadow-none md:text-base h-auto px-3 py-1.5"
-            disabled={isLoadingN}
-          />
+        <div className="flex shadow-xs rounded-md w-full lg:w-1/3">
+          <div className="relative flex items-center w-full -me-[1px] z-1">
+            <Input
+              placeholder="Search with email..."
+              className="rounded-e-none shadow-none md:text-base h-auto px-3 py-1.5 pe-9"
+              disabled={isFetchingLK || isSearching}
+              ref={searchRef}
+              onKeyUp={handleEnterSearch}
+            />
+            {searchedLicenseKey ? (
+              <TooltipProvider>
+                <Tooltip delayDuration={1000}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      className="absolute right-2 w-4 h-5 p-0 z-1"
+                      variant="ghost"
+                      onClick={handleClearSearchInput}
+                      disabled={isSearching}
+                    >
+                      <X className="size-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent className="px-3 py-2 pb-2.5 text-sm">
+                    <p>Clear search input</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            ) : null}
+          </div>
           <Button
-            type="button"
             variant="secondary"
-            className="border shadow-none rounded-s-none h-auto text-base px-3 py-1.5"
-            disabled={isLoadingN}
+            className="border shadow-none rounded-s-none h-auto text-base px-3 py-1.5 focus:z-2"
+            disabled={isFetchingLK || isSearching}
+            onClick={handleSubmitSearch}
           >
             <Search />
           </Button>
         </div>
       </div>
 
-      {(statusN === 'pending') || (isFetchingN && !isRerender.current) ? (
-        <TablePaginationSekeleton />
-      ) : isErrorN ? (
+      {(statusLK === 'pending') || (isFetchingLK && !isRerender.current) || isSearching ? (
+        <TablePaginationSekeleton pagination={!isSearching} />
+      ) : isErrorLK ? (
         <Alert variant="destructive" className="border-destructive/50 text-base">
           <AlertCircle className="h-4 w-4" />
-          <AlertTitle>{errorN.message}</AlertTitle>
+          <AlertTitle>{errorLK.message}</AlertTitle>
         </Alert>
       ) : (
         <DataTable
-          licenseKey={dataN.data}
+          licenseKey={licenseKey}
           pageInfo={pageInfo}
           onPagination={handlePagination}
           pagination={pagination}
-          isPlaceholderData={isPlaceholderDataN}
+          isPlaceholderData={isPlaceholderDataLK}
+          searchKey={searchRef?.current?.value}
         />
       )}
 
