@@ -21,7 +21,6 @@ import {
   SelectValue,
 } from '../ui/select';
 import { licenseKeySchema } from '@/lib/validators/license-key-validator';
-import { Toaster } from '../ui/sonner';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import { Button } from '../ui/button';
@@ -175,15 +174,6 @@ export default function CreateForm({
           </div>
         </form>
       </Form>
-      <Toaster
-        richColors
-        toastOptions={{
-          classNames: {
-            title: 'text-[15px]',
-            description: 'text-[15px]',
-          },
-        }}
-      />
     </>
   );
 }

@@ -2,19 +2,18 @@
 
 import {
   keepPreviousData,
+  useMutation,
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { generatePageInfo } from '@/lib/utils';
+import { generatePageInfo, isLastPage } from '@/lib/utils';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Search, AlertCircle, X } from 'lucide-react';
 import DataTable from './data-table';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import TablePaginationSekeleton from '../loadings/table-pagination-skeleton';
-import { Toaster } from '../ui/sonner';
-import { toast } from 'sonner';
 import UnknownError from '@/lib/errors/UnknownError';
 import {
   Alert,
@@ -26,6 +25,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { removeLicenseKey } from '@/actions/license-key-actions';
+import { toast } from 'sonner';
 
 export default function LicenseKeysTable() {
   const queryClient = useQueryClient();
@@ -35,17 +36,22 @@ export default function LicenseKeysTable() {
   const searchRef = useRef(null);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 30,
+    pageSize: process.env.NEXT_PUBLIC_PAGE_SIZE,
   });
+  const isPaginationChangeWhenDelete = useRef(false);
 
-  function handlePagination(dataPagination) {
+  function handlePagination(paginationData) {
     if (!isRerender.current) {
       isRerender.current = true;
     }
-    setPagination(dataPagination);
+    setPagination(paginationData);
   }
 
   async function handleSubmitSearch() {
+    if (!isRerender.current) {
+      isRerender.current = true;
+    }
+
     const key = searchRef.current.value;
 
     if (key.trim() === '') return false;    
@@ -76,6 +82,10 @@ export default function LicenseKeysTable() {
   }
 
   function handleClearSearchInput() {
+    setPagination({
+      ...pagination,
+      pageIndex: 0,
+    });
     setSearchedLicenseKey(null);
     searchRef.current.value = '';
   }
@@ -87,15 +97,16 @@ export default function LicenseKeysTable() {
     isError: isErrorLK,
     error: errorLK,
     isPlaceholderData: isPlaceholderDataLK,
+    isStale: isStaleLK,
   } = useQuery({
-    queryKey: ['licenseKeys', pagination],
+    queryKey: ['licenseKeys', pagination.pageIndex],
     queryFn: async () => {
       let toastId;
       if (isRerender.current) {
         toastId = toast.loading('Loading License Keys...');
       }
 
-      const res = await fetch(`/api/license-keys?pi=${pagination.pageIndex}&ps=${pagination.pageSize}`);
+      const res = await fetch(`/api/license-keys?pi=${pagination.pageIndex}`);
       const resJson = await res.json();
 
       if (toastId) {
@@ -108,10 +119,90 @@ export default function LicenseKeysTable() {
       return resJson;
     },
     placeholderData: keepPreviousData,
-    staleTime: 1000 * 30,
+    staleTime: 1000 * 10,
     gcTime: 1000 * 60 * 3,
     enabled: !searchedLicenseKey,
   });
+
+  const deleteMutation = useMutation({
+    mutationFn: async ({ deleteData }) => await removeLicenseKey(deleteData.id),
+    onSuccess: async (deleteRes, { toastId }) => {
+      if (!isRerender.current) {
+        isRerender.current = true;
+      }
+
+      if (deleteRes.status !== 'success') throw new Error(deleteRes.message);
+      toast.success(`License key for ${deleteRes.data.email} deleted.`, {
+        id: toastId,
+        duration: 5000,
+      });
+
+      if (searchedLicenseKey) {
+        setSearchedLicenseKey({
+          ...searchedLicenseKey,
+          licenseKeys: searchedLicenseKey.licenseKeys.filter(slk => slk.id !== deleteRes.data.id),
+        });
+        queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
+        queryClient.invalidateQueries({ queryKey: ['licenseKeys'] });
+      } else {
+        const licenseKey = queryClient.getQueryData(['licenseKeys', pagination.pageIndex]);
+        const newLicenseKeys = licenseKey.data.licenseKeys.filter(lk => lk.id !== deleteRes.data.id);
+        const newRowCount = licenseKey.data.rowCount - 1;
+
+        if (!isLastPage({
+          pageIndex: pagination.pageIndex,
+          pageSize: pagination.pageSize,
+          rowCount: licenseKey.data.rowCount,
+        })) {
+          queryClient.setQueryData(['licenseKeys', pagination.pageIndex], (oldData) => {
+            return {
+              ...oldData,
+              data: {
+                licenseKeys: newLicenseKeys,
+                rowCount: newRowCount,
+              },
+            };
+          });
+          queryClient.invalidateQueries({ queryKey: ['licenseKeys'] });
+        } else {
+          if (newLicenseKeys.length <= 0 && newRowCount > 0) {
+            isPaginationChangeWhenDelete.current = true;
+            setPagination({
+              ...pagination,
+              pageIndex: pagination.pageIndex - 1,
+            });
+          } else {
+            queryClient.setQueryData(['licenseKeys', pagination.pageIndex], (oldData) => {
+              return {
+                ...oldData,
+                data: {
+                  licenseKeys: newLicenseKeys,
+                  rowCount: newRowCount,
+                },
+              };
+            });
+          }
+        }
+
+        queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
+      }
+    },
+    onError: (err, { toastId }) => {
+      toast.error(err.message, {
+        id: toastId,
+        duration: 5000,
+      });
+    },
+  });
+
+  // if after delete action, pagination changed
+  useEffect(() => {
+    if (isPaginationChangeWhenDelete.current && !isStaleLK) {
+      queryClient.invalidateQueries({ queryKey: ['licenseKeys'] });
+    }
+
+    if (isPaginationChangeWhenDelete.current) isPaginationChangeWhenDelete.current = false;
+  }, [pagination, isPaginationChangeWhenDelete.current]);
 
   let licenseKey;
   if (searchedLicenseKey) {
@@ -123,11 +214,11 @@ export default function LicenseKeysTable() {
   // generate pageInfo like this: 1-10 of 20
   const pageInfo = useMemo(() => {
     return generatePageInfo({
-      pageSize: pagination.pageSize,
       pageIndex: pagination.pageIndex,
       totalData: licenseKey?.rowCount,
       totalDataPerPage: licenseKey?.licenseKeys?.length,
       searchKey: searchRef?.current?.value,
+      isTooMany: licenseKey?.isTooMany,
     });
   }, [licenseKey]);
 
@@ -192,21 +283,11 @@ export default function LicenseKeysTable() {
           pagination={pagination}
           isPlaceholderData={isPlaceholderDataLK}
           searchKey={searchRef?.current?.value}
+          deleteMutation={deleteMutation}
         />
       )}
 
       <small className="mt-5 inline-block text-muted-foreground text-sm"><b>Note</b>: <i>Activate</i> is indicate the license key has been used for activate the application, while <i>Download</i> is indicate the license key has been used for download something that asosiated with the application, for example: Sider Manager app have Default Addon, this mean <i>Download</i> indicate license key has been used for download this Default Addon.</small>
-
-      <Toaster
-        richColors
-        position="bottom-center"
-        toastOptions={{
-          classNames: {
-            title: 'text-[15px]',
-            description: 'text-[15px]',
-          },
-        }}
-      />
     </>
   );
 }

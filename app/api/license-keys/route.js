@@ -3,7 +3,6 @@ import { countLicenseKeys, getLicenseKeys, searchLicenseKeys } from '@/lib/servi
 export async function GET(req) {
   const searchParams = req.nextUrl.searchParams;
   const pageIndex = parseInt(searchParams.get('pi'));
-  const pageSize = parseInt(searchParams.get('ps'));
   const searchKey = searchParams.get('sk');
 
   const select = {
@@ -14,25 +13,40 @@ export async function GET(req) {
     used_for_download: true,
     created_at: true,
   };
-  let licenseKeys;
+
+  let dataResponse;
 
   if (searchKey) {
-    licenseKeys = await searchLicenseKeys({ select, searchKey });
+    const licenseKeys = await searchLicenseKeys({
+      select,
+      searchKey,
+      searchLimit: parseInt(process.env.SEARCH_LIMIT),
+    });
+    dataResponse = {
+      licenseKeys,
+    };
+
+    if (licenseKeys.length > process.env.SEARCH_LIMIT) {
+      licenseKeys.pop();
+      dataResponse.isTooMany = true;
+    } else {
+      dataResponse.isTooMany = false;
+    }
   } else {
-    licenseKeys = await getLicenseKeys({
+    const licenseKeys = await getLicenseKeys({
       select,
       pageIndex,
-      pageSize,
+      pageSize: parseInt(process.env.NEXT_PUBLIC_PAGE_SIZE),
     });
+    const numberLicenseKeys = await countLicenseKeys();
+    dataResponse = {
+      licenseKeys,
+      rowCount: numberLicenseKeys,
+    };
   }
-
-  const numberLicenseKeys = await countLicenseKeys();
 
   return Response.json({
     message: 'success',
-    data: {
-      licenseKeys,
-      rowCount: numberLicenseKeys,
-    },
+    data: dataResponse,
   });
 }

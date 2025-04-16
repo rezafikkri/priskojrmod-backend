@@ -1,6 +1,6 @@
 'use server';
 
-import { createLicenseKey } from '@/lib/services/license-key-service';
+import { createLicenseKey, deleteLicenseKey } from '@/lib/services/license-key-service';
 
 export async function addLicenseKey(data) {
   try {
@@ -12,5 +12,14 @@ export async function addLicenseKey(data) {
       return { ...errReturn, isField: true };
     }
     return errReturn;
+  }
+}
+
+export async function removeLicenseKey(id) {
+  try {
+    const deleteData = await deleteLicenseKey(id);
+    return { status: 'success', data: deleteData };
+  } catch (err) {
+    return { status: 'error', message: err.message };
   }
 }

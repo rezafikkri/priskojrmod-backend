@@ -7,6 +7,7 @@ import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/layout/app-siderbar';
 import SessionProvider from '@/components/session-provider';
 import ReactQueryProvider from '@/components/react-query-provider';
+import { Toaster } from '@/components/ui/sonner';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -48,6 +49,19 @@ export default function RootLayout({ children }) {
                 </div>
                 <Footer />
               </SidebarInset>
+              <Toaster
+                richColors
+                expand
+                visibleToasts={3}
+                position="bottom-center"
+                toastOptions={{
+                  classNames: {
+                    toast: 'group-[.toaster]:pointer-events-auto',
+                    title: 'text-[15px]',
+                    description: 'text-[15px]',
+                  },
+                }}
+              />
             </ThemeProvider>
           </SidebarProvider>
         </SessionProvider>

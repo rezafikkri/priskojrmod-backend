@@ -13,7 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,23 +24,27 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '../ui/button';
 import { MoreHorizontal } from 'lucide-react';
-// import { Toaster } from '../ui/sonner';
-// import { toast } from 'sonner';
 import { Check } from 'lucide-react';
 import Dot from '../icon/Dot';
 import dayjs from 'dayjs';
+import DeleteDialog from './delete-dialog';
 
 export default function DataTable({
   licenseKey: {
     licenseKeys,
     rowCount,
+    isTooMany,
   },
   pageInfo,
   onPagination,
   pagination,
   isPlaceholderData,
   searchKey,
+  deleteMutation,
 }) {
+  const [deleteData, setDeleteData] = useState(null);
+  const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
+
   // table definition
   const columns = useMemo(() => [
     {
@@ -104,9 +108,18 @@ export default function DataTable({
                   Copy License Key
                 </Button>
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
+              <DropdownMenuSeparator className="-mx-1.5" />
               <DropdownMenuItem asChild>
-                <Button onClick={() => handleDelete(row.original.id)} variant="ghost" className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal text-base h-auto py-2">Delete</Button>
+                <Button
+                  onClick={() => {
+                    setDeleteData({ id: row.original.id, email: row.getValue('email') });
+                    setIsOpenDeleteDialog(true);
+                  }}
+                  variant="ghost"
+                  className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal text-base h-auto py-2"
+                >
+                  Delete
+                </Button>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -175,7 +188,7 @@ export default function DataTable({
         </Table>
       </div>
 
-      {pageInfo ? (
+      {licenseKeys.length > 0 ? (
         <div className="flex gap-5 justify-between mt-4 items-center h-9.5">
           <span className="text-muted-foreground">{pageInfo}</span>
           {!searchKey ? (
@@ -203,9 +216,17 @@ export default function DataTable({
         </div>
       ) : null}
 
-      {(searchKey && licenseKeys.length < rowCount && licenseKeys.length > 0) ? (
-        <p className="mt-5 inline-block text-muted-foreground text-sm"><b>Info</b>: If you haven't found the License Key you're looking for, please use a more specific email!</p>
+      {(searchKey && isTooMany) ? (
+        <p className="mt-5 inline-block text-muted-foreground text-sm"><b>Info</b>: If you haven't found the license key you're looking for, please use a more specific email!</p>
       ) : null}
+
+      <DeleteDialog
+        deleteMutation={deleteMutation}
+        isOpenDeleteDialog={isOpenDeleteDialog}
+        setIsOpenDeleteDialog={setIsOpenDeleteDialog}
+        deleteData={deleteData}
+        setDeleteData={setDeleteData}
+      />
     </>
   );
 }
