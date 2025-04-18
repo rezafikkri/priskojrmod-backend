@@ -81,7 +81,7 @@ describe('createLicenseKey function', () => {
     getSpecificSecretKey.mockResolvedValue({ key: '123' });
 
     await createLicenseKey({
-      secret_key_id: '123',
+      secret_key_id: '2',
       name: 'adel',
       email: 'adel@gmail.com',
       type: 'online',
@@ -89,10 +89,10 @@ describe('createLicenseKey function', () => {
 
     expect(pjmaDBPrismaClient.LicenseKey.create).toHaveBeenCalledWith({
       data: {
-        secret_key_id: '123',
+        secret_key_id: BigInt(2),
         email: 'adel@gmail.com',
         key: 'jsonwebtoken',
-        created_at: Math.floor(new Date().getTime() / 1000),
+        created_at: BigInt(Math.floor(new Date().getTime() / 1000)),
       },
     });
   });
