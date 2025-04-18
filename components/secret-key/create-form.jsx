@@ -16,7 +16,6 @@ import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { secretKeySchema } from '@/lib/validators/secret-key-validator';
-import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import random32Bytes from '@/actions/random-32-bytes-actions';
@@ -130,15 +129,6 @@ export default function CreateForm() {
           </div>
         </form>
       </Form>
-      <Toaster
-        richColors
-        toastOptions={{
-          classNames: {
-            title: 'text-[15px]',
-            description: 'text-[15px]',
-          },
-        }}
-      />
     </>
   );
 }

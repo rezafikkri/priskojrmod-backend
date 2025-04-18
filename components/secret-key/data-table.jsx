@@ -24,7 +24,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '../ui/button';
 import { MoreHorizontal } from 'lucide-react';
-import { Toaster } from '../ui/sonner';
 import { toast } from 'sonner';
 import { removeSecretKey } from '@/actions/secret-key-actions';
 
@@ -150,15 +149,6 @@ export default function DataTable({ secretKeys: data }) {
           </TableBody>
         </Table>
       </div>
-      <Toaster
-        richColors
-        toastOptions={{
-          classNames: {
-            title: 'text-[15px]',
-            description: 'text-[15px]',
-          },
-        }}
-      />
     </>
   );
 }
