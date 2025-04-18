@@ -9,7 +9,7 @@ export async function addLicenseKey(data) {
   } catch (err) {
     const errReturn = { status: 'error', message: err.message };
     if (err.name === 'DuplicateError') {
-      return { ...errReturn, isField: true };
+      return { ...errReturn, data: { isField: true } };
     }
     return errReturn;
   }
