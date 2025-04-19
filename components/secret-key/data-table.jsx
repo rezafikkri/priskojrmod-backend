@@ -20,6 +20,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '../ui/button';
@@ -29,12 +30,14 @@ import { removeSecretKey } from '@/actions/secret-key-actions';
 
 export default function DataTable({ secretKeys: data }) {
   const [secretKeys, setSecretKeys] = useState(data);
-  const [loading, setLoading] = useState(false);
 
   async function handleDelete(id) {
-    // show loading
-    setLoading(true);
+    const targetRow = document.querySelector(`#row${id}`);
+    const targetActionBtn = targetRow.querySelector('td > button');
+    targetRow.classList.add('opacity-50');
+    targetActionBtn.setAttribute('disabled', true);
     const toastId = toast.loading('Deleting Secret Key...');
+
     const remove = await removeSecretKey(id);
 
     if (remove.status === 'success') {
@@ -46,10 +49,9 @@ export default function DataTable({ secretKeys: data }) {
       });
     } else {
       toast.error(remove.message, { id: toastId });
+      targetRow.classList.remove('opacity-50');
+      targetActionBtn.removeAttribute('disabled');
     }
-
-    // hide loading
-    setLoading(false);
   }
 
   const columns = useMemo(() => [
@@ -60,7 +62,7 @@ export default function DataTable({ secretKeys: data }) {
     {
       accessorKey: 'key',
       header: 'Secret Key',
-      cell: ({ row }) => <div className="font-medium">{row.getValue('key')}</div>,
+      cell: ({ row }) => row.getValue('key').substring(0, 40) + '...',
     },
     {
       accessorKey: 'created_at',
@@ -80,6 +82,16 @@ export default function DataTable({ secretKeys: data }) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="px-1.5">
               <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
+              <DropdownMenuItem asChild>
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start focus-visible:ring-0 font-normal text-base h-auto py-2"
+                  onClick={() => navigator.clipboard.writeText(row.getValue('key'))}
+                >
+                  Copy Secret Key
+                </Button>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator className="-mx-1.5" />
               <DropdownMenuItem asChild>
                 <Button
                   onClick={() => handleDelete(row.original.id)}
@@ -103,8 +115,7 @@ export default function DataTable({ secretKeys: data }) {
 
   return (
     <>
-      <div className="rounded-md border relative">
-        <div className={`absolute bg-background/50 top-0 bottom-0 left-0 right-0 z-0 rounded-md opacity-0 ${loading ? 'z-1 opacity-100' : ''}`} />
+      <div className="rounded-md border">
         <Table className="text-base">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -128,7 +139,7 @@ export default function DataTable({ secretKeys: data }) {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
+                <TableRow key={row.id} id={'row' + row.original.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
