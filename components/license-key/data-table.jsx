@@ -28,6 +28,7 @@ import { Check } from 'lucide-react';
 import Dot from '../icon/Dot';
 import dayjs from 'dayjs';
 import DeleteDialog from './delete-dialog';
+import Link from 'next/link';
 
 export default function DataTable({
   licenseKey: {
@@ -96,8 +97,8 @@ export default function DataTable({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="min-w-50 px-1.5">
               <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
-              <DropdownMenuItem asChild>
-                <Button variant="ghost" className="w-full justify-start focus-visible:ring-0 font-normal text-base h-auto py-2">Edit</Button>
+              <DropdownMenuItem asChild className="text-base py-2 hover:cursor-pointer">
+                <Link href={`/license-key/edit/${row.original.id}`}>Edit</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Button

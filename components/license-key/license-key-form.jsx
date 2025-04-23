@@ -1,12 +1,31 @@
 import { getSpecificSecretKeys } from '@/lib/services/secret-key-service';
-import verifySession from '@/lib/verifySession';
 import CreateForm from './create-form';
+import { getLicenseKey } from '@/lib/services/license-key-service';
+import EditForm from './edit-form';
+import jwt from 'jsonwebtoken';
+import {
+  Alert,
+  AlertTitle,
+} from '../ui/alert';
+import Error404 from '../icon/error-404';
 
-export default async function LicenseKeyForm() {
-  const session = await verifySession();
-  if (!session) return null;
-
+export default async function LicenseKeyForm({ action = 'create', id = null }) {
   const secretKeys = await getSpecificSecretKeys({ id: true, app_name: true });
 
-  return <CreateForm secretKeys={secretKeys} />
+  if (action === 'create') {
+    return <CreateForm secretKeys={secretKeys} />
+  }
+
+  const licenseKey = await getLicenseKey(id);
+  if (!licenseKey) {
+    return (
+      <Alert>
+        <Error404 />
+        <AlertTitle>License Key not found.</AlertTitle>
+      </Alert>
+    );
+  }
+
+  licenseKey.parsedKey = jwt.decode(licenseKey.key);
+  return <EditForm secretKeys={secretKeys} licenseKey={licenseKey} />
 }
