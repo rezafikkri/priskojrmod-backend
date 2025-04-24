@@ -226,8 +226,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.5.0
-   * Query Engine version: 173f8d54f8d52e692c7e27e72a88314ec7aeff60
+   * Prisma Client JS version: 6.6.0
+   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
    */
   export type PrismaVersion = {
     client: string
@@ -1661,7 +1661,7 @@ export namespace Prisma {
 
   /**
    * Fields of the SecretKeyLicense model
-   */ 
+   */
   interface SecretKeyLicenseFieldRefs {
     readonly id: FieldRef<"SecretKeyLicense", 'BigInt'>
     readonly product_id: FieldRef<"SecretKeyLicense", 'String'>
@@ -2797,7 +2797,7 @@ export namespace Prisma {
 
   /**
    * Fields of the LicenseKey model
-   */ 
+   */
   interface LicenseKeyFieldRefs {
     readonly id: FieldRef<"LicenseKey", 'String'>
     readonly secret_key_id: FieldRef<"LicenseKey", 'BigInt'>
@@ -3275,7 +3275,7 @@ export namespace Prisma {
 
 
   /**
-   * Field references 
+   * Field references
    */
 
 
@@ -3429,17 +3429,17 @@ export namespace Prisma {
 
   export type LicenseKeyWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    email?: string
     AND?: LicenseKeyWhereInput | LicenseKeyWhereInput[]
     OR?: LicenseKeyWhereInput[]
     NOT?: LicenseKeyWhereInput | LicenseKeyWhereInput[]
     secret_key_id?: BigIntFilter<"LicenseKey"> | bigint | number
+    email?: StringFilter<"LicenseKey"> | string
     key?: StringFilter<"LicenseKey"> | string
     used_for_activate?: BoolFilter<"LicenseKey"> | boolean
     used_for_download?: BoolFilter<"LicenseKey"> | boolean
     created_at?: BigIntFilter<"LicenseKey"> | bigint | number
     secret_key?: XOR<SecretKeyLicenseScalarRelationFilter, SecretKeyLicenseWhereInput>
-  }, "id" | "email">
+  }, "id">
 
   export type LicenseKeyOrderByWithAggregationInput = {
     id?: SortOrder

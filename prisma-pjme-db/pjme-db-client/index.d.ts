@@ -465,8 +465,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.5.0
-   * Query Engine version: 173f8d54f8d52e692c7e27e72a88314ec7aeff60
+   * Prisma Client JS version: 6.6.0
+   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
    */
   export type PrismaVersion = {
     client: string
@@ -3115,7 +3115,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Admin model
-   */ 
+   */
   interface AdminFieldRefs {
     readonly id: FieldRef<"Admin", 'String'>
     readonly first_name: FieldRef<"Admin", 'String'>
@@ -4236,7 +4236,7 @@ export namespace Prisma {
 
   /**
    * Fields of the DonationLink model
-   */ 
+   */
   interface DonationLinkFieldRefs {
     readonly id: FieldRef<"DonationLink", 'Int'>
     readonly admin_id: FieldRef<"DonationLink", 'String'>
@@ -5323,7 +5323,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Owner model
-   */ 
+   */
   interface OwnerFieldRefs {
     readonly id: FieldRef<"Owner", 'Int'>
     readonly first_name: FieldRef<"Owner", 'String'>
@@ -6452,7 +6452,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Customer model
-   */ 
+   */
   interface CustomerFieldRefs {
     readonly id: FieldRef<"Customer", 'String'>
     readonly first_name: FieldRef<"Customer", 'String'>
@@ -7475,7 +7475,7 @@ export namespace Prisma {
 
   /**
    * Fields of the License model
-   */ 
+   */
   interface LicenseFieldRefs {
     readonly id: FieldRef<"License", 'Int'>
     readonly content: FieldRef<"License", 'String'>
@@ -8553,7 +8553,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Category model
-   */ 
+   */
   interface CategoryFieldRefs {
     readonly id: FieldRef<"Category", 'Int'>
     readonly name: FieldRef<"Category", 'String'>
@@ -9813,7 +9813,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Product model
-   */ 
+   */
   interface ProductFieldRefs {
     readonly id: FieldRef<"Product", 'String'>
     readonly category_id: FieldRef<"Product", 'Int'>
@@ -10987,7 +10987,7 @@ export namespace Prisma {
 
   /**
    * Fields of the ProductDiscount model
-   */ 
+   */
   interface ProductDiscountFieldRefs {
     readonly id: FieldRef<"ProductDiscount", 'String'>
     readonly product_id: FieldRef<"ProductDiscount", 'String'>
@@ -12078,7 +12078,7 @@ export namespace Prisma {
 
   /**
    * Fields of the ProductCoupon model
-   */ 
+   */
   interface ProductCouponFieldRefs {
     readonly id: FieldRef<"ProductCoupon", 'String'>
     readonly product_id: FieldRef<"ProductCoupon", 'String'>
@@ -13186,7 +13186,7 @@ export namespace Prisma {
 
   /**
    * Fields of the ProductImage model
-   */ 
+   */
   interface ProductImageFieldRefs {
     readonly id: FieldRef<"ProductImage", 'String'>
     readonly product_id: FieldRef<"ProductImage", 'String'>
@@ -14239,7 +14239,7 @@ export namespace Prisma {
 
   /**
    * Fields of the ProductVariant model
-   */ 
+   */
   interface ProductVariantFieldRefs {
     readonly id: FieldRef<"ProductVariant", 'String'>
     readonly product_id: FieldRef<"ProductVariant", 'String'>
@@ -15342,7 +15342,7 @@ export namespace Prisma {
 
   /**
    * Fields of the ProductPrice model
-   */ 
+   */
   interface ProductPriceFieldRefs {
     readonly id: FieldRef<"ProductPrice", 'String'>
     readonly variant_id: FieldRef<"ProductPrice", 'String'>
@@ -16382,7 +16382,7 @@ export namespace Prisma {
 
   /**
    * Fields of the AboutUs model
-   */ 
+   */
   interface AboutUsFieldRefs {
     readonly id: FieldRef<"AboutUs", 'Int'>
     readonly content: FieldRef<"AboutUs", 'String'>
@@ -17388,7 +17388,7 @@ export namespace Prisma {
 
   /**
    * Fields of the PrivacyPolicy model
-   */ 
+   */
   interface PrivacyPolicyFieldRefs {
     readonly id: FieldRef<"PrivacyPolicy", 'Int'>
     readonly content: FieldRef<"PrivacyPolicy", 'String'>
@@ -18395,7 +18395,7 @@ export namespace Prisma {
 
   /**
    * Fields of the TermsandConditions model
-   */ 
+   */
   interface TermsandConditionsFieldRefs {
     readonly id: FieldRef<"TermsandConditions", 'Int'>
     readonly content: FieldRef<"TermsandConditions", 'String'>
@@ -19364,7 +19364,7 @@ export namespace Prisma {
 
   /**
    * Fields of the FAQ model
-   */ 
+   */
   interface FAQFieldRefs {
     readonly id: FieldRef<"FAQ", 'String'>
     readonly title: FieldRef<"FAQ", 'String'>
@@ -19946,7 +19946,7 @@ export namespace Prisma {
 
 
   /**
-   * Field references 
+   * Field references
    */
 
 
