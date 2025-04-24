@@ -38,8 +38,8 @@ export default function CreateForm({
     resolver: zodResolver(licenseKeySchema),
     defaultValues: {
       secret_key_id: '',
-      name: '',
       email: '',
+      name: '',
       type: 'online',
     },
   });
@@ -90,7 +90,7 @@ export default function CreateForm({
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription>Select Secret Key based on application name!</FormDescription>
+                <FormDescription>Select Secret Key based on application name.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -104,7 +104,7 @@ export default function CreateForm({
                 <FormControl>
                   <Input disabled={isSubmitting} {...field} className="shadow-none md:text-base h-auto px-3 py-1.5" />
                 </FormControl>
-                <FormDescription>Customer name.</FormDescription>
+                <FormDescription>Enter customer name.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -118,7 +118,7 @@ export default function CreateForm({
                 <FormControl>
                   <Input type="email" disabled={isSubmitting} {...field} className="shadow-none md:text-base h-auto px-3 py-1.5" />
                 </FormControl>
-                <FormDescription>Customer email.</FormDescription>
+                <FormDescription>Enter customer email.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -150,7 +150,7 @@ export default function CreateForm({
                     </FormItem>
                   </RadioGroup>
                 </FormControl>
-                <FormDescription>Select activation type: online or offline!</FormDescription>
+                <FormDescription>Select activation type: online or offline.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
