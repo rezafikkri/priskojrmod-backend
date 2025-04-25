@@ -79,6 +79,10 @@ describe('createLicenseKey function', () => {
 
     verifySession.mockResolvedValue({ isAuth: true, userId: '123' });
     getSpecificSecretKey.mockResolvedValue({ key: '123' });
+    pjmaDBPrismaClient.LicenseKey.create.mockResolvedValue({
+      secret_key_id: 1n,
+      created_at: 123456789n,
+    });
 
     await createLicenseKey({
       secret_key_id: '2',
