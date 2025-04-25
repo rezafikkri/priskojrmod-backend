@@ -82,7 +82,7 @@ export default function DataTable({
     {
       accessorKey: 'created_at',
       header: () => 'Created At',
-      cell: ({ row }) => dayjs.unix(row.getValue('created_at').toString()).format('MM-DD-YYYY hh:mm A'),
+      cell: ({ row }) => dayjs.unix(row.getValue('created_at')).format('MM-DD-YYYY hh:mm A'),
     },
     {
       id: 'actions',

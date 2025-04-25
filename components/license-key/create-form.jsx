@@ -52,8 +52,6 @@ export default function CreateForm({
       await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] })
       form.reset();
       toast.success('License Key created successfully.');
-    } else if (add.status === 'error' && add.data.isField) {
-      form.setError('email', { type: 'validate', message: add.message });
     } else {
       toast.error(add.message);
     }

@@ -7,11 +7,7 @@ export async function addLicenseKey(data) {
     await createLicenseKey(data);
     return { status: 'success' };
   } catch (err) {
-    const errReturn = { status: 'error', message: err.message };
-    if (err.name === 'DuplicateError') {
-      return { ...errReturn, data: { isField: true } };
-    }
-    return errReturn;
+    return { status: 'error', message: err.message };
   }
 }
 
