@@ -39,11 +39,6 @@ beforeAll(() => {
       sign: () => 'jsonwebtoken',
     },
   }));
-
-  vi.mock('next/cache', () => ({
-    unstable_cache: (fn) => fn,
-    revalidateTag: () => {},
-  }));
 });
 
 afterEach(() => {
