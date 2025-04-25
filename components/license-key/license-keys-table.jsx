@@ -126,16 +126,19 @@ export default function LicenseKeysTable() {
 
   const deleteMutation = useMutation({
     mutationFn: async ({ deleteData }) => await removeLicenseKey(deleteData.id),
+    onMutate: ({ deleteData }) => {
+      const targetRow = document.querySelector(`#row${deleteData.id}`);
+      const targetActionBtn = targetRow.querySelector('td > button');
+      targetRow.classList.add('opacity-50');
+      targetActionBtn.setAttribute('disabled', true);
+      return { targetRow, targetActionBtn };
+    },
     onSuccess: async (deleteRes, { toastId }) => {
       if (!isRerender.current) {
         isRerender.current = true;
       }
 
       if (deleteRes.status !== 'success') throw new Error(deleteRes.message);
-      toast.success(`License key for ${deleteRes.data.email} deleted.`, {
-        id: toastId,
-        duration: 5000,
-      });
 
       if (searchedLicenseKey) {
         setSearchedLicenseKey({
@@ -186,12 +189,15 @@ export default function LicenseKeysTable() {
 
         queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
       }
+
+      toast.success(`License key for ${deleteRes.data.email} deleted.`, { id: toastId });
     },
     onError: (err, { toastId }) => {
-      toast.error(err.message, {
-        id: toastId,
-        duration: 5000,
-      });
+      toast.error(err.message, { id: toastId });
+    },
+    onSettled: (_d, _e, _v, { targetRow, targetActionBtn }) => {
+      targetRow.classList.remove('opacity-50');
+      targetActionBtn.removeAttribute('disabled');
     },
   });
 

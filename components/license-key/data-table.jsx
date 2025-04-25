@@ -167,7 +167,7 @@ export default function DataTable({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
+                <TableRow key={row.id} id={`row${row.original.id}`}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
