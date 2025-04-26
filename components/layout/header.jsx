@@ -18,6 +18,7 @@ import Link from 'next/link';
 export default function Header() {
   const pathname = usePathname();
   const breadCrumb = generateBreadcrumb((pathname));
+  console.dir(breadCrumb);
 
   return (
     <header className="flex h-16 shrink-0 items-center gap-2">
@@ -28,20 +29,18 @@ export default function Header() {
           <BreadcrumbList>
             {breadCrumb.map(bc =>
               bc.path ? (
-                <BreadcrumbItem className="hidden md:block" key={bc.breadCrumb}>
+              <Fragment key={bc.breadCrumb}>
+                <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbLink asChild>
                     <Link href={bc.path}>{bc.breadCrumb}</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
+                <BreadcrumbSeparator className="hidden md:block" />
+              </Fragment>
               ) : (
-                <Fragment key={bc.breadCrumb}>
-                  {breadCrumb.length > 1 &&
-                    <BreadcrumbSeparator className="hidden md:block" />
-                  }
-                  <BreadcrumbItem>
-                    <BreadcrumbPage>{bc.breadCrumb}</BreadcrumbPage>
-                  </BreadcrumbItem>
-                </Fragment>
+                <BreadcrumbItem key={bc.breadCrumb}>
+                  <BreadcrumbPage>{bc.breadCrumb}</BreadcrumbPage>
+                </BreadcrumbItem>
               )
             )}
           </BreadcrumbList>
