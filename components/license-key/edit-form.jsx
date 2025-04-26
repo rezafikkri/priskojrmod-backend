@@ -101,7 +101,7 @@ export default function EditForm({
                   disabled={isSubmitting}
                 >
                   <FormControl>
-                    <SelectTrigger className="w-full shadow-none text-base h-auto! px-3 py-1.5">
+                    <SelectTrigger className="w-full shadow-none text-base min-h-9.5 h-auto! px-3 py-1.5">
                       <SelectValue placeholder="Select a Secret Key" />
                     </SelectTrigger>
                   </FormControl>
