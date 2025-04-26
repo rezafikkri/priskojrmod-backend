@@ -6,7 +6,13 @@ import {
   afterEach,
   beforeAll,
 } from 'vitest';
-import { createSecretKey, deleteSecretKey } from '@/lib/services/secret-key-service';
+import {
+  createSecretKey,
+  deleteSecretKey,
+  getSecretKeys,
+  getSpecificSecretKey,
+  getSpecificSecretKeys,
+} from '@/lib/services/secret-key-service';
 
 beforeAll(() => {
   vi.mock('server-only', () => ({}));
@@ -20,6 +26,8 @@ beforeAll(() => {
       SecretKeyLicense: {
         create: vi.fn(),
         delete: vi.fn(),
+        findMany: vi.fn(),
+        findUnique: vi.fn(),
       },
     },
   }));
@@ -106,6 +114,112 @@ describe('deleteSecretKey function', () => {
       select: {
         id: true,
       },
+    });
+  });
+});
+
+describe('getSecretKeys function', () => {
+  it('should call verifySession function, not call pjmaDBPrismaClient.SecretKeyLicense.findMany function and throw Error with "Unauthenticated" message', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
+
+    verifySession.mockResolvedValue(false);
+
+    await expect(getSecretKeys()).rejects.toThrow('Unauthenticated');
+
+    expect(verifySession).toHaveBeenCalled();
+    expect(pjmaDBPrismaClient.SecretKeyLicense.findMany).not.toHaveBeenCalled();
+  });
+
+  it('should call pjmaDBPrismaClient.LicenseKey.findMany function', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
+
+    verifySession.mockResolvedValue({ isAuth: true, userId: '123' });
+    pjmaDBPrismaClient.SecretKeyLicense.findMany.mockResolvedValue([{
+      id: 2n,
+      created_at: 1234567812n,
+    }]);
+
+    await getSecretKeys();
+
+    expect(pjmaDBPrismaClient.SecretKeyLicense.findMany).toHaveBeenCalled();
+  });
+});
+
+describe('getSpecificSecretKeys function', () => {
+  it('should call verifySession function, not call pjmaDBPrismaClient.SecretKeyLicense.findMany function and throw Error with "Unauthenticated" message', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
+
+    verifySession.mockResolvedValue(false);
+
+    await expect(getSpecificSecretKeys({
+      id: true,
+      app_name: true,
+    })).rejects.toThrow('Unauthenticated');
+
+    expect(verifySession).toHaveBeenCalled();
+    expect(pjmaDBPrismaClient.SecretKeyLicense.findMany).not.toHaveBeenCalled();
+  });
+
+  it('should call pjmaDBPrismaClient.LicenseKey.findMany function correctly', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
+
+    verifySession.mockResolvedValue({ isAuth: true, userId: '123' });
+    pjmaDBPrismaClient.SecretKeyLicense.findMany.mockResolvedValue([{
+      id: 2n,
+      created_at: 1234567812n,
+    }]);
+
+    await getSpecificSecretKeys({
+      id: true,
+      app_name: true,
+    });
+
+    expect(pjmaDBPrismaClient.SecretKeyLicense.findMany).toHaveBeenCalledWith({
+      select: {
+        id: true,
+        app_name: true,
+      },
+    });
+  });
+});
+
+describe('getSpecificSecretKey function', () => {
+  it('should call verifySession function, not call pjmaDBPrismaClient.SecretKeyLicense.findUnique function and throw Error with "Unauthenticated" message', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
+
+    verifySession.mockResolvedValue(false);
+
+    await expect(getSpecificSecretKey(
+      '1',
+      { key: true },
+    )).rejects.toThrow('Unauthenticated');
+
+    expect(verifySession).toHaveBeenCalled();
+    expect(pjmaDBPrismaClient.SecretKeyLicense.findUnique).not.toHaveBeenCalled();
+  });
+
+  it('should call pjmaDBPrismaClient.LicenseKey.findUnique function correctly', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
+
+    verifySession.mockResolvedValue({ isAuth: true, userId: '123' });
+    pjmaDBPrismaClient.SecretKeyLicense.findUnique.mockResolvedValue({
+      key: '12345',
+    });
+
+    await getSpecificSecretKey(
+      '2',
+      { key: true },
+    );
+
+    expect(pjmaDBPrismaClient.SecretKeyLicense.findUnique).toHaveBeenCalledWith({
+      where: { id: 2n },
+      select: { key: true },
     });
   });
 });
