@@ -38,9 +38,9 @@ export default function DataTable({ secretKeys: data }) {
     targetActionBtn.setAttribute('disabled', true);
     const toastId = toast.loading('Deleting Secret Key...');
 
-    const remove = await removeSecretKey(id);
+    const removeRes = await removeSecretKey(id);
 
-    if (remove.status === 'success') {
+    if (removeRes.status === 'success') {
       setSecretKeys(secretKeys.filter(s => {
         return s.id !== id;
       }));
@@ -48,7 +48,7 @@ export default function DataTable({ secretKeys: data }) {
         id: toastId,
       });
     } else {
-      toast.error(remove.message, { id: toastId });
+      toast.error(removeRes.message, { id: toastId });
       targetRow.classList.remove('opacity-50');
       targetActionBtn.removeAttribute('disabled');
     }
@@ -67,7 +67,7 @@ export default function DataTable({ secretKeys: data }) {
     {
       accessorKey: 'created_at',
       header: () => 'Created At',
-      cell: ({ row }) => dayjs.unix(row.getValue('created_at').toString()).format('MM-DD-YYYY hh:mm A'),
+      cell: ({ row }) => dayjs.unix(row.getValue('created_at')).format('MM-DD-YYYY hh:mm A'),
     },
     {
       id: 'actions',

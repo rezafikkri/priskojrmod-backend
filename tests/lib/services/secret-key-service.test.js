@@ -27,11 +27,6 @@ beforeAll(() => {
   vi.mock('uuid', () => ({
     v7: () => 'uuidv7',
   }));
-
-  vi.mock('next/cache', () => ({
-    revalidatePath: () => {},
-    unstable_cache: (fn) => fn,
-  }));
 });
 
 afterEach(() => {
