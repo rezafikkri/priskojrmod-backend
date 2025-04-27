@@ -106,7 +106,7 @@ export default function DataTable({
                   className="w-full justify-start focus-visible:ring-0 font-normal text-base h-auto py-2"
                   onClick={() => navigator.clipboard.writeText(row.getValue('key'))}
                 >
-                  Copy License Key
+                  Copy license key
                 </Button>
               </DropdownMenuItem>
               <DropdownMenuSeparator className="-mx-1.5" />

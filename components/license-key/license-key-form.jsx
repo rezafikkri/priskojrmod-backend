@@ -21,7 +21,7 @@ export default async function LicenseKeyForm({ action = 'create', id = null }) {
     return (
       <Alert>
         <Error404 />
-        <AlertTitle>License Key not found.</AlertTitle>
+        <AlertTitle>License key not found.</AlertTitle>
       </Alert>
     );
   }

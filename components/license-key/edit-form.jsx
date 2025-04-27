@@ -64,7 +64,7 @@ export default function EditForm({
     if (updateRes.status === 'success') {
       await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] })
       await queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
-      toast.success('License Key updated successfully.');
+      toast.success('License key updated successfully.');
       form.setValue('old_key', updateRes.data.key);
       form.setValue('old_secret_key_id', updateRes.data.secret_key_id);
       form.setValue('change_expiration_date', false);

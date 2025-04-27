@@ -103,7 +103,7 @@ export default function LicenseKeysTable() {
     queryFn: async () => {
       let toastId;
       if (isRerender.current) {
-        toastId = toast.loading('Loading License Keys...');
+        toastId = toast.loading('Loading license keys...');
       }
 
       const res = await fetch(`/api/license-keys?pi=${pagination.pageIndex}`);
