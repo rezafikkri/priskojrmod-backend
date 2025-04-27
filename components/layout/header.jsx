@@ -18,7 +18,6 @@ import Link from 'next/link';
 export default function Header() {
   const pathname = usePathname();
   const breadCrumb = generateBreadcrumb((pathname));
-  console.dir(breadCrumb);
 
   return (
     <header className="flex h-16 shrink-0 items-center gap-2">

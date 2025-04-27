@@ -1,4 +1,4 @@
-import { getSpecificSecretKeys } from '@/lib/services/secret-key-service';
+import { getSecretKeys } from '@/lib/services/secret-key-service';
 import CreateForm from './create-form';
 import { getLicenseKey } from '@/lib/services/license-key-service';
 import EditForm from './edit-form';
@@ -10,7 +10,7 @@ import {
 import Error404 from '../icon/error-404';
 
 export default async function LicenseKeyForm({ action = 'create', id = null }) {
-  const secretKeys = await getSpecificSecretKeys({ id: true, app_name: true });
+  const secretKeys = await getSecretKeys({ id: true, app_name: true });
 
   if (action === 'create') {
     return <CreateForm secretKeys={secretKeys} />
