@@ -125,36 +125,7 @@ describe('getSecretKeys function', () => {
 
     verifySession.mockResolvedValue(false);
 
-    await expect(getSecretKeys()).rejects.toThrow('Unauthenticated');
-
-    expect(verifySession).toHaveBeenCalled();
-    expect(pjmaDBPrismaClient.SecretKeyLicense.findMany).not.toHaveBeenCalled();
-  });
-
-  it('should call pjmaDBPrismaClient.LicenseKey.findMany function', async () => {
-    const verifySession = (await import('@/lib/verifySession')).default;
-    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
-
-    verifySession.mockResolvedValue({ isAuth: true, userId: '123' });
-    pjmaDBPrismaClient.SecretKeyLicense.findMany.mockResolvedValue([{
-      id: 2n,
-      created_at: 1234567812n,
-    }]);
-
-    await getSecretKeys();
-
-    expect(pjmaDBPrismaClient.SecretKeyLicense.findMany).toHaveBeenCalled();
-  });
-});
-
-describe('getSpecificSecretKeys function', () => {
-  it('should call verifySession function, not call pjmaDBPrismaClient.SecretKeyLicense.findMany function and throw Error with "Unauthenticated" message', async () => {
-    const verifySession = (await import('@/lib/verifySession')).default;
-    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
-
-    verifySession.mockResolvedValue(false);
-
-    await expect(getSpecificSecretKeys({
+    await expect(getSecretKeys({
       id: true,
       app_name: true,
     })).rejects.toThrow('Unauthenticated');
@@ -170,10 +141,10 @@ describe('getSpecificSecretKeys function', () => {
     verifySession.mockResolvedValue({ isAuth: true, userId: '123' });
     pjmaDBPrismaClient.SecretKeyLicense.findMany.mockResolvedValue([{
       id: 2n,
-      created_at: 1234567812n,
+      app_name: '12345',
     }]);
 
-    await getSpecificSecretKeys({
+    await getSecretKeys({
       id: true,
       app_name: true,
     });
