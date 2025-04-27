@@ -102,7 +102,7 @@ export default function EditForm({
                 >
                   <FormControl>
                     <SelectTrigger className="w-full shadow-none text-base min-h-9.5 h-auto! px-3 py-1.5">
-                      <SelectValue placeholder="Select a Secret Key" />
+                      <SelectValue placeholder="Select a secret key" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -117,7 +117,7 @@ export default function EditForm({
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription>Select Secret Key based on application name!</FormDescription>
+                <FormDescription>Select secret key based on application name!</FormDescription>
                 <FormMessage />
               </FormItem>
             )}

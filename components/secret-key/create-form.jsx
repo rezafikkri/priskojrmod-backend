@@ -36,9 +36,9 @@ export default function CreateForm() {
     const add = await addSecretKey(data);
     if (add.status === 'success') {
       form.reset();
-      toast.success('Secret Key created successfully.');
+      toast.success('Secret key created successfully.');
     } else {
-      toast.error('Failed to create Secret Key. Please try again.');
+      toast.error('Failed to create secret key. Please try again.');
     }
   }
 
@@ -87,7 +87,7 @@ export default function CreateForm() {
                     )}
                   </div>
                 </div>
-                <FormDescription>Click Generate button to generate Secret Key!</FormDescription>
+                <FormDescription>Click Generate button to generate secret key.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}

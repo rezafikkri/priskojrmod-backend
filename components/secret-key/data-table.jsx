@@ -36,7 +36,7 @@ export default function DataTable({ secretKeys: data }) {
     const targetActionBtn = targetRow.querySelector('td > button');
     targetRow.classList.add('opacity-50');
     targetActionBtn.setAttribute('disabled', true);
-    const toastId = toast.loading('Deleting Secret Key...');
+    const toastId = toast.loading('Deleting secret key...');
 
     const removeRes = await removeSecretKey(id);
 
@@ -88,7 +88,7 @@ export default function DataTable({ secretKeys: data }) {
                   className="w-full justify-start focus-visible:ring-0 font-normal text-base h-auto py-2"
                   onClick={() => navigator.clipboard.writeText(row.getValue('key'))}
                 >
-                  Copy Secret Key
+                  Copy secret key
                 </Button>
               </DropdownMenuItem>
               <DropdownMenuSeparator className="-mx-1.5" />
