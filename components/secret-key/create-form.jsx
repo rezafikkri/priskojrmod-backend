@@ -33,8 +33,8 @@ export default function CreateForm() {
   const [loadingKey, setLoadingKey] = useState(false);
 
   async function handleSubmit(data) {
-    const add = await addSecretKey(data);
-    if (add.status === 'success') {
+    const addRes = await addSecretKey(data);
+    if (addRes.status === 'success') {
       form.reset();
       toast.success('Secret key created successfully.');
     } else {
@@ -45,8 +45,8 @@ export default function CreateForm() {
   async function handleGenerateKey() {
     setLoadingKey(true);
   
-    const key = await random32Bytes();
-    form.setValue('key', key.random);
+    const keyRes = await random32Bytes();
+    form.setValue('key', keyRes.random);
     form.clearErrors('key');
 
     setLoadingKey(false);

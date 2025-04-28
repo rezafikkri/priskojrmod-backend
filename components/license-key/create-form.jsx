@@ -47,13 +47,13 @@ export default function CreateForm({
   const isSubmitting = form.formState.isSubmitting;
 
   async function handleSubmit(data) {
-    const add = await addLicenseKey(data);
-    if (add.status === 'success') {
+    const addRes = await addLicenseKey(data);
+    if (addRes.status === 'success') {
       await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] })
       form.reset();
       toast.success('License key created successfully.');
     } else {
-      toast.error(add.message);
+      toast.error('Failed to create license key. Please try again.');
     }
   }
 
