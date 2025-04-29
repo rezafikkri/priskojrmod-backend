@@ -190,7 +190,7 @@ export default function LicenseKeysTable() {
         queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
       }
 
-      toast.success(`License key for ${deleteRes.data.email} deleted.`, { id: toastId });
+      toast.success(`License key for ${deleteRes.data.email} was successfully deleted.`, { id: toastId });
     },
     onError: (err, { toastId }) => {
       toast.error(err.message, { id: toastId });

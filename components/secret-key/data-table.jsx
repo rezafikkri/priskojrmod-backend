@@ -27,24 +27,26 @@ import { Button } from '../ui/button';
 import { MoreHorizontal } from 'lucide-react';
 import { toast } from 'sonner';
 import { removeSecretKey } from '@/actions/secret-key-actions';
+import DeleteDialog from './delete-dialog';
 
 export default function DataTable({ secretKeys: data }) {
   const [secretKeys, setSecretKeys] = useState(data);
+  const [deleteData, setDeleteData] = useState(null);
+  const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
 
-  async function handleDelete(id) {
-    const targetRow = document.querySelector(`#row${id}`);
+  async function handleDelete({ deleteData, toastId }) {
+    const targetRow = document.querySelector(`#row${deleteData.id}`);
     const targetActionBtn = targetRow.querySelector('td > button');
     targetRow.classList.add('opacity-50');
     targetActionBtn.setAttribute('disabled', true);
-    const toastId = toast.loading('Deleting secret key...');
 
-    const removeRes = await removeSecretKey(id);
+    const removeRes = await removeSecretKey(deleteData.id);
 
     if (removeRes.status === 'success') {
       setSecretKeys(secretKeys.filter(s => {
-        return s.id !== id;
+        return s.id !== deleteData.id;
       }));
-      toast.success('Successfully deleted the secret key.', {
+      toast.success(`Secret key for ${deleteData.appName} was successfully deleted.`, {
         id: toastId,
       });
     } else {
@@ -94,7 +96,10 @@ export default function DataTable({ secretKeys: data }) {
               <DropdownMenuSeparator className="-mx-1.5" />
               <DropdownMenuItem asChild>
                 <Button
-                  onClick={() => handleDelete(row.original.id)}
+                  onClick={() => {
+                    setDeleteData({ id: row.original.id, appName: row.getValue('app_name') });
+                    setIsOpenDeleteDialog(true);
+                  }}
                   variant="ghost"
                   className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal text-base h-auto p-2"
                 >
@@ -160,6 +165,14 @@ export default function DataTable({ secretKeys: data }) {
           </TableBody>
         </Table>
       </div>
+
+      <DeleteDialog
+        onDelete={handleDelete}
+        isOpenDeleteDialog={isOpenDeleteDialog}
+        setIsOpenDeleteDialog={setIsOpenDeleteDialog}
+        deleteData={deleteData}
+        setDeleteData={setDeleteData}
+      />
     </>
   );
 }
