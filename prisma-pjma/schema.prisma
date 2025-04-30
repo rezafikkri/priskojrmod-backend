@@ -9,6 +9,7 @@
 generator client {
   provider = "prisma-client-js"
   output   = "../prisma-pjma-db/pjma-db-client"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
