@@ -7,8 +7,9 @@
 // This schema is for priskojrmod_app database
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../prisma-pjma-db/pjma-db-client"
+  provider      = "prisma-client-js"
+  output        = "../prisma-pjma-db/pjma-db-client"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -38,5 +39,6 @@ model LicenseKey {
   used_for_download Boolean          @default(false)
   created_at        BigInt
 
+  @@index([email])
   @@map("license_keys")
 }

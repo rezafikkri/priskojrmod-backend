@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start -p 4000",
     "lint": "next lint",
-    "generate": "pnpm exec prisma generate --schema ./prisma-pjma/schema.prisma && pnpm exec prisma generate --schema ./pjme/schema.prisma",
+    "generate": "pnpm exec prisma generate --schema ./prisma-pjma/schema.prisma && pnpm exec prisma generate --schema ./prisma-pjme/schema.prisma",
     "migrate": "pnpm exec prisma migrate dev --schema ./prisma-pjma/schema.prisma && pnpm exec prisma migrate dev --schema ./prisma-pjme/schema.prisma",
     "deploy": "pnpm exec prisma migrate deploy --schema ./prisma-pjma/schema.prisma && pnpm exec prisma migrate deploy --schema ./prisma-pjme/schema.prisma",
     "prisma-format": "pnpm exec prisma format --schema ./prisma-pjma/schema.prisma && pnpm exec prisma format --schema ./prisma-pjme/schema.prisma",

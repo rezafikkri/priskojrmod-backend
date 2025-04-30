@@ -7,8 +7,9 @@
 // This schema is for priskojrmod_ecommerce database
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../prisma-pjme-db/pjme-db-client"
+  provider      = "prisma-client-js"
+  output        = "../prisma-pjme-db/pjme-db-client"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
