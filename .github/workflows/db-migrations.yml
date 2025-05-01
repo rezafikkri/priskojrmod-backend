@@ -1,0 +1,31 @@
+name: DB Migrations
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  migrate_deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Setup Nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Migrations
+        run: pnpm run deploy
+        env:
+          DATABASE_URL_PJMA: ${{ secrets.DATABASE_URL_PJMA }}
+          DATABASE_URL_PJME: ${{ secrets.DATABASE_URL_PJME }}
