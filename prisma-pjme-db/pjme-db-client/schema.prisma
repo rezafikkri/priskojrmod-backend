@@ -13,8 +13,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL_PJME")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL_PJME")
+  directUrl = env("DIRECT_URL_PJME")
 }
 
 model Admin {
