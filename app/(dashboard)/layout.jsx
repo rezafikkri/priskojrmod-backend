@@ -8,6 +8,7 @@ import { AppSidebar } from '@/components/layout/app-siderbar';
 import SessionProvider from '@/components/session-provider';
 import ReactQueryProvider from '@/components/react-query-provider';
 import { Toaster } from '@/components/ui/sonner';
+import NavProgressProvider from '@/components/nav-progress-provider';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${montserrat.variable}`}
       >
+        <NavProgressProvider>
         <SessionProvider>
           <SidebarProvider>
             <ThemeProvider
@@ -65,6 +67,7 @@ export default function RootLayout({ children }) {
             </ThemeProvider>
           </SidebarProvider>
         </SessionProvider>
+        </NavProgressProvider>
       </body>
     </html>
   );
