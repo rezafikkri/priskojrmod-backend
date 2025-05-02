@@ -13,8 +13,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL_PJMA")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL_PJMA")
+  directUrl = env("DIRECT_URL_PJMA")
 }
 
 model SecretKeyLicense {

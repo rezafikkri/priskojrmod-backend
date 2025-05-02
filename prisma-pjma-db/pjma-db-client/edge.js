@@ -165,17 +165,16 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL_PJMA",
-        "value": null
+        "value": "postgresql://reza:reza@localhost:5432/priskojrmod_app?schema=public"
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\n// This schema is for priskojrmod_app database\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../prisma-pjma-db/pjma-db-client\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL_PJMA\")\n}\n\nmodel SecretKeyLicense {\n  id         BigInt @id @default(autoincrement())\n  product_id String @unique @db.Uuid\n  key        String @db.VarChar(100)\n  created_at BigInt\n  app_name   String @db.VarChar(50)\n\n  license_key LicenseKey[]\n\n  @@map(\"secret_key_licenses\")\n}\n\nmodel LicenseKey {\n  id                String           @id @default(uuid(7)) @db.Uuid\n  secret_key        SecretKeyLicense @relation(fields: [secret_key_id], references: [id])\n  secret_key_id     BigInt\n  email             String           @db.VarChar(100)\n  key               String\n  used_for_activate Boolean          @default(false)\n  used_for_download Boolean          @default(false)\n  created_at        BigInt\n\n  @@index([email])\n  @@map(\"license_keys\")\n}\n",
-  "inlineSchemaHash": "44461ec202848386c0e3ef70e7453a25cf49b43edfc9b275e86b6a39b7ed4628",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\n// This schema is for priskojrmod_app database\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../prisma-pjma-db/pjma-db-client\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL_PJMA\")\n  directUrl = env(\"DIRECT_URL_PJMA\")\n}\n\nmodel SecretKeyLicense {\n  id         BigInt @id @default(autoincrement())\n  product_id String @unique @db.Uuid\n  key        String @db.VarChar(100)\n  created_at BigInt\n  app_name   String @db.VarChar(50)\n\n  license_key LicenseKey[]\n\n  @@map(\"secret_key_licenses\")\n}\n\nmodel LicenseKey {\n  id                String           @id @default(uuid(7)) @db.Uuid\n  secret_key        SecretKeyLicense @relation(fields: [secret_key_id], references: [id])\n  secret_key_id     BigInt\n  email             String           @db.VarChar(100)\n  key               String\n  used_for_activate Boolean          @default(false)\n  used_for_download Boolean          @default(false)\n  created_at        BigInt\n\n  @@index([email])\n  @@map(\"license_keys\")\n}\n",
+  "inlineSchemaHash": "781be82ecfb5f417ff300fff2b4a97bd1c686ec433e1ea53a965f5706750e106",
   "copyEngine": true
 }
 config.dirname = '/'
