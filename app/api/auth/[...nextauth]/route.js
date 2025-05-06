@@ -47,7 +47,7 @@ export const authOptions = {
       }
       return true;
     },
-    async jwt({ token, account, profile }) {
+    async jwt({ token, account, profile, trigger, session }) {
       if (account && profile) {
         const user = await pjmeDBPrismaClient.admin.findUnique({
           where: {
@@ -59,6 +59,10 @@ export const authOptions = {
         token.picture = user.picture;
         token.first_name = profile.given_name;
         token.accessToken = account.access_token;
+      }
+      if (trigger === 'update' && session?.first_name && session?.picture) {
+        token.first_name = session.first_name;
+        token.picture = session.picture;
       }
       return token;
     },
