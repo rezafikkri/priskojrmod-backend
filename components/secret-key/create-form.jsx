@@ -36,9 +36,9 @@ export default function CreateForm() {
     const addRes = await addSecretKey(data);
     if (addRes.status === 'success') {
       form.reset();
-      toast.success('Secret key created successfully.');
+      toast.success('Secret key was successfully created.');
     } else {
-      toast.error('Failed to create secret key. Please try again.');
+      toast.error(addRes.message);
     }
   }
 
@@ -111,7 +111,7 @@ export default function CreateForm() {
             variant="outline"
             className="me-3 mb-0 h-auto text-base px-3 py-1.5"
           >
-            <Link href="/secret-key">Cancel</Link>
+            <Link href="/secret-key">Back</Link>
           </Button>
           <div className="relative inline-block">
             <Button

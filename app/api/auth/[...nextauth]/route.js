@@ -42,23 +42,29 @@ export const authOptions = {
           where: {
             id: profile.sub,
           },
+          select: { id: true },
         });
         if (!user) return '/signin';
       }
       return true;
     },
-    async jwt({ token, account, profile }) {
+    async jwt({ token, account, profile, trigger, session }) {
       if (account && profile) {
         const user = await pjmeDBPrismaClient.admin.findUnique({
           where: {
             id: profile.sub,
           },
+          select: { picture: true },
         });
 
         token.userId = profile.sub;
         token.picture = user.picture;
         token.first_name = profile.given_name;
         token.accessToken = account.access_token;
+      }
+      if (trigger === 'update' && session?.first_name && session?.picture) {
+        token.first_name = session.first_name;
+        token.picture = session.picture;
       }
       return token;
     },

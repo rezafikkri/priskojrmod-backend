@@ -2481,7 +2481,7 @@ export namespace Prisma {
     first_name: string | null
     last_name: string | null
     email: string | null
-    phone_number: string | null
+    whatsapp_phone_number: string | null
     picture: string | null
   }
 
@@ -2490,7 +2490,7 @@ export namespace Prisma {
     first_name: string | null
     last_name: string | null
     email: string | null
-    phone_number: string | null
+    whatsapp_phone_number: string | null
     picture: string | null
   }
 
@@ -2499,7 +2499,7 @@ export namespace Prisma {
     first_name: number
     last_name: number
     email: number
-    phone_number: number
+    whatsapp_phone_number: number
     picture: number
     _all: number
   }
@@ -2510,7 +2510,7 @@ export namespace Prisma {
     first_name?: true
     last_name?: true
     email?: true
-    phone_number?: true
+    whatsapp_phone_number?: true
     picture?: true
   }
 
@@ -2519,7 +2519,7 @@ export namespace Prisma {
     first_name?: true
     last_name?: true
     email?: true
-    phone_number?: true
+    whatsapp_phone_number?: true
     picture?: true
   }
 
@@ -2528,7 +2528,7 @@ export namespace Prisma {
     first_name?: true
     last_name?: true
     email?: true
-    phone_number?: true
+    whatsapp_phone_number?: true
     picture?: true
     _all?: true
   }
@@ -2610,8 +2610,8 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number: string | null
-    picture: string | null
+    whatsapp_phone_number: string
+    picture: string
     _count: AdminCountAggregateOutputType | null
     _min: AdminMinAggregateOutputType | null
     _max: AdminMaxAggregateOutputType | null
@@ -2636,7 +2636,7 @@ export namespace Prisma {
     first_name?: boolean
     last_name?: boolean
     email?: boolean
-    phone_number?: boolean
+    whatsapp_phone_number?: boolean
     picture?: boolean
     donation_links?: boolean | Admin$donation_linksArgs<ExtArgs>
     products?: boolean | Admin$productsArgs<ExtArgs>
@@ -2648,7 +2648,7 @@ export namespace Prisma {
     first_name?: boolean
     last_name?: boolean
     email?: boolean
-    phone_number?: boolean
+    whatsapp_phone_number?: boolean
     picture?: boolean
   }, ExtArgs["result"]["admin"]>
 
@@ -2657,7 +2657,7 @@ export namespace Prisma {
     first_name?: boolean
     last_name?: boolean
     email?: boolean
-    phone_number?: boolean
+    whatsapp_phone_number?: boolean
     picture?: boolean
   }, ExtArgs["result"]["admin"]>
 
@@ -2666,11 +2666,11 @@ export namespace Prisma {
     first_name?: boolean
     last_name?: boolean
     email?: boolean
-    phone_number?: boolean
+    whatsapp_phone_number?: boolean
     picture?: boolean
   }
 
-  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "first_name" | "last_name" | "email" | "phone_number" | "picture", ExtArgs["result"]["admin"]>
+  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "first_name" | "last_name" | "email" | "whatsapp_phone_number" | "picture", ExtArgs["result"]["admin"]>
   export type AdminInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     donation_links?: boolean | Admin$donation_linksArgs<ExtArgs>
     products?: boolean | Admin$productsArgs<ExtArgs>
@@ -2690,8 +2690,8 @@ export namespace Prisma {
       first_name: string
       last_name: string
       email: string
-      phone_number: string | null
-      picture: string | null
+      whatsapp_phone_number: string
+      picture: string
     }, ExtArgs["result"]["admin"]>
     composites: {}
   }
@@ -3121,7 +3121,7 @@ export namespace Prisma {
     readonly first_name: FieldRef<"Admin", 'String'>
     readonly last_name: FieldRef<"Admin", 'String'>
     readonly email: FieldRef<"Admin", 'String'>
-    readonly phone_number: FieldRef<"Admin", 'String'>
+    readonly whatsapp_phone_number: FieldRef<"Admin", 'String'>
     readonly picture: FieldRef<"Admin", 'String'>
   }
     
@@ -19754,7 +19754,7 @@ export namespace Prisma {
     first_name: 'first_name',
     last_name: 'last_name',
     email: 'email',
-    phone_number: 'phone_number',
+    whatsapp_phone_number: 'whatsapp_phone_number',
     picture: 'picture'
   };
 
@@ -20052,8 +20052,8 @@ export namespace Prisma {
     first_name?: StringFilter<"Admin"> | string
     last_name?: StringFilter<"Admin"> | string
     email?: StringFilter<"Admin"> | string
-    phone_number?: StringNullableFilter<"Admin"> | string | null
-    picture?: StringNullableFilter<"Admin"> | string | null
+    whatsapp_phone_number?: StringFilter<"Admin"> | string
+    picture?: StringFilter<"Admin"> | string
     donation_links?: DonationLinkListRelationFilter
     products?: ProductListRelationFilter
   }
@@ -20063,8 +20063,8 @@ export namespace Prisma {
     first_name?: SortOrder
     last_name?: SortOrder
     email?: SortOrder
-    phone_number?: SortOrderInput | SortOrder
-    picture?: SortOrderInput | SortOrder
+    whatsapp_phone_number?: SortOrder
+    picture?: SortOrder
     donation_links?: DonationLinkOrderByRelationAggregateInput
     products?: ProductOrderByRelationAggregateInput
   }
@@ -20077,8 +20077,8 @@ export namespace Prisma {
     NOT?: AdminWhereInput | AdminWhereInput[]
     first_name?: StringFilter<"Admin"> | string
     last_name?: StringFilter<"Admin"> | string
-    phone_number?: StringNullableFilter<"Admin"> | string | null
-    picture?: StringNullableFilter<"Admin"> | string | null
+    whatsapp_phone_number?: StringFilter<"Admin"> | string
+    picture?: StringFilter<"Admin"> | string
     donation_links?: DonationLinkListRelationFilter
     products?: ProductListRelationFilter
   }, "id" | "email">
@@ -20088,8 +20088,8 @@ export namespace Prisma {
     first_name?: SortOrder
     last_name?: SortOrder
     email?: SortOrder
-    phone_number?: SortOrderInput | SortOrder
-    picture?: SortOrderInput | SortOrder
+    whatsapp_phone_number?: SortOrder
+    picture?: SortOrder
     _count?: AdminCountOrderByAggregateInput
     _max?: AdminMaxOrderByAggregateInput
     _min?: AdminMinOrderByAggregateInput
@@ -20103,8 +20103,8 @@ export namespace Prisma {
     first_name?: StringWithAggregatesFilter<"Admin"> | string
     last_name?: StringWithAggregatesFilter<"Admin"> | string
     email?: StringWithAggregatesFilter<"Admin"> | string
-    phone_number?: StringNullableWithAggregatesFilter<"Admin"> | string | null
-    picture?: StringNullableWithAggregatesFilter<"Admin"> | string | null
+    whatsapp_phone_number?: StringWithAggregatesFilter<"Admin"> | string
+    picture?: StringWithAggregatesFilter<"Admin"> | string
   }
 
   export type DonationLinkWhereInput = {
@@ -20947,8 +20947,8 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
-    picture?: string | null
+    whatsapp_phone_number: string
+    picture: string
     donation_links?: DonationLinkCreateNestedManyWithoutAdminInput
     products?: ProductCreateNestedManyWithoutAdminInput
   }
@@ -20958,8 +20958,8 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
-    picture?: string | null
+    whatsapp_phone_number: string
+    picture: string
     donation_links?: DonationLinkUncheckedCreateNestedManyWithoutAdminInput
     products?: ProductUncheckedCreateNestedManyWithoutAdminInput
   }
@@ -20969,8 +20969,8 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp_phone_number?: StringFieldUpdateOperationsInput | string
+    picture?: StringFieldUpdateOperationsInput | string
     donation_links?: DonationLinkUpdateManyWithoutAdminNestedInput
     products?: ProductUpdateManyWithoutAdminNestedInput
   }
@@ -20980,8 +20980,8 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp_phone_number?: StringFieldUpdateOperationsInput | string
+    picture?: StringFieldUpdateOperationsInput | string
     donation_links?: DonationLinkUncheckedUpdateManyWithoutAdminNestedInput
     products?: ProductUncheckedUpdateManyWithoutAdminNestedInput
   }
@@ -20991,8 +20991,8 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
-    picture?: string | null
+    whatsapp_phone_number: string
+    picture: string
   }
 
   export type AdminUpdateManyMutationInput = {
@@ -21000,8 +21000,8 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp_phone_number?: StringFieldUpdateOperationsInput | string
+    picture?: StringFieldUpdateOperationsInput | string
   }
 
   export type AdminUncheckedUpdateManyInput = {
@@ -21009,8 +21009,8 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp_phone_number?: StringFieldUpdateOperationsInput | string
+    picture?: StringFieldUpdateOperationsInput | string
   }
 
   export type DonationLinkCreateInput = {
@@ -21834,21 +21834,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type DonationLinkListRelationFilter = {
     every?: DonationLinkWhereInput
     some?: DonationLinkWhereInput
@@ -21859,11 +21844,6 @@ export namespace Prisma {
     every?: ProductWhereInput
     some?: ProductWhereInput
     none?: ProductWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type DonationLinkOrderByRelationAggregateInput = {
@@ -21879,7 +21859,7 @@ export namespace Prisma {
     first_name?: SortOrder
     last_name?: SortOrder
     email?: SortOrder
-    phone_number?: SortOrder
+    whatsapp_phone_number?: SortOrder
     picture?: SortOrder
   }
 
@@ -21888,7 +21868,7 @@ export namespace Prisma {
     first_name?: SortOrder
     last_name?: SortOrder
     email?: SortOrder
-    phone_number?: SortOrder
+    whatsapp_phone_number?: SortOrder
     picture?: SortOrder
   }
 
@@ -21897,7 +21877,7 @@ export namespace Prisma {
     first_name?: SortOrder
     last_name?: SortOrder
     email?: SortOrder
-    phone_number?: SortOrder
+    whatsapp_phone_number?: SortOrder
     picture?: SortOrder
   }
 
@@ -21917,24 +21897,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -22047,6 +22009,21 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type BigIntFilter<$PrismaModel = never> = {
     equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
@@ -22056,6 +22033,11 @@ export namespace Prisma {
     gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type CustomerCountOrderByAggregateInput = {
@@ -22097,6 +22079,24 @@ export namespace Prisma {
 
   export type CustomerSumOrderByAggregateInput = {
     last_active?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -22632,10 +22632,6 @@ export namespace Prisma {
     set?: string
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type DonationLinkUpdateManyWithoutAdminNestedInput = {
     create?: XOR<DonationLinkCreateWithoutAdminInput, DonationLinkUncheckedCreateWithoutAdminInput> | DonationLinkCreateWithoutAdminInput[] | DonationLinkUncheckedCreateWithoutAdminInput[]
     connectOrCreate?: DonationLinkCreateOrConnectWithoutAdminInput | DonationLinkCreateOrConnectWithoutAdminInput[]
@@ -22758,6 +22754,10 @@ export namespace Prisma {
     update?: ProductUpdateWithWhereUniqueWithoutOwnerInput | ProductUpdateWithWhereUniqueWithoutOwnerInput[]
     updateMany?: ProductUpdateManyWithWhereWithoutOwnerInput | ProductUpdateManyWithWhereWithoutOwnerInput[]
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type BigIntFieldUpdateOperationsInput = {
@@ -23190,20 +23190,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -23230,34 +23216,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedEnumCurrencyCodeFilter<$PrismaModel = never> = {
@@ -23304,6 +23262,20 @@ export namespace Prisma {
     _max?: NestedEnumCurrencyCodeFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedBigIntFilter<$PrismaModel = never> = {
     equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
@@ -23313,6 +23285,34 @@ export namespace Prisma {
     gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -23521,8 +23521,8 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
-    picture?: string | null
+    whatsapp_phone_number: string
+    picture: string
     products?: ProductCreateNestedManyWithoutAdminInput
   }
 
@@ -23531,8 +23531,8 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
-    picture?: string | null
+    whatsapp_phone_number: string
+    picture: string
     products?: ProductUncheckedCreateNestedManyWithoutAdminInput
   }
 
@@ -23557,8 +23557,8 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp_phone_number?: StringFieldUpdateOperationsInput | string
+    picture?: StringFieldUpdateOperationsInput | string
     products?: ProductUpdateManyWithoutAdminNestedInput
   }
 
@@ -23567,8 +23567,8 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp_phone_number?: StringFieldUpdateOperationsInput | string
+    picture?: StringFieldUpdateOperationsInput | string
     products?: ProductUncheckedUpdateManyWithoutAdminNestedInput
   }
 
@@ -23769,8 +23769,8 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
-    picture?: string | null
+    whatsapp_phone_number: string
+    picture: string
     donation_links?: DonationLinkCreateNestedManyWithoutAdminInput
   }
 
@@ -23779,8 +23779,8 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
-    picture?: string | null
+    whatsapp_phone_number: string
+    picture: string
     donation_links?: DonationLinkUncheckedCreateNestedManyWithoutAdminInput
   }
 
@@ -23943,8 +23943,8 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp_phone_number?: StringFieldUpdateOperationsInput | string
+    picture?: StringFieldUpdateOperationsInput | string
     donation_links?: DonationLinkUpdateManyWithoutAdminNestedInput
   }
 
@@ -23953,8 +23953,8 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp_phone_number?: StringFieldUpdateOperationsInput | string
+    picture?: StringFieldUpdateOperationsInput | string
     donation_links?: DonationLinkUncheckedUpdateManyWithoutAdminNestedInput
   }
 

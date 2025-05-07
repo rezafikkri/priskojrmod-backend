@@ -77,7 +77,7 @@ export function NavUser() {
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem asChild>
-                  <Link href="" className="cursor-pointer"><User /> Account</Link>
+                  <Link href="/account-settings" className="cursor-pointer"><User /> Account Settings</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <ToggleTheme />

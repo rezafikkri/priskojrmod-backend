@@ -11,11 +11,11 @@ export const metadata = {
 export default async function SecretKey() {
   return (
     <>
-      <h1 className="text-xl mb-1 font-bold">Secret Key</h1>
+      <h1 className="text-xl mb-1 font-bold">Secret Keys</h1>
       <h2 className="text-zinc-700 dark:text-zinc-300/80 mb-6">Secret key is used for generate license key for application.</h2>
       
       <Button asChild variant="outline" className="mb-5 h-auto text-base px-3 py-1.5">
-        <Link href="/secret-key/create">Create Secret</Link>
+        <Link href="/secret-key/create">Create Secret Key</Link>
       </Button>
       
       <Suspense fallback={<TableSekeleton />}>

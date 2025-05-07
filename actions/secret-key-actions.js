@@ -7,7 +7,7 @@ export async function addSecretKey(data) {
     await createSecretKey(data);
     return { status: 'success' };
   } catch (err) {
-    return { status: 'error' };
+    return { status: 'error', message: err.message };
   }
 }
 

@@ -42,7 +42,7 @@ const items = {
     title: 'Document',
     icon: <Script />,
     subItems: [
-      { title: 'T&C', url: '/tnc', },
+      { title: 'Terms of Service', url: '/toc', },
       { title: 'Privacy Policy', url: '/pp' },
       { title: 'About Us', url: '/about' },
       { title: 'FAQ', url: '/faq' },
