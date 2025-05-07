@@ -50,7 +50,7 @@ export function EditForm({
     defaultValues: {
       first_name: account.first_name,
       last_name: account.last_name,
-      phone_number: account.phone_number,
+      whatsapp_phone_number: account.whatsapp_phone_number,
       picture: account.picture,
       donation_links: generateDonationLinksValues(account.donation_links),
     },
@@ -171,9 +171,9 @@ export function EditForm({
 
           <FormField
             control={form.control}
-            name="phone_number"
+            name="whatsapp_phone_number"
             render={({ field }) => {
-              if (!field.value || field.value.trim() === '') field.value = '+62';
+              if (field.value.trim() === '') field.value = '+62';
               return (
                 <FormItem className="flex-1">
                   <FormLabel className="text-base">WhatsApp Phone Number</FormLabel>
