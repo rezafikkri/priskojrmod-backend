@@ -232,7 +232,7 @@ export default function LicenseKeysTable() {
     <>
       <div className="flex flex-col md:flex-row md:justify-between gap-3 items-start mb-5">
         <Button asChild variant="outline" className="w-full md:w-auto h-auto text-base px-3 py-1.5">
-          <Link href="/license-key/create">Create License</Link>
+          <Link href="/license-key/create">Create License Key</Link>
         </Button>
         <div className="flex shadow-xs rounded-md w-full lg:w-1/3">
           <div className="relative flex items-center w-full -me-[1px] z-1">

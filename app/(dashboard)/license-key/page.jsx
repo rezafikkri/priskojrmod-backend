@@ -7,7 +7,7 @@ export const metadata = {
 export default async function LicenseKey() {
   return (
     <>
-      <h1 className="text-2xl mb-1 font-bold">License Key</h1>
+      <h1 className="text-2xl mb-1 font-bold">License Keys</h1>
       <h2 className="text-zinc-700 dark:text-zinc-300/80 mb-6">For now, license key only used to activate Sider Manager application.</h2>
       
       <LicenseKeysTable />

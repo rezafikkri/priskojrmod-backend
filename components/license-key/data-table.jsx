@@ -190,7 +190,7 @@ export default function DataTable({
       </div>
 
       {licenseKeys.length > 0 ? (
-        <div className="flex gap-5 justify-between mt-4 items-center h-9.5">
+        <div className="flex max-md:flex-col max-md:items-start gap-3 md:gap-5 md:justify-between mt-4 items-center">
           <span className="text-muted-foreground">{pageInfo}</span>
           {!searchKey ? (
             <div className="space-x-2">
