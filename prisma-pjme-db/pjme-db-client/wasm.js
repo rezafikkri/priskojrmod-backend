@@ -122,7 +122,7 @@ exports.Prisma.AdminScalarFieldEnum = {
   first_name: 'first_name',
   last_name: 'last_name',
   email: 'email',
-  phone_number: 'phone_number',
+  whatsapp_phone_number: 'whatsapp_phone_number',
   picture: 'picture'
 };
 
