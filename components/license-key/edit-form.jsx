@@ -64,13 +64,13 @@ export default function EditForm({
     if (updateRes.status === 'success') {
       await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] })
       await queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
-      toast.success('License key updated successfully.');
       form.setValue('old_key', updateRes.data.key);
       form.setValue('old_secret_key_id', updateRes.data.secret_key_id);
       form.setValue('change_expiration_date', false);
       if (updateRes.data.exp) {
         setLicenseKeyExpire(dayjs.unix(updateRes.data.exp).format('MMMM DD, YYYY'))
       }
+      toast.success('License key was successfully updated.');
     } else {
       toast.error(updateRes.message);
     }
