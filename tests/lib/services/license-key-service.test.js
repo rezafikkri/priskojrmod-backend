@@ -11,6 +11,8 @@ import {
   getLicenseKeys,
   searchLicenseKeys,
   deleteLicenseKey,
+  getLicenseKey,
+  updateLicenseKey,
 } from '@/lib/services/license-key-service';
 
 beforeAll(() => {
@@ -26,6 +28,8 @@ beforeAll(() => {
         create: vi.fn(),
         delete: vi.fn(),
         findMany: vi.fn(),
+        findUnique: vi.fn(),
+        update: vi.fn(),
       },
     },
   }));
@@ -37,6 +41,8 @@ beforeAll(() => {
   vi.mock('jsonwebtoken', () => ({
     default: {
       sign: () => 'jsonwebtoken',
+      verify: vi.fn(),
+      decode: vi.fn(),
     },
   }));
 });
@@ -207,6 +213,124 @@ describe('deleteLicenseKey function', () => {
       select: {
         id: true,
         email: true,
+      },
+    });
+  });
+});
+
+describe('getLicenseKey function', () => {
+  it('Should call verifySession function, not call pjmaDBPrismaClient.LicenseKey.findUnique function and throw Error with "Unauthenticated" message', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
+
+    verifySession.mockResolvedValue(false);
+
+    await expect(getLicenseKey('1')).rejects.toThrow('Unauthenticated');
+
+    expect(verifySession).toHaveBeenCalled();
+    expect(pjmaDBPrismaClient.LicenseKey.findUnique).not.toHaveBeenCalled();
+  });
+
+  it('Should call pjmaDBPrismaClient.LicenseKey.findUnique function correctly', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
+
+    verifySession.mockResolvedValue({ isAuth: true, userId: 'admin-id' });
+
+    pjmaDBPrismaClient.LicenseKey.findUnique.mockResolvedValue({
+      id: '1',
+      secret_key_id: BigInt(123456),
+      email: 'test@example.com',
+      key: 'fake-key',
+      used_for_activate: true,
+      used_for_download: false,
+    });
+
+    await getLicenseKey('1');
+
+    expect(pjmaDBPrismaClient.LicenseKey.findUnique).toHaveBeenCalledWith({
+      where: { id: '1' },
+      select: {
+        id: true,
+        secret_key_id: true,
+        email: true,
+        key: true,
+        used_for_activate: true,
+        used_for_download: true,
+      },
+    });
+  });
+});
+
+describe('updateLicenseKey function', () => {
+  it('Should call verifySession function, not call pjmaDBPrismaClient.LicenseKey.update function and throw Error with "Unauthenticated" message', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
+
+    verifySession.mockResolvedValue(false);
+
+    await expect(
+      updateLicenseKey({
+        id: '3f50e7ba-9c3e-4cf1-8a98-77be2c32c71a',
+        old_key: 'old-key',
+        old_secret_key_id: '1',
+        secret_key_id: '1',
+        name: 'Test Name',
+        type: 'online',
+        used_for_activate: true,
+        used_for_download: false,
+        change_expiration_date: false,
+      })
+    ).rejects.toThrow('Unauthenticated');
+
+    expect(verifySession).toHaveBeenCalled();
+    expect(pjmaDBPrismaClient.LicenseKey.update).not.toHaveBeenCalled();
+  });
+
+  it('Should call pjmaDBPrismaClient.LicenseKey.update function correctly', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
+    const { getSpecificSecretKey } = await import('@/lib/services/secret-key-service');
+    const jwt = (await import('jsonwebtoken')).default;
+
+    verifySession.mockResolvedValue({ isAuth: true, userId: 'admin-id' });
+
+    getSpecificSecretKey.mockResolvedValue({ key: 'secret-key' });
+    jwt.verify.mockReturnValue({
+      name: 'Old Name',
+      email: 'test@example.com',
+      type: 'online',
+      exp: 1234567890,
+    });
+
+    pjmaDBPrismaClient.LicenseKey.update.mockResolvedValue({
+      key: 'jsonwebtoken',
+      secret_key_id: BigInt(1),
+    });
+
+    await updateLicenseKey({
+      id: '3f50e7ba-9c3e-4cf1-8a98-77be2c32c71a',
+      old_key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30',
+      old_secret_key_id: '1',
+      secret_key_id: '2',
+      name: 'New Name',
+      type: 'online',
+      used_for_activate: true,
+      used_for_download: false,
+      change_expiration_date: true,
+    });
+
+    expect(pjmaDBPrismaClient.LicenseKey.update).toHaveBeenCalledWith({
+      where: { id: '3f50e7ba-9c3e-4cf1-8a98-77be2c32c71a' },
+      select: {
+        key: true,
+        secret_key_id: true,
+      },
+      data: {
+        secret_key_id: BigInt(2),
+        used_for_activate: true,
+        used_for_download: false,
+        key: 'jsonwebtoken',
       },
     });
   });
