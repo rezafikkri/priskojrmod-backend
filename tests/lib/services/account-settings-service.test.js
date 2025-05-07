@@ -63,7 +63,7 @@ describe('getAccount function', () => {
 
     pjmeDBPrismaClient.Admin.findUnique.mockResolvedValue({
       last_name: 'Doe',
-      phone_number: '1234567890',
+      whatsapp_phone_number: '1234567890',
       donation_links: [],
     });
 
@@ -73,7 +73,7 @@ describe('getAccount function', () => {
       where: { id: 'admin-id' },
       select: {
         last_name: true,
-        phone_number: true,
+        whatsapp_phone_number: true,
         donation_links: {
           select: {
             id: true,
@@ -96,7 +96,7 @@ describe('updateAccount function', () => {
     await expect(updateAccount({
       first_name: 'John',
       last_name: 'Doe',
-      phone_number: '+6285758438583',
+      whatsapp_phone_number: '+6285758438583',
       picture: 'https://test.co/pic.jpg',
       donation_links: [
         { id: 1, currency_code: 'IDR', link: 'https://donate1.com' },
@@ -125,7 +125,7 @@ describe('updateAccount function', () => {
     await updateAccount({
       first_name: 'John',
       last_name: 'Doe',
-      phone_number: '+6285758438583',
+      whatsapp_phone_number: '+6285758438583',
       picture: 'https://test.co/pic.jpg',
       donation_links: [
         { id: 1, currency_code: 'IDR', link: 'https://donate1.com' },
@@ -138,7 +138,7 @@ describe('updateAccount function', () => {
       data: {
         first_name: 'John',
         last_name: 'Doe',
-        phone_number: '+6285758438583',
+        whatsapp_phone_number: '+6285758438583',
         picture: 'https://test.co/pic.jpg',
         donation_links: {
           upsert: [
