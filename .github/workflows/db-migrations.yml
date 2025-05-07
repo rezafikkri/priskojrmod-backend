@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Mark a migration to rollaback
+        run: pnpm exec prisma migrate resolve --rolled-back "20250507035613_pjme_migrations"
+
       - name: Run Migrations
         run: pnpm run deploy
         env:
