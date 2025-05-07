@@ -42,6 +42,7 @@ export const authOptions = {
           where: {
             id: profile.sub,
           },
+          select: { id: true },
         });
         if (!user) return '/signin';
       }
@@ -53,6 +54,7 @@ export const authOptions = {
           where: {
             id: profile.sub,
           },
+          select: { picture: true },
         });
 
         token.userId = profile.sub;
