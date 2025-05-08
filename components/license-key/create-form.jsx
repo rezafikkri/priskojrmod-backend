@@ -24,7 +24,7 @@ import { licenseKeySchema } from '@/lib/validators/license-key-validator';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import { Button } from '../ui/button';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ArrowLeft } from 'lucide-react';
 import { addLicenseKey } from '@/actions/license-key-actions';
 import { useQueryClient } from '@tanstack/react-query'
 
@@ -153,10 +153,10 @@ export default function CreateForm({
               </FormItem>
             )}
           />
-          <Button asChild variant="outline" className="me-3 mb-0 h-auto text-base px-3 py-1.5">
-            <Link href="/license-key">Back</Link>
+          <Button asChild variant="outline" className="me-3 mb-0 h-auto inline-block text-base px-3 py-1.5">
+            <Link href="/license-key"><ArrowLeft className="icon" /> Back</Link>
           </Button>
-          <div className="relative inline-block">
+          <div className="relative inline-flex">
             <Button
               type="submit"
               className={`disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''} h-auto text-base px-3 py-1.5 border border-primary`}

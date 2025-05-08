@@ -12,7 +12,7 @@
     "deploy": "pnpm exec prisma migrate deploy --schema ./prisma-pjma/schema.prisma && pnpm exec prisma migrate deploy --schema ./prisma-pjme/schema.prisma",
     "prisma-format": "pnpm exec prisma format --schema ./prisma-pjma/schema.prisma && pnpm exec prisma format --schema ./prisma-pjme/schema.prisma",
     "studio": "pnpm exec prisma studio --schema ./prisma-pjma/schema.prisma --port 5555 & pnpm exec prisma studio --schema ./prisma-pjme/schema.prisma --port 5556",
-    "test": "vitest",
+    "test": "vitest"
   },
   "prisma": {
     "seed": "node prisma/seed.mjs"

@@ -98,7 +98,7 @@ export default function DataTable({
             <DropdownMenuContent align="end" className="min-w-50 px-1.5">
               <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
               <DropdownMenuItem asChild className="text-base py-2 hover:cursor-pointer">
-                <Link href={`/license-key/edit/${row.original.id}`}>Edit</Link>
+                <Link href={`/license-key/${row.original.id}/edit`}>Edit</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Button

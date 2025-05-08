@@ -134,3 +134,10 @@
     appearance: textfield;
   }
 }   
+
+@layer components {
+  .icon {
+    display: inline-block;
+    vertical-align: -.125em;
+  }
+}
