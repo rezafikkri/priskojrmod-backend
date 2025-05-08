@@ -15,7 +15,7 @@ export default async function SecretKey() {
       <h2 className="text-zinc-700 dark:text-zinc-300/80 mb-6">Secret key is used for generate license key for application.</h2>
       
       <Button asChild variant="outline" className="mb-5 h-auto text-base px-3 py-1.5">
-        <Link href="/secret-key/create">Create Secret Key</Link>
+        <Link href="/secret-key/new">Create Secret Key</Link>
       </Button>
       
       <Suspense fallback={<TableSekeleton />}>

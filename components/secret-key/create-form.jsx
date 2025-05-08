@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ArrowLeft } from 'lucide-react';
 import { secretKeySchema } from '@/lib/validators/secret-key-validator';
 import { toast } from 'sonner';
 import Link from 'next/link';
@@ -87,7 +87,7 @@ export default function CreateForm() {
                     )}
                   </div>
                 </div>
-                <FormDescription>Click Generate button to generate secret key.</FormDescription>
+                <FormDescription>Enter secret key or click generate button to generate secret key.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -101,17 +101,13 @@ export default function CreateForm() {
                 <FormControl>
                   <Input disabled={isSubmitting} {...field} className="md:text-base h-auto px-3 py-1.5 shadow-none" />
                 </FormControl>
-                <FormDescription>One application product can only have one secret key.</FormDescription>
+                <FormDescription>Enter application name. Each application can have only one secret key.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button
-            asChild
-            variant="outline"
-            className="me-3 mb-0 h-auto text-base px-3 py-1.5"
-          >
-            <Link href="/secret-key">Back</Link>
+          <Button asChild variant="outline" className="me-3 mb-0 h-auto inline-block text-base px-3 py-1.5">
+            <Link href="/secret-key"><ArrowLeft className="icon" /> Back</Link>
           </Button>
           <div className="relative inline-block">
             <Button
