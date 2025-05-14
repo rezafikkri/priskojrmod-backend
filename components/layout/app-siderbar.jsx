@@ -45,7 +45,7 @@ const items = {
       { title: 'Terms of Service', url: '/toc', },
       { title: 'Privacy Policy', url: '/pp' },
       { title: 'About Us', url: '/about' },
-      { title: 'FAQ', url: '/faq' },
+      { title: 'FAQs', url: '/faq' },
     ],
   },
   product: [

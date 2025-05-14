@@ -1,6 +1,5 @@
 @import 'tailwindcss';
-
-@plugin 'tailwindcss-animate';
+@plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -133,11 +132,15 @@
     -moz-appearance: textfield;
     appearance: textfield;
   }
-}   
+}
 
 @layer components {
   .icon {
     display: inline-block;
     vertical-align: -.125em;
   }
+
+  /* .tiptap[contenteditable=false] { */
+  /*   @apply pointer-events-none opacity-50; */
+  /* } */
 }
