@@ -84,15 +84,20 @@ export type AboutUs = $Result.DefaultSelection<Prisma.$AboutUsPayload>
  */
 export type PrivacyPolicy = $Result.DefaultSelection<Prisma.$PrivacyPolicyPayload>
 /**
- * Model TermsandConditions
+ * Model TermAndCondition
  * 
  */
-export type TermsandConditions = $Result.DefaultSelection<Prisma.$TermsandConditionsPayload>
+export type TermAndCondition = $Result.DefaultSelection<Prisma.$TermAndConditionPayload>
 /**
- * Model FAQ
+ * Model Faq
  * 
  */
-export type FAQ = $Result.DefaultSelection<Prisma.$FAQPayload>
+export type Faq = $Result.DefaultSelection<Prisma.$FaqPayload>
+/**
+ * Model FaqTranslation
+ * 
+ */
+export type FaqTranslation = $Result.DefaultSelection<Prisma.$FaqTranslationPayload>
 
 /**
  * Enums
@@ -113,6 +118,14 @@ export const PriceType: {
 
 export type PriceType = (typeof PriceType)[keyof typeof PriceType]
 
+
+export const Language: {
+  ID: 'ID',
+  EN: 'EN'
+};
+
+export type Language = (typeof Language)[keyof typeof Language]
+
 }
 
 export type CurrencyCode = $Enums.CurrencyCode
@@ -122,6 +135,10 @@ export const CurrencyCode: typeof $Enums.CurrencyCode
 export type PriceType = $Enums.PriceType
 
 export const PriceType: typeof $Enums.PriceType
+
+export type Language = $Enums.Language
+
+export const Language: typeof $Enums.Language
 
 /**
  * ##  Prisma Client ʲˢ
@@ -389,24 +406,34 @@ export class PrismaClient<
   get privacyPolicy(): Prisma.PrivacyPolicyDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.termsandConditions`: Exposes CRUD operations for the **TermsandConditions** model.
+   * `prisma.termAndCondition`: Exposes CRUD operations for the **TermAndCondition** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more TermsandConditions
-    * const termsandConditions = await prisma.termsandConditions.findMany()
+    * // Fetch zero or more TermAndConditions
+    * const termAndConditions = await prisma.termAndCondition.findMany()
     * ```
     */
-  get termsandConditions(): Prisma.TermsandConditionsDelegate<ExtArgs, ClientOptions>;
+  get termAndCondition(): Prisma.TermAndConditionDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.fAQ`: Exposes CRUD operations for the **FAQ** model.
+   * `prisma.faq`: Exposes CRUD operations for the **Faq** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more FAQS
-    * const fAQS = await prisma.fAQ.findMany()
+    * // Fetch zero or more Faqs
+    * const faqs = await prisma.faq.findMany()
     * ```
     */
-  get fAQ(): Prisma.FAQDelegate<ExtArgs, ClientOptions>;
+  get faq(): Prisma.FaqDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.faqTranslation`: Exposes CRUD operations for the **FaqTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FaqTranslations
+    * const faqTranslations = await prisma.faqTranslation.findMany()
+    * ```
+    */
+  get faqTranslation(): Prisma.FaqTranslationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -861,8 +888,9 @@ export namespace Prisma {
     ProductPrice: 'ProductPrice',
     AboutUs: 'AboutUs',
     PrivacyPolicy: 'PrivacyPolicy',
-    TermsandConditions: 'TermsandConditions',
-    FAQ: 'FAQ'
+    TermAndCondition: 'TermAndCondition',
+    Faq: 'Faq',
+    FaqTranslation: 'FaqTranslation'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -881,7 +909,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "donationLink" | "owner" | "customer" | "license" | "category" | "product" | "productDiscount" | "productCoupon" | "productImage" | "productVariant" | "productPrice" | "aboutUs" | "privacyPolicy" | "termsandConditions" | "fAQ"
+      modelProps: "admin" | "donationLink" | "owner" | "customer" | "license" | "category" | "product" | "productDiscount" | "productCoupon" | "productImage" | "productVariant" | "productPrice" | "aboutUs" | "privacyPolicy" | "termAndCondition" | "faq" | "faqTranslation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1921,151 +1949,225 @@ export namespace Prisma {
           }
         }
       }
-      TermsandConditions: {
-        payload: Prisma.$TermsandConditionsPayload<ExtArgs>
-        fields: Prisma.TermsandConditionsFieldRefs
+      TermAndCondition: {
+        payload: Prisma.$TermAndConditionPayload<ExtArgs>
+        fields: Prisma.TermAndConditionFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TermsandConditionsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermsandConditionsPayload> | null
+            args: Prisma.TermAndConditionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TermsandConditionsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermsandConditionsPayload>
+            args: Prisma.TermAndConditionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
           }
           findFirst: {
-            args: Prisma.TermsandConditionsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermsandConditionsPayload> | null
+            args: Prisma.TermAndConditionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TermsandConditionsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermsandConditionsPayload>
+            args: Prisma.TermAndConditionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
           }
           findMany: {
-            args: Prisma.TermsandConditionsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermsandConditionsPayload>[]
+            args: Prisma.TermAndConditionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
           }
           create: {
-            args: Prisma.TermsandConditionsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermsandConditionsPayload>
+            args: Prisma.TermAndConditionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
           }
           createMany: {
-            args: Prisma.TermsandConditionsCreateManyArgs<ExtArgs>
+            args: Prisma.TermAndConditionCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.TermsandConditionsCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermsandConditionsPayload>[]
+            args: Prisma.TermAndConditionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
           }
           delete: {
-            args: Prisma.TermsandConditionsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermsandConditionsPayload>
+            args: Prisma.TermAndConditionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
           }
           update: {
-            args: Prisma.TermsandConditionsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermsandConditionsPayload>
+            args: Prisma.TermAndConditionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
           }
           deleteMany: {
-            args: Prisma.TermsandConditionsDeleteManyArgs<ExtArgs>
+            args: Prisma.TermAndConditionDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.TermsandConditionsUpdateManyArgs<ExtArgs>
+            args: Prisma.TermAndConditionUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.TermsandConditionsUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermsandConditionsPayload>[]
+            args: Prisma.TermAndConditionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
           }
           upsert: {
-            args: Prisma.TermsandConditionsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermsandConditionsPayload>
+            args: Prisma.TermAndConditionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
           }
           aggregate: {
-            args: Prisma.TermsandConditionsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTermsandConditions>
+            args: Prisma.TermAndConditionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTermAndCondition>
           }
           groupBy: {
-            args: Prisma.TermsandConditionsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TermsandConditionsGroupByOutputType>[]
+            args: Prisma.TermAndConditionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TermAndConditionGroupByOutputType>[]
           }
           count: {
-            args: Prisma.TermsandConditionsCountArgs<ExtArgs>
-            result: $Utils.Optional<TermsandConditionsCountAggregateOutputType> | number
+            args: Prisma.TermAndConditionCountArgs<ExtArgs>
+            result: $Utils.Optional<TermAndConditionCountAggregateOutputType> | number
           }
         }
       }
-      FAQ: {
-        payload: Prisma.$FAQPayload<ExtArgs>
-        fields: Prisma.FAQFieldRefs
+      Faq: {
+        payload: Prisma.$FaqPayload<ExtArgs>
+        fields: Prisma.FaqFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.FAQFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FAQPayload> | null
+            args: Prisma.FaqFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.FAQFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FAQPayload>
+            args: Prisma.FaqFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqPayload>
           }
           findFirst: {
-            args: Prisma.FAQFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FAQPayload> | null
+            args: Prisma.FaqFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.FAQFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FAQPayload>
+            args: Prisma.FaqFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqPayload>
           }
           findMany: {
-            args: Prisma.FAQFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FAQPayload>[]
+            args: Prisma.FaqFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqPayload>[]
           }
           create: {
-            args: Prisma.FAQCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FAQPayload>
+            args: Prisma.FaqCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqPayload>
           }
           createMany: {
-            args: Prisma.FAQCreateManyArgs<ExtArgs>
+            args: Prisma.FaqCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.FAQCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FAQPayload>[]
+            args: Prisma.FaqCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqPayload>[]
           }
           delete: {
-            args: Prisma.FAQDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FAQPayload>
+            args: Prisma.FaqDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqPayload>
           }
           update: {
-            args: Prisma.FAQUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FAQPayload>
+            args: Prisma.FaqUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqPayload>
           }
           deleteMany: {
-            args: Prisma.FAQDeleteManyArgs<ExtArgs>
+            args: Prisma.FaqDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.FAQUpdateManyArgs<ExtArgs>
+            args: Prisma.FaqUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.FAQUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FAQPayload>[]
+            args: Prisma.FaqUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqPayload>[]
           }
           upsert: {
-            args: Prisma.FAQUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FAQPayload>
+            args: Prisma.FaqUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqPayload>
           }
           aggregate: {
-            args: Prisma.FAQAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateFAQ>
+            args: Prisma.FaqAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFaq>
           }
           groupBy: {
-            args: Prisma.FAQGroupByArgs<ExtArgs>
-            result: $Utils.Optional<FAQGroupByOutputType>[]
+            args: Prisma.FaqGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FaqGroupByOutputType>[]
           }
           count: {
-            args: Prisma.FAQCountArgs<ExtArgs>
-            result: $Utils.Optional<FAQCountAggregateOutputType> | number
+            args: Prisma.FaqCountArgs<ExtArgs>
+            result: $Utils.Optional<FaqCountAggregateOutputType> | number
+          }
+        }
+      }
+      FaqTranslation: {
+        payload: Prisma.$FaqTranslationPayload<ExtArgs>
+        fields: Prisma.FaqTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FaqTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FaqTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.FaqTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FaqTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.FaqTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.FaqTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.FaqTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FaqTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.FaqTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqTranslationPayload>
+          }
+          update: {
+            args: Prisma.FaqTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.FaqTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FaqTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FaqTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.FaqTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FaqTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.FaqTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFaqTranslation>
+          }
+          groupBy: {
+            args: Prisma.FaqTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FaqTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FaqTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<FaqTranslationCountAggregateOutputType> | number
           }
         }
       }
@@ -2167,8 +2269,9 @@ export namespace Prisma {
     productPrice?: ProductPriceOmit
     aboutUs?: AboutUsOmit
     privacyPolicy?: PrivacyPolicyOmit
-    termsandConditions?: TermsandConditionsOmit
-    fAQ?: FAQOmit
+    termAndCondition?: TermAndConditionOmit
+    faq?: FaqOmit
+    faqTranslation?: FaqTranslationOmit
   }
 
   /* Types for Logging */
@@ -2459,6 +2562,37 @@ export namespace Prisma {
    */
   export type ProductVariantCountOutputTypeCountProduct_pricesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductPriceWhereInput
+  }
+
+
+  /**
+   * Count Type FaqCountOutputType
+   */
+
+  export type FaqCountOutputType = {
+    translations: number
+  }
+
+  export type FaqCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | FaqCountOutputTypeCountTranslationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FaqCountOutputType without action
+   */
+  export type FaqCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FaqCountOutputType
+     */
+    select?: FaqCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FaqCountOutputType without action
+   */
+  export type FaqCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FaqTranslationWhereInput
   }
 
 
@@ -17760,40 +17894,40 @@ export namespace Prisma {
 
 
   /**
-   * Model TermsandConditions
+   * Model TermAndCondition
    */
 
-  export type AggregateTermsandConditions = {
-    _count: TermsandConditionsCountAggregateOutputType | null
-    _avg: TermsandConditionsAvgAggregateOutputType | null
-    _sum: TermsandConditionsSumAggregateOutputType | null
-    _min: TermsandConditionsMinAggregateOutputType | null
-    _max: TermsandConditionsMaxAggregateOutputType | null
+  export type AggregateTermAndCondition = {
+    _count: TermAndConditionCountAggregateOutputType | null
+    _avg: TermAndConditionAvgAggregateOutputType | null
+    _sum: TermAndConditionSumAggregateOutputType | null
+    _min: TermAndConditionMinAggregateOutputType | null
+    _max: TermAndConditionMaxAggregateOutputType | null
   }
 
-  export type TermsandConditionsAvgAggregateOutputType = {
+  export type TermAndConditionAvgAggregateOutputType = {
     id: number | null
     updated_at: number | null
   }
 
-  export type TermsandConditionsSumAggregateOutputType = {
+  export type TermAndConditionSumAggregateOutputType = {
     id: number | null
     updated_at: bigint | null
   }
 
-  export type TermsandConditionsMinAggregateOutputType = {
-    id: number | null
-    content: string | null
-    updated_at: bigint | null
-  }
-
-  export type TermsandConditionsMaxAggregateOutputType = {
+  export type TermAndConditionMinAggregateOutputType = {
     id: number | null
     content: string | null
     updated_at: bigint | null
   }
 
-  export type TermsandConditionsCountAggregateOutputType = {
+  export type TermAndConditionMaxAggregateOutputType = {
+    id: number | null
+    content: string | null
+    updated_at: bigint | null
+  }
+
+  export type TermAndConditionCountAggregateOutputType = {
     id: number
     content: number
     updated_at: number
@@ -17801,309 +17935,309 @@ export namespace Prisma {
   }
 
 
-  export type TermsandConditionsAvgAggregateInputType = {
+  export type TermAndConditionAvgAggregateInputType = {
     id?: true
     updated_at?: true
   }
 
-  export type TermsandConditionsSumAggregateInputType = {
+  export type TermAndConditionSumAggregateInputType = {
     id?: true
     updated_at?: true
   }
 
-  export type TermsandConditionsMinAggregateInputType = {
-    id?: true
-    content?: true
-    updated_at?: true
-  }
-
-  export type TermsandConditionsMaxAggregateInputType = {
+  export type TermAndConditionMinAggregateInputType = {
     id?: true
     content?: true
     updated_at?: true
   }
 
-  export type TermsandConditionsCountAggregateInputType = {
+  export type TermAndConditionMaxAggregateInputType = {
+    id?: true
+    content?: true
+    updated_at?: true
+  }
+
+  export type TermAndConditionCountAggregateInputType = {
     id?: true
     content?: true
     updated_at?: true
     _all?: true
   }
 
-  export type TermsandConditionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which TermsandConditions to aggregate.
+     * Filter which TermAndCondition to aggregate.
      */
-    where?: TermsandConditionsWhereInput
+    where?: TermAndConditionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TermsandConditions to fetch.
+     * Determine the order of TermAndConditions to fetch.
      */
-    orderBy?: TermsandConditionsOrderByWithRelationInput | TermsandConditionsOrderByWithRelationInput[]
+    orderBy?: TermAndConditionOrderByWithRelationInput | TermAndConditionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: TermsandConditionsWhereUniqueInput
+    cursor?: TermAndConditionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TermsandConditions from the position of the cursor.
+     * Take `±n` TermAndConditions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TermsandConditions.
+     * Skip the first `n` TermAndConditions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned TermsandConditions
+     * Count returned TermAndConditions
     **/
-    _count?: true | TermsandConditionsCountAggregateInputType
+    _count?: true | TermAndConditionCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: TermsandConditionsAvgAggregateInputType
+    _avg?: TermAndConditionAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: TermsandConditionsSumAggregateInputType
+    _sum?: TermAndConditionSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: TermsandConditionsMinAggregateInputType
+    _min?: TermAndConditionMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: TermsandConditionsMaxAggregateInputType
+    _max?: TermAndConditionMaxAggregateInputType
   }
 
-  export type GetTermsandConditionsAggregateType<T extends TermsandConditionsAggregateArgs> = {
-        [P in keyof T & keyof AggregateTermsandConditions]: P extends '_count' | 'count'
+  export type GetTermAndConditionAggregateType<T extends TermAndConditionAggregateArgs> = {
+        [P in keyof T & keyof AggregateTermAndCondition]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateTermsandConditions[P]>
-      : GetScalarType<T[P], AggregateTermsandConditions[P]>
+        : GetScalarType<T[P], AggregateTermAndCondition[P]>
+      : GetScalarType<T[P], AggregateTermAndCondition[P]>
   }
 
 
 
 
-  export type TermsandConditionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TermsandConditionsWhereInput
-    orderBy?: TermsandConditionsOrderByWithAggregationInput | TermsandConditionsOrderByWithAggregationInput[]
-    by: TermsandConditionsScalarFieldEnum[] | TermsandConditionsScalarFieldEnum
-    having?: TermsandConditionsScalarWhereWithAggregatesInput
+  export type TermAndConditionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TermAndConditionWhereInput
+    orderBy?: TermAndConditionOrderByWithAggregationInput | TermAndConditionOrderByWithAggregationInput[]
+    by: TermAndConditionScalarFieldEnum[] | TermAndConditionScalarFieldEnum
+    having?: TermAndConditionScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: TermsandConditionsCountAggregateInputType | true
-    _avg?: TermsandConditionsAvgAggregateInputType
-    _sum?: TermsandConditionsSumAggregateInputType
-    _min?: TermsandConditionsMinAggregateInputType
-    _max?: TermsandConditionsMaxAggregateInputType
+    _count?: TermAndConditionCountAggregateInputType | true
+    _avg?: TermAndConditionAvgAggregateInputType
+    _sum?: TermAndConditionSumAggregateInputType
+    _min?: TermAndConditionMinAggregateInputType
+    _max?: TermAndConditionMaxAggregateInputType
   }
 
-  export type TermsandConditionsGroupByOutputType = {
+  export type TermAndConditionGroupByOutputType = {
     id: number
     content: string
     updated_at: bigint
-    _count: TermsandConditionsCountAggregateOutputType | null
-    _avg: TermsandConditionsAvgAggregateOutputType | null
-    _sum: TermsandConditionsSumAggregateOutputType | null
-    _min: TermsandConditionsMinAggregateOutputType | null
-    _max: TermsandConditionsMaxAggregateOutputType | null
+    _count: TermAndConditionCountAggregateOutputType | null
+    _avg: TermAndConditionAvgAggregateOutputType | null
+    _sum: TermAndConditionSumAggregateOutputType | null
+    _min: TermAndConditionMinAggregateOutputType | null
+    _max: TermAndConditionMaxAggregateOutputType | null
   }
 
-  type GetTermsandConditionsGroupByPayload<T extends TermsandConditionsGroupByArgs> = Prisma.PrismaPromise<
+  type GetTermAndConditionGroupByPayload<T extends TermAndConditionGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TermsandConditionsGroupByOutputType, T['by']> &
+      PickEnumerable<TermAndConditionGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof TermsandConditionsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof TermAndConditionGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], TermsandConditionsGroupByOutputType[P]>
-            : GetScalarType<T[P], TermsandConditionsGroupByOutputType[P]>
+              : GetScalarType<T[P], TermAndConditionGroupByOutputType[P]>
+            : GetScalarType<T[P], TermAndConditionGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type TermsandConditionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TermAndConditionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     content?: boolean
     updated_at?: boolean
-  }, ExtArgs["result"]["termsandConditions"]>
+  }, ExtArgs["result"]["termAndCondition"]>
 
-  export type TermsandConditionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TermAndConditionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     content?: boolean
     updated_at?: boolean
-  }, ExtArgs["result"]["termsandConditions"]>
+  }, ExtArgs["result"]["termAndCondition"]>
 
-  export type TermsandConditionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TermAndConditionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     content?: boolean
     updated_at?: boolean
-  }, ExtArgs["result"]["termsandConditions"]>
+  }, ExtArgs["result"]["termAndCondition"]>
 
-  export type TermsandConditionsSelectScalar = {
+  export type TermAndConditionSelectScalar = {
     id?: boolean
     content?: boolean
     updated_at?: boolean
   }
 
-  export type TermsandConditionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "updated_at", ExtArgs["result"]["termsandConditions"]>
+  export type TermAndConditionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "updated_at", ExtArgs["result"]["termAndCondition"]>
 
-  export type $TermsandConditionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "TermsandConditions"
+  export type $TermAndConditionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TermAndCondition"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
       content: string
       updated_at: bigint
-    }, ExtArgs["result"]["termsandConditions"]>
+    }, ExtArgs["result"]["termAndCondition"]>
     composites: {}
   }
 
-  type TermsandConditionsGetPayload<S extends boolean | null | undefined | TermsandConditionsDefaultArgs> = $Result.GetResult<Prisma.$TermsandConditionsPayload, S>
+  type TermAndConditionGetPayload<S extends boolean | null | undefined | TermAndConditionDefaultArgs> = $Result.GetResult<Prisma.$TermAndConditionPayload, S>
 
-  type TermsandConditionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TermsandConditionsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TermsandConditionsCountAggregateInputType | true
+  type TermAndConditionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TermAndConditionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TermAndConditionCountAggregateInputType | true
     }
 
-  export interface TermsandConditionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TermsandConditions'], meta: { name: 'TermsandConditions' } }
+  export interface TermAndConditionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TermAndCondition'], meta: { name: 'TermAndCondition' } }
     /**
-     * Find zero or one TermsandConditions that matches the filter.
-     * @param {TermsandConditionsFindUniqueArgs} args - Arguments to find a TermsandConditions
+     * Find zero or one TermAndCondition that matches the filter.
+     * @param {TermAndConditionFindUniqueArgs} args - Arguments to find a TermAndCondition
      * @example
-     * // Get one TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.findUnique({
+     * // Get one TermAndCondition
+     * const termAndCondition = await prisma.termAndCondition.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends TermsandConditionsFindUniqueArgs>(args: SelectSubset<T, TermsandConditionsFindUniqueArgs<ExtArgs>>): Prisma__TermsandConditionsClient<$Result.GetResult<Prisma.$TermsandConditionsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends TermAndConditionFindUniqueArgs>(args: SelectSubset<T, TermAndConditionFindUniqueArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one TermsandConditions that matches the filter or throw an error with `error.code='P2025'`
+     * Find one TermAndCondition that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {TermsandConditionsFindUniqueOrThrowArgs} args - Arguments to find a TermsandConditions
+     * @param {TermAndConditionFindUniqueOrThrowArgs} args - Arguments to find a TermAndCondition
      * @example
-     * // Get one TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.findUniqueOrThrow({
+     * // Get one TermAndCondition
+     * const termAndCondition = await prisma.termAndCondition.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends TermsandConditionsFindUniqueOrThrowArgs>(args: SelectSubset<T, TermsandConditionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TermsandConditionsClient<$Result.GetResult<Prisma.$TermsandConditionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends TermAndConditionFindUniqueOrThrowArgs>(args: SelectSubset<T, TermAndConditionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first TermsandConditions that matches the filter.
+     * Find the first TermAndCondition that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermsandConditionsFindFirstArgs} args - Arguments to find a TermsandConditions
+     * @param {TermAndConditionFindFirstArgs} args - Arguments to find a TermAndCondition
      * @example
-     * // Get one TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.findFirst({
+     * // Get one TermAndCondition
+     * const termAndCondition = await prisma.termAndCondition.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends TermsandConditionsFindFirstArgs>(args?: SelectSubset<T, TermsandConditionsFindFirstArgs<ExtArgs>>): Prisma__TermsandConditionsClient<$Result.GetResult<Prisma.$TermsandConditionsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends TermAndConditionFindFirstArgs>(args?: SelectSubset<T, TermAndConditionFindFirstArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first TermsandConditions that matches the filter or
+     * Find the first TermAndCondition that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermsandConditionsFindFirstOrThrowArgs} args - Arguments to find a TermsandConditions
+     * @param {TermAndConditionFindFirstOrThrowArgs} args - Arguments to find a TermAndCondition
      * @example
-     * // Get one TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.findFirstOrThrow({
+     * // Get one TermAndCondition
+     * const termAndCondition = await prisma.termAndCondition.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends TermsandConditionsFindFirstOrThrowArgs>(args?: SelectSubset<T, TermsandConditionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__TermsandConditionsClient<$Result.GetResult<Prisma.$TermsandConditionsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends TermAndConditionFindFirstOrThrowArgs>(args?: SelectSubset<T, TermAndConditionFindFirstOrThrowArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more TermsandConditions that matches the filter.
+     * Find zero or more TermAndConditions that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermsandConditionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {TermAndConditionFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.findMany()
+     * // Get all TermAndConditions
+     * const termAndConditions = await prisma.termAndCondition.findMany()
      * 
-     * // Get first 10 TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.findMany({ take: 10 })
+     * // Get first 10 TermAndConditions
+     * const termAndConditions = await prisma.termAndCondition.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const termsandConditionsWithIdOnly = await prisma.termsandConditions.findMany({ select: { id: true } })
+     * const termAndConditionWithIdOnly = await prisma.termAndCondition.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends TermsandConditionsFindManyArgs>(args?: SelectSubset<T, TermsandConditionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsandConditionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends TermAndConditionFindManyArgs>(args?: SelectSubset<T, TermAndConditionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a TermsandConditions.
-     * @param {TermsandConditionsCreateArgs} args - Arguments to create a TermsandConditions.
+     * Create a TermAndCondition.
+     * @param {TermAndConditionCreateArgs} args - Arguments to create a TermAndCondition.
      * @example
-     * // Create one TermsandConditions
-     * const TermsandConditions = await prisma.termsandConditions.create({
+     * // Create one TermAndCondition
+     * const TermAndCondition = await prisma.termAndCondition.create({
      *   data: {
-     *     // ... data to create a TermsandConditions
+     *     // ... data to create a TermAndCondition
      *   }
      * })
      * 
      */
-    create<T extends TermsandConditionsCreateArgs>(args: SelectSubset<T, TermsandConditionsCreateArgs<ExtArgs>>): Prisma__TermsandConditionsClient<$Result.GetResult<Prisma.$TermsandConditionsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends TermAndConditionCreateArgs>(args: SelectSubset<T, TermAndConditionCreateArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many TermsandConditions.
-     * @param {TermsandConditionsCreateManyArgs} args - Arguments to create many TermsandConditions.
+     * Create many TermAndConditions.
+     * @param {TermAndConditionCreateManyArgs} args - Arguments to create many TermAndConditions.
      * @example
-     * // Create many TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.createMany({
+     * // Create many TermAndConditions
+     * const termAndCondition = await prisma.termAndCondition.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends TermsandConditionsCreateManyArgs>(args?: SelectSubset<T, TermsandConditionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends TermAndConditionCreateManyArgs>(args?: SelectSubset<T, TermAndConditionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many TermsandConditions and returns the data saved in the database.
-     * @param {TermsandConditionsCreateManyAndReturnArgs} args - Arguments to create many TermsandConditions.
+     * Create many TermAndConditions and returns the data saved in the database.
+     * @param {TermAndConditionCreateManyAndReturnArgs} args - Arguments to create many TermAndConditions.
      * @example
-     * // Create many TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.createManyAndReturn({
+     * // Create many TermAndConditions
+     * const termAndCondition = await prisma.termAndCondition.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many TermsandConditions and only return the `id`
-     * const termsandConditionsWithIdOnly = await prisma.termsandConditions.createManyAndReturn({
+     * // Create many TermAndConditions and only return the `id`
+     * const termAndConditionWithIdOnly = await prisma.termAndCondition.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -18113,28 +18247,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends TermsandConditionsCreateManyAndReturnArgs>(args?: SelectSubset<T, TermsandConditionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsandConditionsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends TermAndConditionCreateManyAndReturnArgs>(args?: SelectSubset<T, TermAndConditionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a TermsandConditions.
-     * @param {TermsandConditionsDeleteArgs} args - Arguments to delete one TermsandConditions.
+     * Delete a TermAndCondition.
+     * @param {TermAndConditionDeleteArgs} args - Arguments to delete one TermAndCondition.
      * @example
-     * // Delete one TermsandConditions
-     * const TermsandConditions = await prisma.termsandConditions.delete({
+     * // Delete one TermAndCondition
+     * const TermAndCondition = await prisma.termAndCondition.delete({
      *   where: {
-     *     // ... filter to delete one TermsandConditions
+     *     // ... filter to delete one TermAndCondition
      *   }
      * })
      * 
      */
-    delete<T extends TermsandConditionsDeleteArgs>(args: SelectSubset<T, TermsandConditionsDeleteArgs<ExtArgs>>): Prisma__TermsandConditionsClient<$Result.GetResult<Prisma.$TermsandConditionsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends TermAndConditionDeleteArgs>(args: SelectSubset<T, TermAndConditionDeleteArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one TermsandConditions.
-     * @param {TermsandConditionsUpdateArgs} args - Arguments to update one TermsandConditions.
+     * Update one TermAndCondition.
+     * @param {TermAndConditionUpdateArgs} args - Arguments to update one TermAndCondition.
      * @example
-     * // Update one TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.update({
+     * // Update one TermAndCondition
+     * const termAndCondition = await prisma.termAndCondition.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -18144,30 +18278,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends TermsandConditionsUpdateArgs>(args: SelectSubset<T, TermsandConditionsUpdateArgs<ExtArgs>>): Prisma__TermsandConditionsClient<$Result.GetResult<Prisma.$TermsandConditionsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends TermAndConditionUpdateArgs>(args: SelectSubset<T, TermAndConditionUpdateArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more TermsandConditions.
-     * @param {TermsandConditionsDeleteManyArgs} args - Arguments to filter TermsandConditions to delete.
+     * Delete zero or more TermAndConditions.
+     * @param {TermAndConditionDeleteManyArgs} args - Arguments to filter TermAndConditions to delete.
      * @example
-     * // Delete a few TermsandConditions
-     * const { count } = await prisma.termsandConditions.deleteMany({
+     * // Delete a few TermAndConditions
+     * const { count } = await prisma.termAndCondition.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends TermsandConditionsDeleteManyArgs>(args?: SelectSubset<T, TermsandConditionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends TermAndConditionDeleteManyArgs>(args?: SelectSubset<T, TermAndConditionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more TermsandConditions.
+     * Update zero or more TermAndConditions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermsandConditionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {TermAndConditionUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.updateMany({
+     * // Update many TermAndConditions
+     * const termAndCondition = await prisma.termAndCondition.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -18177,14 +18311,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends TermsandConditionsUpdateManyArgs>(args: SelectSubset<T, TermsandConditionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends TermAndConditionUpdateManyArgs>(args: SelectSubset<T, TermAndConditionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more TermsandConditions and returns the data updated in the database.
-     * @param {TermsandConditionsUpdateManyAndReturnArgs} args - Arguments to update many TermsandConditions.
+     * Update zero or more TermAndConditions and returns the data updated in the database.
+     * @param {TermAndConditionUpdateManyAndReturnArgs} args - Arguments to update many TermAndConditions.
      * @example
-     * // Update many TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.updateManyAndReturn({
+     * // Update many TermAndConditions
+     * const termAndCondition = await prisma.termAndCondition.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -18193,8 +18327,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more TermsandConditions and only return the `id`
-     * const termsandConditionsWithIdOnly = await prisma.termsandConditions.updateManyAndReturn({
+     * // Update zero or more TermAndConditions and only return the `id`
+     * const termAndConditionWithIdOnly = await prisma.termAndCondition.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -18207,56 +18341,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends TermsandConditionsUpdateManyAndReturnArgs>(args: SelectSubset<T, TermsandConditionsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsandConditionsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends TermAndConditionUpdateManyAndReturnArgs>(args: SelectSubset<T, TermAndConditionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one TermsandConditions.
-     * @param {TermsandConditionsUpsertArgs} args - Arguments to update or create a TermsandConditions.
+     * Create or update one TermAndCondition.
+     * @param {TermAndConditionUpsertArgs} args - Arguments to update or create a TermAndCondition.
      * @example
-     * // Update or create a TermsandConditions
-     * const termsandConditions = await prisma.termsandConditions.upsert({
+     * // Update or create a TermAndCondition
+     * const termAndCondition = await prisma.termAndCondition.upsert({
      *   create: {
-     *     // ... data to create a TermsandConditions
+     *     // ... data to create a TermAndCondition
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the TermsandConditions we want to update
+     *     // ... the filter for the TermAndCondition we want to update
      *   }
      * })
      */
-    upsert<T extends TermsandConditionsUpsertArgs>(args: SelectSubset<T, TermsandConditionsUpsertArgs<ExtArgs>>): Prisma__TermsandConditionsClient<$Result.GetResult<Prisma.$TermsandConditionsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends TermAndConditionUpsertArgs>(args: SelectSubset<T, TermAndConditionUpsertArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of TermsandConditions.
+     * Count the number of TermAndConditions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermsandConditionsCountArgs} args - Arguments to filter TermsandConditions to count.
+     * @param {TermAndConditionCountArgs} args - Arguments to filter TermAndConditions to count.
      * @example
-     * // Count the number of TermsandConditions
-     * const count = await prisma.termsandConditions.count({
+     * // Count the number of TermAndConditions
+     * const count = await prisma.termAndCondition.count({
      *   where: {
-     *     // ... the filter for the TermsandConditions we want to count
+     *     // ... the filter for the TermAndConditions we want to count
      *   }
      * })
     **/
-    count<T extends TermsandConditionsCountArgs>(
-      args?: Subset<T, TermsandConditionsCountArgs>,
+    count<T extends TermAndConditionCountArgs>(
+      args?: Subset<T, TermAndConditionCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], TermsandConditionsCountAggregateOutputType>
+          : GetScalarType<T['select'], TermAndConditionCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a TermsandConditions.
+     * Allows you to perform aggregations operations on a TermAndCondition.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermsandConditionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {TermAndConditionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -18276,13 +18410,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends TermsandConditionsAggregateArgs>(args: Subset<T, TermsandConditionsAggregateArgs>): Prisma.PrismaPromise<GetTermsandConditionsAggregateType<T>>
+    aggregate<T extends TermAndConditionAggregateArgs>(args: Subset<T, TermAndConditionAggregateArgs>): Prisma.PrismaPromise<GetTermAndConditionAggregateType<T>>
 
     /**
-     * Group by TermsandConditions.
+     * Group by TermAndCondition.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermsandConditionsGroupByArgs} args - Group by arguments.
+     * @param {TermAndConditionGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -18297,14 +18431,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends TermsandConditionsGroupByArgs,
+      T extends TermAndConditionGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TermsandConditionsGroupByArgs['orderBy'] }
-        : { orderBy?: TermsandConditionsGroupByArgs['orderBy'] },
+        ? { orderBy: TermAndConditionGroupByArgs['orderBy'] }
+        : { orderBy?: TermAndConditionGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -18353,20 +18487,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, TermsandConditionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTermsandConditionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, TermAndConditionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTermAndConditionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the TermsandConditions model
+   * Fields of the TermAndCondition model
    */
-  readonly fields: TermsandConditionsFieldRefs;
+  readonly fields: TermAndConditionFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for TermsandConditions.
+   * The delegate class that acts as a "Promise-like" for TermAndCondition.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__TermsandConditionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__TermAndConditionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -18394,685 +18528,1830 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the TermsandConditions model
+   * Fields of the TermAndCondition model
    */
-  interface TermsandConditionsFieldRefs {
-    readonly id: FieldRef<"TermsandConditions", 'Int'>
-    readonly content: FieldRef<"TermsandConditions", 'String'>
-    readonly updated_at: FieldRef<"TermsandConditions", 'BigInt'>
+  interface TermAndConditionFieldRefs {
+    readonly id: FieldRef<"TermAndCondition", 'Int'>
+    readonly content: FieldRef<"TermAndCondition", 'String'>
+    readonly updated_at: FieldRef<"TermAndCondition", 'BigInt'>
   }
     
 
   // Custom InputTypes
   /**
-   * TermsandConditions findUnique
+   * TermAndCondition findUnique
    */
-  export type TermsandConditionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelect<ExtArgs> | null
+    select?: TermAndConditionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
     /**
-     * Filter, which TermsandConditions to fetch.
+     * Filter, which TermAndCondition to fetch.
      */
-    where: TermsandConditionsWhereUniqueInput
+    where: TermAndConditionWhereUniqueInput
   }
 
   /**
-   * TermsandConditions findUniqueOrThrow
+   * TermAndCondition findUniqueOrThrow
    */
-  export type TermsandConditionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelect<ExtArgs> | null
+    select?: TermAndConditionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
     /**
-     * Filter, which TermsandConditions to fetch.
+     * Filter, which TermAndCondition to fetch.
      */
-    where: TermsandConditionsWhereUniqueInput
+    where: TermAndConditionWhereUniqueInput
   }
 
   /**
-   * TermsandConditions findFirst
+   * TermAndCondition findFirst
    */
-  export type TermsandConditionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelect<ExtArgs> | null
+    select?: TermAndConditionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
     /**
-     * Filter, which TermsandConditions to fetch.
+     * Filter, which TermAndCondition to fetch.
      */
-    where?: TermsandConditionsWhereInput
+    where?: TermAndConditionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TermsandConditions to fetch.
+     * Determine the order of TermAndConditions to fetch.
      */
-    orderBy?: TermsandConditionsOrderByWithRelationInput | TermsandConditionsOrderByWithRelationInput[]
+    orderBy?: TermAndConditionOrderByWithRelationInput | TermAndConditionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for TermsandConditions.
+     * Sets the position for searching for TermAndConditions.
      */
-    cursor?: TermsandConditionsWhereUniqueInput
+    cursor?: TermAndConditionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TermsandConditions from the position of the cursor.
+     * Take `±n` TermAndConditions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TermsandConditions.
+     * Skip the first `n` TermAndConditions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of TermsandConditions.
+     * Filter by unique combinations of TermAndConditions.
      */
-    distinct?: TermsandConditionsScalarFieldEnum | TermsandConditionsScalarFieldEnum[]
+    distinct?: TermAndConditionScalarFieldEnum | TermAndConditionScalarFieldEnum[]
   }
 
   /**
-   * TermsandConditions findFirstOrThrow
+   * TermAndCondition findFirstOrThrow
    */
-  export type TermsandConditionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelect<ExtArgs> | null
+    select?: TermAndConditionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
     /**
-     * Filter, which TermsandConditions to fetch.
+     * Filter, which TermAndCondition to fetch.
      */
-    where?: TermsandConditionsWhereInput
+    where?: TermAndConditionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TermsandConditions to fetch.
+     * Determine the order of TermAndConditions to fetch.
      */
-    orderBy?: TermsandConditionsOrderByWithRelationInput | TermsandConditionsOrderByWithRelationInput[]
+    orderBy?: TermAndConditionOrderByWithRelationInput | TermAndConditionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for TermsandConditions.
+     * Sets the position for searching for TermAndConditions.
      */
-    cursor?: TermsandConditionsWhereUniqueInput
+    cursor?: TermAndConditionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TermsandConditions from the position of the cursor.
+     * Take `±n` TermAndConditions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TermsandConditions.
+     * Skip the first `n` TermAndConditions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of TermsandConditions.
+     * Filter by unique combinations of TermAndConditions.
      */
-    distinct?: TermsandConditionsScalarFieldEnum | TermsandConditionsScalarFieldEnum[]
+    distinct?: TermAndConditionScalarFieldEnum | TermAndConditionScalarFieldEnum[]
   }
 
   /**
-   * TermsandConditions findMany
+   * TermAndCondition findMany
    */
-  export type TermsandConditionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelect<ExtArgs> | null
+    select?: TermAndConditionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
     /**
-     * Filter, which TermsandConditions to fetch.
+     * Filter, which TermAndConditions to fetch.
      */
-    where?: TermsandConditionsWhereInput
+    where?: TermAndConditionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TermsandConditions to fetch.
+     * Determine the order of TermAndConditions to fetch.
      */
-    orderBy?: TermsandConditionsOrderByWithRelationInput | TermsandConditionsOrderByWithRelationInput[]
+    orderBy?: TermAndConditionOrderByWithRelationInput | TermAndConditionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing TermsandConditions.
+     * Sets the position for listing TermAndConditions.
      */
-    cursor?: TermsandConditionsWhereUniqueInput
+    cursor?: TermAndConditionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TermsandConditions from the position of the cursor.
+     * Take `±n` TermAndConditions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TermsandConditions.
+     * Skip the first `n` TermAndConditions.
      */
     skip?: number
-    distinct?: TermsandConditionsScalarFieldEnum | TermsandConditionsScalarFieldEnum[]
+    distinct?: TermAndConditionScalarFieldEnum | TermAndConditionScalarFieldEnum[]
   }
 
   /**
-   * TermsandConditions create
+   * TermAndCondition create
    */
-  export type TermsandConditionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelect<ExtArgs> | null
+    select?: TermAndConditionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
     /**
-     * The data needed to create a TermsandConditions.
+     * The data needed to create a TermAndCondition.
      */
-    data: XOR<TermsandConditionsCreateInput, TermsandConditionsUncheckedCreateInput>
+    data: XOR<TermAndConditionCreateInput, TermAndConditionUncheckedCreateInput>
   }
 
   /**
-   * TermsandConditions createMany
+   * TermAndCondition createMany
    */
-  export type TermsandConditionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many TermsandConditions.
+     * The data used to create many TermAndConditions.
      */
-    data: TermsandConditionsCreateManyInput | TermsandConditionsCreateManyInput[]
+    data: TermAndConditionCreateManyInput | TermAndConditionCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * TermsandConditions createManyAndReturn
+   * TermAndCondition createManyAndReturn
    */
-  export type TermsandConditionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelectCreateManyAndReturn<ExtArgs> | null
+    select?: TermAndConditionSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
     /**
-     * The data used to create many TermsandConditions.
+     * The data used to create many TermAndConditions.
      */
-    data: TermsandConditionsCreateManyInput | TermsandConditionsCreateManyInput[]
+    data: TermAndConditionCreateManyInput | TermAndConditionCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * TermsandConditions update
+   * TermAndCondition update
    */
-  export type TermsandConditionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelect<ExtArgs> | null
+    select?: TermAndConditionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
     /**
-     * The data needed to update a TermsandConditions.
+     * The data needed to update a TermAndCondition.
      */
-    data: XOR<TermsandConditionsUpdateInput, TermsandConditionsUncheckedUpdateInput>
+    data: XOR<TermAndConditionUpdateInput, TermAndConditionUncheckedUpdateInput>
     /**
-     * Choose, which TermsandConditions to update.
+     * Choose, which TermAndCondition to update.
      */
-    where: TermsandConditionsWhereUniqueInput
+    where: TermAndConditionWhereUniqueInput
   }
 
   /**
-   * TermsandConditions updateMany
+   * TermAndCondition updateMany
    */
-  export type TermsandConditionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update TermsandConditions.
+     * The data used to update TermAndConditions.
      */
-    data: XOR<TermsandConditionsUpdateManyMutationInput, TermsandConditionsUncheckedUpdateManyInput>
+    data: XOR<TermAndConditionUpdateManyMutationInput, TermAndConditionUncheckedUpdateManyInput>
     /**
-     * Filter which TermsandConditions to update
+     * Filter which TermAndConditions to update
      */
-    where?: TermsandConditionsWhereInput
+    where?: TermAndConditionWhereInput
     /**
-     * Limit how many TermsandConditions to update.
+     * Limit how many TermAndConditions to update.
      */
     limit?: number
   }
 
   /**
-   * TermsandConditions updateManyAndReturn
+   * TermAndCondition updateManyAndReturn
    */
-  export type TermsandConditionsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: TermAndConditionSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
     /**
-     * The data used to update TermsandConditions.
+     * The data used to update TermAndConditions.
      */
-    data: XOR<TermsandConditionsUpdateManyMutationInput, TermsandConditionsUncheckedUpdateManyInput>
+    data: XOR<TermAndConditionUpdateManyMutationInput, TermAndConditionUncheckedUpdateManyInput>
     /**
-     * Filter which TermsandConditions to update
+     * Filter which TermAndConditions to update
      */
-    where?: TermsandConditionsWhereInput
+    where?: TermAndConditionWhereInput
     /**
-     * Limit how many TermsandConditions to update.
+     * Limit how many TermAndConditions to update.
      */
     limit?: number
   }
 
   /**
-   * TermsandConditions upsert
+   * TermAndCondition upsert
    */
-  export type TermsandConditionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelect<ExtArgs> | null
+    select?: TermAndConditionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
     /**
-     * The filter to search for the TermsandConditions to update in case it exists.
+     * The filter to search for the TermAndCondition to update in case it exists.
      */
-    where: TermsandConditionsWhereUniqueInput
+    where: TermAndConditionWhereUniqueInput
     /**
-     * In case the TermsandConditions found by the `where` argument doesn't exist, create a new TermsandConditions with this data.
+     * In case the TermAndCondition found by the `where` argument doesn't exist, create a new TermAndCondition with this data.
      */
-    create: XOR<TermsandConditionsCreateInput, TermsandConditionsUncheckedCreateInput>
+    create: XOR<TermAndConditionCreateInput, TermAndConditionUncheckedCreateInput>
     /**
-     * In case the TermsandConditions was found with the provided `where` argument, update it with this data.
+     * In case the TermAndCondition was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<TermsandConditionsUpdateInput, TermsandConditionsUncheckedUpdateInput>
+    update: XOR<TermAndConditionUpdateInput, TermAndConditionUncheckedUpdateInput>
   }
 
   /**
-   * TermsandConditions delete
+   * TermAndCondition delete
    */
-  export type TermsandConditionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelect<ExtArgs> | null
+    select?: TermAndConditionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
     /**
-     * Filter which TermsandConditions to delete.
+     * Filter which TermAndCondition to delete.
      */
-    where: TermsandConditionsWhereUniqueInput
+    where: TermAndConditionWhereUniqueInput
   }
 
   /**
-   * TermsandConditions deleteMany
+   * TermAndCondition deleteMany
    */
-  export type TermsandConditionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which TermsandConditions to delete
+     * Filter which TermAndConditions to delete
      */
-    where?: TermsandConditionsWhereInput
+    where?: TermAndConditionWhereInput
     /**
-     * Limit how many TermsandConditions to delete.
+     * Limit how many TermAndConditions to delete.
      */
     limit?: number
   }
 
   /**
-   * TermsandConditions without action
+   * TermAndCondition without action
    */
-  export type TermsandConditionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermAndConditionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermsandConditions
+     * Select specific fields to fetch from the TermAndCondition
      */
-    select?: TermsandConditionsSelect<ExtArgs> | null
+    select?: TermAndConditionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermsandConditions
+     * Omit specific fields from the TermAndCondition
      */
-    omit?: TermsandConditionsOmit<ExtArgs> | null
+    omit?: TermAndConditionOmit<ExtArgs> | null
   }
 
 
   /**
-   * Model FAQ
+   * Model Faq
    */
 
-  export type AggregateFAQ = {
-    _count: FAQCountAggregateOutputType | null
-    _min: FAQMinAggregateOutputType | null
-    _max: FAQMaxAggregateOutputType | null
+  export type AggregateFaq = {
+    _count: FaqCountAggregateOutputType | null
+    _avg: FaqAvgAggregateOutputType | null
+    _sum: FaqSumAggregateOutputType | null
+    _min: FaqMinAggregateOutputType | null
+    _max: FaqMaxAggregateOutputType | null
   }
 
-  export type FAQMinAggregateOutputType = {
-    id: string | null
-    title: string | null
-    content: string | null
+  export type FaqAvgAggregateOutputType = {
+    id: number | null
+    created_at: number | null
   }
 
-  export type FAQMaxAggregateOutputType = {
-    id: string | null
-    title: string | null
-    content: string | null
+  export type FaqSumAggregateOutputType = {
+    id: number | null
+    created_at: bigint | null
   }
 
-  export type FAQCountAggregateOutputType = {
+  export type FaqMinAggregateOutputType = {
+    id: number | null
+    created_at: bigint | null
+  }
+
+  export type FaqMaxAggregateOutputType = {
+    id: number | null
+    created_at: bigint | null
+  }
+
+  export type FaqCountAggregateOutputType = {
     id: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type FaqAvgAggregateInputType = {
+    id?: true
+    created_at?: true
+  }
+
+  export type FaqSumAggregateInputType = {
+    id?: true
+    created_at?: true
+  }
+
+  export type FaqMinAggregateInputType = {
+    id?: true
+    created_at?: true
+  }
+
+  export type FaqMaxAggregateInputType = {
+    id?: true
+    created_at?: true
+  }
+
+  export type FaqCountAggregateInputType = {
+    id?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type FaqAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Faq to aggregate.
+     */
+    where?: FaqWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Faqs to fetch.
+     */
+    orderBy?: FaqOrderByWithRelationInput | FaqOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FaqWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Faqs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Faqs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Faqs
+    **/
+    _count?: true | FaqCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FaqAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FaqSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FaqMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FaqMaxAggregateInputType
+  }
+
+  export type GetFaqAggregateType<T extends FaqAggregateArgs> = {
+        [P in keyof T & keyof AggregateFaq]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFaq[P]>
+      : GetScalarType<T[P], AggregateFaq[P]>
+  }
+
+
+
+
+  export type FaqGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FaqWhereInput
+    orderBy?: FaqOrderByWithAggregationInput | FaqOrderByWithAggregationInput[]
+    by: FaqScalarFieldEnum[] | FaqScalarFieldEnum
+    having?: FaqScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FaqCountAggregateInputType | true
+    _avg?: FaqAvgAggregateInputType
+    _sum?: FaqSumAggregateInputType
+    _min?: FaqMinAggregateInputType
+    _max?: FaqMaxAggregateInputType
+  }
+
+  export type FaqGroupByOutputType = {
+    id: number
+    created_at: bigint
+    _count: FaqCountAggregateOutputType | null
+    _avg: FaqAvgAggregateOutputType | null
+    _sum: FaqSumAggregateOutputType | null
+    _min: FaqMinAggregateOutputType | null
+    _max: FaqMaxAggregateOutputType | null
+  }
+
+  type GetFaqGroupByPayload<T extends FaqGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FaqGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FaqGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FaqGroupByOutputType[P]>
+            : GetScalarType<T[P], FaqGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FaqSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    created_at?: boolean
+    translations?: boolean | Faq$translationsArgs<ExtArgs>
+    _count?: boolean | FaqCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["faq"]>
+
+  export type FaqSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    created_at?: boolean
+  }, ExtArgs["result"]["faq"]>
+
+  export type FaqSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    created_at?: boolean
+  }, ExtArgs["result"]["faq"]>
+
+  export type FaqSelectScalar = {
+    id?: boolean
+    created_at?: boolean
+  }
+
+  export type FaqOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at", ExtArgs["result"]["faq"]>
+  export type FaqInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | Faq$translationsArgs<ExtArgs>
+    _count?: boolean | FaqCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FaqIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type FaqIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $FaqPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Faq"
+    objects: {
+      translations: Prisma.$FaqTranslationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      created_at: bigint
+    }, ExtArgs["result"]["faq"]>
+    composites: {}
+  }
+
+  type FaqGetPayload<S extends boolean | null | undefined | FaqDefaultArgs> = $Result.GetResult<Prisma.$FaqPayload, S>
+
+  type FaqCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FaqFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FaqCountAggregateInputType | true
+    }
+
+  export interface FaqDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Faq'], meta: { name: 'Faq' } }
+    /**
+     * Find zero or one Faq that matches the filter.
+     * @param {FaqFindUniqueArgs} args - Arguments to find a Faq
+     * @example
+     * // Get one Faq
+     * const faq = await prisma.faq.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FaqFindUniqueArgs>(args: SelectSubset<T, FaqFindUniqueArgs<ExtArgs>>): Prisma__FaqClient<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Faq that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FaqFindUniqueOrThrowArgs} args - Arguments to find a Faq
+     * @example
+     * // Get one Faq
+     * const faq = await prisma.faq.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FaqFindUniqueOrThrowArgs>(args: SelectSubset<T, FaqFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FaqClient<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Faq that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FaqFindFirstArgs} args - Arguments to find a Faq
+     * @example
+     * // Get one Faq
+     * const faq = await prisma.faq.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FaqFindFirstArgs>(args?: SelectSubset<T, FaqFindFirstArgs<ExtArgs>>): Prisma__FaqClient<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Faq that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FaqFindFirstOrThrowArgs} args - Arguments to find a Faq
+     * @example
+     * // Get one Faq
+     * const faq = await prisma.faq.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FaqFindFirstOrThrowArgs>(args?: SelectSubset<T, FaqFindFirstOrThrowArgs<ExtArgs>>): Prisma__FaqClient<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Faqs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FaqFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Faqs
+     * const faqs = await prisma.faq.findMany()
+     * 
+     * // Get first 10 Faqs
+     * const faqs = await prisma.faq.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const faqWithIdOnly = await prisma.faq.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FaqFindManyArgs>(args?: SelectSubset<T, FaqFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Faq.
+     * @param {FaqCreateArgs} args - Arguments to create a Faq.
+     * @example
+     * // Create one Faq
+     * const Faq = await prisma.faq.create({
+     *   data: {
+     *     // ... data to create a Faq
+     *   }
+     * })
+     * 
+     */
+    create<T extends FaqCreateArgs>(args: SelectSubset<T, FaqCreateArgs<ExtArgs>>): Prisma__FaqClient<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Faqs.
+     * @param {FaqCreateManyArgs} args - Arguments to create many Faqs.
+     * @example
+     * // Create many Faqs
+     * const faq = await prisma.faq.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FaqCreateManyArgs>(args?: SelectSubset<T, FaqCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Faqs and returns the data saved in the database.
+     * @param {FaqCreateManyAndReturnArgs} args - Arguments to create many Faqs.
+     * @example
+     * // Create many Faqs
+     * const faq = await prisma.faq.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Faqs and only return the `id`
+     * const faqWithIdOnly = await prisma.faq.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FaqCreateManyAndReturnArgs>(args?: SelectSubset<T, FaqCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Faq.
+     * @param {FaqDeleteArgs} args - Arguments to delete one Faq.
+     * @example
+     * // Delete one Faq
+     * const Faq = await prisma.faq.delete({
+     *   where: {
+     *     // ... filter to delete one Faq
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FaqDeleteArgs>(args: SelectSubset<T, FaqDeleteArgs<ExtArgs>>): Prisma__FaqClient<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Faq.
+     * @param {FaqUpdateArgs} args - Arguments to update one Faq.
+     * @example
+     * // Update one Faq
+     * const faq = await prisma.faq.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FaqUpdateArgs>(args: SelectSubset<T, FaqUpdateArgs<ExtArgs>>): Prisma__FaqClient<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Faqs.
+     * @param {FaqDeleteManyArgs} args - Arguments to filter Faqs to delete.
+     * @example
+     * // Delete a few Faqs
+     * const { count } = await prisma.faq.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FaqDeleteManyArgs>(args?: SelectSubset<T, FaqDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Faqs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FaqUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Faqs
+     * const faq = await prisma.faq.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FaqUpdateManyArgs>(args: SelectSubset<T, FaqUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Faqs and returns the data updated in the database.
+     * @param {FaqUpdateManyAndReturnArgs} args - Arguments to update many Faqs.
+     * @example
+     * // Update many Faqs
+     * const faq = await prisma.faq.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Faqs and only return the `id`
+     * const faqWithIdOnly = await prisma.faq.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FaqUpdateManyAndReturnArgs>(args: SelectSubset<T, FaqUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Faq.
+     * @param {FaqUpsertArgs} args - Arguments to update or create a Faq.
+     * @example
+     * // Update or create a Faq
+     * const faq = await prisma.faq.upsert({
+     *   create: {
+     *     // ... data to create a Faq
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Faq we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FaqUpsertArgs>(args: SelectSubset<T, FaqUpsertArgs<ExtArgs>>): Prisma__FaqClient<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Faqs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FaqCountArgs} args - Arguments to filter Faqs to count.
+     * @example
+     * // Count the number of Faqs
+     * const count = await prisma.faq.count({
+     *   where: {
+     *     // ... the filter for the Faqs we want to count
+     *   }
+     * })
+    **/
+    count<T extends FaqCountArgs>(
+      args?: Subset<T, FaqCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FaqCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Faq.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FaqAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FaqAggregateArgs>(args: Subset<T, FaqAggregateArgs>): Prisma.PrismaPromise<GetFaqAggregateType<T>>
+
+    /**
+     * Group by Faq.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FaqGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FaqGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FaqGroupByArgs['orderBy'] }
+        : { orderBy?: FaqGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FaqGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFaqGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Faq model
+   */
+  readonly fields: FaqFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Faq.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FaqClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    translations<T extends Faq$translationsArgs<ExtArgs> = {}>(args?: Subset<T, Faq$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Faq model
+   */
+  interface FaqFieldRefs {
+    readonly id: FieldRef<"Faq", 'Int'>
+    readonly created_at: FieldRef<"Faq", 'BigInt'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Faq findUnique
+   */
+  export type FaqFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqInclude<ExtArgs> | null
+    /**
+     * Filter, which Faq to fetch.
+     */
+    where: FaqWhereUniqueInput
+  }
+
+  /**
+   * Faq findUniqueOrThrow
+   */
+  export type FaqFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqInclude<ExtArgs> | null
+    /**
+     * Filter, which Faq to fetch.
+     */
+    where: FaqWhereUniqueInput
+  }
+
+  /**
+   * Faq findFirst
+   */
+  export type FaqFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqInclude<ExtArgs> | null
+    /**
+     * Filter, which Faq to fetch.
+     */
+    where?: FaqWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Faqs to fetch.
+     */
+    orderBy?: FaqOrderByWithRelationInput | FaqOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Faqs.
+     */
+    cursor?: FaqWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Faqs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Faqs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Faqs.
+     */
+    distinct?: FaqScalarFieldEnum | FaqScalarFieldEnum[]
+  }
+
+  /**
+   * Faq findFirstOrThrow
+   */
+  export type FaqFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqInclude<ExtArgs> | null
+    /**
+     * Filter, which Faq to fetch.
+     */
+    where?: FaqWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Faqs to fetch.
+     */
+    orderBy?: FaqOrderByWithRelationInput | FaqOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Faqs.
+     */
+    cursor?: FaqWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Faqs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Faqs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Faqs.
+     */
+    distinct?: FaqScalarFieldEnum | FaqScalarFieldEnum[]
+  }
+
+  /**
+   * Faq findMany
+   */
+  export type FaqFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqInclude<ExtArgs> | null
+    /**
+     * Filter, which Faqs to fetch.
+     */
+    where?: FaqWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Faqs to fetch.
+     */
+    orderBy?: FaqOrderByWithRelationInput | FaqOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Faqs.
+     */
+    cursor?: FaqWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Faqs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Faqs.
+     */
+    skip?: number
+    distinct?: FaqScalarFieldEnum | FaqScalarFieldEnum[]
+  }
+
+  /**
+   * Faq create
+   */
+  export type FaqCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Faq.
+     */
+    data: XOR<FaqCreateInput, FaqUncheckedCreateInput>
+  }
+
+  /**
+   * Faq createMany
+   */
+  export type FaqCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Faqs.
+     */
+    data: FaqCreateManyInput | FaqCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Faq createManyAndReturn
+   */
+  export type FaqCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * The data used to create many Faqs.
+     */
+    data: FaqCreateManyInput | FaqCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Faq update
+   */
+  export type FaqUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Faq.
+     */
+    data: XOR<FaqUpdateInput, FaqUncheckedUpdateInput>
+    /**
+     * Choose, which Faq to update.
+     */
+    where: FaqWhereUniqueInput
+  }
+
+  /**
+   * Faq updateMany
+   */
+  export type FaqUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Faqs.
+     */
+    data: XOR<FaqUpdateManyMutationInput, FaqUncheckedUpdateManyInput>
+    /**
+     * Filter which Faqs to update
+     */
+    where?: FaqWhereInput
+    /**
+     * Limit how many Faqs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Faq updateManyAndReturn
+   */
+  export type FaqUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * The data used to update Faqs.
+     */
+    data: XOR<FaqUpdateManyMutationInput, FaqUncheckedUpdateManyInput>
+    /**
+     * Filter which Faqs to update
+     */
+    where?: FaqWhereInput
+    /**
+     * Limit how many Faqs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Faq upsert
+   */
+  export type FaqUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Faq to update in case it exists.
+     */
+    where: FaqWhereUniqueInput
+    /**
+     * In case the Faq found by the `where` argument doesn't exist, create a new Faq with this data.
+     */
+    create: XOR<FaqCreateInput, FaqUncheckedCreateInput>
+    /**
+     * In case the Faq was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FaqUpdateInput, FaqUncheckedUpdateInput>
+  }
+
+  /**
+   * Faq delete
+   */
+  export type FaqDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqInclude<ExtArgs> | null
+    /**
+     * Filter which Faq to delete.
+     */
+    where: FaqWhereUniqueInput
+  }
+
+  /**
+   * Faq deleteMany
+   */
+  export type FaqDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Faqs to delete
+     */
+    where?: FaqWhereInput
+    /**
+     * Limit how many Faqs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Faq.translations
+   */
+  export type Faq$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FaqTranslation
+     */
+    select?: FaqTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FaqTranslation
+     */
+    omit?: FaqTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqTranslationInclude<ExtArgs> | null
+    where?: FaqTranslationWhereInput
+    orderBy?: FaqTranslationOrderByWithRelationInput | FaqTranslationOrderByWithRelationInput[]
+    cursor?: FaqTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FaqTranslationScalarFieldEnum | FaqTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * Faq without action
+   */
+  export type FaqDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Faq
+     */
+    select?: FaqSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Faq
+     */
+    omit?: FaqOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FaqTranslation
+   */
+
+  export type AggregateFaqTranslation = {
+    _count: FaqTranslationCountAggregateOutputType | null
+    _avg: FaqTranslationAvgAggregateOutputType | null
+    _sum: FaqTranslationSumAggregateOutputType | null
+    _min: FaqTranslationMinAggregateOutputType | null
+    _max: FaqTranslationMaxAggregateOutputType | null
+  }
+
+  export type FaqTranslationAvgAggregateOutputType = {
+    id: number | null
+    faq_id: number | null
+  }
+
+  export type FaqTranslationSumAggregateOutputType = {
+    id: number | null
+    faq_id: number | null
+  }
+
+  export type FaqTranslationMinAggregateOutputType = {
+    id: number | null
+    faq_id: number | null
+    language: $Enums.Language | null
+    title: string | null
+    content: string | null
+  }
+
+  export type FaqTranslationMaxAggregateOutputType = {
+    id: number | null
+    faq_id: number | null
+    language: $Enums.Language | null
+    title: string | null
+    content: string | null
+  }
+
+  export type FaqTranslationCountAggregateOutputType = {
+    id: number
+    faq_id: number
+    language: number
     title: number
     content: number
     _all: number
   }
 
 
-  export type FAQMinAggregateInputType = {
+  export type FaqTranslationAvgAggregateInputType = {
     id?: true
+    faq_id?: true
+  }
+
+  export type FaqTranslationSumAggregateInputType = {
+    id?: true
+    faq_id?: true
+  }
+
+  export type FaqTranslationMinAggregateInputType = {
+    id?: true
+    faq_id?: true
+    language?: true
     title?: true
     content?: true
   }
 
-  export type FAQMaxAggregateInputType = {
+  export type FaqTranslationMaxAggregateInputType = {
     id?: true
+    faq_id?: true
+    language?: true
     title?: true
     content?: true
   }
 
-  export type FAQCountAggregateInputType = {
+  export type FaqTranslationCountAggregateInputType = {
     id?: true
+    faq_id?: true
+    language?: true
     title?: true
     content?: true
     _all?: true
   }
 
-  export type FAQAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which FAQ to aggregate.
+     * Filter which FaqTranslation to aggregate.
      */
-    where?: FAQWhereInput
+    where?: FaqTranslationWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FAQS to fetch.
+     * Determine the order of FaqTranslations to fetch.
      */
-    orderBy?: FAQOrderByWithRelationInput | FAQOrderByWithRelationInput[]
+    orderBy?: FaqTranslationOrderByWithRelationInput | FaqTranslationOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: FAQWhereUniqueInput
+    cursor?: FaqTranslationWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FAQS from the position of the cursor.
+     * Take `±n` FaqTranslations from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FAQS.
+     * Skip the first `n` FaqTranslations.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned FAQS
+     * Count returned FaqTranslations
     **/
-    _count?: true | FAQCountAggregateInputType
+    _count?: true | FaqTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FaqTranslationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FaqTranslationSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: FAQMinAggregateInputType
+    _min?: FaqTranslationMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: FAQMaxAggregateInputType
+    _max?: FaqTranslationMaxAggregateInputType
   }
 
-  export type GetFAQAggregateType<T extends FAQAggregateArgs> = {
-        [P in keyof T & keyof AggregateFAQ]: P extends '_count' | 'count'
+  export type GetFaqTranslationAggregateType<T extends FaqTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateFaqTranslation]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateFAQ[P]>
-      : GetScalarType<T[P], AggregateFAQ[P]>
+        : GetScalarType<T[P], AggregateFaqTranslation[P]>
+      : GetScalarType<T[P], AggregateFaqTranslation[P]>
   }
 
 
 
 
-  export type FAQGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FAQWhereInput
-    orderBy?: FAQOrderByWithAggregationInput | FAQOrderByWithAggregationInput[]
-    by: FAQScalarFieldEnum[] | FAQScalarFieldEnum
-    having?: FAQScalarWhereWithAggregatesInput
+  export type FaqTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FaqTranslationWhereInput
+    orderBy?: FaqTranslationOrderByWithAggregationInput | FaqTranslationOrderByWithAggregationInput[]
+    by: FaqTranslationScalarFieldEnum[] | FaqTranslationScalarFieldEnum
+    having?: FaqTranslationScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: FAQCountAggregateInputType | true
-    _min?: FAQMinAggregateInputType
-    _max?: FAQMaxAggregateInputType
+    _count?: FaqTranslationCountAggregateInputType | true
+    _avg?: FaqTranslationAvgAggregateInputType
+    _sum?: FaqTranslationSumAggregateInputType
+    _min?: FaqTranslationMinAggregateInputType
+    _max?: FaqTranslationMaxAggregateInputType
   }
 
-  export type FAQGroupByOutputType = {
-    id: string
+  export type FaqTranslationGroupByOutputType = {
+    id: number
+    faq_id: number
+    language: $Enums.Language
     title: string
     content: string
-    _count: FAQCountAggregateOutputType | null
-    _min: FAQMinAggregateOutputType | null
-    _max: FAQMaxAggregateOutputType | null
+    _count: FaqTranslationCountAggregateOutputType | null
+    _avg: FaqTranslationAvgAggregateOutputType | null
+    _sum: FaqTranslationSumAggregateOutputType | null
+    _min: FaqTranslationMinAggregateOutputType | null
+    _max: FaqTranslationMaxAggregateOutputType | null
   }
 
-  type GetFAQGroupByPayload<T extends FAQGroupByArgs> = Prisma.PrismaPromise<
+  type GetFaqTranslationGroupByPayload<T extends FaqTranslationGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<FAQGroupByOutputType, T['by']> &
+      PickEnumerable<FaqTranslationGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof FAQGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof FaqTranslationGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], FAQGroupByOutputType[P]>
-            : GetScalarType<T[P], FAQGroupByOutputType[P]>
+              : GetScalarType<T[P], FaqTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], FaqTranslationGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type FAQSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FaqTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    faq_id?: boolean
+    language?: boolean
     title?: boolean
     content?: boolean
-  }, ExtArgs["result"]["fAQ"]>
+    faq?: boolean | FaqDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["faqTranslation"]>
 
-  export type FAQSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FaqTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    faq_id?: boolean
+    language?: boolean
     title?: boolean
     content?: boolean
-  }, ExtArgs["result"]["fAQ"]>
+    faq?: boolean | FaqDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["faqTranslation"]>
 
-  export type FAQSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FaqTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    faq_id?: boolean
+    language?: boolean
     title?: boolean
     content?: boolean
-  }, ExtArgs["result"]["fAQ"]>
+    faq?: boolean | FaqDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["faqTranslation"]>
 
-  export type FAQSelectScalar = {
+  export type FaqTranslationSelectScalar = {
     id?: boolean
+    faq_id?: boolean
+    language?: boolean
     title?: boolean
     content?: boolean
   }
 
-  export type FAQOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content", ExtArgs["result"]["fAQ"]>
+  export type FaqTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "faq_id" | "language" | "title" | "content", ExtArgs["result"]["faqTranslation"]>
+  export type FaqTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    faq?: boolean | FaqDefaultArgs<ExtArgs>
+  }
+  export type FaqTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    faq?: boolean | FaqDefaultArgs<ExtArgs>
+  }
+  export type FaqTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    faq?: boolean | FaqDefaultArgs<ExtArgs>
+  }
 
-  export type $FAQPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "FAQ"
-    objects: {}
+  export type $FaqTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FaqTranslation"
+    objects: {
+      faq: Prisma.$FaqPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
+      faq_id: number
+      language: $Enums.Language
       title: string
       content: string
-    }, ExtArgs["result"]["fAQ"]>
+    }, ExtArgs["result"]["faqTranslation"]>
     composites: {}
   }
 
-  type FAQGetPayload<S extends boolean | null | undefined | FAQDefaultArgs> = $Result.GetResult<Prisma.$FAQPayload, S>
+  type FaqTranslationGetPayload<S extends boolean | null | undefined | FaqTranslationDefaultArgs> = $Result.GetResult<Prisma.$FaqTranslationPayload, S>
 
-  type FAQCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<FAQFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: FAQCountAggregateInputType | true
+  type FaqTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FaqTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FaqTranslationCountAggregateInputType | true
     }
 
-  export interface FAQDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FAQ'], meta: { name: 'FAQ' } }
+  export interface FaqTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FaqTranslation'], meta: { name: 'FaqTranslation' } }
     /**
-     * Find zero or one FAQ that matches the filter.
-     * @param {FAQFindUniqueArgs} args - Arguments to find a FAQ
+     * Find zero or one FaqTranslation that matches the filter.
+     * @param {FaqTranslationFindUniqueArgs} args - Arguments to find a FaqTranslation
      * @example
-     * // Get one FAQ
-     * const fAQ = await prisma.fAQ.findUnique({
+     * // Get one FaqTranslation
+     * const faqTranslation = await prisma.faqTranslation.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends FAQFindUniqueArgs>(args: SelectSubset<T, FAQFindUniqueArgs<ExtArgs>>): Prisma__FAQClient<$Result.GetResult<Prisma.$FAQPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends FaqTranslationFindUniqueArgs>(args: SelectSubset<T, FaqTranslationFindUniqueArgs<ExtArgs>>): Prisma__FaqTranslationClient<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one FAQ that matches the filter or throw an error with `error.code='P2025'`
+     * Find one FaqTranslation that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {FAQFindUniqueOrThrowArgs} args - Arguments to find a FAQ
+     * @param {FaqTranslationFindUniqueOrThrowArgs} args - Arguments to find a FaqTranslation
      * @example
-     * // Get one FAQ
-     * const fAQ = await prisma.fAQ.findUniqueOrThrow({
+     * // Get one FaqTranslation
+     * const faqTranslation = await prisma.faqTranslation.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends FAQFindUniqueOrThrowArgs>(args: SelectSubset<T, FAQFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FAQClient<$Result.GetResult<Prisma.$FAQPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends FaqTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, FaqTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FaqTranslationClient<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first FAQ that matches the filter.
+     * Find the first FaqTranslation that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FAQFindFirstArgs} args - Arguments to find a FAQ
+     * @param {FaqTranslationFindFirstArgs} args - Arguments to find a FaqTranslation
      * @example
-     * // Get one FAQ
-     * const fAQ = await prisma.fAQ.findFirst({
+     * // Get one FaqTranslation
+     * const faqTranslation = await prisma.faqTranslation.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends FAQFindFirstArgs>(args?: SelectSubset<T, FAQFindFirstArgs<ExtArgs>>): Prisma__FAQClient<$Result.GetResult<Prisma.$FAQPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends FaqTranslationFindFirstArgs>(args?: SelectSubset<T, FaqTranslationFindFirstArgs<ExtArgs>>): Prisma__FaqTranslationClient<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first FAQ that matches the filter or
+     * Find the first FaqTranslation that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FAQFindFirstOrThrowArgs} args - Arguments to find a FAQ
+     * @param {FaqTranslationFindFirstOrThrowArgs} args - Arguments to find a FaqTranslation
      * @example
-     * // Get one FAQ
-     * const fAQ = await prisma.fAQ.findFirstOrThrow({
+     * // Get one FaqTranslation
+     * const faqTranslation = await prisma.faqTranslation.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends FAQFindFirstOrThrowArgs>(args?: SelectSubset<T, FAQFindFirstOrThrowArgs<ExtArgs>>): Prisma__FAQClient<$Result.GetResult<Prisma.$FAQPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends FaqTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, FaqTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__FaqTranslationClient<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more FAQS that matches the filter.
+     * Find zero or more FaqTranslations that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FAQFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {FaqTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all FAQS
-     * const fAQS = await prisma.fAQ.findMany()
+     * // Get all FaqTranslations
+     * const faqTranslations = await prisma.faqTranslation.findMany()
      * 
-     * // Get first 10 FAQS
-     * const fAQS = await prisma.fAQ.findMany({ take: 10 })
+     * // Get first 10 FaqTranslations
+     * const faqTranslations = await prisma.faqTranslation.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const fAQWithIdOnly = await prisma.fAQ.findMany({ select: { id: true } })
+     * const faqTranslationWithIdOnly = await prisma.faqTranslation.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends FAQFindManyArgs>(args?: SelectSubset<T, FAQFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FAQPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends FaqTranslationFindManyArgs>(args?: SelectSubset<T, FaqTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a FAQ.
-     * @param {FAQCreateArgs} args - Arguments to create a FAQ.
+     * Create a FaqTranslation.
+     * @param {FaqTranslationCreateArgs} args - Arguments to create a FaqTranslation.
      * @example
-     * // Create one FAQ
-     * const FAQ = await prisma.fAQ.create({
+     * // Create one FaqTranslation
+     * const FaqTranslation = await prisma.faqTranslation.create({
      *   data: {
-     *     // ... data to create a FAQ
+     *     // ... data to create a FaqTranslation
      *   }
      * })
      * 
      */
-    create<T extends FAQCreateArgs>(args: SelectSubset<T, FAQCreateArgs<ExtArgs>>): Prisma__FAQClient<$Result.GetResult<Prisma.$FAQPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends FaqTranslationCreateArgs>(args: SelectSubset<T, FaqTranslationCreateArgs<ExtArgs>>): Prisma__FaqTranslationClient<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many FAQS.
-     * @param {FAQCreateManyArgs} args - Arguments to create many FAQS.
+     * Create many FaqTranslations.
+     * @param {FaqTranslationCreateManyArgs} args - Arguments to create many FaqTranslations.
      * @example
-     * // Create many FAQS
-     * const fAQ = await prisma.fAQ.createMany({
+     * // Create many FaqTranslations
+     * const faqTranslation = await prisma.faqTranslation.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends FAQCreateManyArgs>(args?: SelectSubset<T, FAQCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends FaqTranslationCreateManyArgs>(args?: SelectSubset<T, FaqTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many FAQS and returns the data saved in the database.
-     * @param {FAQCreateManyAndReturnArgs} args - Arguments to create many FAQS.
+     * Create many FaqTranslations and returns the data saved in the database.
+     * @param {FaqTranslationCreateManyAndReturnArgs} args - Arguments to create many FaqTranslations.
      * @example
-     * // Create many FAQS
-     * const fAQ = await prisma.fAQ.createManyAndReturn({
+     * // Create many FaqTranslations
+     * const faqTranslation = await prisma.faqTranslation.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many FAQS and only return the `id`
-     * const fAQWithIdOnly = await prisma.fAQ.createManyAndReturn({
+     * // Create many FaqTranslations and only return the `id`
+     * const faqTranslationWithIdOnly = await prisma.faqTranslation.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -19082,28 +20361,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends FAQCreateManyAndReturnArgs>(args?: SelectSubset<T, FAQCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FAQPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends FaqTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, FaqTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a FAQ.
-     * @param {FAQDeleteArgs} args - Arguments to delete one FAQ.
+     * Delete a FaqTranslation.
+     * @param {FaqTranslationDeleteArgs} args - Arguments to delete one FaqTranslation.
      * @example
-     * // Delete one FAQ
-     * const FAQ = await prisma.fAQ.delete({
+     * // Delete one FaqTranslation
+     * const FaqTranslation = await prisma.faqTranslation.delete({
      *   where: {
-     *     // ... filter to delete one FAQ
+     *     // ... filter to delete one FaqTranslation
      *   }
      * })
      * 
      */
-    delete<T extends FAQDeleteArgs>(args: SelectSubset<T, FAQDeleteArgs<ExtArgs>>): Prisma__FAQClient<$Result.GetResult<Prisma.$FAQPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends FaqTranslationDeleteArgs>(args: SelectSubset<T, FaqTranslationDeleteArgs<ExtArgs>>): Prisma__FaqTranslationClient<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one FAQ.
-     * @param {FAQUpdateArgs} args - Arguments to update one FAQ.
+     * Update one FaqTranslation.
+     * @param {FaqTranslationUpdateArgs} args - Arguments to update one FaqTranslation.
      * @example
-     * // Update one FAQ
-     * const fAQ = await prisma.fAQ.update({
+     * // Update one FaqTranslation
+     * const faqTranslation = await prisma.faqTranslation.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -19113,30 +20392,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends FAQUpdateArgs>(args: SelectSubset<T, FAQUpdateArgs<ExtArgs>>): Prisma__FAQClient<$Result.GetResult<Prisma.$FAQPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends FaqTranslationUpdateArgs>(args: SelectSubset<T, FaqTranslationUpdateArgs<ExtArgs>>): Prisma__FaqTranslationClient<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more FAQS.
-     * @param {FAQDeleteManyArgs} args - Arguments to filter FAQS to delete.
+     * Delete zero or more FaqTranslations.
+     * @param {FaqTranslationDeleteManyArgs} args - Arguments to filter FaqTranslations to delete.
      * @example
-     * // Delete a few FAQS
-     * const { count } = await prisma.fAQ.deleteMany({
+     * // Delete a few FaqTranslations
+     * const { count } = await prisma.faqTranslation.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends FAQDeleteManyArgs>(args?: SelectSubset<T, FAQDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends FaqTranslationDeleteManyArgs>(args?: SelectSubset<T, FaqTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more FAQS.
+     * Update zero or more FaqTranslations.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FAQUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {FaqTranslationUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many FAQS
-     * const fAQ = await prisma.fAQ.updateMany({
+     * // Update many FaqTranslations
+     * const faqTranslation = await prisma.faqTranslation.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -19146,14 +20425,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends FAQUpdateManyArgs>(args: SelectSubset<T, FAQUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends FaqTranslationUpdateManyArgs>(args: SelectSubset<T, FaqTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more FAQS and returns the data updated in the database.
-     * @param {FAQUpdateManyAndReturnArgs} args - Arguments to update many FAQS.
+     * Update zero or more FaqTranslations and returns the data updated in the database.
+     * @param {FaqTranslationUpdateManyAndReturnArgs} args - Arguments to update many FaqTranslations.
      * @example
-     * // Update many FAQS
-     * const fAQ = await prisma.fAQ.updateManyAndReturn({
+     * // Update many FaqTranslations
+     * const faqTranslation = await prisma.faqTranslation.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -19162,8 +20441,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more FAQS and only return the `id`
-     * const fAQWithIdOnly = await prisma.fAQ.updateManyAndReturn({
+     * // Update zero or more FaqTranslations and only return the `id`
+     * const faqTranslationWithIdOnly = await prisma.faqTranslation.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -19176,56 +20455,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends FAQUpdateManyAndReturnArgs>(args: SelectSubset<T, FAQUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FAQPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends FaqTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, FaqTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one FAQ.
-     * @param {FAQUpsertArgs} args - Arguments to update or create a FAQ.
+     * Create or update one FaqTranslation.
+     * @param {FaqTranslationUpsertArgs} args - Arguments to update or create a FaqTranslation.
      * @example
-     * // Update or create a FAQ
-     * const fAQ = await prisma.fAQ.upsert({
+     * // Update or create a FaqTranslation
+     * const faqTranslation = await prisma.faqTranslation.upsert({
      *   create: {
-     *     // ... data to create a FAQ
+     *     // ... data to create a FaqTranslation
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the FAQ we want to update
+     *     // ... the filter for the FaqTranslation we want to update
      *   }
      * })
      */
-    upsert<T extends FAQUpsertArgs>(args: SelectSubset<T, FAQUpsertArgs<ExtArgs>>): Prisma__FAQClient<$Result.GetResult<Prisma.$FAQPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends FaqTranslationUpsertArgs>(args: SelectSubset<T, FaqTranslationUpsertArgs<ExtArgs>>): Prisma__FaqTranslationClient<$Result.GetResult<Prisma.$FaqTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of FAQS.
+     * Count the number of FaqTranslations.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FAQCountArgs} args - Arguments to filter FAQS to count.
+     * @param {FaqTranslationCountArgs} args - Arguments to filter FaqTranslations to count.
      * @example
-     * // Count the number of FAQS
-     * const count = await prisma.fAQ.count({
+     * // Count the number of FaqTranslations
+     * const count = await prisma.faqTranslation.count({
      *   where: {
-     *     // ... the filter for the FAQS we want to count
+     *     // ... the filter for the FaqTranslations we want to count
      *   }
      * })
     **/
-    count<T extends FAQCountArgs>(
-      args?: Subset<T, FAQCountArgs>,
+    count<T extends FaqTranslationCountArgs>(
+      args?: Subset<T, FaqTranslationCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], FAQCountAggregateOutputType>
+          : GetScalarType<T['select'], FaqTranslationCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a FAQ.
+     * Allows you to perform aggregations operations on a FaqTranslation.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FAQAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {FaqTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -19245,13 +20524,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends FAQAggregateArgs>(args: Subset<T, FAQAggregateArgs>): Prisma.PrismaPromise<GetFAQAggregateType<T>>
+    aggregate<T extends FaqTranslationAggregateArgs>(args: Subset<T, FaqTranslationAggregateArgs>): Prisma.PrismaPromise<GetFaqTranslationAggregateType<T>>
 
     /**
-     * Group by FAQ.
+     * Group by FaqTranslation.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FAQGroupByArgs} args - Group by arguments.
+     * @param {FaqTranslationGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -19266,14 +20545,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends FAQGroupByArgs,
+      T extends FaqTranslationGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: FAQGroupByArgs['orderBy'] }
-        : { orderBy?: FAQGroupByArgs['orderBy'] },
+        ? { orderBy: FaqTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: FaqTranslationGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -19322,21 +20601,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, FAQGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFAQGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, FaqTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFaqTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the FAQ model
+   * Fields of the FaqTranslation model
    */
-  readonly fields: FAQFieldRefs;
+  readonly fields: FaqTranslationFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for FAQ.
+   * The delegate class that acts as a "Promise-like" for FaqTranslation.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__FAQClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__FaqTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    faq<T extends FaqDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FaqDefaultArgs<ExtArgs>>): Prisma__FaqClient<$Result.GetResult<Prisma.$FaqPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -19363,375 +20643,425 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the FAQ model
+   * Fields of the FaqTranslation model
    */
-  interface FAQFieldRefs {
-    readonly id: FieldRef<"FAQ", 'String'>
-    readonly title: FieldRef<"FAQ", 'String'>
-    readonly content: FieldRef<"FAQ", 'String'>
+  interface FaqTranslationFieldRefs {
+    readonly id: FieldRef<"FaqTranslation", 'Int'>
+    readonly faq_id: FieldRef<"FaqTranslation", 'Int'>
+    readonly language: FieldRef<"FaqTranslation", 'Language'>
+    readonly title: FieldRef<"FaqTranslation", 'String'>
+    readonly content: FieldRef<"FaqTranslation", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * FAQ findUnique
+   * FaqTranslation findUnique
    */
-  export type FAQFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FAQ
+     * Select specific fields to fetch from the FaqTranslation
      */
-    select?: FAQSelect<ExtArgs> | null
+    select?: FaqTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FAQ
+     * Omit specific fields from the FaqTranslation
      */
-    omit?: FAQOmit<ExtArgs> | null
+    omit?: FaqTranslationOmit<ExtArgs> | null
     /**
-     * Filter, which FAQ to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: FAQWhereUniqueInput
+    include?: FaqTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which FaqTranslation to fetch.
+     */
+    where: FaqTranslationWhereUniqueInput
   }
 
   /**
-   * FAQ findUniqueOrThrow
+   * FaqTranslation findUniqueOrThrow
    */
-  export type FAQFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FAQ
+     * Select specific fields to fetch from the FaqTranslation
      */
-    select?: FAQSelect<ExtArgs> | null
+    select?: FaqTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FAQ
+     * Omit specific fields from the FaqTranslation
      */
-    omit?: FAQOmit<ExtArgs> | null
+    omit?: FaqTranslationOmit<ExtArgs> | null
     /**
-     * Filter, which FAQ to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: FAQWhereUniqueInput
+    include?: FaqTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which FaqTranslation to fetch.
+     */
+    where: FaqTranslationWhereUniqueInput
   }
 
   /**
-   * FAQ findFirst
+   * FaqTranslation findFirst
    */
-  export type FAQFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FAQ
+     * Select specific fields to fetch from the FaqTranslation
      */
-    select?: FAQSelect<ExtArgs> | null
+    select?: FaqTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FAQ
+     * Omit specific fields from the FaqTranslation
      */
-    omit?: FAQOmit<ExtArgs> | null
+    omit?: FaqTranslationOmit<ExtArgs> | null
     /**
-     * Filter, which FAQ to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: FAQWhereInput
+    include?: FaqTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which FaqTranslation to fetch.
+     */
+    where?: FaqTranslationWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FAQS to fetch.
+     * Determine the order of FaqTranslations to fetch.
      */
-    orderBy?: FAQOrderByWithRelationInput | FAQOrderByWithRelationInput[]
+    orderBy?: FaqTranslationOrderByWithRelationInput | FaqTranslationOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for FAQS.
+     * Sets the position for searching for FaqTranslations.
      */
-    cursor?: FAQWhereUniqueInput
+    cursor?: FaqTranslationWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FAQS from the position of the cursor.
+     * Take `±n` FaqTranslations from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FAQS.
+     * Skip the first `n` FaqTranslations.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of FAQS.
+     * Filter by unique combinations of FaqTranslations.
      */
-    distinct?: FAQScalarFieldEnum | FAQScalarFieldEnum[]
+    distinct?: FaqTranslationScalarFieldEnum | FaqTranslationScalarFieldEnum[]
   }
 
   /**
-   * FAQ findFirstOrThrow
+   * FaqTranslation findFirstOrThrow
    */
-  export type FAQFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FAQ
+     * Select specific fields to fetch from the FaqTranslation
      */
-    select?: FAQSelect<ExtArgs> | null
+    select?: FaqTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FAQ
+     * Omit specific fields from the FaqTranslation
      */
-    omit?: FAQOmit<ExtArgs> | null
+    omit?: FaqTranslationOmit<ExtArgs> | null
     /**
-     * Filter, which FAQ to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: FAQWhereInput
+    include?: FaqTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which FaqTranslation to fetch.
+     */
+    where?: FaqTranslationWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FAQS to fetch.
+     * Determine the order of FaqTranslations to fetch.
      */
-    orderBy?: FAQOrderByWithRelationInput | FAQOrderByWithRelationInput[]
+    orderBy?: FaqTranslationOrderByWithRelationInput | FaqTranslationOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for FAQS.
+     * Sets the position for searching for FaqTranslations.
      */
-    cursor?: FAQWhereUniqueInput
+    cursor?: FaqTranslationWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FAQS from the position of the cursor.
+     * Take `±n` FaqTranslations from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FAQS.
+     * Skip the first `n` FaqTranslations.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of FAQS.
+     * Filter by unique combinations of FaqTranslations.
      */
-    distinct?: FAQScalarFieldEnum | FAQScalarFieldEnum[]
+    distinct?: FaqTranslationScalarFieldEnum | FaqTranslationScalarFieldEnum[]
   }
 
   /**
-   * FAQ findMany
+   * FaqTranslation findMany
    */
-  export type FAQFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FAQ
+     * Select specific fields to fetch from the FaqTranslation
      */
-    select?: FAQSelect<ExtArgs> | null
+    select?: FaqTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FAQ
+     * Omit specific fields from the FaqTranslation
      */
-    omit?: FAQOmit<ExtArgs> | null
+    omit?: FaqTranslationOmit<ExtArgs> | null
     /**
-     * Filter, which FAQS to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: FAQWhereInput
+    include?: FaqTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which FaqTranslations to fetch.
+     */
+    where?: FaqTranslationWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FAQS to fetch.
+     * Determine the order of FaqTranslations to fetch.
      */
-    orderBy?: FAQOrderByWithRelationInput | FAQOrderByWithRelationInput[]
+    orderBy?: FaqTranslationOrderByWithRelationInput | FaqTranslationOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing FAQS.
+     * Sets the position for listing FaqTranslations.
      */
-    cursor?: FAQWhereUniqueInput
+    cursor?: FaqTranslationWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FAQS from the position of the cursor.
+     * Take `±n` FaqTranslations from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FAQS.
+     * Skip the first `n` FaqTranslations.
      */
     skip?: number
-    distinct?: FAQScalarFieldEnum | FAQScalarFieldEnum[]
+    distinct?: FaqTranslationScalarFieldEnum | FaqTranslationScalarFieldEnum[]
   }
 
   /**
-   * FAQ create
+   * FaqTranslation create
    */
-  export type FAQCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FAQ
+     * Select specific fields to fetch from the FaqTranslation
      */
-    select?: FAQSelect<ExtArgs> | null
+    select?: FaqTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FAQ
+     * Omit specific fields from the FaqTranslation
      */
-    omit?: FAQOmit<ExtArgs> | null
+    omit?: FaqTranslationOmit<ExtArgs> | null
     /**
-     * The data needed to create a FAQ.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<FAQCreateInput, FAQUncheckedCreateInput>
+    include?: FaqTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FaqTranslation.
+     */
+    data: XOR<FaqTranslationCreateInput, FaqTranslationUncheckedCreateInput>
   }
 
   /**
-   * FAQ createMany
+   * FaqTranslation createMany
    */
-  export type FAQCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many FAQS.
+     * The data used to create many FaqTranslations.
      */
-    data: FAQCreateManyInput | FAQCreateManyInput[]
+    data: FaqTranslationCreateManyInput | FaqTranslationCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * FAQ createManyAndReturn
+   * FaqTranslation createManyAndReturn
    */
-  export type FAQCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FAQ
+     * Select specific fields to fetch from the FaqTranslation
      */
-    select?: FAQSelectCreateManyAndReturn<ExtArgs> | null
+    select?: FaqTranslationSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the FAQ
+     * Omit specific fields from the FaqTranslation
      */
-    omit?: FAQOmit<ExtArgs> | null
+    omit?: FaqTranslationOmit<ExtArgs> | null
     /**
-     * The data used to create many FAQS.
+     * The data used to create many FaqTranslations.
      */
-    data: FAQCreateManyInput | FAQCreateManyInput[]
+    data: FaqTranslationCreateManyInput | FaqTranslationCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqTranslationIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * FAQ update
+   * FaqTranslation update
    */
-  export type FAQUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FAQ
+     * Select specific fields to fetch from the FaqTranslation
      */
-    select?: FAQSelect<ExtArgs> | null
+    select?: FaqTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FAQ
+     * Omit specific fields from the FaqTranslation
      */
-    omit?: FAQOmit<ExtArgs> | null
+    omit?: FaqTranslationOmit<ExtArgs> | null
     /**
-     * The data needed to update a FAQ.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<FAQUpdateInput, FAQUncheckedUpdateInput>
+    include?: FaqTranslationInclude<ExtArgs> | null
     /**
-     * Choose, which FAQ to update.
+     * The data needed to update a FaqTranslation.
      */
-    where: FAQWhereUniqueInput
+    data: XOR<FaqTranslationUpdateInput, FaqTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which FaqTranslation to update.
+     */
+    where: FaqTranslationWhereUniqueInput
   }
 
   /**
-   * FAQ updateMany
+   * FaqTranslation updateMany
    */
-  export type FAQUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update FAQS.
+     * The data used to update FaqTranslations.
      */
-    data: XOR<FAQUpdateManyMutationInput, FAQUncheckedUpdateManyInput>
+    data: XOR<FaqTranslationUpdateManyMutationInput, FaqTranslationUncheckedUpdateManyInput>
     /**
-     * Filter which FAQS to update
+     * Filter which FaqTranslations to update
      */
-    where?: FAQWhereInput
+    where?: FaqTranslationWhereInput
     /**
-     * Limit how many FAQS to update.
+     * Limit how many FaqTranslations to update.
      */
     limit?: number
   }
 
   /**
-   * FAQ updateManyAndReturn
+   * FaqTranslation updateManyAndReturn
    */
-  export type FAQUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FAQ
+     * Select specific fields to fetch from the FaqTranslation
      */
-    select?: FAQSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: FaqTranslationSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the FAQ
+     * Omit specific fields from the FaqTranslation
      */
-    omit?: FAQOmit<ExtArgs> | null
+    omit?: FaqTranslationOmit<ExtArgs> | null
     /**
-     * The data used to update FAQS.
+     * The data used to update FaqTranslations.
      */
-    data: XOR<FAQUpdateManyMutationInput, FAQUncheckedUpdateManyInput>
+    data: XOR<FaqTranslationUpdateManyMutationInput, FaqTranslationUncheckedUpdateManyInput>
     /**
-     * Filter which FAQS to update
+     * Filter which FaqTranslations to update
      */
-    where?: FAQWhereInput
+    where?: FaqTranslationWhereInput
     /**
-     * Limit how many FAQS to update.
+     * Limit how many FaqTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FaqTranslation upsert
+   */
+  export type FaqTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FaqTranslation
+     */
+    select?: FaqTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FaqTranslation
+     */
+    omit?: FaqTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FaqTranslation to update in case it exists.
+     */
+    where: FaqTranslationWhereUniqueInput
+    /**
+     * In case the FaqTranslation found by the `where` argument doesn't exist, create a new FaqTranslation with this data.
+     */
+    create: XOR<FaqTranslationCreateInput, FaqTranslationUncheckedCreateInput>
+    /**
+     * In case the FaqTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FaqTranslationUpdateInput, FaqTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * FaqTranslation delete
+   */
+  export type FaqTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FaqTranslation
+     */
+    select?: FaqTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FaqTranslation
+     */
+    omit?: FaqTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FaqTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which FaqTranslation to delete.
+     */
+    where: FaqTranslationWhereUniqueInput
+  }
+
+  /**
+   * FaqTranslation deleteMany
+   */
+  export type FaqTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FaqTranslations to delete
+     */
+    where?: FaqTranslationWhereInput
+    /**
+     * Limit how many FaqTranslations to delete.
      */
     limit?: number
   }
 
   /**
-   * FAQ upsert
+   * FaqTranslation without action
    */
-  export type FAQUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FaqTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FAQ
+     * Select specific fields to fetch from the FaqTranslation
      */
-    select?: FAQSelect<ExtArgs> | null
+    select?: FaqTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FAQ
+     * Omit specific fields from the FaqTranslation
      */
-    omit?: FAQOmit<ExtArgs> | null
+    omit?: FaqTranslationOmit<ExtArgs> | null
     /**
-     * The filter to search for the FAQ to update in case it exists.
+     * Choose, which related nodes to fetch as well
      */
-    where: FAQWhereUniqueInput
-    /**
-     * In case the FAQ found by the `where` argument doesn't exist, create a new FAQ with this data.
-     */
-    create: XOR<FAQCreateInput, FAQUncheckedCreateInput>
-    /**
-     * In case the FAQ was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<FAQUpdateInput, FAQUncheckedUpdateInput>
-  }
-
-  /**
-   * FAQ delete
-   */
-  export type FAQDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FAQ
-     */
-    select?: FAQSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FAQ
-     */
-    omit?: FAQOmit<ExtArgs> | null
-    /**
-     * Filter which FAQ to delete.
-     */
-    where: FAQWhereUniqueInput
-  }
-
-  /**
-   * FAQ deleteMany
-   */
-  export type FAQDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which FAQS to delete
-     */
-    where?: FAQWhereInput
-    /**
-     * Limit how many FAQS to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * FAQ without action
-   */
-  export type FAQDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FAQ
-     */
-    select?: FAQSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FAQ
-     */
-    omit?: FAQOmit<ExtArgs> | null
+    include?: FaqTranslationInclude<ExtArgs> | null
   }
 
 
@@ -19903,22 +21233,32 @@ export namespace Prisma {
   export type PrivacyPolicyScalarFieldEnum = (typeof PrivacyPolicyScalarFieldEnum)[keyof typeof PrivacyPolicyScalarFieldEnum]
 
 
-  export const TermsandConditionsScalarFieldEnum: {
+  export const TermAndConditionScalarFieldEnum: {
     id: 'id',
     content: 'content',
     updated_at: 'updated_at'
   };
 
-  export type TermsandConditionsScalarFieldEnum = (typeof TermsandConditionsScalarFieldEnum)[keyof typeof TermsandConditionsScalarFieldEnum]
+  export type TermAndConditionScalarFieldEnum = (typeof TermAndConditionScalarFieldEnum)[keyof typeof TermAndConditionScalarFieldEnum]
 
 
-  export const FAQScalarFieldEnum: {
+  export const FaqScalarFieldEnum: {
     id: 'id',
+    created_at: 'created_at'
+  };
+
+  export type FaqScalarFieldEnum = (typeof FaqScalarFieldEnum)[keyof typeof FaqScalarFieldEnum]
+
+
+  export const FaqTranslationScalarFieldEnum: {
+    id: 'id',
+    faq_id: 'faq_id',
+    language: 'language',
     title: 'title',
     content: 'content'
   };
 
-  export type FAQScalarFieldEnum = (typeof FAQScalarFieldEnum)[keyof typeof FAQScalarFieldEnum]
+  export type FaqTranslationScalarFieldEnum = (typeof FaqTranslationScalarFieldEnum)[keyof typeof FaqTranslationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -20024,6 +21364,20 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'Language'
+   */
+  export type EnumLanguageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Language'>
+    
+
+
+  /**
+   * Reference to a field of type 'Language[]'
+   */
+  export type ListEnumLanguageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Language[]'>
     
 
 
@@ -20856,90 +22210,147 @@ export namespace Prisma {
     updated_at?: BigIntWithAggregatesFilter<"PrivacyPolicy"> | bigint | number
   }
 
-  export type TermsandConditionsWhereInput = {
-    AND?: TermsandConditionsWhereInput | TermsandConditionsWhereInput[]
-    OR?: TermsandConditionsWhereInput[]
-    NOT?: TermsandConditionsWhereInput | TermsandConditionsWhereInput[]
-    id?: IntFilter<"TermsandConditions"> | number
-    content?: StringFilter<"TermsandConditions"> | string
-    updated_at?: BigIntFilter<"TermsandConditions"> | bigint | number
+  export type TermAndConditionWhereInput = {
+    AND?: TermAndConditionWhereInput | TermAndConditionWhereInput[]
+    OR?: TermAndConditionWhereInput[]
+    NOT?: TermAndConditionWhereInput | TermAndConditionWhereInput[]
+    id?: IntFilter<"TermAndCondition"> | number
+    content?: StringFilter<"TermAndCondition"> | string
+    updated_at?: BigIntFilter<"TermAndCondition"> | bigint | number
   }
 
-  export type TermsandConditionsOrderByWithRelationInput = {
+  export type TermAndConditionOrderByWithRelationInput = {
     id?: SortOrder
     content?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type TermsandConditionsWhereUniqueInput = Prisma.AtLeast<{
+  export type TermAndConditionWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: TermsandConditionsWhereInput | TermsandConditionsWhereInput[]
-    OR?: TermsandConditionsWhereInput[]
-    NOT?: TermsandConditionsWhereInput | TermsandConditionsWhereInput[]
-    content?: StringFilter<"TermsandConditions"> | string
-    updated_at?: BigIntFilter<"TermsandConditions"> | bigint | number
+    AND?: TermAndConditionWhereInput | TermAndConditionWhereInput[]
+    OR?: TermAndConditionWhereInput[]
+    NOT?: TermAndConditionWhereInput | TermAndConditionWhereInput[]
+    content?: StringFilter<"TermAndCondition"> | string
+    updated_at?: BigIntFilter<"TermAndCondition"> | bigint | number
   }, "id">
 
-  export type TermsandConditionsOrderByWithAggregationInput = {
+  export type TermAndConditionOrderByWithAggregationInput = {
     id?: SortOrder
     content?: SortOrder
     updated_at?: SortOrder
-    _count?: TermsandConditionsCountOrderByAggregateInput
-    _avg?: TermsandConditionsAvgOrderByAggregateInput
-    _max?: TermsandConditionsMaxOrderByAggregateInput
-    _min?: TermsandConditionsMinOrderByAggregateInput
-    _sum?: TermsandConditionsSumOrderByAggregateInput
+    _count?: TermAndConditionCountOrderByAggregateInput
+    _avg?: TermAndConditionAvgOrderByAggregateInput
+    _max?: TermAndConditionMaxOrderByAggregateInput
+    _min?: TermAndConditionMinOrderByAggregateInput
+    _sum?: TermAndConditionSumOrderByAggregateInput
   }
 
-  export type TermsandConditionsScalarWhereWithAggregatesInput = {
-    AND?: TermsandConditionsScalarWhereWithAggregatesInput | TermsandConditionsScalarWhereWithAggregatesInput[]
-    OR?: TermsandConditionsScalarWhereWithAggregatesInput[]
-    NOT?: TermsandConditionsScalarWhereWithAggregatesInput | TermsandConditionsScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"TermsandConditions"> | number
-    content?: StringWithAggregatesFilter<"TermsandConditions"> | string
-    updated_at?: BigIntWithAggregatesFilter<"TermsandConditions"> | bigint | number
+  export type TermAndConditionScalarWhereWithAggregatesInput = {
+    AND?: TermAndConditionScalarWhereWithAggregatesInput | TermAndConditionScalarWhereWithAggregatesInput[]
+    OR?: TermAndConditionScalarWhereWithAggregatesInput[]
+    NOT?: TermAndConditionScalarWhereWithAggregatesInput | TermAndConditionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"TermAndCondition"> | number
+    content?: StringWithAggregatesFilter<"TermAndCondition"> | string
+    updated_at?: BigIntWithAggregatesFilter<"TermAndCondition"> | bigint | number
   }
 
-  export type FAQWhereInput = {
-    AND?: FAQWhereInput | FAQWhereInput[]
-    OR?: FAQWhereInput[]
-    NOT?: FAQWhereInput | FAQWhereInput[]
-    id?: UuidFilter<"FAQ"> | string
-    title?: StringFilter<"FAQ"> | string
-    content?: StringFilter<"FAQ"> | string
+  export type FaqWhereInput = {
+    AND?: FaqWhereInput | FaqWhereInput[]
+    OR?: FaqWhereInput[]
+    NOT?: FaqWhereInput | FaqWhereInput[]
+    id?: IntFilter<"Faq"> | number
+    created_at?: BigIntFilter<"Faq"> | bigint | number
+    translations?: FaqTranslationListRelationFilter
   }
 
-  export type FAQOrderByWithRelationInput = {
+  export type FaqOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrder
-    content?: SortOrder
+    created_at?: SortOrder
+    translations?: FaqTranslationOrderByRelationAggregateInput
   }
 
-  export type FAQWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: FAQWhereInput | FAQWhereInput[]
-    OR?: FAQWhereInput[]
-    NOT?: FAQWhereInput | FAQWhereInput[]
-    title?: StringFilter<"FAQ"> | string
-    content?: StringFilter<"FAQ"> | string
+  export type FaqWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: FaqWhereInput | FaqWhereInput[]
+    OR?: FaqWhereInput[]
+    NOT?: FaqWhereInput | FaqWhereInput[]
+    created_at?: BigIntFilter<"Faq"> | bigint | number
+    translations?: FaqTranslationListRelationFilter
   }, "id">
 
-  export type FAQOrderByWithAggregationInput = {
+  export type FaqOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrder
-    content?: SortOrder
-    _count?: FAQCountOrderByAggregateInput
-    _max?: FAQMaxOrderByAggregateInput
-    _min?: FAQMinOrderByAggregateInput
+    created_at?: SortOrder
+    _count?: FaqCountOrderByAggregateInput
+    _avg?: FaqAvgOrderByAggregateInput
+    _max?: FaqMaxOrderByAggregateInput
+    _min?: FaqMinOrderByAggregateInput
+    _sum?: FaqSumOrderByAggregateInput
   }
 
-  export type FAQScalarWhereWithAggregatesInput = {
-    AND?: FAQScalarWhereWithAggregatesInput | FAQScalarWhereWithAggregatesInput[]
-    OR?: FAQScalarWhereWithAggregatesInput[]
-    NOT?: FAQScalarWhereWithAggregatesInput | FAQScalarWhereWithAggregatesInput[]
-    id?: UuidWithAggregatesFilter<"FAQ"> | string
-    title?: StringWithAggregatesFilter<"FAQ"> | string
-    content?: StringWithAggregatesFilter<"FAQ"> | string
+  export type FaqScalarWhereWithAggregatesInput = {
+    AND?: FaqScalarWhereWithAggregatesInput | FaqScalarWhereWithAggregatesInput[]
+    OR?: FaqScalarWhereWithAggregatesInput[]
+    NOT?: FaqScalarWhereWithAggregatesInput | FaqScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Faq"> | number
+    created_at?: BigIntWithAggregatesFilter<"Faq"> | bigint | number
+  }
+
+  export type FaqTranslationWhereInput = {
+    AND?: FaqTranslationWhereInput | FaqTranslationWhereInput[]
+    OR?: FaqTranslationWhereInput[]
+    NOT?: FaqTranslationWhereInput | FaqTranslationWhereInput[]
+    id?: IntFilter<"FaqTranslation"> | number
+    faq_id?: IntFilter<"FaqTranslation"> | number
+    language?: EnumLanguageFilter<"FaqTranslation"> | $Enums.Language
+    title?: StringFilter<"FaqTranslation"> | string
+    content?: StringFilter<"FaqTranslation"> | string
+    faq?: XOR<FaqScalarRelationFilter, FaqWhereInput>
+  }
+
+  export type FaqTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    faq_id?: SortOrder
+    language?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    faq?: FaqOrderByWithRelationInput
+  }
+
+  export type FaqTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: FaqTranslationWhereInput | FaqTranslationWhereInput[]
+    OR?: FaqTranslationWhereInput[]
+    NOT?: FaqTranslationWhereInput | FaqTranslationWhereInput[]
+    faq_id?: IntFilter<"FaqTranslation"> | number
+    language?: EnumLanguageFilter<"FaqTranslation"> | $Enums.Language
+    title?: StringFilter<"FaqTranslation"> | string
+    content?: StringFilter<"FaqTranslation"> | string
+    faq?: XOR<FaqScalarRelationFilter, FaqWhereInput>
+  }, "id">
+
+  export type FaqTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    faq_id?: SortOrder
+    language?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    _count?: FaqTranslationCountOrderByAggregateInput
+    _avg?: FaqTranslationAvgOrderByAggregateInput
+    _max?: FaqTranslationMaxOrderByAggregateInput
+    _min?: FaqTranslationMinOrderByAggregateInput
+    _sum?: FaqTranslationSumOrderByAggregateInput
+  }
+
+  export type FaqTranslationScalarWhereWithAggregatesInput = {
+    AND?: FaqTranslationScalarWhereWithAggregatesInput | FaqTranslationScalarWhereWithAggregatesInput[]
+    OR?: FaqTranslationScalarWhereWithAggregatesInput[]
+    NOT?: FaqTranslationScalarWhereWithAggregatesInput | FaqTranslationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"FaqTranslation"> | number
+    faq_id?: IntWithAggregatesFilter<"FaqTranslation"> | number
+    language?: EnumLanguageWithAggregatesFilter<"FaqTranslation"> | $Enums.Language
+    title?: StringWithAggregatesFilter<"FaqTranslation"> | string
+    content?: StringWithAggregatesFilter<"FaqTranslation"> | string
   }
 
   export type AdminCreateInput = {
@@ -21738,83 +23149,129 @@ export namespace Prisma {
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
-  export type TermsandConditionsCreateInput = {
+  export type TermAndConditionCreateInput = {
     content: string
     updated_at: bigint | number
   }
 
-  export type TermsandConditionsUncheckedCreateInput = {
+  export type TermAndConditionUncheckedCreateInput = {
     id?: number
     content: string
     updated_at: bigint | number
   }
 
-  export type TermsandConditionsUpdateInput = {
+  export type TermAndConditionUpdateInput = {
     content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
-  export type TermsandConditionsUncheckedUpdateInput = {
+  export type TermAndConditionUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
-  export type TermsandConditionsCreateManyInput = {
+  export type TermAndConditionCreateManyInput = {
     id?: number
     content: string
     updated_at: bigint | number
   }
 
-  export type TermsandConditionsUpdateManyMutationInput = {
+  export type TermAndConditionUpdateManyMutationInput = {
     content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
-  export type TermsandConditionsUncheckedUpdateManyInput = {
+  export type TermAndConditionUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
-  export type FAQCreateInput = {
-    id?: string
+  export type FaqCreateInput = {
+    created_at: bigint | number
+    translations?: FaqTranslationCreateNestedManyWithoutFaqInput
+  }
+
+  export type FaqUncheckedCreateInput = {
+    id?: number
+    created_at: bigint | number
+    translations?: FaqTranslationUncheckedCreateNestedManyWithoutFaqInput
+  }
+
+  export type FaqUpdateInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    translations?: FaqTranslationUpdateManyWithoutFaqNestedInput
+  }
+
+  export type FaqUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    translations?: FaqTranslationUncheckedUpdateManyWithoutFaqNestedInput
+  }
+
+  export type FaqCreateManyInput = {
+    id?: number
+    created_at: bigint | number
+  }
+
+  export type FaqUpdateManyMutationInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type FaqUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type FaqTranslationCreateInput = {
+    language: $Enums.Language
+    title: string
+    content: string
+    faq: FaqCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type FaqTranslationUncheckedCreateInput = {
+    id?: number
+    faq_id: number
+    language: $Enums.Language
     title: string
     content: string
   }
 
-  export type FAQUncheckedCreateInput = {
-    id?: string
+  export type FaqTranslationUpdateInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    faq?: FaqUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type FaqTranslationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    faq_id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FaqTranslationCreateManyInput = {
+    id?: number
+    faq_id: number
+    language: $Enums.Language
     title: string
     content: string
   }
 
-  export type FAQUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+  export type FaqTranslationUpdateManyMutationInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
   }
 
-  export type FAQUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type FAQCreateManyInput = {
-    id?: string
-    title: string
-    content: string
-  }
-
-  export type FAQUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type FAQUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+  export type FaqTranslationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    faq_id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
   }
@@ -22554,50 +24011,123 @@ export namespace Prisma {
     updated_at?: SortOrder
   }
 
-  export type TermsandConditionsCountOrderByAggregateInput = {
+  export type TermAndConditionCountOrderByAggregateInput = {
     id?: SortOrder
     content?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type TermsandConditionsAvgOrderByAggregateInput = {
+  export type TermAndConditionAvgOrderByAggregateInput = {
     id?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type TermsandConditionsMaxOrderByAggregateInput = {
+  export type TermAndConditionMaxOrderByAggregateInput = {
     id?: SortOrder
     content?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type TermsandConditionsMinOrderByAggregateInput = {
+  export type TermAndConditionMinOrderByAggregateInput = {
     id?: SortOrder
     content?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type TermsandConditionsSumOrderByAggregateInput = {
+  export type TermAndConditionSumOrderByAggregateInput = {
     id?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type FAQCountOrderByAggregateInput = {
+  export type FaqTranslationListRelationFilter = {
+    every?: FaqTranslationWhereInput
+    some?: FaqTranslationWhereInput
+    none?: FaqTranslationWhereInput
+  }
+
+  export type FaqTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FaqCountOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type FaqAvgOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type FaqMaxOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type FaqMinOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type FaqSumOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type EnumLanguageFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
+  }
+
+  export type FaqScalarRelationFilter = {
+    is?: FaqWhereInput
+    isNot?: FaqWhereInput
+  }
+
+  export type FaqTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    faq_id?: SortOrder
+    language?: SortOrder
     title?: SortOrder
     content?: SortOrder
   }
 
-  export type FAQMaxOrderByAggregateInput = {
+  export type FaqTranslationAvgOrderByAggregateInput = {
     id?: SortOrder
+    faq_id?: SortOrder
+  }
+
+  export type FaqTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    faq_id?: SortOrder
+    language?: SortOrder
     title?: SortOrder
     content?: SortOrder
   }
 
-  export type FAQMinOrderByAggregateInput = {
+  export type FaqTranslationMinOrderByAggregateInput = {
     id?: SortOrder
+    faq_id?: SortOrder
+    language?: SortOrder
     title?: SortOrder
     content?: SortOrder
+  }
+
+  export type FaqTranslationSumOrderByAggregateInput = {
+    id?: SortOrder
+    faq_id?: SortOrder
+  }
+
+  export type EnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLanguageFilter<$PrismaModel>
+    _max?: NestedEnumLanguageFilter<$PrismaModel>
   }
 
   export type DonationLinkCreateNestedManyWithoutAdminInput = {
@@ -23176,6 +24706,66 @@ export namespace Prisma {
     update?: XOR<XOR<ProductVariantUpdateToOneWithWhereWithoutProduct_pricesInput, ProductVariantUpdateWithoutProduct_pricesInput>, ProductVariantUncheckedUpdateWithoutProduct_pricesInput>
   }
 
+  export type FaqTranslationCreateNestedManyWithoutFaqInput = {
+    create?: XOR<FaqTranslationCreateWithoutFaqInput, FaqTranslationUncheckedCreateWithoutFaqInput> | FaqTranslationCreateWithoutFaqInput[] | FaqTranslationUncheckedCreateWithoutFaqInput[]
+    connectOrCreate?: FaqTranslationCreateOrConnectWithoutFaqInput | FaqTranslationCreateOrConnectWithoutFaqInput[]
+    createMany?: FaqTranslationCreateManyFaqInputEnvelope
+    connect?: FaqTranslationWhereUniqueInput | FaqTranslationWhereUniqueInput[]
+  }
+
+  export type FaqTranslationUncheckedCreateNestedManyWithoutFaqInput = {
+    create?: XOR<FaqTranslationCreateWithoutFaqInput, FaqTranslationUncheckedCreateWithoutFaqInput> | FaqTranslationCreateWithoutFaqInput[] | FaqTranslationUncheckedCreateWithoutFaqInput[]
+    connectOrCreate?: FaqTranslationCreateOrConnectWithoutFaqInput | FaqTranslationCreateOrConnectWithoutFaqInput[]
+    createMany?: FaqTranslationCreateManyFaqInputEnvelope
+    connect?: FaqTranslationWhereUniqueInput | FaqTranslationWhereUniqueInput[]
+  }
+
+  export type FaqTranslationUpdateManyWithoutFaqNestedInput = {
+    create?: XOR<FaqTranslationCreateWithoutFaqInput, FaqTranslationUncheckedCreateWithoutFaqInput> | FaqTranslationCreateWithoutFaqInput[] | FaqTranslationUncheckedCreateWithoutFaqInput[]
+    connectOrCreate?: FaqTranslationCreateOrConnectWithoutFaqInput | FaqTranslationCreateOrConnectWithoutFaqInput[]
+    upsert?: FaqTranslationUpsertWithWhereUniqueWithoutFaqInput | FaqTranslationUpsertWithWhereUniqueWithoutFaqInput[]
+    createMany?: FaqTranslationCreateManyFaqInputEnvelope
+    set?: FaqTranslationWhereUniqueInput | FaqTranslationWhereUniqueInput[]
+    disconnect?: FaqTranslationWhereUniqueInput | FaqTranslationWhereUniqueInput[]
+    delete?: FaqTranslationWhereUniqueInput | FaqTranslationWhereUniqueInput[]
+    connect?: FaqTranslationWhereUniqueInput | FaqTranslationWhereUniqueInput[]
+    update?: FaqTranslationUpdateWithWhereUniqueWithoutFaqInput | FaqTranslationUpdateWithWhereUniqueWithoutFaqInput[]
+    updateMany?: FaqTranslationUpdateManyWithWhereWithoutFaqInput | FaqTranslationUpdateManyWithWhereWithoutFaqInput[]
+    deleteMany?: FaqTranslationScalarWhereInput | FaqTranslationScalarWhereInput[]
+  }
+
+  export type FaqTranslationUncheckedUpdateManyWithoutFaqNestedInput = {
+    create?: XOR<FaqTranslationCreateWithoutFaqInput, FaqTranslationUncheckedCreateWithoutFaqInput> | FaqTranslationCreateWithoutFaqInput[] | FaqTranslationUncheckedCreateWithoutFaqInput[]
+    connectOrCreate?: FaqTranslationCreateOrConnectWithoutFaqInput | FaqTranslationCreateOrConnectWithoutFaqInput[]
+    upsert?: FaqTranslationUpsertWithWhereUniqueWithoutFaqInput | FaqTranslationUpsertWithWhereUniqueWithoutFaqInput[]
+    createMany?: FaqTranslationCreateManyFaqInputEnvelope
+    set?: FaqTranslationWhereUniqueInput | FaqTranslationWhereUniqueInput[]
+    disconnect?: FaqTranslationWhereUniqueInput | FaqTranslationWhereUniqueInput[]
+    delete?: FaqTranslationWhereUniqueInput | FaqTranslationWhereUniqueInput[]
+    connect?: FaqTranslationWhereUniqueInput | FaqTranslationWhereUniqueInput[]
+    update?: FaqTranslationUpdateWithWhereUniqueWithoutFaqInput | FaqTranslationUpdateWithWhereUniqueWithoutFaqInput[]
+    updateMany?: FaqTranslationUpdateManyWithWhereWithoutFaqInput | FaqTranslationUpdateManyWithWhereWithoutFaqInput[]
+    deleteMany?: FaqTranslationScalarWhereInput | FaqTranslationScalarWhereInput[]
+  }
+
+  export type FaqCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<FaqCreateWithoutTranslationsInput, FaqUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: FaqCreateOrConnectWithoutTranslationsInput
+    connect?: FaqWhereUniqueInput
+  }
+
+  export type EnumLanguageFieldUpdateOperationsInput = {
+    set?: $Enums.Language
+  }
+
+  export type FaqUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<FaqCreateWithoutTranslationsInput, FaqUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: FaqCreateOrConnectWithoutTranslationsInput
+    upsert?: FaqUpsertWithoutTranslationsInput
+    connect?: FaqWhereUniqueInput
+    update?: XOR<XOR<FaqUpdateToOneWithWhereWithoutTranslationsInput, FaqUpdateWithoutTranslationsInput>, FaqUncheckedUpdateWithoutTranslationsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -23384,6 +24974,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedEnumLanguageFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
+  }
+
+  export type NestedEnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLanguageFilter<$PrismaModel>
+    _max?: NestedEnumLanguageFilter<$PrismaModel>
   }
 
   export type DonationLinkCreateWithoutAdminInput = {
@@ -24590,6 +26197,90 @@ export namespace Prisma {
     download_link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type FaqTranslationCreateWithoutFaqInput = {
+    language: $Enums.Language
+    title: string
+    content: string
+  }
+
+  export type FaqTranslationUncheckedCreateWithoutFaqInput = {
+    id?: number
+    language: $Enums.Language
+    title: string
+    content: string
+  }
+
+  export type FaqTranslationCreateOrConnectWithoutFaqInput = {
+    where: FaqTranslationWhereUniqueInput
+    create: XOR<FaqTranslationCreateWithoutFaqInput, FaqTranslationUncheckedCreateWithoutFaqInput>
+  }
+
+  export type FaqTranslationCreateManyFaqInputEnvelope = {
+    data: FaqTranslationCreateManyFaqInput | FaqTranslationCreateManyFaqInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FaqTranslationUpsertWithWhereUniqueWithoutFaqInput = {
+    where: FaqTranslationWhereUniqueInput
+    update: XOR<FaqTranslationUpdateWithoutFaqInput, FaqTranslationUncheckedUpdateWithoutFaqInput>
+    create: XOR<FaqTranslationCreateWithoutFaqInput, FaqTranslationUncheckedCreateWithoutFaqInput>
+  }
+
+  export type FaqTranslationUpdateWithWhereUniqueWithoutFaqInput = {
+    where: FaqTranslationWhereUniqueInput
+    data: XOR<FaqTranslationUpdateWithoutFaqInput, FaqTranslationUncheckedUpdateWithoutFaqInput>
+  }
+
+  export type FaqTranslationUpdateManyWithWhereWithoutFaqInput = {
+    where: FaqTranslationScalarWhereInput
+    data: XOR<FaqTranslationUpdateManyMutationInput, FaqTranslationUncheckedUpdateManyWithoutFaqInput>
+  }
+
+  export type FaqTranslationScalarWhereInput = {
+    AND?: FaqTranslationScalarWhereInput | FaqTranslationScalarWhereInput[]
+    OR?: FaqTranslationScalarWhereInput[]
+    NOT?: FaqTranslationScalarWhereInput | FaqTranslationScalarWhereInput[]
+    id?: IntFilter<"FaqTranslation"> | number
+    faq_id?: IntFilter<"FaqTranslation"> | number
+    language?: EnumLanguageFilter<"FaqTranslation"> | $Enums.Language
+    title?: StringFilter<"FaqTranslation"> | string
+    content?: StringFilter<"FaqTranslation"> | string
+  }
+
+  export type FaqCreateWithoutTranslationsInput = {
+    created_at: bigint | number
+  }
+
+  export type FaqUncheckedCreateWithoutTranslationsInput = {
+    id?: number
+    created_at: bigint | number
+  }
+
+  export type FaqCreateOrConnectWithoutTranslationsInput = {
+    where: FaqWhereUniqueInput
+    create: XOR<FaqCreateWithoutTranslationsInput, FaqUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type FaqUpsertWithoutTranslationsInput = {
+    update: XOR<FaqUpdateWithoutTranslationsInput, FaqUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<FaqCreateWithoutTranslationsInput, FaqUncheckedCreateWithoutTranslationsInput>
+    where?: FaqWhereInput
+  }
+
+  export type FaqUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: FaqWhereInput
+    data: XOR<FaqUpdateWithoutTranslationsInput, FaqUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type FaqUpdateWithoutTranslationsInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type FaqUncheckedUpdateWithoutTranslationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
   export type DonationLinkCreateManyAdminInput = {
     id?: number
     currency_code: $Enums.CurrencyCode
@@ -24965,6 +26656,33 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     currency_code?: EnumCurrencyCodeFieldUpdateOperationsInput | $Enums.CurrencyCode
     price?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FaqTranslationCreateManyFaqInput = {
+    id?: number
+    language: $Enums.Language
+    title: string
+    content: string
+  }
+
+  export type FaqTranslationUpdateWithoutFaqInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FaqTranslationUncheckedUpdateWithoutFaqInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FaqTranslationUncheckedUpdateManyWithoutFaqInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
   }
 
 

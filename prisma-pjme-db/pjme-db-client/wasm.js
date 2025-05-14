@@ -229,14 +229,21 @@ exports.Prisma.PrivacyPolicyScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
-exports.Prisma.TermsandConditionsScalarFieldEnum = {
+exports.Prisma.TermAndConditionScalarFieldEnum = {
   id: 'id',
   content: 'content',
   updated_at: 'updated_at'
 };
 
-exports.Prisma.FAQScalarFieldEnum = {
+exports.Prisma.FaqScalarFieldEnum = {
   id: 'id',
+  created_at: 'created_at'
+};
+
+exports.Prisma.FaqTranslationScalarFieldEnum = {
+  id: 'id',
+  faq_id: 'faq_id',
+  language: 'language',
   title: 'title',
   content: 'content'
 };
@@ -265,6 +272,11 @@ exports.PriceType = exports.$Enums.PriceType = {
   free: 'free'
 };
 
+exports.Language = exports.$Enums.Language = {
+  ID: 'ID',
+  EN: 'EN'
+};
+
 exports.Prisma.ModelName = {
   Admin: 'Admin',
   DonationLink: 'DonationLink',
@@ -280,8 +292,9 @@ exports.Prisma.ModelName = {
   ProductPrice: 'ProductPrice',
   AboutUs: 'AboutUs',
   PrivacyPolicy: 'PrivacyPolicy',
-  TermsandConditions: 'TermsandConditions',
-  FAQ: 'FAQ'
+  TermAndCondition: 'TermAndCondition',
+  Faq: 'Faq',
+  FaqTranslation: 'FaqTranslation'
 };
 
 /**

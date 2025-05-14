@@ -23,7 +23,7 @@ model Admin {
   first_name            String @db.VarChar(100)
   last_name             String @db.VarChar(100)
   email                 String @unique @db.VarChar(100)
-  whatsapp_phone_number          String @db.VarChar(20)
+  whatsapp_phone_number String @db.VarChar(20)
   picture               String @db.VarChar(255)
 
   donation_links DonationLink[]
@@ -200,7 +200,7 @@ model PrivacyPolicy {
   @@map("privacy_policy")
 }
 
-model TermsandConditions {
+model TermAndCondition {
   id         Int    @id @default(autoincrement()) @db.SmallInt
   content    String
   updated_at BigInt
@@ -208,10 +208,28 @@ model TermsandConditions {
   @@map("terms_and_conditions")
 }
 
-model FAQ {
-  id      String @id @default(uuid(7)) @db.Uuid
-  title   String @db.VarChar(150)
-  content String
+model Faq {
+  id         Int    @id @default(autoincrement())
+  created_at BigInt
 
-  @@map("faq")
+  translations FaqTranslation[]
+
+  @@map("faqs")
+}
+
+enum Language {
+  ID
+  EN
+}
+
+model FaqTranslation {
+  id       Int      @id @default(autoincrement()) @db.SmallInt
+  faq_id   Int
+  language Language
+  title    String   @db.VarChar(150)
+  content  String
+
+  faq Faq @relation(fields: [faq_id], references: [id], onDelete: Cascade)
+
+  @@map("faq_translations")
 }
