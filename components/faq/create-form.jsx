@@ -9,10 +9,12 @@ import {
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Loader2, ArrowLeft } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { faqSchema } from '@/lib/validators/faq-validator';
 import TitleInput from './title-input';
 import ContentInput from './content-input';
+import { addFaq } from '@/actions/faq-actions';
+import { toast } from 'sonner';
 
 function hasOtherSectionError(errors, activeLang) {
   if (errors.title && errors.content) {
@@ -44,17 +46,17 @@ export default function CreateForm() {
   });
 
   const { isSubmitting, errors } = form.formState;
+  const isResetEditor = useRef(false);
 
   async function handleSubmit(data) {
-    console.dir(data);
-    // const addRes = await addLicenseKey(data);
-    // if (addRes.status === 'success') {
-    //   await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] })
-    //   form.reset();
-    //   toast.success('License key was successfully created.');
-    // } else {
-    //   toast.error(addRes.message);
-    // }
+    const addRes = await addFaq(data);
+    if (addRes.status === 'success') {
+      isResetEditor.current = true;
+      form.reset();
+      toast.success('FAQ was successfully created.');
+    } else {
+      toast.error(addRes.message);
+    }
   }
 
   return (
@@ -99,7 +101,12 @@ export default function CreateForm() {
                 control={form.control}
                 name="content.id"
                 render={({ field, formState }) => (
-                  <ContentInput field={field} formState={formState} activeLang="id" />
+                  <ContentInput
+                    field={field}
+                    formState={formState}
+                    activeLang="id"
+                    isResetEditor={isResetEditor}
+                  />
                 )}
               />
             </>
@@ -117,7 +124,12 @@ export default function CreateForm() {
                 control={form.control}
                 name="content.en"
                 render={({ field, formState }) => (
-                  <ContentInput field={field} formState={formState} activeLang="en" />
+                  <ContentInput
+                    field={field}
+                    formState={formState}
+                    activeLang="en"
+                    isResetEditor={isResetEditor}
+                  />
                 )}
               />
             </>

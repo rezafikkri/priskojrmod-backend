@@ -30,7 +30,6 @@ import LinkPopover from './link-popover';
 import TooltipWrapper from './tooltip-wrapper';
 import { Skeleton } from './skeleton';
 import { useEffect } from 'react';
-import { cn } from '@/lib/utils';
 
 export default function Editor({
   onChange,
@@ -38,6 +37,8 @@ export default function Editor({
   onBlur,
   value,
   isError,
+  isSubmitting,
+  isResetEditor,
 }) {
   const editor = useEditor({
     extensions: [
@@ -89,18 +90,20 @@ export default function Editor({
     injectCSS: false,
     editorProps: {
       attributes: {
-        class: 'transition-[color,box-shadow] border border-input px-3 py-1.5 rounded-md selection:bg-primary selection:text-primary-foreground focus-visible:border-ring ring-ring/50 focus-visible:ring-[3px] transition-[color,box-shadow] outline-none min-h-30 prose prose-zinc prose-lg dark:prose-invert prose-p:text-zinc-800 dark:prose-p:text-zinc-200 dark:prose-a:text-green-600 prose-li:[&_p:first-child]:m-0 prose-li:first:mt-0 prose-li:last:mb-0 [contenteditable=false]:pointer-events-none [contenteditable=false]:opacity-50 data-[error=true]:border-destructive focus-visible:data-[error=true]:border-destructive data-[error=true]:ring-destructive/20 dark:data-[error=true]:ring-destructive/40',
+        class: 'max-w-full transition-[color,box-shadow] border border-input px-3 py-1.5 rounded-md selection:bg-primary selection:text-primary-foreground focus-visible:border-ring ring-ring/50 focus-visible:ring-[3px] transition-[color,box-shadow] outline-none min-h-30 prose prose-zinc prose-lg dark:prose-invert prose-p:text-zinc-800 dark:prose-p:text-zinc-200 dark:prose-a:text-green-600 prose-a:text-green-700 prose-li:[&_p:first-child]:m-0 prose-li:first:mt-0 prose-li:last:mb-0 data-[error=true]:border-destructive focus-visible:data-[error=true]:border-destructive data-[error=true]:ring-destructive/20 dark:data-[error=true]:ring-destructive/40 [&[contenteditable=false]]:pointer-events-none [&[contenteditable=false]]:opacity-50',
         'data-error': isError,
       },
     },
   });
 
+  // set initial value
   useEffect(() => {
     if (editor) {
-      editor?.commands.setContent(value);
+      editor.commands.setContent(value);
     }
   }, [editor]);
 
+  // when isError set form style to error
   useEffect(() => {
     if (editor) {
       editor.setOptions({
@@ -113,6 +116,20 @@ export default function Editor({
       });
     }
   }, [isError]);
+
+  // when isSubmitting disable form and when success clear content
+  useEffect(() => {
+    if (editor && isSubmitting) {
+      editor.setEditable(false, false);
+    } else if (editor) {
+      editor.setEditable(true, false);
+
+      if (isResetEditor.current) {
+        isResetEditor.current = false;
+        editor.commands.clearContent();
+      }
+    }
+  }, [isSubmitting]);
 
   if (!editor) return <Skeleton className="w-full h-30 rounded-md" />;
 
@@ -229,7 +246,7 @@ export default function Editor({
           </TooltipWrapper>
         </ToggleGroup>
       </FloatingMenu>
-      <EditorContent editor={editor} className="[&_a]:text-green-700" ref={ref} onBlur={onBlur} data-error={true} />
+      <EditorContent editor={editor} ref={ref} onBlur={onBlur} data-error={true} />
     </>
   );
 }

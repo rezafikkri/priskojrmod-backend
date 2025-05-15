@@ -139,8 +139,4 @@
     display: inline-block;
     vertical-align: -.125em;
   }
-
-  /* .tiptap[contenteditable=false] { */
-  /*   @apply pointer-events-none opacity-50; */
-  /* } */
 }

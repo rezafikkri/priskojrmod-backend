@@ -11,6 +11,7 @@ export default function ContentInput({
   field,
   formState,
   activeLang,
+  isResetEditor,
 }) {
   const { errors, isSubmitting } = formState;
   const isContentError = Boolean(errors.content && errors.content[activeLang]);
@@ -22,7 +23,12 @@ export default function ContentInput({
         <Badge variant="secondary">{activeLang.toUpperCase()}</Badge>
       </FormLabel>
       <FormControl>
-        <Editor {...field} isError={isContentError} />
+        <Editor
+          {...field}
+          isError={isContentError}
+          isSubmitting={isSubmitting}
+          isResetEditor={isResetEditor}
+        />
       </FormControl>
       <FormDescription>Enter the content.</FormDescription>
       {isContentError && (

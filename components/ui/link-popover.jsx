@@ -73,16 +73,14 @@ export default function LinkPopover({
           autoFocus="false"
         />
         <div className="flex right-0 top-0 pe-[0.125rem] items-center gap-[0.125rem]">
-          <PopoverClose asChild>
-            <Button
-              variant="ghost"
-              className="has-[>svg]:px-2 rounded-t-none rounded-b-none dark:hover:bg-neutral-800"
-              onClick={setLink}
-              disabled={url === ''}
-            >
-              <CornerDownLeft />
-            </Button>
-          </PopoverClose>
+          <Button
+            variant="ghost"
+            className="has-[>svg]:px-2 rounded-t-none rounded-b-none dark:hover:bg-neutral-800"
+            onClick={setLink}
+            disabled={url === ''}
+          >
+            <CornerDownLeft />
+          </Button>
           <Separator orientation="vertical" className="h-7!" />
           <Button
             variant="ghost"
