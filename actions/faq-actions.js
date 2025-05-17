@@ -1,6 +1,9 @@
 'use server';
 
-import deleteFaq, { createFaq } from '@/lib/services/faq-service';
+import {
+  createFaq,
+  deleteFaq,
+} from '@/lib/services/faq-service';
 
 export async function addFaq(data) {
   try {
