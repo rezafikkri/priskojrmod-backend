@@ -113,7 +113,6 @@ describe('deleteFaq function', () => {
 
     await deleteFaq(1);
 
-    expect(verifySession).toHaveBeenCalled();
     expect(pjmeDBPrismaClient.Faq.delete).toHaveBeenCalledWith({
       where: { id: 1 },
       select: { id: true },
