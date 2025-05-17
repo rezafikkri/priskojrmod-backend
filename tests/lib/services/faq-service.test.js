@@ -6,7 +6,10 @@ import {
   afterEach,
   beforeAll,
 } from 'vitest';
-import { createFaq } from '@/lib/services/faq-service';
+import {
+  createFaq,
+  deleteFaq,
+} from '@/lib/services/faq-service';
 
 beforeAll(() => {
   vi.mock('server-only', () => ({}));
@@ -19,6 +22,7 @@ beforeAll(() => {
     default: {
       Faq: {
         create: vi.fn(),
+        delete: vi.fn(),
       },
     },
   }));
@@ -84,6 +88,35 @@ describe('createFaq function', () => {
       select: {
         id: true,
       },
+    });
+  });
+});
+
+describe('deleteFaq function', () => {
+  it('Should call verifySession function, not call pjmeDBPrismaClient.Faq.delete function and throw Error with "Unauthenticated" message', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmeDBPrismaClient = (await import('@/lib/pjme-prisma-client')).default;
+
+    verifySession.mockResolvedValue(false);
+
+    await expect(deleteFaq(1)).rejects.toThrow('Unauthenticated');
+
+    expect(verifySession).toHaveBeenCalled();
+    expect(pjmeDBPrismaClient.Faq.delete).not.toHaveBeenCalled();
+  });
+
+  it('Should call pjmeDBPrismaClient.Faq.delete function correctly', async () => {
+    const verifySession = (await import('@/lib/verifySession')).default;
+    const pjmeDBPrismaClient = (await import('@/lib/pjme-prisma-client')).default;
+
+    verifySession.mockResolvedValue({ isAuth: true });
+
+    await deleteFaq(1);
+
+    expect(verifySession).toHaveBeenCalled();
+    expect(pjmeDBPrismaClient.Faq.delete).toHaveBeenCalledWith({
+      where: { id: 1 },
+      select: { id: true },
     });
   });
 });
