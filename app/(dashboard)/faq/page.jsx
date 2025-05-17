@@ -4,8 +4,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
-// revalidate pre-rendered after 30m
-export const revalidate = 1800;
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: 'FAQs - Prisko Jr Mod',
