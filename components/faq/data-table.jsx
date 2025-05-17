@@ -25,10 +25,36 @@ import {
 import { Button } from '../ui/button';
 import { MoreHorizontal } from 'lucide-react';
 import { toast } from 'sonner';
+import { removeFaq } from '@/actions/faq-actions';
 
 export default function DataTable({ faqs: data }) {
   const [faqs, setFaqs] = useState(data);
   const [titleLang, setTitleLang] = useState('id');
+
+  async function handleDelete(id) {
+    const targetRow = document.querySelector(`#row${id}`);
+    const targetActionBtn = targetRow.querySelector('td > button');
+    targetRow.classList.add('opacity-50');
+    targetActionBtn.setAttribute('disabled', true);
+    // show loading
+    const toastId = toast.loading('Deleting FAQ...');
+    
+    const removeRes = await removeFaq(id);
+
+    targetRow.classList.remove('opacity-50');
+    targetActionBtn.removeAttribute('disabled');
+
+    if (removeRes.status === 'success') {
+      setFaqs(faqs.filter(faq => faq.id !== id));
+      toast.success('FAQ was successfully deleted.', {
+        id: toastId,
+      });
+    } else {
+      toast.error(removeRes.message, {
+        id: toastId,
+      });
+    }
+  }
 
   const columns = useMemo(() => [
     {
@@ -77,6 +103,7 @@ export default function DataTable({ faqs: data }) {
                 <Button
                   variant="ghost"
                   className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal text-base h-auto p-2"
+                  onClick={() => handleDelete(row.original.id)}
                 >
                   Delete
                 </Button>
@@ -94,50 +121,59 @@ export default function DataTable({ faqs: data }) {
   });
 
   return (
-    <div className="rounded-md border">
-      <Table className="text-base">
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className="bg-muted/50">
-              {headerGroup.headers.map((header) => (
-                <TableHead
-                  key={header.id}
-                  className="px-3 py-2.5 h-auto text-zinc-600 dark:text-zinc-400"
-                >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} id={'row' + row.original.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell
-                    key={cell.id}
-                    className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' }`}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+    <>
+      <div className="rounded-md border">
+        <Table className="text-base">
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id} className="bg-muted/50">
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead
+                      key={header.id}
+                      className="px-3 py-2.5 h-auto text-zinc-600 dark:text-zinc-400"
+                    >
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                    </TableHead>
+                  )})}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id} id={'row' + row.original.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell
+                      key={cell.id}
+                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' } ${cell.column.id === `translations_title_${titleLang}` ? 'max-w-150 whitespace-normal' : ''}`}
+                    >
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+                <TableRow>
+                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                    No results.
                   </TableCell>
-                ))}
-              </TableRow>
-            ))
-          ) : (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-        </TableBody>
-      </Table>
-    </div>
+                </TableRow>
+              )}
+          </TableBody>
+        </Table>
+      </div>
+
+      {faqs.length > 0 && (
+        <p className="text-muted-foreground mt-4">
+          {faqs.length} {faqs.length === 1 ? 'result' : 'results'}
+        </p>
+      )}
+    </>
   );
 }
