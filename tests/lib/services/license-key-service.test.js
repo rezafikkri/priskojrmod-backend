@@ -210,10 +210,7 @@ describe('deleteLicenseKey function', () => {
 
     expect(pjmaDBPrismaClient.LicenseKey.delete).toHaveBeenCalledWith({
       where: { id: '123' },
-      select: {
-        id: true,
-        email: true,
-      },
+      select: { id: true },
     });
   });
 });
