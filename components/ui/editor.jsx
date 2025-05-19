@@ -124,7 +124,7 @@ export default function Editor({
     } else if (editor) {
       editor.setEditable(true, false);
 
-      if (isResetEditor.current) {
+      if (isResetEditor?.current) {
         isResetEditor.current = false;
         editor.commands.clearContent();
       }

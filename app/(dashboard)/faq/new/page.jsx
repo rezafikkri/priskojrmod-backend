@@ -1,4 +1,4 @@
-import CreateForm from "@/components/faq/create-form";
+import CreateForm from '@/components/faq/create-form';
 
 export const metadata = {
   title: 'Create FAQ - Prisko Jr Mod',

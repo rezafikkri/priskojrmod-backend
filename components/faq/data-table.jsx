@@ -20,12 +20,14 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '../ui/button';
 import { MoreHorizontal } from 'lucide-react';
 import { toast } from 'sonner';
 import { removeFaq } from '@/actions/faq-actions';
+import Link from 'next/link';
 
 export default function DataTable({ faqs: data }) {
   const [faqs, setFaqs] = useState(data);
@@ -99,6 +101,10 @@ export default function DataTable({ faqs: data }) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="px-1.5">
               <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
+              <DropdownMenuItem asChild className="text-base py-2 hover:cursor-pointer">
+                <Link href={`/faq/${row.original.id}/edit`}>Edit</Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator className="-mx-1.5" />
               <DropdownMenuItem asChild>
                 <Button
                   variant="ghost"
