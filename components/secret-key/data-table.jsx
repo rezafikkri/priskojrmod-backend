@@ -42,6 +42,9 @@ export default function DataTable({ secretKeys: data }) {
 
     const removeRes = await removeSecretKey(deleteData.id);
 
+    targetRow.classList.remove('opacity-50');
+    targetActionBtn.removeAttribute('disabled');
+    
     if (removeRes.status === 'success') {
       setSecretKeys(secretKeys.filter(s => {
         return s.id !== deleteData.id;
@@ -51,8 +54,6 @@ export default function DataTable({ secretKeys: data }) {
       });
     } else {
       toast.error(removeRes.message, { id: toastId });
-      targetRow.classList.remove('opacity-50');
-      targetActionBtn.removeAttribute('disabled');
     }
   }
 
