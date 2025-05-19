@@ -28,6 +28,7 @@ export default function FormFields({
   mode,
   form,
   onSubmit,
+  isResetEditor,
 }) {
   const [activeLang, setActiveLang] = useState('id');
   const { isSubmitting, errors } = form.formState;
@@ -78,6 +79,7 @@ export default function FormFields({
                     field={field}
                     formState={formState}
                     activeLang="id"
+                    {...(isResetEditor && { isResetEditor })}
                   />
                 )}
               />
@@ -100,6 +102,7 @@ export default function FormFields({
                     field={field}
                     formState={formState}
                     activeLang="en"
+                    {...(isResetEditor && { isResetEditor })}
                   />
                 )}
               />
