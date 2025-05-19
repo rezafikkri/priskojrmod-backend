@@ -167,6 +167,12 @@ export default function DataTable({ secretKeys: data }) {
         </Table>
       </div>
 
+      {secretKeys.length > 0 && (
+        <p className="text-muted-foreground mt-4">
+          {secretKeys.length} {secretKeys.length === 1 ? 'result' : 'results'}
+        </p>
+      )}
+
       <DeleteDialog
         onDelete={handleDelete}
         isOpenDeleteDialog={isOpenDeleteDialog}
