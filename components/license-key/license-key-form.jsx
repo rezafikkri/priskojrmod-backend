@@ -19,7 +19,7 @@ export default async function LicenseKeyForm({ action = 'create', id = null }) {
   const licenseKey = await getLicenseKey(id);
   if (!licenseKey) {
     return (
-      <Alert>
+      <Alert className="lg:max-w-2/3">
         <Error404 />
         <AlertTitle>License key not found.</AlertTitle>
       </Alert>
