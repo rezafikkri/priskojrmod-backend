@@ -59,20 +59,20 @@ export default function EditForm({
   const isSubmitting = form.formState.isSubmitting;
 
   async function handleSubmit(data) {
-    const updateRes = await editLicenseKey(data);
+    const editRes = await editLicenseKey(data);
 
-    if (updateRes.status === 'success') {
+    if (editRes.status === 'success') {
       await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] })
       await queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
-      form.setValue('old_key', updateRes.data.key);
-      form.setValue('old_secret_key_id', updateRes.data.secret_key_id);
+      form.setValue('old_key', editRes.data.key);
+      form.setValue('old_secret_key_id', editRes.data.secret_key_id);
       form.setValue('change_expiration_date', false);
-      if (updateRes.data.exp) {
-        setLicenseKeyExpire(dayjs.unix(updateRes.data.exp).format('MMMM DD, YYYY'))
+      if (editRes.data.exp) {
+        setLicenseKeyExpire(dayjs.unix(editRes.data.exp).format('MMMM DD, YYYY'))
       }
       toast.success('License Key updated successfully.');
     } else {
-      toast.error(updateRes.message);
+      toast.error(editRes.message);
     }
   }
 
@@ -80,9 +80,6 @@ export default function EditForm({
     <>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 lg:max-w-2/3 mb-10">
-          <Input type="hidden" name="id" />
-          <Input type="hidden" name="old_key" />
-          <Input type="hidden" name="old_secret_key_id" />
           <FormItem>
             <FormLabel className="text-base">Email</FormLabel>
             <p>{licenseKey.email}</p>
