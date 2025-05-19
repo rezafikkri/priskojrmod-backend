@@ -70,7 +70,7 @@ export default function EditForm({
       if (updateRes.data.exp) {
         setLicenseKeyExpire(dayjs.unix(updateRes.data.exp).format('MMMM DD, YYYY'))
       }
-      toast.success('License key was successfully updated.');
+      toast.success('License Key updated successfully.');
     } else {
       toast.error(updateRes.message);
     }

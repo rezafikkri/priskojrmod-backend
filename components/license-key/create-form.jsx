@@ -51,7 +51,7 @@ export default function CreateForm({
     if (addRes.status === 'success') {
       await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] })
       form.reset();
-      toast.success('License key was successfully created.');
+      toast.success('License Key created successfully.');
     } else {
       toast.error(addRes.message);
     }

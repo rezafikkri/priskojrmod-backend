@@ -75,7 +75,7 @@ export function EditForm({
       if ((!prevDonationLinks[0].id || !prevDonationLinks[1].id) && editRes.data.donation_links) {
         form.setValue('donation_links', generateDonationLinksValues(editRes.data.donation_links));
       }
-      toast.success('Account settings were successfully saved.');
+      toast.success('Account Settings updated successfully.');
     } else {
       toast.error(editRes.message);
     }
