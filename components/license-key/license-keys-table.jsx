@@ -119,7 +119,7 @@ export default function LicenseKeysTable() {
       return resJson;
     },
     placeholderData: keepPreviousData,
-    staleTime: 1000 * 10,
+    staleTime: 1000 * 20,
     gcTime: 1000 * 60 * 3,
     enabled: !searchedLicenseKey,
   });
