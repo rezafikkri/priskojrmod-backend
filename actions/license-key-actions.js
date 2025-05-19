@@ -13,8 +13,8 @@ export async function addLicenseKey(data) {
 
 export async function removeLicenseKey(id) {
   try {
-    const deleteData = await deleteLicenseKey(id);
-    return { status: 'success', data: deleteData };
+    await deleteLicenseKey(id);
+    return { status: 'success' };
   } catch (err) {
     return { status: 'error', message: err.message };
   }

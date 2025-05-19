@@ -133,7 +133,7 @@ export default function LicenseKeysTable() {
       targetActionBtn.setAttribute('disabled', true);
       return { targetRow, targetActionBtn };
     },
-    onSuccess: async (deleteRes, { toastId }) => {
+    onSuccess: async (deleteRes, { toastId, deleteData }) => {
       if (!isRerender.current) {
         isRerender.current = true;
       }
@@ -143,13 +143,13 @@ export default function LicenseKeysTable() {
       if (searchedLicenseKey) {
         setSearchedLicenseKey({
           ...searchedLicenseKey,
-          licenseKeys: searchedLicenseKey.licenseKeys.filter(slk => slk.id !== deleteRes.data.id),
+          licenseKeys: searchedLicenseKey.licenseKeys.filter(slk => slk.id !== deleteData.id),
         });
         queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
         queryClient.invalidateQueries({ queryKey: ['licenseKeys'] });
       } else {
         const licenseKey = queryClient.getQueryData(['licenseKeys', pagination.pageIndex]);
-        const newLicenseKeys = licenseKey.data.licenseKeys.filter(lk => lk.id !== deleteRes.data.id);
+        const newLicenseKeys = licenseKey.data.licenseKeys.filter(lk => lk.id !== deleteData.id);
         const newRowCount = licenseKey.data.rowCount - 1;
 
         if (!isLastPage({
@@ -190,7 +190,7 @@ export default function LicenseKeysTable() {
         queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
       }
 
-      toast.success(`License key for ${deleteRes.data.email} was successfully deleted.`, { id: toastId });
+      toast.success(`License key for ${deleteData.email} was successfully deleted.`, { id: toastId });
     },
     onError: (err, { toastId }) => {
       toast.error(err.message, { id: toastId });
