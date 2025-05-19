@@ -90,7 +90,7 @@ export default function Editor({
     injectCSS: false,
     editorProps: {
       attributes: {
-        class: 'max-w-full transition-[color,box-shadow] border border-input px-3 py-1.5 rounded-md selection:bg-primary selection:text-primary-foreground focus-visible:border-ring ring-ring/50 focus-visible:ring-[3px] transition-[color,box-shadow] outline-none min-h-30 prose prose-zinc prose-lg dark:prose-invert prose-p:text-zinc-800 dark:prose-p:text-zinc-200 dark:prose-a:text-green-600 prose-a:text-green-700 prose-li:[&_p:first-child]:m-0 prose-li:first:mt-0 prose-li:last:mb-0 data-[error=true]:border-destructive focus-visible:data-[error=true]:border-destructive data-[error=true]:ring-destructive/20 dark:data-[error=true]:ring-destructive/40 [&[contenteditable=false]]:pointer-events-none [&[contenteditable=false]]:opacity-50',
+        class: 'max-w-full transition-[color,box-shadow] border border-input px-3 py-1.5 rounded-md selection:bg-primary selection:text-primary-foreground focus-visible:border-ring ring-ring/50 focus-visible:ring-[3px] transition-[color,box-shadow] outline-none min-h-30 prose prose-zinc dark:prose-invert prose-p:text-zinc-800 dark:prose-p:text-zinc-200 dark:prose-a:text-green-600 prose-a:text-green-700 prose-li:[&_p:first-child]:m-0 prose-li:first:mt-0 prose-li:last:mb-0 data-[error=true]:border-destructive focus-visible:data-[error=true]:border-destructive data-[error=true]:ring-destructive/20 dark:data-[error=true]:ring-destructive/40 [&[contenteditable=false]]:pointer-events-none [&[contenteditable=false]]:opacity-50',
         'data-error': isError,
       },
     },
