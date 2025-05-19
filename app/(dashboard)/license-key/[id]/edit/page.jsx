@@ -12,7 +12,7 @@ export default async function EditLicenseKey({ params }) {
     <>
       <h1 className="text-2xl mb-7 font-bold">Edit License Key</h1>
       <Suspense fallback={<FormSkeleton />}>
-        <LicenseKeyForm action="edit" id={id} />
+        <LicenseKeyForm mode="edit" id={id} />
       </Suspense>
     </>
   );

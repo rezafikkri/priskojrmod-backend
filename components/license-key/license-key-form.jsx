@@ -9,10 +9,10 @@ import {
 } from '../ui/alert';
 import Error404 from '../icon/error-404';
 
-export default async function LicenseKeyForm({ action = 'create', id = null }) {
+export default async function LicenseKeyForm({ mode = 'create', id = null }) {
   const secretKeys = await getSecretKeys({ id: true, app_name: true });
 
-  if (action === 'create') {
+  if (mode === 'create') {
     return <CreateForm secretKeys={secretKeys} />
   }
 
