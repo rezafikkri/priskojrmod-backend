@@ -53,7 +53,7 @@ export default function CreateForm() {
     if (addRes.status === 'success') {
       isResetEditor.current = true;
       form.reset();
-      toast.success('FAQ was successfully created.');
+      toast.success('FAQ created successfully.');
     } else {
       toast.error(addRes.message);
     }

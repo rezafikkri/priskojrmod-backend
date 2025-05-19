@@ -48,7 +48,7 @@ export default function DataTable({ faqs: data }) {
 
     if (removeRes.status === 'success') {
       setFaqs(faqs.filter(faq => faq.id !== id));
-      toast.success('FAQ was successfully deleted.', {
+      toast.success('FAQ deleted successfully.', {
         id: toastId,
       });
     } else {
@@ -60,7 +60,7 @@ export default function DataTable({ faqs: data }) {
 
   const columns = useMemo(() => [
     {
-      accessorKey: `translations.title.${titleLang}`,
+      accessorKey: `translations.${titleLang}.title`,
       header: () => (
         <>
           <span>Title</span>
@@ -157,7 +157,7 @@ export default function DataTable({ faqs: data }) {
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' } ${cell.column.id === `translations_title_${titleLang}` ? 'max-w-150 whitespace-normal' : ''}`}
+                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' } ${cell.column.id === `translations_${titleLang}_title` ? 'max-w-150 whitespace-normal' : ''}`}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
