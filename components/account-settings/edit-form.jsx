@@ -99,7 +99,7 @@ export function EditForm({
       );
       linkInput.removeAttribute('disabled');
       setDeleteState(null);
-      toast.success('Donation link was successfully deleted.');
+      toast.success('Donation Link deleted successfully.');
     } else {
       linkInput.removeAttribute('disabled');
       setDeleteState(null);
