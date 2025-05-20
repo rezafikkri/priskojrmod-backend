@@ -103,7 +103,7 @@ export default function LicenseKeysTable() {
     queryFn: async () => {
       let toastId;
       if (isRerender.current) {
-        toastId = toast.loading('Loading license keys...');
+        toastId = toast.loading('Loading License Keys...');
       }
 
       const res = await fetch(`/api/license-keys?pi=${pagination.pageIndex}`);
@@ -190,7 +190,7 @@ export default function LicenseKeysTable() {
         queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
       }
 
-      toast.success(`License key for ${deleteData.email} was successfully deleted.`, { id: toastId });
+      toast.success(`License Key for ${deleteData.email} was successfully deleted.`, { id: toastId });
     },
     onError: (err, { toastId }) => {
       toast.error(err.message, { id: toastId });
@@ -293,7 +293,7 @@ export default function LicenseKeysTable() {
         />
       )}
 
-      <small className="mt-5 inline-block text-muted-foreground text-sm"><b>Note</b>: <i>Activate</i> is indicate the license key has been used for activate the application, while <i>Download</i> is indicate the license key has been used for download something that asosiated with the application, for example: Sider Manager app have Default Addon, this mean <i>Download</i> indicate license key has been used for download this Default Addon.</small>
+      <small className="mt-5 inline-block text-muted-foreground text-sm"><b>Note</b>: <i>Activate</i> indicates that the License Key has been used to activate the application, while <i>Download</i> indicates that the License Key has been used to download something associated with the application. For example, the Sider Manager app has a Default Addon; this means <i>Download</i> indicates the License Key has been used to download this Default Addon.</small>
     </>
   );
 }

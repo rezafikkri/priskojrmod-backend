@@ -163,7 +163,7 @@ export function EditForm({
                 <FormControl>
                   <Input disabled={isSubmitting} {...field} className="shadow-none md:text-base h-auto px-3 py-1.5" />
                 </FormControl>
-                <FormDescription>Enter url of picture.</FormDescription>
+                <FormDescription>Enter the URL of the picture.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -189,7 +189,7 @@ export function EditForm({
 
           <div className="space-y-5.5 my-8">
             <h3 className="text-lg font-bold mb-0">Donation Links</h3>
-            <h2 className="text-zinc-700 dark:text-zinc-300/80">Donation links are used for free products. They replace the buy button on the product details page.</h2>
+            <h2 className="text-zinc-700 dark:text-zinc-300/80">Donation Links are used for free products and replace the Buy button on the product details page.</h2>
 
             {donationLinks.map((dl, index) => (
               <FormField

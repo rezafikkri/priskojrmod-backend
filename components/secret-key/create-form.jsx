@@ -87,7 +87,7 @@ export default function CreateForm() {
                     )}
                   </div>
                 </div>
-                <FormDescription>Enter secret key or click generate button to generate secret key.</FormDescription>
+                <FormDescription>Enter a secret key or click the Generate button to create one.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -101,7 +101,7 @@ export default function CreateForm() {
                 <FormControl>
                   <Input disabled={isSubmitting} {...field} className="md:text-base h-auto px-3 py-1.5 shadow-none" />
                 </FormControl>
-                <FormDescription>Enter application name. Each application can have only one secret key.</FormDescription>
+                <FormDescription>Enter the application name. Each application can have only one Secret Key.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}

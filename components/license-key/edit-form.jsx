@@ -180,7 +180,7 @@ export default function EditForm({
                 <div className="space-y-2">
                   <FormLabel className="text-base leading-none">Used For Activate</FormLabel>
                   <FormDescription>
-                    Check this if license key has been used to activate the application.
+                    Check this if the License Key has been used to activate the application.
                   </FormDescription>
                 </div>
               </FormItem>
@@ -201,7 +201,7 @@ export default function EditForm({
                 <div className="space-y-2">
                   <FormLabel className="text-base leading-none">Used For Download</FormLabel>
                   <FormDescription>
-                    Check this if the customer has downloaded the file associated with the application (e.g. Default Addon).
+                    Check this if the customer has downloaded the file associated with the application (e.g., Default Addon).
                   </FormDescription>
                 </div>
               </FormItem>
@@ -221,7 +221,7 @@ export default function EditForm({
                 </FormControl>
                 <div className="space-y-2">
                   <FormLabel className="text-base leading-none">Change Expiration Date</FormLabel>
-                  <FormDescription>Check this if you want to change the license key expiration date, then the expiration date will be added 1 year from the current date, ignore otherwise. For now, the license key will expire on {licenseKeyExpire}.</FormDescription>
+                  <FormDescription>Check this if you want to change the License Key expiration date. The expiration date will then be extended by 1 year from the current date; ignore otherwise. For now, the License Key will expire on {licenseKeyExpire}.</FormDescription>
                 </div>
               </FormItem>
             )}

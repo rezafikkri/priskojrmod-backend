@@ -11,8 +11,8 @@ export const metadata = {
 export default async function SecretKeyListPage() {
   return (
     <>
-      <h1 className="text-xl mb-1 font-bold">Secret Keys</h1>
-      <h2 className="text-zinc-700 dark:text-zinc-300/80 mb-6">Secret key is used for generate license key for application.</h2>
+      <h1 className="text-2xl mb-1 font-bold">Secret Keys</h1>
+      <h2 className="text-zinc-700 dark:text-zinc-300/80 mb-6">The Secret Key is used to generate License Keys for the application.</h2>
       
       <Button asChild variant="outline" className="mb-5 h-auto text-base px-3 py-1.5">
         <Link href="/secret-key/new">Create Secret Key</Link>

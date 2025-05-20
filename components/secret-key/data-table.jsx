@@ -91,7 +91,7 @@ export default function DataTable({ secretKeys: data }) {
                   className="w-full justify-start focus-visible:ring-0 font-normal text-base h-auto py-2"
                   onClick={() => navigator.clipboard.writeText(row.getValue('key'))}
                 >
-                  Copy secret key
+                  Copy Secret Key
                 </Button>
               </DropdownMenuItem>
               <DropdownMenuSeparator className="-mx-1.5" />

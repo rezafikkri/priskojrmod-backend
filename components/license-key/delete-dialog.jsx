@@ -28,7 +28,7 @@ export default function DeleteDialog({
     setIsOpenDeleteDialog(false);
     setDeleteData(null);
     setEmail('');
-    const toastId = toast.loading(`Deleting license key for ${deleteData.email}...`);
+    const toastId = toast.loading(`Deleting License Key for ${deleteData.email}...`);
     deleteMutation.mutate({ deleteData, toastId });
   }
 
@@ -56,7 +56,7 @@ export default function DeleteDialog({
       >
         <DialogHeader>
           <DialogTitle className="text-xl">Are you absolutely sure?</DialogTitle>
-          <DialogDescription className="text-base mt-1.5 text-zinc-700 dark:text-zinc-300/80 [&_b]:font-medium">The license key for <b>{emailToDelete}</b> will be permanently deleted. To confirm, type "<b>{emailToDelete}</b>" in the box below.</DialogDescription>
+          <DialogDescription className="text-base mt-1.5 text-zinc-700 dark:text-zinc-300/80 [&_b]:font-medium">The License Key for <b>{emailToDelete}</b> will be permanently deleted. To confirm, type "<b>{emailToDelete}</b>" in the box below.</DialogDescription>
         </DialogHeader>
         <Input
           placeholder="Email..."

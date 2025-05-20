@@ -106,7 +106,7 @@ export default function DataTable({
                   className="w-full justify-start focus-visible:ring-0 font-normal text-base h-auto py-2"
                   onClick={() => navigator.clipboard.writeText(row.getValue('key'))}
                 >
-                  Copy license key
+                  Copy License Key
                 </Button>
               </DropdownMenuItem>
               <DropdownMenuSeparator className="-mx-1.5" />
@@ -218,7 +218,7 @@ export default function DataTable({
       ) : null}
 
       {(searchKey && isTooMany) ? (
-        <p className="mt-5 inline-block text-muted-foreground text-sm"><b>Info</b>: If you haven't found the license key you're looking for, please use a more specific email!</p>
+        <p className="mt-5 inline-block text-muted-foreground text-sm"><b>Info</b>: If you haven't found the License Key you're looking for, please use a more specific email!</p>
       ) : null}
 
       <DeleteDialog
