@@ -6,7 +6,7 @@ export const metadata = {
   title: 'Create License Key - Prisko Jr Mod',
 };
 
-export default function CreateLicenseKey() {
+export default function LicenseKeyCreatePage() {
   return (
     <>
       <h1 className="text-2xl mb-1 font-bold">Create License Key</h1>

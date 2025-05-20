@@ -6,7 +6,7 @@ export const metadata = {
   title: 'Account Settings - Prisko Jr Mod',
 };
 
-export default function AccountSettings() {
+export default function AccountSettingsPage() {
   return (
     <>
       <h1 className="text-xl mb-7 font-bold">Account Settings</h1>

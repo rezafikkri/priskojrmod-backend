@@ -6,7 +6,7 @@ export const metadata = {
   title: 'Edit License Key - Prisko Jr Mod',
 };
 
-export default async function EditLicenseKey({ params }) {
+export default async function LicenseKeyEditPage({ params }) {
   const { id } = await params;
   return (
     <>

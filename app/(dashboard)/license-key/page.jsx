@@ -4,7 +4,7 @@ export const metadata = {
   title: 'License Key - Prisko Jr Mod',
 };
 
-export default async function LicenseKey() {
+export default async function LicenseKeyListPage() {
   return (
     <>
       <h1 className="text-2xl mb-1 font-bold">License Keys</h1>
