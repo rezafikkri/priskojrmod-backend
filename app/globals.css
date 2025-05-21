@@ -82,7 +82,7 @@
 .dark {
   --background: #171716;
   --foreground: #F6F6F4;
-  --card: #111211;
+  --card: #171716;
   --card-foreground: hsl(0, 0%, 95%);
   --popover: #1B1B19;
   --popover-foreground: hsl(0, 0%, 95%);
