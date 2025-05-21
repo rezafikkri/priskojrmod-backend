@@ -213,7 +213,7 @@ export function EditForm({
                             type="button"
                             id={`donationLink${dl.id}`}
                             variant="secondary"
-                            className={`hover:text-destructive ${isSubmitting ? '' : 'disabled:opacity-100'}`}
+                            className={`hover:text-destructive dark:hover:text-red-500/90 ${isSubmitting ? '' : 'disabled:opacity-100'}`}
                             onClick={() => handleDeleteDonationLink(dl.id)}
                             disabled={isSubmitting}
                           >

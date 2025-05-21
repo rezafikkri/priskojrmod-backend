@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 @plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
@@ -79,24 +80,24 @@
 }
 
 .dark {
-  --background: #111211;
+  --background: #171716;
   --foreground: #F6F6F4;
   --card: #111211;
   --card-foreground: hsl(0, 0%, 95%);
-  --popover: #161816;
+  --popover: #1B1B19;
   --popover-foreground: hsl(0, 0%, 95%);
   --primary: #16a34a;
   --primary-foreground: #F6F6F4;
   --secondary: hsl(240, 3.7%, 15.9%);
   --secondary-foreground: hsl(0, 0%, 98%);
-  --muted: hsl(0, 0%, 15%);
+  --muted: #2B2B29;
   --muted-foreground: hsl(240, 5%, 64.9%);
-  --accent: #222422;
+  --accent: #2B2B29;
   --accent-foreground: hsl(0, 0%, 98%);
   --destructive: #b91c1c;
   --destructive-foreground: hsl(0, 85.7%, 97.3%);
-  --border: #232523;
-  --input: hsl(240, 3.7%, 15.9%);
+  --border: #343432;
+  --input: #2F2F2E;
   --ring: hsl(142.4, 71.8%, 29.2%);
   --chart-1: #16a34a;
   --chart-2: hsl(160, 60%, 45%);
@@ -107,7 +108,7 @@
   --sidebar-foreground: #DFDFE2;
   --sidebar-primary: hsl(224.3 76.3% 48%);
   --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: #191B19;
+  --sidebar-accent: #1C1D1C;
   --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
   --sidebar-border: hsl(240 3.7% 15.9%);
   --sidebar-ring: #22c55e;

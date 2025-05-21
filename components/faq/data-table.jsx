@@ -99,20 +99,19 @@ export default function DataTable({ faqs: data }) {
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="px-1.5">
+            <DropdownMenuContent align="end">
               <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
               <DropdownMenuItem asChild className="text-base py-2 hover:cursor-pointer">
                 <Link href={`/faq/${row.original.id}/edit`}>Edit</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator className="-mx-1.5" />
-              <DropdownMenuItem asChild>
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal text-base h-auto p-2"
-                  onClick={() => handleDelete(row.original.id)}
-                >
+              <DropdownMenuItem
+                className="w-full text-base focus:bg-red-50 dark:focus:bg-red-300/10"
+                asChild
+              >
+                <button onClick={() => handleDelete(row.original.id)}>
                   Delete
-                </Button>
+                </button>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

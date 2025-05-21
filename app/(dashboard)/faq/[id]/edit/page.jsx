@@ -1,6 +1,6 @@
-import FaqForm from "@/components/faq/faq-form";
-import FormSkeleton from "@/components/loadings/form-skeleton";
-import { Suspense } from "react";
+import FaqForm from '@/components/faq/faq-form';
+import FormSkeleton from '@/components/loadings/form-skeleton';
+import { Suspense } from 'react';
 
 export const metadata = {
   title: 'Edit FAQ - Prisko Jr Mod',

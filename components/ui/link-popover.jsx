@@ -7,7 +7,6 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Button } from './button';
-import { PopoverClose } from '@radix-ui/react-popover';
 import { Input } from './input';
 import {
   Trash,
@@ -75,7 +74,7 @@ export default function LinkPopover({
         <div className="flex right-0 top-0 pe-[0.125rem] items-center gap-[0.125rem]">
           <Button
             variant="ghost"
-            className="has-[>svg]:px-2 rounded-t-none rounded-b-none dark:hover:bg-neutral-800"
+            className="has-[>svg]:px-2 rounded-t-none rounded-b-none"
             onClick={setLink}
             disabled={url === ''}
           >
@@ -84,7 +83,7 @@ export default function LinkPopover({
           <Separator orientation="vertical" className="h-7!" />
           <Button
             variant="ghost"
-            className={`has-[>svg]:px-2 rounded-t-none rounded-b-none hover:cursor-pointer ${url === '' ? 'pointer-events-none opacity-50' : ''} dark:hover:bg-neutral-800`}
+            className={`has-[>svg]:px-2 rounded-t-none rounded-b-none hover:cursor-pointer ${url === '' ? 'pointer-events-none opacity-50' : ''}`}
             asChild
           >
             <a
@@ -97,7 +96,7 @@ export default function LinkPopover({
           </Button>
           <Button
             variant="ghost"
-            className="has-[>svg]:px-2 rounded-s-none hover:bg-red-50 dark:hover:bg-red-300/13"
+            className="has-[>svg]:px-2 rounded-s-none hover:bg-red-50 dark:hover:bg-red-300/10"
             disabled={url === ''}
             onClick={() => {
               setUrl('');

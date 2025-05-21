@@ -83,29 +83,29 @@ export default function DataTable({ secretKeys: data }) {
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="px-1.5">
+            <DropdownMenuContent align="end">
               <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
-              <DropdownMenuItem asChild>
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start focus-visible:ring-0 font-normal text-base h-auto py-2"
-                  onClick={() => navigator.clipboard.writeText(row.getValue('key'))}
-                >
+              <DropdownMenuItem
+                className="w-full text-base"
+                asChild
+              >
+                <button onClick={() => navigator.clipboard.writeText(row.getValue('key'))}>
                   Copy Secret Key
-                </Button>
+                </button>
               </DropdownMenuItem>
               <DropdownMenuSeparator className="-mx-1.5" />
-              <DropdownMenuItem asChild>
-                <Button
+              <DropdownMenuItem
+                className="w-full text-base focus:bg-red-50 dark:focus:bg-red-300/10"
+                asChild
+              >
+                <button
                   onClick={() => {
                     setDeleteData({ id: row.original.id, appName: row.getValue('app_name') });
                     setIsOpenDeleteDialog(true);
                   }}
-                  variant="ghost"
-                  className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal text-base h-auto p-2"
                 >
                   Delete
-                </Button>
+                </button>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
