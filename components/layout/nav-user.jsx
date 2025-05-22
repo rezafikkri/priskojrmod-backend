@@ -69,8 +69,8 @@ export function NavUser() {
                     className="size-8 rounded-full"
                   />
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">Reza</span>
-                    <span className="truncate text-xs">fikkri.reza@gmail.com</span>
+                    <span className="truncate font-semibold">{session.user.name}</span>
+                    <span className="truncate text-xs">{session.user.email}</span>
                   </div>
                 </div>
               </DropdownMenuLabel>
