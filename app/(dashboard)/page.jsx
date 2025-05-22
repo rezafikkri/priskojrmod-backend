@@ -3,7 +3,6 @@ import ChartTransactions from '@/components/dashboard/chart-transactions';
 import DashHeader from '@/components/dashboard/dash-header';
 import TopSellingProduct from '@/components/dashboard/top-selling-product';
 import ShopBag from '@/components/icon/shop-bag';
-import { Button } from '@/components/ui/button';
 import {
   Users,
   Package,
@@ -21,8 +20,7 @@ export default function Dashboard() {
         <CardTotal title="Products" total={400} icon={<Package />} />
       </div>
       <ChartTransactions />
-      <TopSellingProduct />
-      <Button className="mt-4">Test Button</Button>
+      {/* <TopSellingProduct /> */}
     </>
   );
 }

@@ -95,32 +95,32 @@ export default function DataTable({
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-50 px-1.5">
+            <DropdownMenuContent align="end" className="min-w-50">
               <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
-              <DropdownMenuItem asChild className="text-base py-2 hover:cursor-pointer">
-                <Link href={`/license-key/edit/${row.original.id}`}>Edit</Link>
+              <DropdownMenuItem asChild className="text-base hover:cursor-pointer">
+                <Link href={`/license-key/${row.original.id}/edit`}>Edit</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start focus-visible:ring-0 font-normal text-base h-auto py-2"
-                  onClick={() => navigator.clipboard.writeText(row.getValue('key'))}
-                >
-                  Copy license key
-                </Button>
+              <DropdownMenuItem
+                className="w-full text-base"
+                asChild
+              >
+                <button onClick={() => navigator.clipboard.writeText(row.getValue('key'))}>
+                  Copy License Key
+                </button>
               </DropdownMenuItem>
               <DropdownMenuSeparator className="-mx-1.5" />
-              <DropdownMenuItem asChild>
-                <Button
+              <DropdownMenuItem
+                className="w-full text-base focus:bg-red-100/70 dark:focus:bg-red-300/10"
+                asChild
+              >
+                <button
                   onClick={() => {
                     setDeleteData({ id: row.original.id, email: row.getValue('email') });
                     setIsOpenDeleteDialog(true);
                   }}
-                  variant="ghost"
-                  className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal text-base h-auto py-2"
                 >
                   Delete
-                </Button>
+                </button>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -218,7 +218,7 @@ export default function DataTable({
       ) : null}
 
       {(searchKey && isTooMany) ? (
-        <p className="mt-5 inline-block text-muted-foreground text-sm"><b>Info</b>: If you haven't found the license key you're looking for, please use a more specific email!</p>
+        <p className="mt-5 inline-block text-muted-foreground text-sm"><b>Info</b>: If you haven't found the License Key you're looking for, please use a more specific email!</p>
       ) : null}
 
       <DeleteDialog

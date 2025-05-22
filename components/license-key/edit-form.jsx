@@ -24,7 +24,7 @@ import { licenseKeyEditSchema } from '@/lib/validators/license-key-validator';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import { Button } from '../ui/button';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ArrowLeft } from 'lucide-react';
 import { editLicenseKey } from '@/actions/license-key-actions';
 import { useQueryClient } from '@tanstack/react-query'
 import { Checkbox } from '@/components/ui/checkbox';
@@ -59,20 +59,20 @@ export default function EditForm({
   const isSubmitting = form.formState.isSubmitting;
 
   async function handleSubmit(data) {
-    const updateRes = await editLicenseKey(data);
+    const editRes = await editLicenseKey(data);
 
-    if (updateRes.status === 'success') {
+    if (editRes.status === 'success') {
       await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] })
       await queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
-      form.setValue('old_key', updateRes.data.key);
-      form.setValue('old_secret_key_id', updateRes.data.secret_key_id);
+      form.setValue('old_key', editRes.data.key);
+      form.setValue('old_secret_key_id', editRes.data.secret_key_id);
       form.setValue('change_expiration_date', false);
-      if (updateRes.data.exp) {
-        setLicenseKeyExpire(dayjs.unix(updateRes.data.exp).format('MMMM DD, YYYY'))
+      if (editRes.data.exp) {
+        setLicenseKeyExpire(dayjs.unix(editRes.data.exp).format('MMMM DD, YYYY'))
       }
-      toast.success('License key was successfully updated.');
+      toast.success('License Key updated successfully.');
     } else {
-      toast.error(updateRes.message);
+      toast.error(editRes.message);
     }
   }
 
@@ -80,9 +80,6 @@ export default function EditForm({
     <>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 lg:max-w-2/3 mb-10">
-          <Input type="hidden" name="id" />
-          <Input type="hidden" name="old_key" />
-          <Input type="hidden" name="old_secret_key_id" />
           <FormItem>
             <FormLabel className="text-base">Email</FormLabel>
             <p>{licenseKey.email}</p>
@@ -183,7 +180,7 @@ export default function EditForm({
                 <div className="space-y-2">
                   <FormLabel className="text-base leading-none">Used For Activate</FormLabel>
                   <FormDescription>
-                    Check this if license key has been used to activate the application.
+                    Check this if the License Key has been used to activate the application.
                   </FormDescription>
                 </div>
               </FormItem>
@@ -204,7 +201,7 @@ export default function EditForm({
                 <div className="space-y-2">
                   <FormLabel className="text-base leading-none">Used For Download</FormLabel>
                   <FormDescription>
-                    Check this if the customer has downloaded the file associated with the application (e.g. Default Addon).
+                    Check this if the customer has downloaded the file associated with the application (e.g., Default Addon).
                   </FormDescription>
                 </div>
               </FormItem>
@@ -224,14 +221,14 @@ export default function EditForm({
                 </FormControl>
                 <div className="space-y-2">
                   <FormLabel className="text-base leading-none">Change Expiration Date</FormLabel>
-                  <FormDescription>Check this if you want to change the license key expiration date, then the expiration date will be added 1 year from the current date, ignore otherwise. For now, the license key will expire on {licenseKeyExpire}.</FormDescription>
+                  <FormDescription>Check this if you want to change the License Key expiration date. The expiration date will then be extended by 1 year from the current date; ignore otherwise. For now, the License Key will expire on {licenseKeyExpire}.</FormDescription>
                 </div>
               </FormItem>
             )}
           />
 
-          <Button asChild variant="outline" className="me-3 mb-0 h-auto text-base px-3 py-1.5">
-            <Link href="/license-key">Back</Link>
+          <Button asChild variant="outline" className="me-3 mb-0 h-auto inline-block text-base px-3 py-1.5">
+            <Link href="/license-key"><ArrowLeft className="icon" /> Back</Link>
           </Button>
           <div className="relative inline-block">
             <Button

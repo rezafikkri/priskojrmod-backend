@@ -29,8 +29,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Mark a migration to rollaback
-        run: pnpm run rollback
-
       - name: Run Migrations
         run: pnpm run deploy

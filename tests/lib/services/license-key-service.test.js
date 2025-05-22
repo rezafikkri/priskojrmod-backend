@@ -80,10 +80,7 @@ describe('createLicenseKey function', () => {
 
     verifySession.mockResolvedValue({ isAuth: true, userId: '123' });
     getSpecificSecretKey.mockResolvedValue({ key: '123' });
-    pjmaDBPrismaClient.LicenseKey.create.mockResolvedValue({
-      secret_key_id: 1n,
-      created_at: 123456789n,
-    });
+    pjmaDBPrismaClient.LicenseKey.create.mockResolvedValue({ secret_key_id: 1n });
 
     await createLicenseKey({
       secret_key_id: '2',
@@ -99,6 +96,7 @@ describe('createLicenseKey function', () => {
         key: 'jsonwebtoken',
         created_at: BigInt(Math.floor(new Date().getTime() / 1000)),
       },
+      select: { id: true },
     });
   });
 });
@@ -210,10 +208,7 @@ describe('deleteLicenseKey function', () => {
 
     expect(pjmaDBPrismaClient.LicenseKey.delete).toHaveBeenCalledWith({
       where: { id: '123' },
-      select: {
-        id: true,
-        email: true,
-      },
+      select: { id: true },
     });
   });
 });
@@ -238,7 +233,7 @@ describe('getLicenseKey function', () => {
     verifySession.mockResolvedValue({ isAuth: true, userId: 'admin-id' });
 
     pjmaDBPrismaClient.LicenseKey.findUnique.mockResolvedValue({
-      id: '1',
+      id: '33c993ad-097f-499d-9899-61186bb31b72',
       secret_key_id: BigInt(123456),
       email: 'test@example.com',
       key: 'fake-key',
@@ -246,10 +241,10 @@ describe('getLicenseKey function', () => {
       used_for_download: false,
     });
 
-    await getLicenseKey('1');
+    await getLicenseKey('33c993ad-097f-499d-9899-61186bb31b72');
 
     expect(pjmaDBPrismaClient.LicenseKey.findUnique).toHaveBeenCalledWith({
-      where: { id: '1' },
+      where: { id: '33c993ad-097f-499d-9899-61186bb31b72' },
       select: {
         id: true,
         secret_key_id: true,

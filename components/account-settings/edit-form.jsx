@@ -75,7 +75,7 @@ export function EditForm({
       if ((!prevDonationLinks[0].id || !prevDonationLinks[1].id) && editRes.data.donation_links) {
         form.setValue('donation_links', generateDonationLinksValues(editRes.data.donation_links));
       }
-      toast.success('Account settings were successfully saved.');
+      toast.success('Account Settings updated successfully.');
     } else {
       toast.error(editRes.message);
     }
@@ -99,7 +99,7 @@ export function EditForm({
       );
       linkInput.removeAttribute('disabled');
       setDeleteState(null);
-      toast.success('Donation link was successfully deleted.');
+      toast.success('Donation Link deleted successfully.');
     } else {
       linkInput.removeAttribute('disabled');
       setDeleteState(null);
@@ -163,7 +163,7 @@ export function EditForm({
                 <FormControl>
                   <Input disabled={isSubmitting} {...field} className="shadow-none md:text-base h-auto px-3 py-1.5" />
                 </FormControl>
-                <FormDescription>Enter url of picture.</FormDescription>
+                <FormDescription>Enter the URL of the picture.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -189,7 +189,7 @@ export function EditForm({
 
           <div className="space-y-5.5 my-8">
             <h3 className="text-lg font-bold mb-0">Donation Links</h3>
-            <h2 className="text-zinc-700 dark:text-zinc-300/80">Donation links are used for free products. They replace the buy button on the product details page.</h2>
+            <h2 className="text-zinc-700 dark:text-zinc-300/80">Donation Links are used for free products and replace the Buy button on the product details page.</h2>
 
             {donationLinks.map((dl, index) => (
               <FormField
@@ -213,7 +213,7 @@ export function EditForm({
                             type="button"
                             id={`donationLink${dl.id}`}
                             variant="secondary"
-                            className={`hover:text-destructive ${isSubmitting ? '' : 'disabled:opacity-100'}`}
+                            className={`hover:text-destructive dark:hover:text-red-500/90 ${isSubmitting ? '' : 'disabled:opacity-100'}`}
                             onClick={() => handleDeleteDonationLink(dl.id)}
                             disabled={isSubmitting}
                           >

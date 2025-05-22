@@ -42,6 +42,9 @@ export default function DataTable({ secretKeys: data }) {
 
     const removeRes = await removeSecretKey(deleteData.id);
 
+    targetRow.classList.remove('opacity-50');
+    targetActionBtn.removeAttribute('disabled');
+    
     if (removeRes.status === 'success') {
       setSecretKeys(secretKeys.filter(s => {
         return s.id !== deleteData.id;
@@ -51,8 +54,6 @@ export default function DataTable({ secretKeys: data }) {
       });
     } else {
       toast.error(removeRes.message, { id: toastId });
-      targetRow.classList.remove('opacity-50');
-      targetActionBtn.removeAttribute('disabled');
     }
   }
 
@@ -82,29 +83,29 @@ export default function DataTable({ secretKeys: data }) {
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="px-1.5">
+            <DropdownMenuContent align="end">
               <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
-              <DropdownMenuItem asChild>
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start focus-visible:ring-0 font-normal text-base h-auto py-2"
-                  onClick={() => navigator.clipboard.writeText(row.getValue('key'))}
-                >
-                  Copy secret key
-                </Button>
+              <DropdownMenuItem
+                className="w-full text-base"
+                asChild
+              >
+                <button onClick={() => navigator.clipboard.writeText(row.getValue('key'))}>
+                  Copy Secret Key
+                </button>
               </DropdownMenuItem>
               <DropdownMenuSeparator className="-mx-1.5" />
-              <DropdownMenuItem asChild>
-                <Button
+              <DropdownMenuItem
+                className="w-full text-base focus:bg-red-100/70 dark:focus:bg-red-300/10"
+                asChild
+              >
+                <button
                   onClick={() => {
                     setDeleteData({ id: row.original.id, appName: row.getValue('app_name') });
                     setIsOpenDeleteDialog(true);
                   }}
-                  variant="ghost"
-                  className="w-full justify-start focus-visible:ring-0 focus:bg-red-50 dark:focus:bg-red-300/8 font-normal text-base h-auto p-2"
                 >
                   Delete
-                </Button>
+                </button>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -165,6 +166,12 @@ export default function DataTable({ secretKeys: data }) {
           </TableBody>
         </Table>
       </div>
+
+      {secretKeys.length > 0 && (
+        <p className="text-muted-foreground mt-4">
+          {secretKeys.length} {secretKeys.length === 1 ? 'result' : 'results'}
+        </p>
+      )}
 
       <DeleteDialog
         onDelete={handleDelete}

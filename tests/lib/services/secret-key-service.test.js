@@ -11,7 +11,6 @@ import {
   deleteSecretKey,
   getSecretKeys,
   getSpecificSecretKey,
-  getSpecificSecretKeys,
 } from '@/lib/services/secret-key-service';
 
 beforeAll(() => {
@@ -62,10 +61,7 @@ describe('createSecretKey function', () => {
     const pjmaDBPrismaClient = (await import('@/lib/pjma-prisma-client')).default;
 
     verifySession.mockResolvedValue({ isAuth: true, userId: '123' });
-    pjmaDBPrismaClient.SecretKeyLicense.create.mockResolvedValue({
-      id: 1n,
-      created_at: 123456789n,
-    });
+    pjmaDBPrismaClient.SecretKeyLicense.create.mockResolvedValue({ id: 1n });
 
     await createSecretKey({
       key: '8f23fcc4c918eb26c991b3950c79a243a6b0d683c2e58e0d31fc367b652e2b05',
@@ -79,6 +75,7 @@ describe('createSecretKey function', () => {
         product_id: 'uuidv7',
         created_at: BigInt(Math.floor(new Date().getTime() / 1000)),
       },
+      select: { id: true },
     });
 
     vi.useRealTimers();
