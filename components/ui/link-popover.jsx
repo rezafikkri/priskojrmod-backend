@@ -96,7 +96,7 @@ export default function LinkPopover({
           </Button>
           <Button
             variant="ghost"
-            className="has-[>svg]:px-2 rounded-s-none hover:bg-red-50 dark:hover:bg-red-300/10"
+            className="has-[>svg]:px-2 rounded-s-none hover:bg-red-100/70 dark:hover:bg-red-300/10"
             disabled={url === ''}
             onClick={() => {
               setUrl('');

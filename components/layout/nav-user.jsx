@@ -85,7 +85,7 @@ export function NavUser() {
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                className="w-full focus:bg-red-50 dark:focus:bg-red-300/10"
+                className="w-full focus:bg-red-100/70 dark:focus:bg-red-300/10"
                 asChild
               >
                 <button onClick={() => signOut({ callbackUrl: '/signin' })}>
