@@ -185,13 +185,6 @@ model ProductPrice {
   @@map("product_prices")
 }
 
-model AboutUs {
-  id      Int    @id @default(autoincrement()) @db.SmallInt
-  content String
-
-  @@map("about_us")
-}
-
 model PrivacyPolicy {
   id         Int    @id @default(autoincrement()) @db.SmallInt
   content    String
@@ -208,6 +201,30 @@ model TermAndCondition {
   @@map("terms_and_conditions")
 }
 
+enum Language {
+  ID
+  EN
+}
+
+model AboutUs {
+  id      Int    @id @default(autoincrement()) @db.SmallInt
+
+  translations    AboutUsTranslation[]
+
+  @@map("about_us")
+}
+
+model AboutUsTranslation {
+  id            Int @id @default(autoincrement()) @db.SmallInt
+  about_us_id   Int @db.SmallInt
+  language      Language
+  content       String
+
+  about_us      AboutUs @relation(fields: [about_us_id], references: [id], onDelete: Cascade)
+
+  @@map("about_us_translations")
+}
+
 model Faq {
   id         Int    @id @default(autoincrement())
   created_at BigInt
@@ -217,13 +234,8 @@ model Faq {
   @@map("faqs")
 }
 
-enum Language {
-  ID
-  EN
-}
-
 model FaqTranslation {
-  id       Int      @id @default(autoincrement()) @db.SmallInt
+  id       Int      @id @default(autoincrement())
   faq_id   Int
   language Language
   title    String   @db.VarChar(150)

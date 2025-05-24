@@ -44,7 +44,7 @@ const items = {
     subItems: [
       { title: 'Terms of Service', url: '/toc', },
       { title: 'Privacy Policy', url: '/pp' },
-      { title: 'About Us', url: '/about' },
+      { title: 'About Us', url: '/about-us' },
       { title: 'FAQs', url: '/faq' },
     ],
   },
