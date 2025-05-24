@@ -1,5 +1,7 @@
+import { getAboutUs } from '@/lib/services/about-us-service';
 import EditForm from './edit-form';
 
 export default async function AboutUsForm() {
-  return <EditForm mode="edit" />
+  const aboutUs = await getAboutUs();
+  return <EditForm aboutUs={aboutUs} />
 }

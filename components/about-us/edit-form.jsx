@@ -11,30 +11,68 @@ import { Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import FormLanguageToggle from '../ui/form-language-toggle';
 import ContentInput from '../ui/content-input';
+import { aboutUsSchema } from '@/lib/validators/about-us-validator';
+import { addAboutUs, editAboutUs } from '@/actions/about-us-actions';
+import { toast } from 'sonner';
 
-export default function EditForm({ mode }) {
-  const form = useForm({
-    // resolver: zodResolver(),
-    defaultValues: {
+export default function EditForm({ aboutUs }) {
+  const [hasAboutUs, setHasAboutUs] = useState(aboutUs !== null);
+  // generate form default values
+  let defaultValues = {
+    content: {
       id: '',
-      content: {
-        id: '',
-        en: '',
-      },
+      en: '',
     },
+  };
+  if (aboutUs) {
+    defaultValues = {
+      id: aboutUs.id,
+      translationId: {
+        id: aboutUs.translations.id.id,
+        en: aboutUs.translations.id.en,
+      },
+      content: {
+        id: aboutUs.translations.content.id,
+        en: aboutUs.translations.content.en,
+      },
+    };
+  }
+
+  const form = useForm({
+    resolver: zodResolver(aboutUsSchema),
+    defaultValues,
   });
 
   const [activeLang, setActiveLang] = useState('id');
   const { isSubmitting, errors } = form.formState;
 
   async function handleSubmit(data) {
-    console.dir(data);
-    // const editRes = await editFaq(data);
-    // if (editRes.status === 'success') {
-    //   toast.success('FAQ updated successfully.');
-    // } else {
-    //   toast.error(editRes.message);
-    // }
+    const saveRes = hasAboutUs
+      ? await editAboutUs(data)
+      : await addAboutUs(data);
+
+    if (saveRes.status === 'success') {
+      let successMessage;
+      if (hasAboutUs) {
+        successMessage = 'About Us updated successfully.';
+      } else {
+        successMessage = 'About Us created successfully.';
+
+        // set id to form
+        form.register('id');
+        form.register('translationId.id');
+        form.register('translationId.en');
+        form.setValue('id', saveRes.data.id);
+        form.setValue('translationId.id', saveRes.data.translations.id.id);
+        form.setValue('translationId.en', saveRes.data.translations.id.en);
+        
+        setHasAboutUs(true);
+      }
+
+      toast.success(successMessage);
+    } else {
+      toast.error(saveRes.message);
+    }
   }
 
   return (
@@ -77,7 +115,7 @@ export default function EditForm({ mode }) {
               disabled={isSubmitting}
             >
               <span className={isSubmitting ? 'opacity-0' : ''}>
-                {mode === 'edit' ? 'Update' : 'Create'}
+                {hasAboutUs ? 'Update' : 'Create'}
               </span>
             </Button>
             {isSubmitting && 
