@@ -60,7 +60,7 @@ export default function DataTable({ faqs: data }) {
 
   const columns = useMemo(() => [
     {
-      accessorKey: `translations.${titleLang}.title`,
+      accessorKey: `translations.title.${titleLang}`,
       header: () => (
         <>
           <span>Title</span>
