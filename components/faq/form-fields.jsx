@@ -10,19 +10,7 @@ import { Loader2, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
 import TitleInput from './title-input';
 import ContentInput from './content-input';
-
-function hasOtherSectionError(errors, activeLang) {
-  if (errors.title && errors.content) {
-    if (!errors.title[activeLang] && !errors.content[activeLang]) {
-      return true;
-    }
-  } else if (errors.title && !errors.content && !errors.title[activeLang]) {
-    return true;
-  } else if (errors.content && !errors.title && !errors.content[activeLang]) {
-    return true;
-  }
-  return false;
-}
+import FormLanguageToggle from '../ui/form-language-toggle';
 
 export default function FormFields({
   mode,
@@ -35,30 +23,7 @@ export default function FormFields({
   
   return (
     <>
-      <div className="space-y-2 mb-6">
-        <div className="flex space-x-2 mb-2">
-          <Button
-            variant="ghost"
-            className={activeLang === 'id' ? 'bg-accent' : ''}
-            onClick={() => setActiveLang('id')}
-          >
-            Indonesia
-          </Button>
-          <Button
-            variant="ghost"
-            className={activeLang === 'en' ? 'bg-accent' : ''}
-            onClick={() => setActiveLang('en')}
-          >
-            English
-          </Button>
-        </div>
-        <p className="text-sm text-muted-foreground">Select a language to enter the content.</p>
-        {hasOtherSectionError(errors, activeLang) && (
-          <p className="text-destructive text-sm">
-            There are errors in the {activeLang === 'id' ? 'English' : 'Indonesian'} section.
-          </p>
-        )}
-      </div>
+      <FormLanguageToggle activeLang={activeLang} onToggle={setActiveLang} errors={errors} />
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 lg:max-w-2/3 mb-10">
