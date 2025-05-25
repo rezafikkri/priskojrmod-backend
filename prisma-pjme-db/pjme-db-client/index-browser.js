@@ -282,8 +282,8 @@ exports.PriceType = exports.$Enums.PriceType = {
 };
 
 exports.Language = exports.$Enums.Language = {
-  ID: 'ID',
-  EN: 'EN'
+  id: 'id',
+  en: 'en'
 };
 
 exports.Prisma.ModelName = {

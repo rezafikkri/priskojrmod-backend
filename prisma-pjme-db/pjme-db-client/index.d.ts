@@ -125,8 +125,8 @@ export type PriceType = (typeof PriceType)[keyof typeof PriceType]
 
 
 export const Language: {
-  ID: 'ID',
-  EN: 'EN'
+  id: 'id',
+  en: 'en'
 };
 
 export type Language = (typeof Language)[keyof typeof Language]

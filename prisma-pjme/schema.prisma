@@ -202,8 +202,9 @@ model TermAndCondition {
 }
 
 enum Language {
-  ID
-  EN
+  id
+  en
+  @@map("language")
 }
 
 model AboutUs {
