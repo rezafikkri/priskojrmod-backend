@@ -9,8 +9,8 @@ import { Button } from '../ui/button';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
 import TitleInput from './title-input';
-import ContentInput from './content-input';
 import FormLanguageToggle from '../ui/form-language-toggle';
+import ContentInput from '../ui/content-input';
 
 export default function FormFields({
   mode,
