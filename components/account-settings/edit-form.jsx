@@ -19,24 +19,25 @@ import { editAccount, removeDonationLink } from '@/actions/account-settings-acti
 import { toast } from 'sonner';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
+import { CurrencyCode } from '@/constants/enums';
 
 function generateDonationLinksValues(donationLinks) {
   if (donationLinks.length === 2) return donationLinks;
   if (donationLinks.length < 2 && donationLinks.length > 0) {
-    if (donationLinks[0].currency_code === 'IDR') {
+    if (donationLinks[0].currency_code === CurrencyCode.IDR) {
       return [
         ...donationLinks,
-        { link: '', currency_code: 'USD' },
+        { link: '', currency_code: CurrencyCode.USD },
       ];
     }
     return [
-      { link: '', currency_code: 'IDR' },
+      { link: '', currency_code: CurrencyCode.IDR },
       ...donationLinks,
     ];
   }
   return [
-    { link: '', currency_code: 'IDR' },
-    { link: '', currency_code: 'USD' },
+    { link: '', currency_code: CurrencyCode.IDR },
+    { link: '', currency_code: CurrencyCode.USD },
   ];
 }
 

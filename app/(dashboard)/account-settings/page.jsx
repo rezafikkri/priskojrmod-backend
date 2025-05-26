@@ -1,6 +1,6 @@
-import AccountSettingsForm from "@/components/account-settings/account-settings-form";
-import FormSkeleton from "@/components/loadings/form-skeleton";
-import { Suspense } from "react";
+import AccountSettingsForm from '@/components/account-settings/account-settings-form';
+import FormSkeleton from '@/components/loadings/form-skeleton';
+import { Suspense } from 'react';
 
 export const metadata = {
   title: 'Account Settings - Prisko Jr Mod',

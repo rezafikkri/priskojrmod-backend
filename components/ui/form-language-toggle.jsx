@@ -1,3 +1,4 @@
+import { Language } from '@/constants/enums';
 import { Button } from './button';
 
 function hasOtherSectionError(errors, activeLang) {
@@ -23,15 +24,15 @@ export default function FormLanguageToggle({
       <div className="flex space-x-2 mb-2">
         <Button
           variant="ghost"
-          className={activeLang === 'id' ? 'bg-accent' : ''}
-          onClick={() => onToggle('id')}
+          className={activeLang === Language.ID ? 'bg-accent' : ''}
+          onClick={() => onToggle(Language.ID)}
         >
           Indonesia
         </Button>
         <Button
           variant="ghost"
-          className={activeLang === 'en' ? 'bg-accent' : ''}
-          onClick={() => onToggle('en')}
+          className={activeLang === Language.EN ? 'bg-accent' : ''}
+          onClick={() => onToggle(Language.EN)}
         >
           English
         </Button>
@@ -39,7 +40,7 @@ export default function FormLanguageToggle({
       <p className="text-sm text-muted-foreground">Select a language to enter the content.</p>
       {hasOtherSectionError(errors, activeLang) && (
         <p className="text-destructive text-sm">
-          There are errors in the {activeLang === 'id' ? 'English' : 'Indonesian'} section.
+          There are errors in the {activeLang === Language.ID ? 'English' : 'Indonesian'} section.
         </p>
       )}
     </div>

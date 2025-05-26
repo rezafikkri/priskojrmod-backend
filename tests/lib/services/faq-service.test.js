@@ -26,6 +26,10 @@ beforeAll(() => {
         delete: vi.fn(),
         update: vi.fn(),
       },
+      $transaction: vi.fn(),
+      FaqTranslation: {
+        update: vi.fn(),
+      },
     },
   }));
 });
@@ -123,15 +127,16 @@ describe('deleteFaq function', () => {
 });
 
 describe('updateFaq function', () => {
-  it('Should call verifySession function, not call pjmeDBPrismaClient.Faq.update function and throw Error with "Unauthenticated" message', async () => {
+  it('Should call verifySession function, not call pjmeDBPrismaClient.AboutUs.$transaction and pjmeDBPrismaClient.AboutUs.update function and throw Error with "Unauthenticated" message', async () => {
     const verifySession = (await import('@/lib/verifySession')).default;
     const pjmeDBPrismaClient = (await import('@/lib/pjme-prisma-client')).default;
 
-    verifySession.mockResolvedValue(null);
+    verifySession.mockResolvedValue(false);
 
     await expect(updateFaq({})).rejects.toThrow('Unauthenticated');
 
     expect(verifySession).toHaveBeenCalled();
+    expect(pjmeDBPrismaClient.$transaction).not.toHaveBeenCalled();
     expect(pjmeDBPrismaClient.Faq.update).not.toHaveBeenCalled();
   });
 
@@ -157,27 +162,21 @@ describe('updateFaq function', () => {
       },
     });
 
-    expect(pjmeDBPrismaClient.Faq.update).toHaveBeenCalledWith({
-      where: { id: 123 },
+    expect(pjmeDBPrismaClient.$transaction).toHaveBeenCalled();
+    expect(pjmeDBPrismaClient.FaqTranslation.update).toBeCalledTimes(2);
+    expect(pjmeDBPrismaClient.FaqTranslation.update).toHaveBeenCalledWith({
+      where: { id: 1, faq_id: 123 },
       data: {
-        translations: {
-          update: [
-            {
-              data: {
-                title: 'Judul ID',
-                content: 'Konten ID',
-              },
-              where: { id: 1 },
-            },
-            {
-              data: {
-                title: 'Title EN',
-                content: 'Content EN',
-              },
-              where: { id: 2 },
-            },
-          ],
-        },
+        title: 'Judul ID',
+        content: 'Konten ID',
+      },
+      select: { id: true },
+    });
+    expect(pjmeDBPrismaClient.FaqTranslation.update).toHaveBeenCalledWith({
+      where: { id: 2, faq_id: 123 },
+      data: {
+        title: 'Title EN',
+        content: 'Content EN',
       },
       select: { id: true },
     });

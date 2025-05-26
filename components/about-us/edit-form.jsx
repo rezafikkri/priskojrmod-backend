@@ -14,6 +14,7 @@ import ContentInput from '../ui/content-input';
 import { aboutUsSchema } from '@/lib/validators/about-us-validator';
 import { addAboutUs, editAboutUs } from '@/actions/about-us-actions';
 import { toast } from 'sonner';
+import { Language } from '@/constants/enums';
 
 export default function EditForm({ aboutUs }) {
   const [hasAboutUs, setHasAboutUs] = useState(aboutUs !== null);
@@ -43,7 +44,7 @@ export default function EditForm({ aboutUs }) {
     defaultValues,
   });
 
-  const [activeLang, setActiveLang] = useState('id');
+  const [activeLang, setActiveLang] = useState(Language.ID);
   const { isSubmitting, errors } = form.formState;
 
   async function handleSubmit(data) {
@@ -81,28 +82,28 @@ export default function EditForm({ aboutUs }) {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 lg:max-w-2/3 mb-10">
-          {activeLang === 'id' && (
+          {activeLang === Language.ID && (
             <FormField
               control={form.control}
-              name="content.id"
+              name={`content.${Language.ID}`}
               render={({ field, formState }) => (
                 <ContentInput
                   field={field}
                   formState={formState}
-                  activeLang="id"
+                  activeLang={Language.ID}
                 />
               )}
             />
           )}
-          {activeLang === 'en' && (
+          {activeLang === Language.EN && (
             <FormField
               control={form.control}
-              name="content.en"
+              name={`content.${Language.EN}`}
               render={({ field, formState }) => (
                 <ContentInput
                   field={field}
                   formState={formState}
-                  activeLang="en"
+                  activeLang={Language.EN}
                 />
               )}
             />

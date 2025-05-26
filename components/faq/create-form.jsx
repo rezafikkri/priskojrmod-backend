@@ -3,14 +3,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useRef } from 'react';
-import { faqSchema } from '@/lib/validators/faq-validator';
+import { createFaqSchema } from '@/lib/validators/faq-validator';
 import { addFaq } from '@/actions/faq-actions';
 import { toast } from 'sonner';
 import FormFields from './form-fields';
 
 export default function CreateForm() {
   const form = useForm({
-    resolver: zodResolver(faqSchema),
+    resolver: zodResolver(createFaqSchema),
     defaultValues: {
       title: {
         id: '',

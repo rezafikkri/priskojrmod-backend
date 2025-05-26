@@ -14,15 +14,15 @@ export default function EditForm({ faq }) {
       id: faq.id,
       translationId: {
         id: faq.translations.id.id,
-        en: faq.translations.en.id,
+        en: faq.translations.id.en,
       },
       title: {
-        id: faq.translations.id.title,
-        en: faq.translations.en.title,
+        id: faq.translations.title.id,
+        en: faq.translations.title.en,
       },
       content: {
-        id: faq.translations.id.content,
-        en: faq.translations.en.content,
+        id: faq.translations.content.id,
+        en: faq.translations.content.en,
       },
     },
   });

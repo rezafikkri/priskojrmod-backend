@@ -20,7 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
-import { licenseKeyEditSchema } from '@/lib/validators/license-key-validator';
+import { editLicenseKeySchema } from '@/lib/validators/license-key-validator';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import { Button } from '../ui/button';
@@ -42,7 +42,7 @@ export default function EditForm({
   });
 
   const form = useForm({
-    resolver: zodResolver(licenseKeyEditSchema),
+    resolver: zodResolver(editLicenseKeySchema),
     defaultValues: {
       id: licenseKey.id,
       old_key: licenseKey.key,

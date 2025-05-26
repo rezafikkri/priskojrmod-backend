@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from '@/components/ui/table';
 
 const topSellingProducts = [
   { name: 'Sony WH-1000XM4', price: 'IDR 1.013.115', quantity: '116', amount: 'IDR 117.521.340' },

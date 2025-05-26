@@ -35,6 +35,8 @@ model Admin {
 enum CurrencyCode {
   IDR
   USD
+
+  @@map("currency_code")
 }
 
 model DonationLink {
@@ -96,6 +98,8 @@ model Category {
 enum PriceType {
   paid
   free
+
+  @@map("price_type")
 }
 
 model Product {
@@ -202,8 +206,9 @@ model TermAndCondition {
 }
 
 enum Language {
-  ID
-  EN
+  id
+  en
+  @@map("language")
 }
 
 model AboutUs {

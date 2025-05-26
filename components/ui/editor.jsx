@@ -41,6 +41,7 @@ export default function Editor({
   isResetEditor,
 }) {
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       Document,
       Paragraph,

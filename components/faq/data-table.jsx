@@ -28,10 +28,11 @@ import { MoreHorizontal } from 'lucide-react';
 import { toast } from 'sonner';
 import { removeFaq } from '@/actions/faq-actions';
 import Link from 'next/link';
+import { Language } from '@/constants/enums';
 
 export default function DataTable({ faqs: data }) {
   const [faqs, setFaqs] = useState(data);
-  const [titleLang, setTitleLang] = useState('id');
+  const [titleLang, setTitleLang] = useState(Language.ID);
 
   async function handleDelete(id) {
     const targetRow = document.querySelector(`#row${id}`);
@@ -60,22 +61,22 @@ export default function DataTable({ faqs: data }) {
 
   const columns = useMemo(() => [
     {
-      accessorKey: `translations.${titleLang}.title`,
+      accessorKey: `translations.title.${titleLang}`,
       header: () => (
         <>
           <span>Title</span>
           <div className="ms-4 inline-block space-x-1">
             <Button
               variant="outline"
-              className={`px-2 py-0.5 text-xs h-auto shadow-none ${titleLang === 'id' ? 'text-accent-foreground bg-accent' : ''}`}
-              onClick={() => setTitleLang('id')}
+              className={`px-2 py-0.5 text-xs h-auto shadow-none ${titleLang === Language.ID ? 'text-accent-foreground bg-accent' : ''}`}
+              onClick={() => setTitleLang(Language.ID)}
             >
               ID
             </Button>
             <Button
               variant="outline"
-              className={`px-2 py-0.5 text-xs h-auto shadow-none ${titleLang === 'en' ? 'text-accent-foreground bg-accent' : ''}`}
-              onClick={() => setTitleLang('en')}
+              className={`px-2 py-0.5 text-xs h-auto shadow-none ${titleLang === Language.EN ? 'text-accent-foreground bg-accent' : ''}`}
+              onClick={() => setTitleLang(Language.EN)}
             >
               EN
             </Button>
