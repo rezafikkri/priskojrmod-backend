@@ -20,7 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
-import { licenseKeySchema } from '@/lib/validators/license-key-validator';
+import { createLicenseKeySchema } from '@/lib/validators/license-key-validator';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import { Button } from '../ui/button';
@@ -35,7 +35,7 @@ export default function CreateForm({
   const queryClient = useQueryClient()
 
   const form = useForm({
-    resolver: zodResolver(licenseKeySchema),
+    resolver: zodResolver(createLicenseKeySchema),
     defaultValues: {
       secret_key_id: '',
       email: '',
