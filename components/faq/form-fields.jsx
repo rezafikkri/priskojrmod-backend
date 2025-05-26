@@ -11,6 +11,7 @@ import { useState } from 'react';
 import TitleInput from './title-input';
 import FormLanguageToggle from '../ui/form-language-toggle';
 import ContentInput from '../ui/content-input';
+import { Language } from '@/constants/enums';
 
 export default function FormFields({
   mode,
@@ -18,7 +19,7 @@ export default function FormFields({
   onSubmit,
   isResetEditor,
 }) {
-  const [activeLang, setActiveLang] = useState('id');
+  const [activeLang, setActiveLang] = useState(Language.ID);
   const { isSubmitting, errors } = form.formState;
   
   return (
@@ -27,46 +28,46 @@ export default function FormFields({
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 lg:max-w-2/3 mb-10">
-          {activeLang === 'id' && (
+          {activeLang === Language.ID && (
             <>
               <FormField
                 control={form.control}
-                name={`title.id`}
+                name={`title.${Language.ID}`}
                 render={({ field, formState }) => (
-                  <TitleInput field={field} formState={formState} activeLang="id" />
+                  <TitleInput field={field} formState={formState} activeLang={Language.ID} />
                 )}
               />
               <FormField
                 control={form.control}
-                name="content.id"
+                name={`content.${Language.ID}`}
                 render={({ field, formState }) => (
                   <ContentInput
                     field={field}
                     formState={formState}
-                    activeLang="id"
+                    activeLang={Language.ID}
                     {...(isResetEditor && { isResetEditor })}
                   />
                 )}
               />
             </>
           )}
-          {activeLang === 'en' && (
+          {activeLang === Language.EN && (
             <>
               <FormField
                 control={form.control}
-                name={`title.en`}
+                name={`title.${Language.EN}`}
                 render={({ field, formState }) => (
-                  <TitleInput field={field} formState={formState} activeLang="en" />
+                  <TitleInput field={field} formState={formState} activeLang={Language.EN} />
                 )}
               />
               <FormField
                 control={form.control}
-                name="content.en"
+                name={`content.${Language.EN}`}
                 render={({ field, formState }) => (
                   <ContentInput
                     field={field}
                     formState={formState}
-                    activeLang="en"
+                    activeLang={Language.EN}
                     {...(isResetEditor && { isResetEditor })}
                   />
                 )}
