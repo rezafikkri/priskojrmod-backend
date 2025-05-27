@@ -221,16 +221,22 @@ exports.Prisma.ProductPriceScalarFieldEnum = {
   price: 'price'
 };
 
-exports.Prisma.PrivacyPolicyScalarFieldEnum = {
+exports.Prisma.TermAndConditionScalarFieldEnum = {
   id: 'id',
   content: 'content',
   updated_at: 'updated_at'
 };
 
-exports.Prisma.TermAndConditionScalarFieldEnum = {
+exports.Prisma.PrivacyPolicyScalarFieldEnum = {
   id: 'id',
-  content: 'content',
   updated_at: 'updated_at'
+};
+
+exports.Prisma.PrivacyPolicyTranslationScalarFieldEnum = {
+  id: 'id',
+  privacy_policy_id: 'privacy_policy_id',
+  language: 'language',
+  content: 'content'
 };
 
 exports.Prisma.AboutUsScalarFieldEnum = {
@@ -299,8 +305,9 @@ exports.Prisma.ModelName = {
   ProductImage: 'ProductImage',
   ProductVariant: 'ProductVariant',
   ProductPrice: 'ProductPrice',
-  PrivacyPolicy: 'PrivacyPolicy',
   TermAndCondition: 'TermAndCondition',
+  PrivacyPolicy: 'PrivacyPolicy',
+  PrivacyPolicyTranslation: 'PrivacyPolicyTranslation',
   AboutUs: 'AboutUs',
   AboutUsTranslation: 'AboutUsTranslation',
   Faq: 'Faq',
