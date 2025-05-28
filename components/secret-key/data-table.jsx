@@ -14,7 +14,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useMemo, useState } from 'react';
-import dayjs from 'dayjs';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,6 +27,7 @@ import { MoreHorizontal } from 'lucide-react';
 import { toast } from 'sonner';
 import { removeSecretKey } from '@/actions/secret-key-actions';
 import DeleteDialog from './delete-dialog';
+import { formatDateTimeWIB } from '@/lib/format-date';
 
 export default function DataTable({ secretKeys: data }) {
   const [secretKeys, setSecretKeys] = useState(data);
@@ -70,7 +70,7 @@ export default function DataTable({ secretKeys: data }) {
     {
       accessorKey: 'created_at',
       header: () => 'Created At',
-      cell: ({ row }) => dayjs.unix(row.getValue('created_at')).format('MM-DD-YYYY hh:mm A'),
+      cell: ({ row }) => formatDateTimeWIB(row.getValue('created_at')),
     },
     {
       id: 'actions',
