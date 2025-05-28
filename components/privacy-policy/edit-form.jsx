@@ -13,8 +13,12 @@ import { Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import FormLanguageToggle from '../ui/form-language-toggle';
 import ContentInput from '../ui/content-input';
+import { privacyPolicySchema } from '@/lib/validators/privacy-policy-validator';
+import { addPrivacyPolicy, editPrivacyPolicy } from '@/actions/privacy-policy-actions';
+import { formatDateTimeWIB } from '@/lib/format-date';
 
 export default function EditForm({ privacyPolicy }) {
+  const [updatedAt, setUpdatedAt] = useState(privacyPolicy?.updated_at);
   const [hasPrivacyPolicy, setHasPrivacyPolicy] = useState(privacyPolicy !== null);
   // generate form default values
   let defaultValues = {
@@ -38,7 +42,7 @@ export default function EditForm({ privacyPolicy }) {
   }
 
   const form = useForm({
-    // resolver: zodResolver(aboutUsSchema),
+    resolver: zodResolver(privacyPolicySchema),
     defaultValues,
   });
 
@@ -46,33 +50,34 @@ export default function EditForm({ privacyPolicy }) {
   const { isSubmitting, errors } = form.formState;
 
   async function handleSubmit(data) {
-    console.dir(data);
-    // const saveRes = hasAboutUs
-    //   ? await editAboutUs(data)
-    //   : await addAboutUs(data);
-    //
-    // if (saveRes.status === 'success') {
-    //   let successMessage;
-    //   if (hasAboutUs) {
-    //     successMessage = 'About Us updated successfully.';
-    //   } else {
-    //     successMessage = 'About Us created successfully.';
-    //
-    //     // set id to form
-    //     form.register('id');
-    //     form.register('translationId.id');
-    //     form.register('translationId.en');
-    //     form.setValue('id', saveRes.data.id);
-    //     form.setValue('translationId.id', saveRes.data.translations.id.id);
-    //     form.setValue('translationId.en', saveRes.data.translations.id.en);
-    //     
-    //     setHasAboutUs(true);
-    //   }
-    //
-    //   toast.success(successMessage);
-    // } else {
-    //   toast.error(saveRes.message);
-    // }
+    const saveRes = hasPrivacyPolicy
+      ? await editPrivacyPolicy(data)
+      : await addPrivacyPolicy(data);
+
+    if (saveRes.status === 'success') {
+      let successMessage;
+      if (hasPrivacyPolicy) {
+        successMessage = 'Privacy Policy updated successfully.';
+        setUpdatedAt(saveRes.data.updated_at);
+      } else {
+        successMessage = 'Privacy Policy created successfully.';
+
+        // set id to form
+        form.register('id');
+        form.register('translationId.id');
+        form.register('translationId.en');
+        form.setValue('id', saveRes.data.id);
+        form.setValue('translationId.id', saveRes.data.translations.id.id);
+        form.setValue('translationId.en', saveRes.data.translations.id.en);
+
+        setUpdatedAt(saveRes.data.updated_at);
+        setHasPrivacyPolicy(true);
+      }
+
+      toast.success(successMessage);
+    } else {
+      toast.error(saveRes.message);
+    }
   }
 
   return (
@@ -110,7 +115,7 @@ export default function EditForm({ privacyPolicy }) {
 
           {hasPrivacyPolicy && (
             <p className="text-sm text-muted-foreground">
-              Last updated: May 26, 2025
+              Last updated: {formatDateTimeWIB(updatedAt)}
             </p>
           )}
 

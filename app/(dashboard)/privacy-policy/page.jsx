@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Provacy Policy - Prisko Jr Mod',
+  title: 'Privacy Policy - Prisko Jr Mod',
 };
 
 export default function PrivacyPolicyPage() {
