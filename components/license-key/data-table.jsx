@@ -26,9 +26,9 @@ import { Button } from '../ui/button';
 import { MoreHorizontal } from 'lucide-react';
 import { Check } from 'lucide-react';
 import Dot from '../icon/Dot';
-import dayjs from 'dayjs';
 import DeleteDialog from './delete-dialog';
 import Link from 'next/link';
+import { formatDateTimeWIB } from '@/lib/format-date';
 
 export default function DataTable({
   licenseKey: {
@@ -82,7 +82,7 @@ export default function DataTable({
     {
       accessorKey: 'created_at',
       header: () => 'Created At',
-      cell: ({ row }) => dayjs.unix(row.getValue('created_at')).format('MM-DD-YYYY hh:mm A'),
+      cell: ({ row }) => formatDateTimeWIB(row.getValue('created_at')),
     },
     {
       id: 'actions',

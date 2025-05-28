@@ -74,15 +74,20 @@ export type ProductVariant = $Result.DefaultSelection<Prisma.$ProductVariantPayl
  */
 export type ProductPrice = $Result.DefaultSelection<Prisma.$ProductPricePayload>
 /**
+ * Model TermAndCondition
+ * 
+ */
+export type TermAndCondition = $Result.DefaultSelection<Prisma.$TermAndConditionPayload>
+/**
  * Model PrivacyPolicy
  * 
  */
 export type PrivacyPolicy = $Result.DefaultSelection<Prisma.$PrivacyPolicyPayload>
 /**
- * Model TermAndCondition
+ * Model PrivacyPolicyTranslation
  * 
  */
-export type TermAndCondition = $Result.DefaultSelection<Prisma.$TermAndConditionPayload>
+export type PrivacyPolicyTranslation = $Result.DefaultSelection<Prisma.$PrivacyPolicyTranslationPayload>
 /**
  * Model AboutUs
  * 
@@ -391,6 +396,16 @@ export class PrismaClient<
   get productPrice(): Prisma.ProductPriceDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.termAndCondition`: Exposes CRUD operations for the **TermAndCondition** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TermAndConditions
+    * const termAndConditions = await prisma.termAndCondition.findMany()
+    * ```
+    */
+  get termAndCondition(): Prisma.TermAndConditionDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.privacyPolicy`: Exposes CRUD operations for the **PrivacyPolicy** model.
     * Example usage:
     * ```ts
@@ -401,14 +416,14 @@ export class PrismaClient<
   get privacyPolicy(): Prisma.PrivacyPolicyDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.termAndCondition`: Exposes CRUD operations for the **TermAndCondition** model.
+   * `prisma.privacyPolicyTranslation`: Exposes CRUD operations for the **PrivacyPolicyTranslation** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more TermAndConditions
-    * const termAndConditions = await prisma.termAndCondition.findMany()
+    * // Fetch zero or more PrivacyPolicyTranslations
+    * const privacyPolicyTranslations = await prisma.privacyPolicyTranslation.findMany()
     * ```
     */
-  get termAndCondition(): Prisma.TermAndConditionDelegate<ExtArgs, ClientOptions>;
+  get privacyPolicyTranslation(): Prisma.PrivacyPolicyTranslationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.aboutUs`: Exposes CRUD operations for the **AboutUs** model.
@@ -901,8 +916,9 @@ export namespace Prisma {
     ProductImage: 'ProductImage',
     ProductVariant: 'ProductVariant',
     ProductPrice: 'ProductPrice',
-    PrivacyPolicy: 'PrivacyPolicy',
     TermAndCondition: 'TermAndCondition',
+    PrivacyPolicy: 'PrivacyPolicy',
+    PrivacyPolicyTranslation: 'PrivacyPolicyTranslation',
     AboutUs: 'AboutUs',
     AboutUsTranslation: 'AboutUsTranslation',
     Faq: 'Faq',
@@ -925,7 +941,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "donationLink" | "owner" | "customer" | "license" | "category" | "product" | "productDiscount" | "productCoupon" | "productImage" | "productVariant" | "productPrice" | "privacyPolicy" | "termAndCondition" | "aboutUs" | "aboutUsTranslation" | "faq" | "faqTranslation"
+      modelProps: "admin" | "donationLink" | "owner" | "customer" | "license" | "category" | "product" | "productDiscount" | "productCoupon" | "productImage" | "productVariant" | "productPrice" | "termAndCondition" | "privacyPolicy" | "privacyPolicyTranslation" | "aboutUs" | "aboutUsTranslation" | "faq" | "faqTranslation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1817,6 +1833,80 @@ export namespace Prisma {
           }
         }
       }
+      TermAndCondition: {
+        payload: Prisma.$TermAndConditionPayload<ExtArgs>
+        fields: Prisma.TermAndConditionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TermAndConditionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TermAndConditionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+          }
+          findFirst: {
+            args: Prisma.TermAndConditionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TermAndConditionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+          }
+          findMany: {
+            args: Prisma.TermAndConditionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
+          }
+          create: {
+            args: Prisma.TermAndConditionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+          }
+          createMany: {
+            args: Prisma.TermAndConditionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TermAndConditionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
+          }
+          delete: {
+            args: Prisma.TermAndConditionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+          }
+          update: {
+            args: Prisma.TermAndConditionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+          }
+          deleteMany: {
+            args: Prisma.TermAndConditionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TermAndConditionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TermAndConditionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
+          }
+          upsert: {
+            args: Prisma.TermAndConditionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+          }
+          aggregate: {
+            args: Prisma.TermAndConditionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTermAndCondition>
+          }
+          groupBy: {
+            args: Prisma.TermAndConditionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TermAndConditionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TermAndConditionCountArgs<ExtArgs>
+            result: $Utils.Optional<TermAndConditionCountAggregateOutputType> | number
+          }
+        }
+      }
       PrivacyPolicy: {
         payload: Prisma.$PrivacyPolicyPayload<ExtArgs>
         fields: Prisma.PrivacyPolicyFieldRefs
@@ -1891,77 +1981,77 @@ export namespace Prisma {
           }
         }
       }
-      TermAndCondition: {
-        payload: Prisma.$TermAndConditionPayload<ExtArgs>
-        fields: Prisma.TermAndConditionFieldRefs
+      PrivacyPolicyTranslation: {
+        payload: Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>
+        fields: Prisma.PrivacyPolicyTranslationFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TermAndConditionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload> | null
+            args: Prisma.PrivacyPolicyTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PrivacyPolicyTranslationPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TermAndConditionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.PrivacyPolicyTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PrivacyPolicyTranslationPayload>
           }
           findFirst: {
-            args: Prisma.TermAndConditionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload> | null
+            args: Prisma.PrivacyPolicyTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PrivacyPolicyTranslationPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TermAndConditionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.PrivacyPolicyTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PrivacyPolicyTranslationPayload>
           }
           findMany: {
-            args: Prisma.TermAndConditionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
+            args: Prisma.PrivacyPolicyTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PrivacyPolicyTranslationPayload>[]
           }
           create: {
-            args: Prisma.TermAndConditionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.PrivacyPolicyTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PrivacyPolicyTranslationPayload>
           }
           createMany: {
-            args: Prisma.TermAndConditionCreateManyArgs<ExtArgs>
+            args: Prisma.PrivacyPolicyTranslationCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.TermAndConditionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
+            args: Prisma.PrivacyPolicyTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PrivacyPolicyTranslationPayload>[]
           }
           delete: {
-            args: Prisma.TermAndConditionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.PrivacyPolicyTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PrivacyPolicyTranslationPayload>
           }
           update: {
-            args: Prisma.TermAndConditionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.PrivacyPolicyTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PrivacyPolicyTranslationPayload>
           }
           deleteMany: {
-            args: Prisma.TermAndConditionDeleteManyArgs<ExtArgs>
+            args: Prisma.PrivacyPolicyTranslationDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.TermAndConditionUpdateManyArgs<ExtArgs>
+            args: Prisma.PrivacyPolicyTranslationUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.TermAndConditionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
+            args: Prisma.PrivacyPolicyTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PrivacyPolicyTranslationPayload>[]
           }
           upsert: {
-            args: Prisma.TermAndConditionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.PrivacyPolicyTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PrivacyPolicyTranslationPayload>
           }
           aggregate: {
-            args: Prisma.TermAndConditionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTermAndCondition>
+            args: Prisma.PrivacyPolicyTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePrivacyPolicyTranslation>
           }
           groupBy: {
-            args: Prisma.TermAndConditionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TermAndConditionGroupByOutputType>[]
+            args: Prisma.PrivacyPolicyTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PrivacyPolicyTranslationGroupByOutputType>[]
           }
           count: {
-            args: Prisma.TermAndConditionCountArgs<ExtArgs>
-            result: $Utils.Optional<TermAndConditionCountAggregateOutputType> | number
+            args: Prisma.PrivacyPolicyTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<PrivacyPolicyTranslationCountAggregateOutputType> | number
           }
         }
       }
@@ -2357,8 +2447,9 @@ export namespace Prisma {
     productImage?: ProductImageOmit
     productVariant?: ProductVariantOmit
     productPrice?: ProductPriceOmit
-    privacyPolicy?: PrivacyPolicyOmit
     termAndCondition?: TermAndConditionOmit
+    privacyPolicy?: PrivacyPolicyOmit
+    privacyPolicyTranslation?: PrivacyPolicyTranslationOmit
     aboutUs?: AboutUsOmit
     aboutUsTranslation?: AboutUsTranslationOmit
     faq?: FaqOmit
@@ -2653,6 +2744,37 @@ export namespace Prisma {
    */
   export type ProductVariantCountOutputTypeCountProduct_pricesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductPriceWhereInput
+  }
+
+
+  /**
+   * Count Type PrivacyPolicyCountOutputType
+   */
+
+  export type PrivacyPolicyCountOutputType = {
+    translations: number
+  }
+
+  export type PrivacyPolicyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | PrivacyPolicyCountOutputTypeCountTranslationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PrivacyPolicyCountOutputType without action
+   */
+  export type PrivacyPolicyCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyCountOutputType
+     */
+    select?: PrivacyPolicyCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PrivacyPolicyCountOutputType without action
+   */
+  export type PrivacyPolicyCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PrivacyPolicyTranslationWhereInput
   }
 
 
@@ -16019,1013 +16141,6 @@ export namespace Prisma {
 
 
   /**
-   * Model PrivacyPolicy
-   */
-
-  export type AggregatePrivacyPolicy = {
-    _count: PrivacyPolicyCountAggregateOutputType | null
-    _avg: PrivacyPolicyAvgAggregateOutputType | null
-    _sum: PrivacyPolicySumAggregateOutputType | null
-    _min: PrivacyPolicyMinAggregateOutputType | null
-    _max: PrivacyPolicyMaxAggregateOutputType | null
-  }
-
-  export type PrivacyPolicyAvgAggregateOutputType = {
-    id: number | null
-    updated_at: number | null
-  }
-
-  export type PrivacyPolicySumAggregateOutputType = {
-    id: number | null
-    updated_at: bigint | null
-  }
-
-  export type PrivacyPolicyMinAggregateOutputType = {
-    id: number | null
-    content: string | null
-    updated_at: bigint | null
-  }
-
-  export type PrivacyPolicyMaxAggregateOutputType = {
-    id: number | null
-    content: string | null
-    updated_at: bigint | null
-  }
-
-  export type PrivacyPolicyCountAggregateOutputType = {
-    id: number
-    content: number
-    updated_at: number
-    _all: number
-  }
-
-
-  export type PrivacyPolicyAvgAggregateInputType = {
-    id?: true
-    updated_at?: true
-  }
-
-  export type PrivacyPolicySumAggregateInputType = {
-    id?: true
-    updated_at?: true
-  }
-
-  export type PrivacyPolicyMinAggregateInputType = {
-    id?: true
-    content?: true
-    updated_at?: true
-  }
-
-  export type PrivacyPolicyMaxAggregateInputType = {
-    id?: true
-    content?: true
-    updated_at?: true
-  }
-
-  export type PrivacyPolicyCountAggregateInputType = {
-    id?: true
-    content?: true
-    updated_at?: true
-    _all?: true
-  }
-
-  export type PrivacyPolicyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PrivacyPolicy to aggregate.
-     */
-    where?: PrivacyPolicyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PrivacyPolicies to fetch.
-     */
-    orderBy?: PrivacyPolicyOrderByWithRelationInput | PrivacyPolicyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PrivacyPolicyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PrivacyPolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PrivacyPolicies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned PrivacyPolicies
-    **/
-    _count?: true | PrivacyPolicyCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PrivacyPolicyAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PrivacyPolicySumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PrivacyPolicyMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PrivacyPolicyMaxAggregateInputType
-  }
-
-  export type GetPrivacyPolicyAggregateType<T extends PrivacyPolicyAggregateArgs> = {
-        [P in keyof T & keyof AggregatePrivacyPolicy]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePrivacyPolicy[P]>
-      : GetScalarType<T[P], AggregatePrivacyPolicy[P]>
-  }
-
-
-
-
-  export type PrivacyPolicyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PrivacyPolicyWhereInput
-    orderBy?: PrivacyPolicyOrderByWithAggregationInput | PrivacyPolicyOrderByWithAggregationInput[]
-    by: PrivacyPolicyScalarFieldEnum[] | PrivacyPolicyScalarFieldEnum
-    having?: PrivacyPolicyScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PrivacyPolicyCountAggregateInputType | true
-    _avg?: PrivacyPolicyAvgAggregateInputType
-    _sum?: PrivacyPolicySumAggregateInputType
-    _min?: PrivacyPolicyMinAggregateInputType
-    _max?: PrivacyPolicyMaxAggregateInputType
-  }
-
-  export type PrivacyPolicyGroupByOutputType = {
-    id: number
-    content: string
-    updated_at: bigint
-    _count: PrivacyPolicyCountAggregateOutputType | null
-    _avg: PrivacyPolicyAvgAggregateOutputType | null
-    _sum: PrivacyPolicySumAggregateOutputType | null
-    _min: PrivacyPolicyMinAggregateOutputType | null
-    _max: PrivacyPolicyMaxAggregateOutputType | null
-  }
-
-  type GetPrivacyPolicyGroupByPayload<T extends PrivacyPolicyGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PrivacyPolicyGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PrivacyPolicyGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PrivacyPolicyGroupByOutputType[P]>
-            : GetScalarType<T[P], PrivacyPolicyGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PrivacyPolicySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    content?: boolean
-    updated_at?: boolean
-  }, ExtArgs["result"]["privacyPolicy"]>
-
-  export type PrivacyPolicySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    content?: boolean
-    updated_at?: boolean
-  }, ExtArgs["result"]["privacyPolicy"]>
-
-  export type PrivacyPolicySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    content?: boolean
-    updated_at?: boolean
-  }, ExtArgs["result"]["privacyPolicy"]>
-
-  export type PrivacyPolicySelectScalar = {
-    id?: boolean
-    content?: boolean
-    updated_at?: boolean
-  }
-
-  export type PrivacyPolicyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "updated_at", ExtArgs["result"]["privacyPolicy"]>
-
-  export type $PrivacyPolicyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "PrivacyPolicy"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      content: string
-      updated_at: bigint
-    }, ExtArgs["result"]["privacyPolicy"]>
-    composites: {}
-  }
-
-  type PrivacyPolicyGetPayload<S extends boolean | null | undefined | PrivacyPolicyDefaultArgs> = $Result.GetResult<Prisma.$PrivacyPolicyPayload, S>
-
-  type PrivacyPolicyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PrivacyPolicyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PrivacyPolicyCountAggregateInputType | true
-    }
-
-  export interface PrivacyPolicyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PrivacyPolicy'], meta: { name: 'PrivacyPolicy' } }
-    /**
-     * Find zero or one PrivacyPolicy that matches the filter.
-     * @param {PrivacyPolicyFindUniqueArgs} args - Arguments to find a PrivacyPolicy
-     * @example
-     * // Get one PrivacyPolicy
-     * const privacyPolicy = await prisma.privacyPolicy.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PrivacyPolicyFindUniqueArgs>(args: SelectSubset<T, PrivacyPolicyFindUniqueArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one PrivacyPolicy that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PrivacyPolicyFindUniqueOrThrowArgs} args - Arguments to find a PrivacyPolicy
-     * @example
-     * // Get one PrivacyPolicy
-     * const privacyPolicy = await prisma.privacyPolicy.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PrivacyPolicyFindUniqueOrThrowArgs>(args: SelectSubset<T, PrivacyPolicyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first PrivacyPolicy that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PrivacyPolicyFindFirstArgs} args - Arguments to find a PrivacyPolicy
-     * @example
-     * // Get one PrivacyPolicy
-     * const privacyPolicy = await prisma.privacyPolicy.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PrivacyPolicyFindFirstArgs>(args?: SelectSubset<T, PrivacyPolicyFindFirstArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first PrivacyPolicy that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PrivacyPolicyFindFirstOrThrowArgs} args - Arguments to find a PrivacyPolicy
-     * @example
-     * // Get one PrivacyPolicy
-     * const privacyPolicy = await prisma.privacyPolicy.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PrivacyPolicyFindFirstOrThrowArgs>(args?: SelectSubset<T, PrivacyPolicyFindFirstOrThrowArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more PrivacyPolicies that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PrivacyPolicyFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all PrivacyPolicies
-     * const privacyPolicies = await prisma.privacyPolicy.findMany()
-     * 
-     * // Get first 10 PrivacyPolicies
-     * const privacyPolicies = await prisma.privacyPolicy.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const privacyPolicyWithIdOnly = await prisma.privacyPolicy.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends PrivacyPolicyFindManyArgs>(args?: SelectSubset<T, PrivacyPolicyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a PrivacyPolicy.
-     * @param {PrivacyPolicyCreateArgs} args - Arguments to create a PrivacyPolicy.
-     * @example
-     * // Create one PrivacyPolicy
-     * const PrivacyPolicy = await prisma.privacyPolicy.create({
-     *   data: {
-     *     // ... data to create a PrivacyPolicy
-     *   }
-     * })
-     * 
-     */
-    create<T extends PrivacyPolicyCreateArgs>(args: SelectSubset<T, PrivacyPolicyCreateArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many PrivacyPolicies.
-     * @param {PrivacyPolicyCreateManyArgs} args - Arguments to create many PrivacyPolicies.
-     * @example
-     * // Create many PrivacyPolicies
-     * const privacyPolicy = await prisma.privacyPolicy.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PrivacyPolicyCreateManyArgs>(args?: SelectSubset<T, PrivacyPolicyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many PrivacyPolicies and returns the data saved in the database.
-     * @param {PrivacyPolicyCreateManyAndReturnArgs} args - Arguments to create many PrivacyPolicies.
-     * @example
-     * // Create many PrivacyPolicies
-     * const privacyPolicy = await prisma.privacyPolicy.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many PrivacyPolicies and only return the `id`
-     * const privacyPolicyWithIdOnly = await prisma.privacyPolicy.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PrivacyPolicyCreateManyAndReturnArgs>(args?: SelectSubset<T, PrivacyPolicyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a PrivacyPolicy.
-     * @param {PrivacyPolicyDeleteArgs} args - Arguments to delete one PrivacyPolicy.
-     * @example
-     * // Delete one PrivacyPolicy
-     * const PrivacyPolicy = await prisma.privacyPolicy.delete({
-     *   where: {
-     *     // ... filter to delete one PrivacyPolicy
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PrivacyPolicyDeleteArgs>(args: SelectSubset<T, PrivacyPolicyDeleteArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one PrivacyPolicy.
-     * @param {PrivacyPolicyUpdateArgs} args - Arguments to update one PrivacyPolicy.
-     * @example
-     * // Update one PrivacyPolicy
-     * const privacyPolicy = await prisma.privacyPolicy.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PrivacyPolicyUpdateArgs>(args: SelectSubset<T, PrivacyPolicyUpdateArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more PrivacyPolicies.
-     * @param {PrivacyPolicyDeleteManyArgs} args - Arguments to filter PrivacyPolicies to delete.
-     * @example
-     * // Delete a few PrivacyPolicies
-     * const { count } = await prisma.privacyPolicy.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PrivacyPolicyDeleteManyArgs>(args?: SelectSubset<T, PrivacyPolicyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more PrivacyPolicies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PrivacyPolicyUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many PrivacyPolicies
-     * const privacyPolicy = await prisma.privacyPolicy.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PrivacyPolicyUpdateManyArgs>(args: SelectSubset<T, PrivacyPolicyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more PrivacyPolicies and returns the data updated in the database.
-     * @param {PrivacyPolicyUpdateManyAndReturnArgs} args - Arguments to update many PrivacyPolicies.
-     * @example
-     * // Update many PrivacyPolicies
-     * const privacyPolicy = await prisma.privacyPolicy.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more PrivacyPolicies and only return the `id`
-     * const privacyPolicyWithIdOnly = await prisma.privacyPolicy.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends PrivacyPolicyUpdateManyAndReturnArgs>(args: SelectSubset<T, PrivacyPolicyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one PrivacyPolicy.
-     * @param {PrivacyPolicyUpsertArgs} args - Arguments to update or create a PrivacyPolicy.
-     * @example
-     * // Update or create a PrivacyPolicy
-     * const privacyPolicy = await prisma.privacyPolicy.upsert({
-     *   create: {
-     *     // ... data to create a PrivacyPolicy
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the PrivacyPolicy we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PrivacyPolicyUpsertArgs>(args: SelectSubset<T, PrivacyPolicyUpsertArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of PrivacyPolicies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PrivacyPolicyCountArgs} args - Arguments to filter PrivacyPolicies to count.
-     * @example
-     * // Count the number of PrivacyPolicies
-     * const count = await prisma.privacyPolicy.count({
-     *   where: {
-     *     // ... the filter for the PrivacyPolicies we want to count
-     *   }
-     * })
-    **/
-    count<T extends PrivacyPolicyCountArgs>(
-      args?: Subset<T, PrivacyPolicyCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PrivacyPolicyCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a PrivacyPolicy.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PrivacyPolicyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PrivacyPolicyAggregateArgs>(args: Subset<T, PrivacyPolicyAggregateArgs>): Prisma.PrismaPromise<GetPrivacyPolicyAggregateType<T>>
-
-    /**
-     * Group by PrivacyPolicy.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PrivacyPolicyGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PrivacyPolicyGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PrivacyPolicyGroupByArgs['orderBy'] }
-        : { orderBy?: PrivacyPolicyGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PrivacyPolicyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPrivacyPolicyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the PrivacyPolicy model
-   */
-  readonly fields: PrivacyPolicyFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for PrivacyPolicy.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PrivacyPolicyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the PrivacyPolicy model
-   */
-  interface PrivacyPolicyFieldRefs {
-    readonly id: FieldRef<"PrivacyPolicy", 'Int'>
-    readonly content: FieldRef<"PrivacyPolicy", 'String'>
-    readonly updated_at: FieldRef<"PrivacyPolicy", 'BigInt'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * PrivacyPolicy findUnique
-   */
-  export type PrivacyPolicyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-    /**
-     * Filter, which PrivacyPolicy to fetch.
-     */
-    where: PrivacyPolicyWhereUniqueInput
-  }
-
-  /**
-   * PrivacyPolicy findUniqueOrThrow
-   */
-  export type PrivacyPolicyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-    /**
-     * Filter, which PrivacyPolicy to fetch.
-     */
-    where: PrivacyPolicyWhereUniqueInput
-  }
-
-  /**
-   * PrivacyPolicy findFirst
-   */
-  export type PrivacyPolicyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-    /**
-     * Filter, which PrivacyPolicy to fetch.
-     */
-    where?: PrivacyPolicyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PrivacyPolicies to fetch.
-     */
-    orderBy?: PrivacyPolicyOrderByWithRelationInput | PrivacyPolicyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PrivacyPolicies.
-     */
-    cursor?: PrivacyPolicyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PrivacyPolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PrivacyPolicies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PrivacyPolicies.
-     */
-    distinct?: PrivacyPolicyScalarFieldEnum | PrivacyPolicyScalarFieldEnum[]
-  }
-
-  /**
-   * PrivacyPolicy findFirstOrThrow
-   */
-  export type PrivacyPolicyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-    /**
-     * Filter, which PrivacyPolicy to fetch.
-     */
-    where?: PrivacyPolicyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PrivacyPolicies to fetch.
-     */
-    orderBy?: PrivacyPolicyOrderByWithRelationInput | PrivacyPolicyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PrivacyPolicies.
-     */
-    cursor?: PrivacyPolicyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PrivacyPolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PrivacyPolicies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PrivacyPolicies.
-     */
-    distinct?: PrivacyPolicyScalarFieldEnum | PrivacyPolicyScalarFieldEnum[]
-  }
-
-  /**
-   * PrivacyPolicy findMany
-   */
-  export type PrivacyPolicyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-    /**
-     * Filter, which PrivacyPolicies to fetch.
-     */
-    where?: PrivacyPolicyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PrivacyPolicies to fetch.
-     */
-    orderBy?: PrivacyPolicyOrderByWithRelationInput | PrivacyPolicyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing PrivacyPolicies.
-     */
-    cursor?: PrivacyPolicyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PrivacyPolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PrivacyPolicies.
-     */
-    skip?: number
-    distinct?: PrivacyPolicyScalarFieldEnum | PrivacyPolicyScalarFieldEnum[]
-  }
-
-  /**
-   * PrivacyPolicy create
-   */
-  export type PrivacyPolicyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-    /**
-     * The data needed to create a PrivacyPolicy.
-     */
-    data: XOR<PrivacyPolicyCreateInput, PrivacyPolicyUncheckedCreateInput>
-  }
-
-  /**
-   * PrivacyPolicy createMany
-   */
-  export type PrivacyPolicyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many PrivacyPolicies.
-     */
-    data: PrivacyPolicyCreateManyInput | PrivacyPolicyCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * PrivacyPolicy createManyAndReturn
-   */
-  export type PrivacyPolicyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-    /**
-     * The data used to create many PrivacyPolicies.
-     */
-    data: PrivacyPolicyCreateManyInput | PrivacyPolicyCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * PrivacyPolicy update
-   */
-  export type PrivacyPolicyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-    /**
-     * The data needed to update a PrivacyPolicy.
-     */
-    data: XOR<PrivacyPolicyUpdateInput, PrivacyPolicyUncheckedUpdateInput>
-    /**
-     * Choose, which PrivacyPolicy to update.
-     */
-    where: PrivacyPolicyWhereUniqueInput
-  }
-
-  /**
-   * PrivacyPolicy updateMany
-   */
-  export type PrivacyPolicyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update PrivacyPolicies.
-     */
-    data: XOR<PrivacyPolicyUpdateManyMutationInput, PrivacyPolicyUncheckedUpdateManyInput>
-    /**
-     * Filter which PrivacyPolicies to update
-     */
-    where?: PrivacyPolicyWhereInput
-    /**
-     * Limit how many PrivacyPolicies to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * PrivacyPolicy updateManyAndReturn
-   */
-  export type PrivacyPolicyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-    /**
-     * The data used to update PrivacyPolicies.
-     */
-    data: XOR<PrivacyPolicyUpdateManyMutationInput, PrivacyPolicyUncheckedUpdateManyInput>
-    /**
-     * Filter which PrivacyPolicies to update
-     */
-    where?: PrivacyPolicyWhereInput
-    /**
-     * Limit how many PrivacyPolicies to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * PrivacyPolicy upsert
-   */
-  export type PrivacyPolicyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-    /**
-     * The filter to search for the PrivacyPolicy to update in case it exists.
-     */
-    where: PrivacyPolicyWhereUniqueInput
-    /**
-     * In case the PrivacyPolicy found by the `where` argument doesn't exist, create a new PrivacyPolicy with this data.
-     */
-    create: XOR<PrivacyPolicyCreateInput, PrivacyPolicyUncheckedCreateInput>
-    /**
-     * In case the PrivacyPolicy was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PrivacyPolicyUpdateInput, PrivacyPolicyUncheckedUpdateInput>
-  }
-
-  /**
-   * PrivacyPolicy delete
-   */
-  export type PrivacyPolicyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-    /**
-     * Filter which PrivacyPolicy to delete.
-     */
-    where: PrivacyPolicyWhereUniqueInput
-  }
-
-  /**
-   * PrivacyPolicy deleteMany
-   */
-  export type PrivacyPolicyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PrivacyPolicies to delete
-     */
-    where?: PrivacyPolicyWhereInput
-    /**
-     * Limit how many PrivacyPolicies to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * PrivacyPolicy without action
-   */
-  export type PrivacyPolicyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PrivacyPolicy
-     */
-    select?: PrivacyPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PrivacyPolicy
-     */
-    omit?: PrivacyPolicyOmit<ExtArgs> | null
-  }
-
-
-  /**
    * Model TermAndCondition
    */
 
@@ -18029,6 +17144,2158 @@ export namespace Prisma {
      * Omit specific fields from the TermAndCondition
      */
     omit?: TermAndConditionOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PrivacyPolicy
+   */
+
+  export type AggregatePrivacyPolicy = {
+    _count: PrivacyPolicyCountAggregateOutputType | null
+    _avg: PrivacyPolicyAvgAggregateOutputType | null
+    _sum: PrivacyPolicySumAggregateOutputType | null
+    _min: PrivacyPolicyMinAggregateOutputType | null
+    _max: PrivacyPolicyMaxAggregateOutputType | null
+  }
+
+  export type PrivacyPolicyAvgAggregateOutputType = {
+    id: number | null
+    updated_at: number | null
+  }
+
+  export type PrivacyPolicySumAggregateOutputType = {
+    id: number | null
+    updated_at: bigint | null
+  }
+
+  export type PrivacyPolicyMinAggregateOutputType = {
+    id: number | null
+    updated_at: bigint | null
+  }
+
+  export type PrivacyPolicyMaxAggregateOutputType = {
+    id: number | null
+    updated_at: bigint | null
+  }
+
+  export type PrivacyPolicyCountAggregateOutputType = {
+    id: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type PrivacyPolicyAvgAggregateInputType = {
+    id?: true
+    updated_at?: true
+  }
+
+  export type PrivacyPolicySumAggregateInputType = {
+    id?: true
+    updated_at?: true
+  }
+
+  export type PrivacyPolicyMinAggregateInputType = {
+    id?: true
+    updated_at?: true
+  }
+
+  export type PrivacyPolicyMaxAggregateInputType = {
+    id?: true
+    updated_at?: true
+  }
+
+  export type PrivacyPolicyCountAggregateInputType = {
+    id?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type PrivacyPolicyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PrivacyPolicy to aggregate.
+     */
+    where?: PrivacyPolicyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PrivacyPolicies to fetch.
+     */
+    orderBy?: PrivacyPolicyOrderByWithRelationInput | PrivacyPolicyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PrivacyPolicyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PrivacyPolicies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PrivacyPolicies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PrivacyPolicies
+    **/
+    _count?: true | PrivacyPolicyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PrivacyPolicyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PrivacyPolicySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PrivacyPolicyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PrivacyPolicyMaxAggregateInputType
+  }
+
+  export type GetPrivacyPolicyAggregateType<T extends PrivacyPolicyAggregateArgs> = {
+        [P in keyof T & keyof AggregatePrivacyPolicy]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePrivacyPolicy[P]>
+      : GetScalarType<T[P], AggregatePrivacyPolicy[P]>
+  }
+
+
+
+
+  export type PrivacyPolicyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PrivacyPolicyWhereInput
+    orderBy?: PrivacyPolicyOrderByWithAggregationInput | PrivacyPolicyOrderByWithAggregationInput[]
+    by: PrivacyPolicyScalarFieldEnum[] | PrivacyPolicyScalarFieldEnum
+    having?: PrivacyPolicyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PrivacyPolicyCountAggregateInputType | true
+    _avg?: PrivacyPolicyAvgAggregateInputType
+    _sum?: PrivacyPolicySumAggregateInputType
+    _min?: PrivacyPolicyMinAggregateInputType
+    _max?: PrivacyPolicyMaxAggregateInputType
+  }
+
+  export type PrivacyPolicyGroupByOutputType = {
+    id: number
+    updated_at: bigint
+    _count: PrivacyPolicyCountAggregateOutputType | null
+    _avg: PrivacyPolicyAvgAggregateOutputType | null
+    _sum: PrivacyPolicySumAggregateOutputType | null
+    _min: PrivacyPolicyMinAggregateOutputType | null
+    _max: PrivacyPolicyMaxAggregateOutputType | null
+  }
+
+  type GetPrivacyPolicyGroupByPayload<T extends PrivacyPolicyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PrivacyPolicyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PrivacyPolicyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PrivacyPolicyGroupByOutputType[P]>
+            : GetScalarType<T[P], PrivacyPolicyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PrivacyPolicySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    updated_at?: boolean
+    translations?: boolean | PrivacyPolicy$translationsArgs<ExtArgs>
+    _count?: boolean | PrivacyPolicyCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["privacyPolicy"]>
+
+  export type PrivacyPolicySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["privacyPolicy"]>
+
+  export type PrivacyPolicySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["privacyPolicy"]>
+
+  export type PrivacyPolicySelectScalar = {
+    id?: boolean
+    updated_at?: boolean
+  }
+
+  export type PrivacyPolicyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "updated_at", ExtArgs["result"]["privacyPolicy"]>
+  export type PrivacyPolicyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | PrivacyPolicy$translationsArgs<ExtArgs>
+    _count?: boolean | PrivacyPolicyCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PrivacyPolicyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type PrivacyPolicyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $PrivacyPolicyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PrivacyPolicy"
+    objects: {
+      translations: Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      updated_at: bigint
+    }, ExtArgs["result"]["privacyPolicy"]>
+    composites: {}
+  }
+
+  type PrivacyPolicyGetPayload<S extends boolean | null | undefined | PrivacyPolicyDefaultArgs> = $Result.GetResult<Prisma.$PrivacyPolicyPayload, S>
+
+  type PrivacyPolicyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PrivacyPolicyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PrivacyPolicyCountAggregateInputType | true
+    }
+
+  export interface PrivacyPolicyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PrivacyPolicy'], meta: { name: 'PrivacyPolicy' } }
+    /**
+     * Find zero or one PrivacyPolicy that matches the filter.
+     * @param {PrivacyPolicyFindUniqueArgs} args - Arguments to find a PrivacyPolicy
+     * @example
+     * // Get one PrivacyPolicy
+     * const privacyPolicy = await prisma.privacyPolicy.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PrivacyPolicyFindUniqueArgs>(args: SelectSubset<T, PrivacyPolicyFindUniqueArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PrivacyPolicy that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PrivacyPolicyFindUniqueOrThrowArgs} args - Arguments to find a PrivacyPolicy
+     * @example
+     * // Get one PrivacyPolicy
+     * const privacyPolicy = await prisma.privacyPolicy.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PrivacyPolicyFindUniqueOrThrowArgs>(args: SelectSubset<T, PrivacyPolicyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PrivacyPolicy that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyFindFirstArgs} args - Arguments to find a PrivacyPolicy
+     * @example
+     * // Get one PrivacyPolicy
+     * const privacyPolicy = await prisma.privacyPolicy.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PrivacyPolicyFindFirstArgs>(args?: SelectSubset<T, PrivacyPolicyFindFirstArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PrivacyPolicy that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyFindFirstOrThrowArgs} args - Arguments to find a PrivacyPolicy
+     * @example
+     * // Get one PrivacyPolicy
+     * const privacyPolicy = await prisma.privacyPolicy.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PrivacyPolicyFindFirstOrThrowArgs>(args?: SelectSubset<T, PrivacyPolicyFindFirstOrThrowArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PrivacyPolicies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PrivacyPolicies
+     * const privacyPolicies = await prisma.privacyPolicy.findMany()
+     * 
+     * // Get first 10 PrivacyPolicies
+     * const privacyPolicies = await prisma.privacyPolicy.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const privacyPolicyWithIdOnly = await prisma.privacyPolicy.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PrivacyPolicyFindManyArgs>(args?: SelectSubset<T, PrivacyPolicyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PrivacyPolicy.
+     * @param {PrivacyPolicyCreateArgs} args - Arguments to create a PrivacyPolicy.
+     * @example
+     * // Create one PrivacyPolicy
+     * const PrivacyPolicy = await prisma.privacyPolicy.create({
+     *   data: {
+     *     // ... data to create a PrivacyPolicy
+     *   }
+     * })
+     * 
+     */
+    create<T extends PrivacyPolicyCreateArgs>(args: SelectSubset<T, PrivacyPolicyCreateArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PrivacyPolicies.
+     * @param {PrivacyPolicyCreateManyArgs} args - Arguments to create many PrivacyPolicies.
+     * @example
+     * // Create many PrivacyPolicies
+     * const privacyPolicy = await prisma.privacyPolicy.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PrivacyPolicyCreateManyArgs>(args?: SelectSubset<T, PrivacyPolicyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PrivacyPolicies and returns the data saved in the database.
+     * @param {PrivacyPolicyCreateManyAndReturnArgs} args - Arguments to create many PrivacyPolicies.
+     * @example
+     * // Create many PrivacyPolicies
+     * const privacyPolicy = await prisma.privacyPolicy.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PrivacyPolicies and only return the `id`
+     * const privacyPolicyWithIdOnly = await prisma.privacyPolicy.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PrivacyPolicyCreateManyAndReturnArgs>(args?: SelectSubset<T, PrivacyPolicyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PrivacyPolicy.
+     * @param {PrivacyPolicyDeleteArgs} args - Arguments to delete one PrivacyPolicy.
+     * @example
+     * // Delete one PrivacyPolicy
+     * const PrivacyPolicy = await prisma.privacyPolicy.delete({
+     *   where: {
+     *     // ... filter to delete one PrivacyPolicy
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PrivacyPolicyDeleteArgs>(args: SelectSubset<T, PrivacyPolicyDeleteArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PrivacyPolicy.
+     * @param {PrivacyPolicyUpdateArgs} args - Arguments to update one PrivacyPolicy.
+     * @example
+     * // Update one PrivacyPolicy
+     * const privacyPolicy = await prisma.privacyPolicy.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PrivacyPolicyUpdateArgs>(args: SelectSubset<T, PrivacyPolicyUpdateArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PrivacyPolicies.
+     * @param {PrivacyPolicyDeleteManyArgs} args - Arguments to filter PrivacyPolicies to delete.
+     * @example
+     * // Delete a few PrivacyPolicies
+     * const { count } = await prisma.privacyPolicy.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PrivacyPolicyDeleteManyArgs>(args?: SelectSubset<T, PrivacyPolicyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PrivacyPolicies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PrivacyPolicies
+     * const privacyPolicy = await prisma.privacyPolicy.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PrivacyPolicyUpdateManyArgs>(args: SelectSubset<T, PrivacyPolicyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PrivacyPolicies and returns the data updated in the database.
+     * @param {PrivacyPolicyUpdateManyAndReturnArgs} args - Arguments to update many PrivacyPolicies.
+     * @example
+     * // Update many PrivacyPolicies
+     * const privacyPolicy = await prisma.privacyPolicy.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PrivacyPolicies and only return the `id`
+     * const privacyPolicyWithIdOnly = await prisma.privacyPolicy.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PrivacyPolicyUpdateManyAndReturnArgs>(args: SelectSubset<T, PrivacyPolicyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PrivacyPolicy.
+     * @param {PrivacyPolicyUpsertArgs} args - Arguments to update or create a PrivacyPolicy.
+     * @example
+     * // Update or create a PrivacyPolicy
+     * const privacyPolicy = await prisma.privacyPolicy.upsert({
+     *   create: {
+     *     // ... data to create a PrivacyPolicy
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PrivacyPolicy we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PrivacyPolicyUpsertArgs>(args: SelectSubset<T, PrivacyPolicyUpsertArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PrivacyPolicies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyCountArgs} args - Arguments to filter PrivacyPolicies to count.
+     * @example
+     * // Count the number of PrivacyPolicies
+     * const count = await prisma.privacyPolicy.count({
+     *   where: {
+     *     // ... the filter for the PrivacyPolicies we want to count
+     *   }
+     * })
+    **/
+    count<T extends PrivacyPolicyCountArgs>(
+      args?: Subset<T, PrivacyPolicyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PrivacyPolicyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PrivacyPolicy.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PrivacyPolicyAggregateArgs>(args: Subset<T, PrivacyPolicyAggregateArgs>): Prisma.PrismaPromise<GetPrivacyPolicyAggregateType<T>>
+
+    /**
+     * Group by PrivacyPolicy.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PrivacyPolicyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PrivacyPolicyGroupByArgs['orderBy'] }
+        : { orderBy?: PrivacyPolicyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PrivacyPolicyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPrivacyPolicyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PrivacyPolicy model
+   */
+  readonly fields: PrivacyPolicyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PrivacyPolicy.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PrivacyPolicyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    translations<T extends PrivacyPolicy$translationsArgs<ExtArgs> = {}>(args?: Subset<T, PrivacyPolicy$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PrivacyPolicy model
+   */
+  interface PrivacyPolicyFieldRefs {
+    readonly id: FieldRef<"PrivacyPolicy", 'Int'>
+    readonly updated_at: FieldRef<"PrivacyPolicy", 'BigInt'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PrivacyPolicy findUnique
+   */
+  export type PrivacyPolicyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyInclude<ExtArgs> | null
+    /**
+     * Filter, which PrivacyPolicy to fetch.
+     */
+    where: PrivacyPolicyWhereUniqueInput
+  }
+
+  /**
+   * PrivacyPolicy findUniqueOrThrow
+   */
+  export type PrivacyPolicyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyInclude<ExtArgs> | null
+    /**
+     * Filter, which PrivacyPolicy to fetch.
+     */
+    where: PrivacyPolicyWhereUniqueInput
+  }
+
+  /**
+   * PrivacyPolicy findFirst
+   */
+  export type PrivacyPolicyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyInclude<ExtArgs> | null
+    /**
+     * Filter, which PrivacyPolicy to fetch.
+     */
+    where?: PrivacyPolicyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PrivacyPolicies to fetch.
+     */
+    orderBy?: PrivacyPolicyOrderByWithRelationInput | PrivacyPolicyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PrivacyPolicies.
+     */
+    cursor?: PrivacyPolicyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PrivacyPolicies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PrivacyPolicies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PrivacyPolicies.
+     */
+    distinct?: PrivacyPolicyScalarFieldEnum | PrivacyPolicyScalarFieldEnum[]
+  }
+
+  /**
+   * PrivacyPolicy findFirstOrThrow
+   */
+  export type PrivacyPolicyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyInclude<ExtArgs> | null
+    /**
+     * Filter, which PrivacyPolicy to fetch.
+     */
+    where?: PrivacyPolicyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PrivacyPolicies to fetch.
+     */
+    orderBy?: PrivacyPolicyOrderByWithRelationInput | PrivacyPolicyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PrivacyPolicies.
+     */
+    cursor?: PrivacyPolicyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PrivacyPolicies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PrivacyPolicies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PrivacyPolicies.
+     */
+    distinct?: PrivacyPolicyScalarFieldEnum | PrivacyPolicyScalarFieldEnum[]
+  }
+
+  /**
+   * PrivacyPolicy findMany
+   */
+  export type PrivacyPolicyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyInclude<ExtArgs> | null
+    /**
+     * Filter, which PrivacyPolicies to fetch.
+     */
+    where?: PrivacyPolicyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PrivacyPolicies to fetch.
+     */
+    orderBy?: PrivacyPolicyOrderByWithRelationInput | PrivacyPolicyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PrivacyPolicies.
+     */
+    cursor?: PrivacyPolicyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PrivacyPolicies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PrivacyPolicies.
+     */
+    skip?: number
+    distinct?: PrivacyPolicyScalarFieldEnum | PrivacyPolicyScalarFieldEnum[]
+  }
+
+  /**
+   * PrivacyPolicy create
+   */
+  export type PrivacyPolicyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PrivacyPolicy.
+     */
+    data: XOR<PrivacyPolicyCreateInput, PrivacyPolicyUncheckedCreateInput>
+  }
+
+  /**
+   * PrivacyPolicy createMany
+   */
+  export type PrivacyPolicyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PrivacyPolicies.
+     */
+    data: PrivacyPolicyCreateManyInput | PrivacyPolicyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PrivacyPolicy createManyAndReturn
+   */
+  export type PrivacyPolicyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * The data used to create many PrivacyPolicies.
+     */
+    data: PrivacyPolicyCreateManyInput | PrivacyPolicyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PrivacyPolicy update
+   */
+  export type PrivacyPolicyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PrivacyPolicy.
+     */
+    data: XOR<PrivacyPolicyUpdateInput, PrivacyPolicyUncheckedUpdateInput>
+    /**
+     * Choose, which PrivacyPolicy to update.
+     */
+    where: PrivacyPolicyWhereUniqueInput
+  }
+
+  /**
+   * PrivacyPolicy updateMany
+   */
+  export type PrivacyPolicyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PrivacyPolicies.
+     */
+    data: XOR<PrivacyPolicyUpdateManyMutationInput, PrivacyPolicyUncheckedUpdateManyInput>
+    /**
+     * Filter which PrivacyPolicies to update
+     */
+    where?: PrivacyPolicyWhereInput
+    /**
+     * Limit how many PrivacyPolicies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PrivacyPolicy updateManyAndReturn
+   */
+  export type PrivacyPolicyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * The data used to update PrivacyPolicies.
+     */
+    data: XOR<PrivacyPolicyUpdateManyMutationInput, PrivacyPolicyUncheckedUpdateManyInput>
+    /**
+     * Filter which PrivacyPolicies to update
+     */
+    where?: PrivacyPolicyWhereInput
+    /**
+     * Limit how many PrivacyPolicies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PrivacyPolicy upsert
+   */
+  export type PrivacyPolicyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PrivacyPolicy to update in case it exists.
+     */
+    where: PrivacyPolicyWhereUniqueInput
+    /**
+     * In case the PrivacyPolicy found by the `where` argument doesn't exist, create a new PrivacyPolicy with this data.
+     */
+    create: XOR<PrivacyPolicyCreateInput, PrivacyPolicyUncheckedCreateInput>
+    /**
+     * In case the PrivacyPolicy was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PrivacyPolicyUpdateInput, PrivacyPolicyUncheckedUpdateInput>
+  }
+
+  /**
+   * PrivacyPolicy delete
+   */
+  export type PrivacyPolicyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyInclude<ExtArgs> | null
+    /**
+     * Filter which PrivacyPolicy to delete.
+     */
+    where: PrivacyPolicyWhereUniqueInput
+  }
+
+  /**
+   * PrivacyPolicy deleteMany
+   */
+  export type PrivacyPolicyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PrivacyPolicies to delete
+     */
+    where?: PrivacyPolicyWhereInput
+    /**
+     * Limit how many PrivacyPolicies to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PrivacyPolicy.translations
+   */
+  export type PrivacyPolicy$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationInclude<ExtArgs> | null
+    where?: PrivacyPolicyTranslationWhereInput
+    orderBy?: PrivacyPolicyTranslationOrderByWithRelationInput | PrivacyPolicyTranslationOrderByWithRelationInput[]
+    cursor?: PrivacyPolicyTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PrivacyPolicyTranslationScalarFieldEnum | PrivacyPolicyTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * PrivacyPolicy without action
+   */
+  export type PrivacyPolicyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicy
+     */
+    select?: PrivacyPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicy
+     */
+    omit?: PrivacyPolicyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PrivacyPolicyTranslation
+   */
+
+  export type AggregatePrivacyPolicyTranslation = {
+    _count: PrivacyPolicyTranslationCountAggregateOutputType | null
+    _avg: PrivacyPolicyTranslationAvgAggregateOutputType | null
+    _sum: PrivacyPolicyTranslationSumAggregateOutputType | null
+    _min: PrivacyPolicyTranslationMinAggregateOutputType | null
+    _max: PrivacyPolicyTranslationMaxAggregateOutputType | null
+  }
+
+  export type PrivacyPolicyTranslationAvgAggregateOutputType = {
+    id: number | null
+    privacy_policy_id: number | null
+  }
+
+  export type PrivacyPolicyTranslationSumAggregateOutputType = {
+    id: number | null
+    privacy_policy_id: number | null
+  }
+
+  export type PrivacyPolicyTranslationMinAggregateOutputType = {
+    id: number | null
+    privacy_policy_id: number | null
+    language: $Enums.Language | null
+    content: string | null
+  }
+
+  export type PrivacyPolicyTranslationMaxAggregateOutputType = {
+    id: number | null
+    privacy_policy_id: number | null
+    language: $Enums.Language | null
+    content: string | null
+  }
+
+  export type PrivacyPolicyTranslationCountAggregateOutputType = {
+    id: number
+    privacy_policy_id: number
+    language: number
+    content: number
+    _all: number
+  }
+
+
+  export type PrivacyPolicyTranslationAvgAggregateInputType = {
+    id?: true
+    privacy_policy_id?: true
+  }
+
+  export type PrivacyPolicyTranslationSumAggregateInputType = {
+    id?: true
+    privacy_policy_id?: true
+  }
+
+  export type PrivacyPolicyTranslationMinAggregateInputType = {
+    id?: true
+    privacy_policy_id?: true
+    language?: true
+    content?: true
+  }
+
+  export type PrivacyPolicyTranslationMaxAggregateInputType = {
+    id?: true
+    privacy_policy_id?: true
+    language?: true
+    content?: true
+  }
+
+  export type PrivacyPolicyTranslationCountAggregateInputType = {
+    id?: true
+    privacy_policy_id?: true
+    language?: true
+    content?: true
+    _all?: true
+  }
+
+  export type PrivacyPolicyTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PrivacyPolicyTranslation to aggregate.
+     */
+    where?: PrivacyPolicyTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PrivacyPolicyTranslations to fetch.
+     */
+    orderBy?: PrivacyPolicyTranslationOrderByWithRelationInput | PrivacyPolicyTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PrivacyPolicyTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PrivacyPolicyTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PrivacyPolicyTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PrivacyPolicyTranslations
+    **/
+    _count?: true | PrivacyPolicyTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PrivacyPolicyTranslationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PrivacyPolicyTranslationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PrivacyPolicyTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PrivacyPolicyTranslationMaxAggregateInputType
+  }
+
+  export type GetPrivacyPolicyTranslationAggregateType<T extends PrivacyPolicyTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregatePrivacyPolicyTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePrivacyPolicyTranslation[P]>
+      : GetScalarType<T[P], AggregatePrivacyPolicyTranslation[P]>
+  }
+
+
+
+
+  export type PrivacyPolicyTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PrivacyPolicyTranslationWhereInput
+    orderBy?: PrivacyPolicyTranslationOrderByWithAggregationInput | PrivacyPolicyTranslationOrderByWithAggregationInput[]
+    by: PrivacyPolicyTranslationScalarFieldEnum[] | PrivacyPolicyTranslationScalarFieldEnum
+    having?: PrivacyPolicyTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PrivacyPolicyTranslationCountAggregateInputType | true
+    _avg?: PrivacyPolicyTranslationAvgAggregateInputType
+    _sum?: PrivacyPolicyTranslationSumAggregateInputType
+    _min?: PrivacyPolicyTranslationMinAggregateInputType
+    _max?: PrivacyPolicyTranslationMaxAggregateInputType
+  }
+
+  export type PrivacyPolicyTranslationGroupByOutputType = {
+    id: number
+    privacy_policy_id: number
+    language: $Enums.Language
+    content: string
+    _count: PrivacyPolicyTranslationCountAggregateOutputType | null
+    _avg: PrivacyPolicyTranslationAvgAggregateOutputType | null
+    _sum: PrivacyPolicyTranslationSumAggregateOutputType | null
+    _min: PrivacyPolicyTranslationMinAggregateOutputType | null
+    _max: PrivacyPolicyTranslationMaxAggregateOutputType | null
+  }
+
+  type GetPrivacyPolicyTranslationGroupByPayload<T extends PrivacyPolicyTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PrivacyPolicyTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PrivacyPolicyTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PrivacyPolicyTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], PrivacyPolicyTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PrivacyPolicyTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    privacy_policy_id?: boolean
+    language?: boolean
+    content?: boolean
+    privacy_policy?: boolean | PrivacyPolicyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["privacyPolicyTranslation"]>
+
+  export type PrivacyPolicyTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    privacy_policy_id?: boolean
+    language?: boolean
+    content?: boolean
+    privacy_policy?: boolean | PrivacyPolicyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["privacyPolicyTranslation"]>
+
+  export type PrivacyPolicyTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    privacy_policy_id?: boolean
+    language?: boolean
+    content?: boolean
+    privacy_policy?: boolean | PrivacyPolicyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["privacyPolicyTranslation"]>
+
+  export type PrivacyPolicyTranslationSelectScalar = {
+    id?: boolean
+    privacy_policy_id?: boolean
+    language?: boolean
+    content?: boolean
+  }
+
+  export type PrivacyPolicyTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "privacy_policy_id" | "language" | "content", ExtArgs["result"]["privacyPolicyTranslation"]>
+  export type PrivacyPolicyTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    privacy_policy?: boolean | PrivacyPolicyDefaultArgs<ExtArgs>
+  }
+  export type PrivacyPolicyTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    privacy_policy?: boolean | PrivacyPolicyDefaultArgs<ExtArgs>
+  }
+  export type PrivacyPolicyTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    privacy_policy?: boolean | PrivacyPolicyDefaultArgs<ExtArgs>
+  }
+
+  export type $PrivacyPolicyTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PrivacyPolicyTranslation"
+    objects: {
+      privacy_policy: Prisma.$PrivacyPolicyPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      privacy_policy_id: number
+      language: $Enums.Language
+      content: string
+    }, ExtArgs["result"]["privacyPolicyTranslation"]>
+    composites: {}
+  }
+
+  type PrivacyPolicyTranslationGetPayload<S extends boolean | null | undefined | PrivacyPolicyTranslationDefaultArgs> = $Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload, S>
+
+  type PrivacyPolicyTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PrivacyPolicyTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PrivacyPolicyTranslationCountAggregateInputType | true
+    }
+
+  export interface PrivacyPolicyTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PrivacyPolicyTranslation'], meta: { name: 'PrivacyPolicyTranslation' } }
+    /**
+     * Find zero or one PrivacyPolicyTranslation that matches the filter.
+     * @param {PrivacyPolicyTranslationFindUniqueArgs} args - Arguments to find a PrivacyPolicyTranslation
+     * @example
+     * // Get one PrivacyPolicyTranslation
+     * const privacyPolicyTranslation = await prisma.privacyPolicyTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PrivacyPolicyTranslationFindUniqueArgs>(args: SelectSubset<T, PrivacyPolicyTranslationFindUniqueArgs<ExtArgs>>): Prisma__PrivacyPolicyTranslationClient<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PrivacyPolicyTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PrivacyPolicyTranslationFindUniqueOrThrowArgs} args - Arguments to find a PrivacyPolicyTranslation
+     * @example
+     * // Get one PrivacyPolicyTranslation
+     * const privacyPolicyTranslation = await prisma.privacyPolicyTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PrivacyPolicyTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, PrivacyPolicyTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PrivacyPolicyTranslationClient<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PrivacyPolicyTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyTranslationFindFirstArgs} args - Arguments to find a PrivacyPolicyTranslation
+     * @example
+     * // Get one PrivacyPolicyTranslation
+     * const privacyPolicyTranslation = await prisma.privacyPolicyTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PrivacyPolicyTranslationFindFirstArgs>(args?: SelectSubset<T, PrivacyPolicyTranslationFindFirstArgs<ExtArgs>>): Prisma__PrivacyPolicyTranslationClient<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PrivacyPolicyTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyTranslationFindFirstOrThrowArgs} args - Arguments to find a PrivacyPolicyTranslation
+     * @example
+     * // Get one PrivacyPolicyTranslation
+     * const privacyPolicyTranslation = await prisma.privacyPolicyTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PrivacyPolicyTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, PrivacyPolicyTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__PrivacyPolicyTranslationClient<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PrivacyPolicyTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PrivacyPolicyTranslations
+     * const privacyPolicyTranslations = await prisma.privacyPolicyTranslation.findMany()
+     * 
+     * // Get first 10 PrivacyPolicyTranslations
+     * const privacyPolicyTranslations = await prisma.privacyPolicyTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const privacyPolicyTranslationWithIdOnly = await prisma.privacyPolicyTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PrivacyPolicyTranslationFindManyArgs>(args?: SelectSubset<T, PrivacyPolicyTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PrivacyPolicyTranslation.
+     * @param {PrivacyPolicyTranslationCreateArgs} args - Arguments to create a PrivacyPolicyTranslation.
+     * @example
+     * // Create one PrivacyPolicyTranslation
+     * const PrivacyPolicyTranslation = await prisma.privacyPolicyTranslation.create({
+     *   data: {
+     *     // ... data to create a PrivacyPolicyTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends PrivacyPolicyTranslationCreateArgs>(args: SelectSubset<T, PrivacyPolicyTranslationCreateArgs<ExtArgs>>): Prisma__PrivacyPolicyTranslationClient<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PrivacyPolicyTranslations.
+     * @param {PrivacyPolicyTranslationCreateManyArgs} args - Arguments to create many PrivacyPolicyTranslations.
+     * @example
+     * // Create many PrivacyPolicyTranslations
+     * const privacyPolicyTranslation = await prisma.privacyPolicyTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PrivacyPolicyTranslationCreateManyArgs>(args?: SelectSubset<T, PrivacyPolicyTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PrivacyPolicyTranslations and returns the data saved in the database.
+     * @param {PrivacyPolicyTranslationCreateManyAndReturnArgs} args - Arguments to create many PrivacyPolicyTranslations.
+     * @example
+     * // Create many PrivacyPolicyTranslations
+     * const privacyPolicyTranslation = await prisma.privacyPolicyTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PrivacyPolicyTranslations and only return the `id`
+     * const privacyPolicyTranslationWithIdOnly = await prisma.privacyPolicyTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PrivacyPolicyTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, PrivacyPolicyTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PrivacyPolicyTranslation.
+     * @param {PrivacyPolicyTranslationDeleteArgs} args - Arguments to delete one PrivacyPolicyTranslation.
+     * @example
+     * // Delete one PrivacyPolicyTranslation
+     * const PrivacyPolicyTranslation = await prisma.privacyPolicyTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one PrivacyPolicyTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PrivacyPolicyTranslationDeleteArgs>(args: SelectSubset<T, PrivacyPolicyTranslationDeleteArgs<ExtArgs>>): Prisma__PrivacyPolicyTranslationClient<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PrivacyPolicyTranslation.
+     * @param {PrivacyPolicyTranslationUpdateArgs} args - Arguments to update one PrivacyPolicyTranslation.
+     * @example
+     * // Update one PrivacyPolicyTranslation
+     * const privacyPolicyTranslation = await prisma.privacyPolicyTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PrivacyPolicyTranslationUpdateArgs>(args: SelectSubset<T, PrivacyPolicyTranslationUpdateArgs<ExtArgs>>): Prisma__PrivacyPolicyTranslationClient<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PrivacyPolicyTranslations.
+     * @param {PrivacyPolicyTranslationDeleteManyArgs} args - Arguments to filter PrivacyPolicyTranslations to delete.
+     * @example
+     * // Delete a few PrivacyPolicyTranslations
+     * const { count } = await prisma.privacyPolicyTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PrivacyPolicyTranslationDeleteManyArgs>(args?: SelectSubset<T, PrivacyPolicyTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PrivacyPolicyTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PrivacyPolicyTranslations
+     * const privacyPolicyTranslation = await prisma.privacyPolicyTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PrivacyPolicyTranslationUpdateManyArgs>(args: SelectSubset<T, PrivacyPolicyTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PrivacyPolicyTranslations and returns the data updated in the database.
+     * @param {PrivacyPolicyTranslationUpdateManyAndReturnArgs} args - Arguments to update many PrivacyPolicyTranslations.
+     * @example
+     * // Update many PrivacyPolicyTranslations
+     * const privacyPolicyTranslation = await prisma.privacyPolicyTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PrivacyPolicyTranslations and only return the `id`
+     * const privacyPolicyTranslationWithIdOnly = await prisma.privacyPolicyTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PrivacyPolicyTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, PrivacyPolicyTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PrivacyPolicyTranslation.
+     * @param {PrivacyPolicyTranslationUpsertArgs} args - Arguments to update or create a PrivacyPolicyTranslation.
+     * @example
+     * // Update or create a PrivacyPolicyTranslation
+     * const privacyPolicyTranslation = await prisma.privacyPolicyTranslation.upsert({
+     *   create: {
+     *     // ... data to create a PrivacyPolicyTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PrivacyPolicyTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PrivacyPolicyTranslationUpsertArgs>(args: SelectSubset<T, PrivacyPolicyTranslationUpsertArgs<ExtArgs>>): Prisma__PrivacyPolicyTranslationClient<$Result.GetResult<Prisma.$PrivacyPolicyTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PrivacyPolicyTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyTranslationCountArgs} args - Arguments to filter PrivacyPolicyTranslations to count.
+     * @example
+     * // Count the number of PrivacyPolicyTranslations
+     * const count = await prisma.privacyPolicyTranslation.count({
+     *   where: {
+     *     // ... the filter for the PrivacyPolicyTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends PrivacyPolicyTranslationCountArgs>(
+      args?: Subset<T, PrivacyPolicyTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PrivacyPolicyTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PrivacyPolicyTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PrivacyPolicyTranslationAggregateArgs>(args: Subset<T, PrivacyPolicyTranslationAggregateArgs>): Prisma.PrismaPromise<GetPrivacyPolicyTranslationAggregateType<T>>
+
+    /**
+     * Group by PrivacyPolicyTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrivacyPolicyTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PrivacyPolicyTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PrivacyPolicyTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: PrivacyPolicyTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PrivacyPolicyTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPrivacyPolicyTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PrivacyPolicyTranslation model
+   */
+  readonly fields: PrivacyPolicyTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PrivacyPolicyTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PrivacyPolicyTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    privacy_policy<T extends PrivacyPolicyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PrivacyPolicyDefaultArgs<ExtArgs>>): Prisma__PrivacyPolicyClient<$Result.GetResult<Prisma.$PrivacyPolicyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PrivacyPolicyTranslation model
+   */
+  interface PrivacyPolicyTranslationFieldRefs {
+    readonly id: FieldRef<"PrivacyPolicyTranslation", 'Int'>
+    readonly privacy_policy_id: FieldRef<"PrivacyPolicyTranslation", 'Int'>
+    readonly language: FieldRef<"PrivacyPolicyTranslation", 'Language'>
+    readonly content: FieldRef<"PrivacyPolicyTranslation", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PrivacyPolicyTranslation findUnique
+   */
+  export type PrivacyPolicyTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which PrivacyPolicyTranslation to fetch.
+     */
+    where: PrivacyPolicyTranslationWhereUniqueInput
+  }
+
+  /**
+   * PrivacyPolicyTranslation findUniqueOrThrow
+   */
+  export type PrivacyPolicyTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which PrivacyPolicyTranslation to fetch.
+     */
+    where: PrivacyPolicyTranslationWhereUniqueInput
+  }
+
+  /**
+   * PrivacyPolicyTranslation findFirst
+   */
+  export type PrivacyPolicyTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which PrivacyPolicyTranslation to fetch.
+     */
+    where?: PrivacyPolicyTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PrivacyPolicyTranslations to fetch.
+     */
+    orderBy?: PrivacyPolicyTranslationOrderByWithRelationInput | PrivacyPolicyTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PrivacyPolicyTranslations.
+     */
+    cursor?: PrivacyPolicyTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PrivacyPolicyTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PrivacyPolicyTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PrivacyPolicyTranslations.
+     */
+    distinct?: PrivacyPolicyTranslationScalarFieldEnum | PrivacyPolicyTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * PrivacyPolicyTranslation findFirstOrThrow
+   */
+  export type PrivacyPolicyTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which PrivacyPolicyTranslation to fetch.
+     */
+    where?: PrivacyPolicyTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PrivacyPolicyTranslations to fetch.
+     */
+    orderBy?: PrivacyPolicyTranslationOrderByWithRelationInput | PrivacyPolicyTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PrivacyPolicyTranslations.
+     */
+    cursor?: PrivacyPolicyTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PrivacyPolicyTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PrivacyPolicyTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PrivacyPolicyTranslations.
+     */
+    distinct?: PrivacyPolicyTranslationScalarFieldEnum | PrivacyPolicyTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * PrivacyPolicyTranslation findMany
+   */
+  export type PrivacyPolicyTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which PrivacyPolicyTranslations to fetch.
+     */
+    where?: PrivacyPolicyTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PrivacyPolicyTranslations to fetch.
+     */
+    orderBy?: PrivacyPolicyTranslationOrderByWithRelationInput | PrivacyPolicyTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PrivacyPolicyTranslations.
+     */
+    cursor?: PrivacyPolicyTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PrivacyPolicyTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PrivacyPolicyTranslations.
+     */
+    skip?: number
+    distinct?: PrivacyPolicyTranslationScalarFieldEnum | PrivacyPolicyTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * PrivacyPolicyTranslation create
+   */
+  export type PrivacyPolicyTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PrivacyPolicyTranslation.
+     */
+    data: XOR<PrivacyPolicyTranslationCreateInput, PrivacyPolicyTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * PrivacyPolicyTranslation createMany
+   */
+  export type PrivacyPolicyTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PrivacyPolicyTranslations.
+     */
+    data: PrivacyPolicyTranslationCreateManyInput | PrivacyPolicyTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PrivacyPolicyTranslation createManyAndReturn
+   */
+  export type PrivacyPolicyTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many PrivacyPolicyTranslations.
+     */
+    data: PrivacyPolicyTranslationCreateManyInput | PrivacyPolicyTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PrivacyPolicyTranslation update
+   */
+  export type PrivacyPolicyTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PrivacyPolicyTranslation.
+     */
+    data: XOR<PrivacyPolicyTranslationUpdateInput, PrivacyPolicyTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which PrivacyPolicyTranslation to update.
+     */
+    where: PrivacyPolicyTranslationWhereUniqueInput
+  }
+
+  /**
+   * PrivacyPolicyTranslation updateMany
+   */
+  export type PrivacyPolicyTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PrivacyPolicyTranslations.
+     */
+    data: XOR<PrivacyPolicyTranslationUpdateManyMutationInput, PrivacyPolicyTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which PrivacyPolicyTranslations to update
+     */
+    where?: PrivacyPolicyTranslationWhereInput
+    /**
+     * Limit how many PrivacyPolicyTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PrivacyPolicyTranslation updateManyAndReturn
+   */
+  export type PrivacyPolicyTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update PrivacyPolicyTranslations.
+     */
+    data: XOR<PrivacyPolicyTranslationUpdateManyMutationInput, PrivacyPolicyTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which PrivacyPolicyTranslations to update
+     */
+    where?: PrivacyPolicyTranslationWhereInput
+    /**
+     * Limit how many PrivacyPolicyTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PrivacyPolicyTranslation upsert
+   */
+  export type PrivacyPolicyTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PrivacyPolicyTranslation to update in case it exists.
+     */
+    where: PrivacyPolicyTranslationWhereUniqueInput
+    /**
+     * In case the PrivacyPolicyTranslation found by the `where` argument doesn't exist, create a new PrivacyPolicyTranslation with this data.
+     */
+    create: XOR<PrivacyPolicyTranslationCreateInput, PrivacyPolicyTranslationUncheckedCreateInput>
+    /**
+     * In case the PrivacyPolicyTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PrivacyPolicyTranslationUpdateInput, PrivacyPolicyTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * PrivacyPolicyTranslation delete
+   */
+  export type PrivacyPolicyTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which PrivacyPolicyTranslation to delete.
+     */
+    where: PrivacyPolicyTranslationWhereUniqueInput
+  }
+
+  /**
+   * PrivacyPolicyTranslation deleteMany
+   */
+  export type PrivacyPolicyTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PrivacyPolicyTranslations to delete
+     */
+    where?: PrivacyPolicyTranslationWhereInput
+    /**
+     * Limit how many PrivacyPolicyTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PrivacyPolicyTranslation without action
+   */
+  export type PrivacyPolicyTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PrivacyPolicyTranslation
+     */
+    select?: PrivacyPolicyTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PrivacyPolicyTranslation
+     */
+    omit?: PrivacyPolicyTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrivacyPolicyTranslationInclude<ExtArgs> | null
   }
 
 
@@ -22483,15 +23750,6 @@ export namespace Prisma {
   export type ProductPriceScalarFieldEnum = (typeof ProductPriceScalarFieldEnum)[keyof typeof ProductPriceScalarFieldEnum]
 
 
-  export const PrivacyPolicyScalarFieldEnum: {
-    id: 'id',
-    content: 'content',
-    updated_at: 'updated_at'
-  };
-
-  export type PrivacyPolicyScalarFieldEnum = (typeof PrivacyPolicyScalarFieldEnum)[keyof typeof PrivacyPolicyScalarFieldEnum]
-
-
   export const TermAndConditionScalarFieldEnum: {
     id: 'id',
     content: 'content',
@@ -22499,6 +23757,24 @@ export namespace Prisma {
   };
 
   export type TermAndConditionScalarFieldEnum = (typeof TermAndConditionScalarFieldEnum)[keyof typeof TermAndConditionScalarFieldEnum]
+
+
+  export const PrivacyPolicyScalarFieldEnum: {
+    id: 'id',
+    updated_at: 'updated_at'
+  };
+
+  export type PrivacyPolicyScalarFieldEnum = (typeof PrivacyPolicyScalarFieldEnum)[keyof typeof PrivacyPolicyScalarFieldEnum]
+
+
+  export const PrivacyPolicyTranslationScalarFieldEnum: {
+    id: 'id',
+    privacy_policy_id: 'privacy_policy_id',
+    language: 'language',
+    content: 'content'
+  };
+
+  export type PrivacyPolicyTranslationScalarFieldEnum = (typeof PrivacyPolicyTranslationScalarFieldEnum)[keyof typeof PrivacyPolicyTranslationScalarFieldEnum]
 
 
   export const AboutUsScalarFieldEnum: {
@@ -23403,50 +24679,6 @@ export namespace Prisma {
     price?: IntWithAggregatesFilter<"ProductPrice"> | number
   }
 
-  export type PrivacyPolicyWhereInput = {
-    AND?: PrivacyPolicyWhereInput | PrivacyPolicyWhereInput[]
-    OR?: PrivacyPolicyWhereInput[]
-    NOT?: PrivacyPolicyWhereInput | PrivacyPolicyWhereInput[]
-    id?: IntFilter<"PrivacyPolicy"> | number
-    content?: StringFilter<"PrivacyPolicy"> | string
-    updated_at?: BigIntFilter<"PrivacyPolicy"> | bigint | number
-  }
-
-  export type PrivacyPolicyOrderByWithRelationInput = {
-    id?: SortOrder
-    content?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type PrivacyPolicyWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: PrivacyPolicyWhereInput | PrivacyPolicyWhereInput[]
-    OR?: PrivacyPolicyWhereInput[]
-    NOT?: PrivacyPolicyWhereInput | PrivacyPolicyWhereInput[]
-    content?: StringFilter<"PrivacyPolicy"> | string
-    updated_at?: BigIntFilter<"PrivacyPolicy"> | bigint | number
-  }, "id">
-
-  export type PrivacyPolicyOrderByWithAggregationInput = {
-    id?: SortOrder
-    content?: SortOrder
-    updated_at?: SortOrder
-    _count?: PrivacyPolicyCountOrderByAggregateInput
-    _avg?: PrivacyPolicyAvgOrderByAggregateInput
-    _max?: PrivacyPolicyMaxOrderByAggregateInput
-    _min?: PrivacyPolicyMinOrderByAggregateInput
-    _sum?: PrivacyPolicySumOrderByAggregateInput
-  }
-
-  export type PrivacyPolicyScalarWhereWithAggregatesInput = {
-    AND?: PrivacyPolicyScalarWhereWithAggregatesInput | PrivacyPolicyScalarWhereWithAggregatesInput[]
-    OR?: PrivacyPolicyScalarWhereWithAggregatesInput[]
-    NOT?: PrivacyPolicyScalarWhereWithAggregatesInput | PrivacyPolicyScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"PrivacyPolicy"> | number
-    content?: StringWithAggregatesFilter<"PrivacyPolicy"> | string
-    updated_at?: BigIntWithAggregatesFilter<"PrivacyPolicy"> | bigint | number
-  }
-
   export type TermAndConditionWhereInput = {
     AND?: TermAndConditionWhereInput | TermAndConditionWhereInput[]
     OR?: TermAndConditionWhereInput[]
@@ -23489,6 +24721,100 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"TermAndCondition"> | number
     content?: StringWithAggregatesFilter<"TermAndCondition"> | string
     updated_at?: BigIntWithAggregatesFilter<"TermAndCondition"> | bigint | number
+  }
+
+  export type PrivacyPolicyWhereInput = {
+    AND?: PrivacyPolicyWhereInput | PrivacyPolicyWhereInput[]
+    OR?: PrivacyPolicyWhereInput[]
+    NOT?: PrivacyPolicyWhereInput | PrivacyPolicyWhereInput[]
+    id?: IntFilter<"PrivacyPolicy"> | number
+    updated_at?: BigIntFilter<"PrivacyPolicy"> | bigint | number
+    translations?: PrivacyPolicyTranslationListRelationFilter
+  }
+
+  export type PrivacyPolicyOrderByWithRelationInput = {
+    id?: SortOrder
+    updated_at?: SortOrder
+    translations?: PrivacyPolicyTranslationOrderByRelationAggregateInput
+  }
+
+  export type PrivacyPolicyWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PrivacyPolicyWhereInput | PrivacyPolicyWhereInput[]
+    OR?: PrivacyPolicyWhereInput[]
+    NOT?: PrivacyPolicyWhereInput | PrivacyPolicyWhereInput[]
+    updated_at?: BigIntFilter<"PrivacyPolicy"> | bigint | number
+    translations?: PrivacyPolicyTranslationListRelationFilter
+  }, "id">
+
+  export type PrivacyPolicyOrderByWithAggregationInput = {
+    id?: SortOrder
+    updated_at?: SortOrder
+    _count?: PrivacyPolicyCountOrderByAggregateInput
+    _avg?: PrivacyPolicyAvgOrderByAggregateInput
+    _max?: PrivacyPolicyMaxOrderByAggregateInput
+    _min?: PrivacyPolicyMinOrderByAggregateInput
+    _sum?: PrivacyPolicySumOrderByAggregateInput
+  }
+
+  export type PrivacyPolicyScalarWhereWithAggregatesInput = {
+    AND?: PrivacyPolicyScalarWhereWithAggregatesInput | PrivacyPolicyScalarWhereWithAggregatesInput[]
+    OR?: PrivacyPolicyScalarWhereWithAggregatesInput[]
+    NOT?: PrivacyPolicyScalarWhereWithAggregatesInput | PrivacyPolicyScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PrivacyPolicy"> | number
+    updated_at?: BigIntWithAggregatesFilter<"PrivacyPolicy"> | bigint | number
+  }
+
+  export type PrivacyPolicyTranslationWhereInput = {
+    AND?: PrivacyPolicyTranslationWhereInput | PrivacyPolicyTranslationWhereInput[]
+    OR?: PrivacyPolicyTranslationWhereInput[]
+    NOT?: PrivacyPolicyTranslationWhereInput | PrivacyPolicyTranslationWhereInput[]
+    id?: IntFilter<"PrivacyPolicyTranslation"> | number
+    privacy_policy_id?: IntFilter<"PrivacyPolicyTranslation"> | number
+    language?: EnumLanguageFilter<"PrivacyPolicyTranslation"> | $Enums.Language
+    content?: StringFilter<"PrivacyPolicyTranslation"> | string
+    privacy_policy?: XOR<PrivacyPolicyScalarRelationFilter, PrivacyPolicyWhereInput>
+  }
+
+  export type PrivacyPolicyTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    privacy_policy_id?: SortOrder
+    language?: SortOrder
+    content?: SortOrder
+    privacy_policy?: PrivacyPolicyOrderByWithRelationInput
+  }
+
+  export type PrivacyPolicyTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PrivacyPolicyTranslationWhereInput | PrivacyPolicyTranslationWhereInput[]
+    OR?: PrivacyPolicyTranslationWhereInput[]
+    NOT?: PrivacyPolicyTranslationWhereInput | PrivacyPolicyTranslationWhereInput[]
+    privacy_policy_id?: IntFilter<"PrivacyPolicyTranslation"> | number
+    language?: EnumLanguageFilter<"PrivacyPolicyTranslation"> | $Enums.Language
+    content?: StringFilter<"PrivacyPolicyTranslation"> | string
+    privacy_policy?: XOR<PrivacyPolicyScalarRelationFilter, PrivacyPolicyWhereInput>
+  }, "id">
+
+  export type PrivacyPolicyTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    privacy_policy_id?: SortOrder
+    language?: SortOrder
+    content?: SortOrder
+    _count?: PrivacyPolicyTranslationCountOrderByAggregateInput
+    _avg?: PrivacyPolicyTranslationAvgOrderByAggregateInput
+    _max?: PrivacyPolicyTranslationMaxOrderByAggregateInput
+    _min?: PrivacyPolicyTranslationMinOrderByAggregateInput
+    _sum?: PrivacyPolicyTranslationSumOrderByAggregateInput
+  }
+
+  export type PrivacyPolicyTranslationScalarWhereWithAggregatesInput = {
+    AND?: PrivacyPolicyTranslationScalarWhereWithAggregatesInput | PrivacyPolicyTranslationScalarWhereWithAggregatesInput[]
+    OR?: PrivacyPolicyTranslationScalarWhereWithAggregatesInput[]
+    NOT?: PrivacyPolicyTranslationScalarWhereWithAggregatesInput | PrivacyPolicyTranslationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PrivacyPolicyTranslation"> | number
+    privacy_policy_id?: IntWithAggregatesFilter<"PrivacyPolicyTranslation"> | number
+    language?: EnumLanguageWithAggregatesFilter<"PrivacyPolicyTranslation"> | $Enums.Language
+    content?: StringWithAggregatesFilter<"PrivacyPolicyTranslation"> | string
   }
 
   export type AboutUsWhereInput = {
@@ -24404,45 +25730,6 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
   }
 
-  export type PrivacyPolicyCreateInput = {
-    content: string
-    updated_at: bigint | number
-  }
-
-  export type PrivacyPolicyUncheckedCreateInput = {
-    id?: number
-    content: string
-    updated_at: bigint | number
-  }
-
-  export type PrivacyPolicyUpdateInput = {
-    content?: StringFieldUpdateOperationsInput | string
-    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
-  }
-
-  export type PrivacyPolicyUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
-    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
-  }
-
-  export type PrivacyPolicyCreateManyInput = {
-    id?: number
-    content: string
-    updated_at: bigint | number
-  }
-
-  export type PrivacyPolicyUpdateManyMutationInput = {
-    content?: StringFieldUpdateOperationsInput | string
-    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
-  }
-
-  export type PrivacyPolicyUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
-    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
-  }
-
   export type TermAndConditionCreateInput = {
     content: string
     updated_at: bigint | number
@@ -24480,6 +25767,87 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type PrivacyPolicyCreateInput = {
+    updated_at: bigint | number
+    translations?: PrivacyPolicyTranslationCreateNestedManyWithoutPrivacy_policyInput
+  }
+
+  export type PrivacyPolicyUncheckedCreateInput = {
+    id?: number
+    updated_at: bigint | number
+    translations?: PrivacyPolicyTranslationUncheckedCreateNestedManyWithoutPrivacy_policyInput
+  }
+
+  export type PrivacyPolicyUpdateInput = {
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    translations?: PrivacyPolicyTranslationUpdateManyWithoutPrivacy_policyNestedInput
+  }
+
+  export type PrivacyPolicyUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    translations?: PrivacyPolicyTranslationUncheckedUpdateManyWithoutPrivacy_policyNestedInput
+  }
+
+  export type PrivacyPolicyCreateManyInput = {
+    id?: number
+    updated_at: bigint | number
+  }
+
+  export type PrivacyPolicyUpdateManyMutationInput = {
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type PrivacyPolicyUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type PrivacyPolicyTranslationCreateInput = {
+    language: $Enums.Language
+    content: string
+    privacy_policy: PrivacyPolicyCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type PrivacyPolicyTranslationUncheckedCreateInput = {
+    id?: number
+    privacy_policy_id: number
+    language: $Enums.Language
+    content: string
+  }
+
+  export type PrivacyPolicyTranslationUpdateInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
+    privacy_policy?: PrivacyPolicyUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type PrivacyPolicyTranslationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    privacy_policy_id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PrivacyPolicyTranslationCreateManyInput = {
+    id?: number
+    privacy_policy_id: number
+    language: $Enums.Language
+    content: string
+  }
+
+  export type PrivacyPolicyTranslationUpdateManyMutationInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PrivacyPolicyTranslationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    privacy_policy_id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
   }
 
   export type AboutUsCreateInput = {
@@ -25329,34 +26697,6 @@ export namespace Prisma {
     price?: SortOrder
   }
 
-  export type PrivacyPolicyCountOrderByAggregateInput = {
-    id?: SortOrder
-    content?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type PrivacyPolicyAvgOrderByAggregateInput = {
-    id?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type PrivacyPolicyMaxOrderByAggregateInput = {
-    id?: SortOrder
-    content?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type PrivacyPolicyMinOrderByAggregateInput = {
-    id?: SortOrder
-    content?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type PrivacyPolicySumOrderByAggregateInput = {
-    id?: SortOrder
-    updated_at?: SortOrder
-  }
-
   export type TermAndConditionCountOrderByAggregateInput = {
     id?: SortOrder
     content?: SortOrder
@@ -25383,6 +26723,94 @@ export namespace Prisma {
   export type TermAndConditionSumOrderByAggregateInput = {
     id?: SortOrder
     updated_at?: SortOrder
+  }
+
+  export type PrivacyPolicyTranslationListRelationFilter = {
+    every?: PrivacyPolicyTranslationWhereInput
+    some?: PrivacyPolicyTranslationWhereInput
+    none?: PrivacyPolicyTranslationWhereInput
+  }
+
+  export type PrivacyPolicyTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PrivacyPolicyCountOrderByAggregateInput = {
+    id?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type PrivacyPolicyAvgOrderByAggregateInput = {
+    id?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type PrivacyPolicyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type PrivacyPolicyMinOrderByAggregateInput = {
+    id?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type PrivacyPolicySumOrderByAggregateInput = {
+    id?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type EnumLanguageFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
+  }
+
+  export type PrivacyPolicyScalarRelationFilter = {
+    is?: PrivacyPolicyWhereInput
+    isNot?: PrivacyPolicyWhereInput
+  }
+
+  export type PrivacyPolicyTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    privacy_policy_id?: SortOrder
+    language?: SortOrder
+    content?: SortOrder
+  }
+
+  export type PrivacyPolicyTranslationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    privacy_policy_id?: SortOrder
+  }
+
+  export type PrivacyPolicyTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    privacy_policy_id?: SortOrder
+    language?: SortOrder
+    content?: SortOrder
+  }
+
+  export type PrivacyPolicyTranslationMinOrderByAggregateInput = {
+    id?: SortOrder
+    privacy_policy_id?: SortOrder
+    language?: SortOrder
+    content?: SortOrder
+  }
+
+  export type PrivacyPolicyTranslationSumOrderByAggregateInput = {
+    id?: SortOrder
+    privacy_policy_id?: SortOrder
+  }
+
+  export type EnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLanguageFilter<$PrismaModel>
+    _max?: NestedEnumLanguageFilter<$PrismaModel>
   }
 
   export type AboutUsTranslationListRelationFilter = {
@@ -25413,13 +26841,6 @@ export namespace Prisma {
 
   export type AboutUsSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type EnumLanguageFilter<$PrismaModel = never> = {
-    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
-    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
   }
 
   export type AboutUsScalarRelationFilter = {
@@ -25456,16 +26877,6 @@ export namespace Prisma {
   export type AboutUsTranslationSumOrderByAggregateInput = {
     id?: SortOrder
     about_us_id?: SortOrder
-  }
-
-  export type EnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
-    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumLanguageFilter<$PrismaModel>
-    _max?: NestedEnumLanguageFilter<$PrismaModel>
   }
 
   export type FaqTranslationListRelationFilter = {
@@ -26118,6 +27529,66 @@ export namespace Prisma {
     update?: XOR<XOR<ProductVariantUpdateToOneWithWhereWithoutProduct_pricesInput, ProductVariantUpdateWithoutProduct_pricesInput>, ProductVariantUncheckedUpdateWithoutProduct_pricesInput>
   }
 
+  export type PrivacyPolicyTranslationCreateNestedManyWithoutPrivacy_policyInput = {
+    create?: XOR<PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput, PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput> | PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput[] | PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput[]
+    connectOrCreate?: PrivacyPolicyTranslationCreateOrConnectWithoutPrivacy_policyInput | PrivacyPolicyTranslationCreateOrConnectWithoutPrivacy_policyInput[]
+    createMany?: PrivacyPolicyTranslationCreateManyPrivacy_policyInputEnvelope
+    connect?: PrivacyPolicyTranslationWhereUniqueInput | PrivacyPolicyTranslationWhereUniqueInput[]
+  }
+
+  export type PrivacyPolicyTranslationUncheckedCreateNestedManyWithoutPrivacy_policyInput = {
+    create?: XOR<PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput, PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput> | PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput[] | PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput[]
+    connectOrCreate?: PrivacyPolicyTranslationCreateOrConnectWithoutPrivacy_policyInput | PrivacyPolicyTranslationCreateOrConnectWithoutPrivacy_policyInput[]
+    createMany?: PrivacyPolicyTranslationCreateManyPrivacy_policyInputEnvelope
+    connect?: PrivacyPolicyTranslationWhereUniqueInput | PrivacyPolicyTranslationWhereUniqueInput[]
+  }
+
+  export type PrivacyPolicyTranslationUpdateManyWithoutPrivacy_policyNestedInput = {
+    create?: XOR<PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput, PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput> | PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput[] | PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput[]
+    connectOrCreate?: PrivacyPolicyTranslationCreateOrConnectWithoutPrivacy_policyInput | PrivacyPolicyTranslationCreateOrConnectWithoutPrivacy_policyInput[]
+    upsert?: PrivacyPolicyTranslationUpsertWithWhereUniqueWithoutPrivacy_policyInput | PrivacyPolicyTranslationUpsertWithWhereUniqueWithoutPrivacy_policyInput[]
+    createMany?: PrivacyPolicyTranslationCreateManyPrivacy_policyInputEnvelope
+    set?: PrivacyPolicyTranslationWhereUniqueInput | PrivacyPolicyTranslationWhereUniqueInput[]
+    disconnect?: PrivacyPolicyTranslationWhereUniqueInput | PrivacyPolicyTranslationWhereUniqueInput[]
+    delete?: PrivacyPolicyTranslationWhereUniqueInput | PrivacyPolicyTranslationWhereUniqueInput[]
+    connect?: PrivacyPolicyTranslationWhereUniqueInput | PrivacyPolicyTranslationWhereUniqueInput[]
+    update?: PrivacyPolicyTranslationUpdateWithWhereUniqueWithoutPrivacy_policyInput | PrivacyPolicyTranslationUpdateWithWhereUniqueWithoutPrivacy_policyInput[]
+    updateMany?: PrivacyPolicyTranslationUpdateManyWithWhereWithoutPrivacy_policyInput | PrivacyPolicyTranslationUpdateManyWithWhereWithoutPrivacy_policyInput[]
+    deleteMany?: PrivacyPolicyTranslationScalarWhereInput | PrivacyPolicyTranslationScalarWhereInput[]
+  }
+
+  export type PrivacyPolicyTranslationUncheckedUpdateManyWithoutPrivacy_policyNestedInput = {
+    create?: XOR<PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput, PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput> | PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput[] | PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput[]
+    connectOrCreate?: PrivacyPolicyTranslationCreateOrConnectWithoutPrivacy_policyInput | PrivacyPolicyTranslationCreateOrConnectWithoutPrivacy_policyInput[]
+    upsert?: PrivacyPolicyTranslationUpsertWithWhereUniqueWithoutPrivacy_policyInput | PrivacyPolicyTranslationUpsertWithWhereUniqueWithoutPrivacy_policyInput[]
+    createMany?: PrivacyPolicyTranslationCreateManyPrivacy_policyInputEnvelope
+    set?: PrivacyPolicyTranslationWhereUniqueInput | PrivacyPolicyTranslationWhereUniqueInput[]
+    disconnect?: PrivacyPolicyTranslationWhereUniqueInput | PrivacyPolicyTranslationWhereUniqueInput[]
+    delete?: PrivacyPolicyTranslationWhereUniqueInput | PrivacyPolicyTranslationWhereUniqueInput[]
+    connect?: PrivacyPolicyTranslationWhereUniqueInput | PrivacyPolicyTranslationWhereUniqueInput[]
+    update?: PrivacyPolicyTranslationUpdateWithWhereUniqueWithoutPrivacy_policyInput | PrivacyPolicyTranslationUpdateWithWhereUniqueWithoutPrivacy_policyInput[]
+    updateMany?: PrivacyPolicyTranslationUpdateManyWithWhereWithoutPrivacy_policyInput | PrivacyPolicyTranslationUpdateManyWithWhereWithoutPrivacy_policyInput[]
+    deleteMany?: PrivacyPolicyTranslationScalarWhereInput | PrivacyPolicyTranslationScalarWhereInput[]
+  }
+
+  export type PrivacyPolicyCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<PrivacyPolicyCreateWithoutTranslationsInput, PrivacyPolicyUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: PrivacyPolicyCreateOrConnectWithoutTranslationsInput
+    connect?: PrivacyPolicyWhereUniqueInput
+  }
+
+  export type EnumLanguageFieldUpdateOperationsInput = {
+    set?: $Enums.Language
+  }
+
+  export type PrivacyPolicyUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<PrivacyPolicyCreateWithoutTranslationsInput, PrivacyPolicyUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: PrivacyPolicyCreateOrConnectWithoutTranslationsInput
+    upsert?: PrivacyPolicyUpsertWithoutTranslationsInput
+    connect?: PrivacyPolicyWhereUniqueInput
+    update?: XOR<XOR<PrivacyPolicyUpdateToOneWithWhereWithoutTranslationsInput, PrivacyPolicyUpdateWithoutTranslationsInput>, PrivacyPolicyUncheckedUpdateWithoutTranslationsInput>
+  }
+
   export type AboutUsTranslationCreateNestedManyWithoutAbout_usInput = {
     create?: XOR<AboutUsTranslationCreateWithoutAbout_usInput, AboutUsTranslationUncheckedCreateWithoutAbout_usInput> | AboutUsTranslationCreateWithoutAbout_usInput[] | AboutUsTranslationUncheckedCreateWithoutAbout_usInput[]
     connectOrCreate?: AboutUsTranslationCreateOrConnectWithoutAbout_usInput | AboutUsTranslationCreateOrConnectWithoutAbout_usInput[]
@@ -26164,10 +27635,6 @@ export namespace Prisma {
     create?: XOR<AboutUsCreateWithoutTranslationsInput, AboutUsUncheckedCreateWithoutTranslationsInput>
     connectOrCreate?: AboutUsCreateOrConnectWithoutTranslationsInput
     connect?: AboutUsWhereUniqueInput
-  }
-
-  export type EnumLanguageFieldUpdateOperationsInput = {
-    set?: $Enums.Language
   }
 
   export type AboutUsUpdateOneRequiredWithoutTranslationsNestedInput = {
@@ -27665,6 +29132,87 @@ export namespace Prisma {
     download_link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput = {
+    language: $Enums.Language
+    content: string
+  }
+
+  export type PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput = {
+    id?: number
+    language: $Enums.Language
+    content: string
+  }
+
+  export type PrivacyPolicyTranslationCreateOrConnectWithoutPrivacy_policyInput = {
+    where: PrivacyPolicyTranslationWhereUniqueInput
+    create: XOR<PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput, PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput>
+  }
+
+  export type PrivacyPolicyTranslationCreateManyPrivacy_policyInputEnvelope = {
+    data: PrivacyPolicyTranslationCreateManyPrivacy_policyInput | PrivacyPolicyTranslationCreateManyPrivacy_policyInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PrivacyPolicyTranslationUpsertWithWhereUniqueWithoutPrivacy_policyInput = {
+    where: PrivacyPolicyTranslationWhereUniqueInput
+    update: XOR<PrivacyPolicyTranslationUpdateWithoutPrivacy_policyInput, PrivacyPolicyTranslationUncheckedUpdateWithoutPrivacy_policyInput>
+    create: XOR<PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput, PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput>
+  }
+
+  export type PrivacyPolicyTranslationUpdateWithWhereUniqueWithoutPrivacy_policyInput = {
+    where: PrivacyPolicyTranslationWhereUniqueInput
+    data: XOR<PrivacyPolicyTranslationUpdateWithoutPrivacy_policyInput, PrivacyPolicyTranslationUncheckedUpdateWithoutPrivacy_policyInput>
+  }
+
+  export type PrivacyPolicyTranslationUpdateManyWithWhereWithoutPrivacy_policyInput = {
+    where: PrivacyPolicyTranslationScalarWhereInput
+    data: XOR<PrivacyPolicyTranslationUpdateManyMutationInput, PrivacyPolicyTranslationUncheckedUpdateManyWithoutPrivacy_policyInput>
+  }
+
+  export type PrivacyPolicyTranslationScalarWhereInput = {
+    AND?: PrivacyPolicyTranslationScalarWhereInput | PrivacyPolicyTranslationScalarWhereInput[]
+    OR?: PrivacyPolicyTranslationScalarWhereInput[]
+    NOT?: PrivacyPolicyTranslationScalarWhereInput | PrivacyPolicyTranslationScalarWhereInput[]
+    id?: IntFilter<"PrivacyPolicyTranslation"> | number
+    privacy_policy_id?: IntFilter<"PrivacyPolicyTranslation"> | number
+    language?: EnumLanguageFilter<"PrivacyPolicyTranslation"> | $Enums.Language
+    content?: StringFilter<"PrivacyPolicyTranslation"> | string
+  }
+
+  export type PrivacyPolicyCreateWithoutTranslationsInput = {
+    updated_at: bigint | number
+  }
+
+  export type PrivacyPolicyUncheckedCreateWithoutTranslationsInput = {
+    id?: number
+    updated_at: bigint | number
+  }
+
+  export type PrivacyPolicyCreateOrConnectWithoutTranslationsInput = {
+    where: PrivacyPolicyWhereUniqueInput
+    create: XOR<PrivacyPolicyCreateWithoutTranslationsInput, PrivacyPolicyUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type PrivacyPolicyUpsertWithoutTranslationsInput = {
+    update: XOR<PrivacyPolicyUpdateWithoutTranslationsInput, PrivacyPolicyUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<PrivacyPolicyCreateWithoutTranslationsInput, PrivacyPolicyUncheckedCreateWithoutTranslationsInput>
+    where?: PrivacyPolicyWhereInput
+  }
+
+  export type PrivacyPolicyUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: PrivacyPolicyWhereInput
+    data: XOR<PrivacyPolicyUpdateWithoutTranslationsInput, PrivacyPolicyUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type PrivacyPolicyUpdateWithoutTranslationsInput = {
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type PrivacyPolicyUncheckedUpdateWithoutTranslationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
   export type AboutUsTranslationCreateWithoutAbout_usInput = {
     language: $Enums.Language
     content: string
@@ -28203,6 +29751,29 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     currency_code?: EnumCurrencyCodeFieldUpdateOperationsInput | $Enums.CurrencyCode
     price?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PrivacyPolicyTranslationCreateManyPrivacy_policyInput = {
+    id?: number
+    language: $Enums.Language
+    content: string
+  }
+
+  export type PrivacyPolicyTranslationUpdateWithoutPrivacy_policyInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PrivacyPolicyTranslationUncheckedUpdateWithoutPrivacy_policyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PrivacyPolicyTranslationUncheckedUpdateManyWithoutPrivacy_policyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
   }
 
   export type AboutUsTranslationCreateManyAbout_usInput = {

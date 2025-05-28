@@ -14,7 +14,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useMemo, useState } from 'react';
-import dayjs from 'dayjs';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,6 +28,7 @@ import { toast } from 'sonner';
 import { removeFaq } from '@/actions/faq-actions';
 import Link from 'next/link';
 import { Language } from '@/constants/enums';
+import { formatDateTimeWIB } from '@/lib/format-date';
 
 export default function DataTable({ faqs: data }) {
   const [faqs, setFaqs] = useState(data);
@@ -87,7 +87,7 @@ export default function DataTable({ faqs: data }) {
     {
       accessorKey: 'created_at',
       header: 'Created At',
-      cell: ({ row }) => dayjs.unix(row.getValue('created_at')).format('MM-DD-YYYY hh:mm A'),
+      cell: ({ row }) => formatDateTimeWIB(row.getValue('created_at')),
     },
     {
       id: 'actions',

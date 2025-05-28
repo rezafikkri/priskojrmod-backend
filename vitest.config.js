@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config'
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
@@ -6,6 +6,7 @@ export default defineConfig({
       '@/components/': new URL('./components/', import.meta.url).pathname,
       '@/hooks/': new URL('./hooks/', import.meta.url).pathname,
       '@/lib/': new URL('./lib/', import.meta.url).pathname,
+      '@/constants/': new URL('./constants/', import.meta.url).pathname,
     },
   },
-})
+});

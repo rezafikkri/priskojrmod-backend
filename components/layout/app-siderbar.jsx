@@ -43,7 +43,7 @@ const items = {
     icon: <Script />,
     subItems: [
       { title: 'Terms of Service', url: '/toc', },
-      { title: 'Privacy Policy', url: '/pp' },
+      { title: 'Privacy Policy', url: '/privacy-policy' },
       { title: 'About Us', url: '/about-us' },
       { title: 'FAQs', url: '/faq' },
     ],

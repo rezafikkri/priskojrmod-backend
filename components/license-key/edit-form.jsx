@@ -29,7 +29,7 @@ import { editLicenseKey } from '@/actions/license-key-actions';
 import { useQueryClient } from '@tanstack/react-query'
 import { Checkbox } from '@/components/ui/checkbox';
 import { useState } from 'react';
-import dayjs from 'dayjs';
+import { formatDate } from '@/lib/format-date';
 
 export default function EditForm({
   secretKeys,
@@ -38,7 +38,7 @@ export default function EditForm({
   // Get QueryClient from the context
   const queryClient = useQueryClient()
   const [licenseKeyExpire, setLicenseKeyExpire] = useState(() => {
-    return dayjs.unix(licenseKey.parsedKey.exp).format('MMMM DD, YYYY');
+    return formatDate(licenseKey.parsedKey.exp);
   });
 
   const form = useForm({
@@ -68,7 +68,7 @@ export default function EditForm({
       form.setValue('old_secret_key_id', editRes.data.secret_key_id);
       form.setValue('change_expiration_date', false);
       if (editRes.data.exp) {
-        setLicenseKeyExpire(dayjs.unix(editRes.data.exp).format('MMMM DD, YYYY'))
+        setLicenseKeyExpire(formatDate(editRes.data.exp));
       }
       toast.success('License Key updated successfully.');
     } else {

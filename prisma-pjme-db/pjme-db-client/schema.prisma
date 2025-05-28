@@ -189,12 +189,11 @@ model ProductPrice {
   @@map("product_prices")
 }
 
-model PrivacyPolicy {
-  id         Int    @id @default(autoincrement()) @db.SmallInt
-  content    String
-  updated_at BigInt
+enum Language {
+  id
+  en
 
-  @@map("privacy_policy")
+  @@map("language")
 }
 
 model TermAndCondition {
@@ -205,11 +204,24 @@ model TermAndCondition {
   @@map("terms_and_conditions")
 }
 
-enum Language {
-  id
-  en
+model PrivacyPolicy {
+  id         Int    @id @default(autoincrement()) @db.SmallInt
+  updated_at BigInt
 
-  @@map("language")
+  translations PrivacyPolicyTranslation[]
+
+  @@map("privacy_policy")
+}
+
+model PrivacyPolicyTranslation {
+  id                Int      @id @default(autoincrement()) @db.SmallInt
+  privacy_policy_id Int      @db.SmallInt
+  language          Language
+  content           String
+
+  privacy_policy PrivacyPolicy @relation(fields: [privacy_policy_id], references: [id], onDelete: Cascade)
+
+  @@map("privacy_policy_translations")
 }
 
 model AboutUs {
