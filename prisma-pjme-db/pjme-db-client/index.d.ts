@@ -74,10 +74,15 @@ export type ProductVariant = $Result.DefaultSelection<Prisma.$ProductVariantPayl
  */
 export type ProductPrice = $Result.DefaultSelection<Prisma.$ProductPricePayload>
 /**
- * Model TermAndCondition
+ * Model TermsOfService
  * 
  */
-export type TermAndCondition = $Result.DefaultSelection<Prisma.$TermAndConditionPayload>
+export type TermsOfService = $Result.DefaultSelection<Prisma.$TermsOfServicePayload>
+/**
+ * Model TermsOfServiceTranslation
+ * 
+ */
+export type TermsOfServiceTranslation = $Result.DefaultSelection<Prisma.$TermsOfServiceTranslationPayload>
 /**
  * Model PrivacyPolicy
  * 
@@ -396,14 +401,24 @@ export class PrismaClient<
   get productPrice(): Prisma.ProductPriceDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.termAndCondition`: Exposes CRUD operations for the **TermAndCondition** model.
+   * `prisma.termsOfService`: Exposes CRUD operations for the **TermsOfService** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more TermAndConditions
-    * const termAndConditions = await prisma.termAndCondition.findMany()
+    * // Fetch zero or more TermsOfServices
+    * const termsOfServices = await prisma.termsOfService.findMany()
     * ```
     */
-  get termAndCondition(): Prisma.TermAndConditionDelegate<ExtArgs, ClientOptions>;
+  get termsOfService(): Prisma.TermsOfServiceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.termsOfServiceTranslation`: Exposes CRUD operations for the **TermsOfServiceTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TermsOfServiceTranslations
+    * const termsOfServiceTranslations = await prisma.termsOfServiceTranslation.findMany()
+    * ```
+    */
+  get termsOfServiceTranslation(): Prisma.TermsOfServiceTranslationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.privacyPolicy`: Exposes CRUD operations for the **PrivacyPolicy** model.
@@ -916,7 +931,8 @@ export namespace Prisma {
     ProductImage: 'ProductImage',
     ProductVariant: 'ProductVariant',
     ProductPrice: 'ProductPrice',
-    TermAndCondition: 'TermAndCondition',
+    TermsOfService: 'TermsOfService',
+    TermsOfServiceTranslation: 'TermsOfServiceTranslation',
     PrivacyPolicy: 'PrivacyPolicy',
     PrivacyPolicyTranslation: 'PrivacyPolicyTranslation',
     AboutUs: 'AboutUs',
@@ -941,7 +957,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "donationLink" | "owner" | "customer" | "license" | "category" | "product" | "productDiscount" | "productCoupon" | "productImage" | "productVariant" | "productPrice" | "termAndCondition" | "privacyPolicy" | "privacyPolicyTranslation" | "aboutUs" | "aboutUsTranslation" | "faq" | "faqTranslation"
+      modelProps: "admin" | "donationLink" | "owner" | "customer" | "license" | "category" | "product" | "productDiscount" | "productCoupon" | "productImage" | "productVariant" | "productPrice" | "termsOfService" | "termsOfServiceTranslation" | "privacyPolicy" | "privacyPolicyTranslation" | "aboutUs" | "aboutUsTranslation" | "faq" | "faqTranslation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1833,77 +1849,151 @@ export namespace Prisma {
           }
         }
       }
-      TermAndCondition: {
-        payload: Prisma.$TermAndConditionPayload<ExtArgs>
-        fields: Prisma.TermAndConditionFieldRefs
+      TermsOfService: {
+        payload: Prisma.$TermsOfServicePayload<ExtArgs>
+        fields: Prisma.TermsOfServiceFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TermAndConditionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload> | null
+            args: Prisma.TermsOfServiceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServicePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TermAndConditionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.TermsOfServiceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServicePayload>
           }
           findFirst: {
-            args: Prisma.TermAndConditionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload> | null
+            args: Prisma.TermsOfServiceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServicePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TermAndConditionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.TermsOfServiceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServicePayload>
           }
           findMany: {
-            args: Prisma.TermAndConditionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
+            args: Prisma.TermsOfServiceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServicePayload>[]
           }
           create: {
-            args: Prisma.TermAndConditionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.TermsOfServiceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServicePayload>
           }
           createMany: {
-            args: Prisma.TermAndConditionCreateManyArgs<ExtArgs>
+            args: Prisma.TermsOfServiceCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.TermAndConditionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
+            args: Prisma.TermsOfServiceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServicePayload>[]
           }
           delete: {
-            args: Prisma.TermAndConditionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.TermsOfServiceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServicePayload>
           }
           update: {
-            args: Prisma.TermAndConditionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.TermsOfServiceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServicePayload>
           }
           deleteMany: {
-            args: Prisma.TermAndConditionDeleteManyArgs<ExtArgs>
+            args: Prisma.TermsOfServiceDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.TermAndConditionUpdateManyArgs<ExtArgs>
+            args: Prisma.TermsOfServiceUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.TermAndConditionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>[]
+            args: Prisma.TermsOfServiceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServicePayload>[]
           }
           upsert: {
-            args: Prisma.TermAndConditionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TermAndConditionPayload>
+            args: Prisma.TermsOfServiceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServicePayload>
           }
           aggregate: {
-            args: Prisma.TermAndConditionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTermAndCondition>
+            args: Prisma.TermsOfServiceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTermsOfService>
           }
           groupBy: {
-            args: Prisma.TermAndConditionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TermAndConditionGroupByOutputType>[]
+            args: Prisma.TermsOfServiceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TermsOfServiceGroupByOutputType>[]
           }
           count: {
-            args: Prisma.TermAndConditionCountArgs<ExtArgs>
-            result: $Utils.Optional<TermAndConditionCountAggregateOutputType> | number
+            args: Prisma.TermsOfServiceCountArgs<ExtArgs>
+            result: $Utils.Optional<TermsOfServiceCountAggregateOutputType> | number
+          }
+        }
+      }
+      TermsOfServiceTranslation: {
+        payload: Prisma.$TermsOfServiceTranslationPayload<ExtArgs>
+        fields: Prisma.TermsOfServiceTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TermsOfServiceTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServiceTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TermsOfServiceTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServiceTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.TermsOfServiceTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServiceTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TermsOfServiceTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServiceTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.TermsOfServiceTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServiceTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.TermsOfServiceTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServiceTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.TermsOfServiceTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TermsOfServiceTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServiceTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.TermsOfServiceTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServiceTranslationPayload>
+          }
+          update: {
+            args: Prisma.TermsOfServiceTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServiceTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.TermsOfServiceTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TermsOfServiceTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TermsOfServiceTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServiceTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.TermsOfServiceTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TermsOfServiceTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.TermsOfServiceTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTermsOfServiceTranslation>
+          }
+          groupBy: {
+            args: Prisma.TermsOfServiceTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TermsOfServiceTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TermsOfServiceTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<TermsOfServiceTranslationCountAggregateOutputType> | number
           }
         }
       }
@@ -2447,7 +2537,8 @@ export namespace Prisma {
     productImage?: ProductImageOmit
     productVariant?: ProductVariantOmit
     productPrice?: ProductPriceOmit
-    termAndCondition?: TermAndConditionOmit
+    termsOfService?: TermsOfServiceOmit
+    termsOfServiceTranslation?: TermsOfServiceTranslationOmit
     privacyPolicy?: PrivacyPolicyOmit
     privacyPolicyTranslation?: PrivacyPolicyTranslationOmit
     aboutUs?: AboutUsOmit
@@ -2744,6 +2835,37 @@ export namespace Prisma {
    */
   export type ProductVariantCountOutputTypeCountProduct_pricesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductPriceWhereInput
+  }
+
+
+  /**
+   * Count Type TermsOfServiceCountOutputType
+   */
+
+  export type TermsOfServiceCountOutputType = {
+    translations: number
+  }
+
+  export type TermsOfServiceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | TermsOfServiceCountOutputTypeCountTranslationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TermsOfServiceCountOutputType without action
+   */
+  export type TermsOfServiceCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceCountOutputType
+     */
+    select?: TermsOfServiceCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TermsOfServiceCountOutputType without action
+   */
+  export type TermsOfServiceCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TermsOfServiceTranslationWhereInput
   }
 
 
@@ -16141,350 +16263,348 @@ export namespace Prisma {
 
 
   /**
-   * Model TermAndCondition
+   * Model TermsOfService
    */
 
-  export type AggregateTermAndCondition = {
-    _count: TermAndConditionCountAggregateOutputType | null
-    _avg: TermAndConditionAvgAggregateOutputType | null
-    _sum: TermAndConditionSumAggregateOutputType | null
-    _min: TermAndConditionMinAggregateOutputType | null
-    _max: TermAndConditionMaxAggregateOutputType | null
+  export type AggregateTermsOfService = {
+    _count: TermsOfServiceCountAggregateOutputType | null
+    _avg: TermsOfServiceAvgAggregateOutputType | null
+    _sum: TermsOfServiceSumAggregateOutputType | null
+    _min: TermsOfServiceMinAggregateOutputType | null
+    _max: TermsOfServiceMaxAggregateOutputType | null
   }
 
-  export type TermAndConditionAvgAggregateOutputType = {
+  export type TermsOfServiceAvgAggregateOutputType = {
     id: number | null
     updated_at: number | null
   }
 
-  export type TermAndConditionSumAggregateOutputType = {
+  export type TermsOfServiceSumAggregateOutputType = {
     id: number | null
     updated_at: bigint | null
   }
 
-  export type TermAndConditionMinAggregateOutputType = {
+  export type TermsOfServiceMinAggregateOutputType = {
     id: number | null
-    content: string | null
     updated_at: bigint | null
   }
 
-  export type TermAndConditionMaxAggregateOutputType = {
+  export type TermsOfServiceMaxAggregateOutputType = {
     id: number | null
-    content: string | null
     updated_at: bigint | null
   }
 
-  export type TermAndConditionCountAggregateOutputType = {
+  export type TermsOfServiceCountAggregateOutputType = {
     id: number
-    content: number
     updated_at: number
     _all: number
   }
 
 
-  export type TermAndConditionAvgAggregateInputType = {
+  export type TermsOfServiceAvgAggregateInputType = {
     id?: true
     updated_at?: true
   }
 
-  export type TermAndConditionSumAggregateInputType = {
+  export type TermsOfServiceSumAggregateInputType = {
     id?: true
     updated_at?: true
   }
 
-  export type TermAndConditionMinAggregateInputType = {
+  export type TermsOfServiceMinAggregateInputType = {
     id?: true
-    content?: true
     updated_at?: true
   }
 
-  export type TermAndConditionMaxAggregateInputType = {
+  export type TermsOfServiceMaxAggregateInputType = {
     id?: true
-    content?: true
     updated_at?: true
   }
 
-  export type TermAndConditionCountAggregateInputType = {
+  export type TermsOfServiceCountAggregateInputType = {
     id?: true
-    content?: true
     updated_at?: true
     _all?: true
   }
 
-  export type TermAndConditionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which TermAndCondition to aggregate.
+     * Filter which TermsOfService to aggregate.
      */
-    where?: TermAndConditionWhereInput
+    where?: TermsOfServiceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TermAndConditions to fetch.
+     * Determine the order of TermsOfServices to fetch.
      */
-    orderBy?: TermAndConditionOrderByWithRelationInput | TermAndConditionOrderByWithRelationInput[]
+    orderBy?: TermsOfServiceOrderByWithRelationInput | TermsOfServiceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: TermAndConditionWhereUniqueInput
+    cursor?: TermsOfServiceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TermAndConditions from the position of the cursor.
+     * Take `±n` TermsOfServices from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TermAndConditions.
+     * Skip the first `n` TermsOfServices.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned TermAndConditions
+     * Count returned TermsOfServices
     **/
-    _count?: true | TermAndConditionCountAggregateInputType
+    _count?: true | TermsOfServiceCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: TermAndConditionAvgAggregateInputType
+    _avg?: TermsOfServiceAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: TermAndConditionSumAggregateInputType
+    _sum?: TermsOfServiceSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: TermAndConditionMinAggregateInputType
+    _min?: TermsOfServiceMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: TermAndConditionMaxAggregateInputType
+    _max?: TermsOfServiceMaxAggregateInputType
   }
 
-  export type GetTermAndConditionAggregateType<T extends TermAndConditionAggregateArgs> = {
-        [P in keyof T & keyof AggregateTermAndCondition]: P extends '_count' | 'count'
+  export type GetTermsOfServiceAggregateType<T extends TermsOfServiceAggregateArgs> = {
+        [P in keyof T & keyof AggregateTermsOfService]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateTermAndCondition[P]>
-      : GetScalarType<T[P], AggregateTermAndCondition[P]>
+        : GetScalarType<T[P], AggregateTermsOfService[P]>
+      : GetScalarType<T[P], AggregateTermsOfService[P]>
   }
 
 
 
 
-  export type TermAndConditionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TermAndConditionWhereInput
-    orderBy?: TermAndConditionOrderByWithAggregationInput | TermAndConditionOrderByWithAggregationInput[]
-    by: TermAndConditionScalarFieldEnum[] | TermAndConditionScalarFieldEnum
-    having?: TermAndConditionScalarWhereWithAggregatesInput
+  export type TermsOfServiceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TermsOfServiceWhereInput
+    orderBy?: TermsOfServiceOrderByWithAggregationInput | TermsOfServiceOrderByWithAggregationInput[]
+    by: TermsOfServiceScalarFieldEnum[] | TermsOfServiceScalarFieldEnum
+    having?: TermsOfServiceScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: TermAndConditionCountAggregateInputType | true
-    _avg?: TermAndConditionAvgAggregateInputType
-    _sum?: TermAndConditionSumAggregateInputType
-    _min?: TermAndConditionMinAggregateInputType
-    _max?: TermAndConditionMaxAggregateInputType
+    _count?: TermsOfServiceCountAggregateInputType | true
+    _avg?: TermsOfServiceAvgAggregateInputType
+    _sum?: TermsOfServiceSumAggregateInputType
+    _min?: TermsOfServiceMinAggregateInputType
+    _max?: TermsOfServiceMaxAggregateInputType
   }
 
-  export type TermAndConditionGroupByOutputType = {
+  export type TermsOfServiceGroupByOutputType = {
     id: number
-    content: string
     updated_at: bigint
-    _count: TermAndConditionCountAggregateOutputType | null
-    _avg: TermAndConditionAvgAggregateOutputType | null
-    _sum: TermAndConditionSumAggregateOutputType | null
-    _min: TermAndConditionMinAggregateOutputType | null
-    _max: TermAndConditionMaxAggregateOutputType | null
+    _count: TermsOfServiceCountAggregateOutputType | null
+    _avg: TermsOfServiceAvgAggregateOutputType | null
+    _sum: TermsOfServiceSumAggregateOutputType | null
+    _min: TermsOfServiceMinAggregateOutputType | null
+    _max: TermsOfServiceMaxAggregateOutputType | null
   }
 
-  type GetTermAndConditionGroupByPayload<T extends TermAndConditionGroupByArgs> = Prisma.PrismaPromise<
+  type GetTermsOfServiceGroupByPayload<T extends TermsOfServiceGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TermAndConditionGroupByOutputType, T['by']> &
+      PickEnumerable<TermsOfServiceGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof TermAndConditionGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof TermsOfServiceGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], TermAndConditionGroupByOutputType[P]>
-            : GetScalarType<T[P], TermAndConditionGroupByOutputType[P]>
+              : GetScalarType<T[P], TermsOfServiceGroupByOutputType[P]>
+            : GetScalarType<T[P], TermsOfServiceGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type TermAndConditionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TermsOfServiceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    content?: boolean
     updated_at?: boolean
-  }, ExtArgs["result"]["termAndCondition"]>
+    translations?: boolean | TermsOfService$translationsArgs<ExtArgs>
+    _count?: boolean | TermsOfServiceCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["termsOfService"]>
 
-  export type TermAndConditionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TermsOfServiceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    content?: boolean
     updated_at?: boolean
-  }, ExtArgs["result"]["termAndCondition"]>
+  }, ExtArgs["result"]["termsOfService"]>
 
-  export type TermAndConditionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TermsOfServiceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    content?: boolean
     updated_at?: boolean
-  }, ExtArgs["result"]["termAndCondition"]>
+  }, ExtArgs["result"]["termsOfService"]>
 
-  export type TermAndConditionSelectScalar = {
+  export type TermsOfServiceSelectScalar = {
     id?: boolean
-    content?: boolean
     updated_at?: boolean
   }
 
-  export type TermAndConditionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "updated_at", ExtArgs["result"]["termAndCondition"]>
+  export type TermsOfServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "updated_at", ExtArgs["result"]["termsOfService"]>
+  export type TermsOfServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | TermsOfService$translationsArgs<ExtArgs>
+    _count?: boolean | TermsOfServiceCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TermsOfServiceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type TermsOfServiceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $TermAndConditionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "TermAndCondition"
-    objects: {}
+  export type $TermsOfServicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TermsOfService"
+    objects: {
+      translations: Prisma.$TermsOfServiceTranslationPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      content: string
       updated_at: bigint
-    }, ExtArgs["result"]["termAndCondition"]>
+    }, ExtArgs["result"]["termsOfService"]>
     composites: {}
   }
 
-  type TermAndConditionGetPayload<S extends boolean | null | undefined | TermAndConditionDefaultArgs> = $Result.GetResult<Prisma.$TermAndConditionPayload, S>
+  type TermsOfServiceGetPayload<S extends boolean | null | undefined | TermsOfServiceDefaultArgs> = $Result.GetResult<Prisma.$TermsOfServicePayload, S>
 
-  type TermAndConditionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TermAndConditionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TermAndConditionCountAggregateInputType | true
+  type TermsOfServiceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TermsOfServiceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TermsOfServiceCountAggregateInputType | true
     }
 
-  export interface TermAndConditionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TermAndCondition'], meta: { name: 'TermAndCondition' } }
+  export interface TermsOfServiceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TermsOfService'], meta: { name: 'TermsOfService' } }
     /**
-     * Find zero or one TermAndCondition that matches the filter.
-     * @param {TermAndConditionFindUniqueArgs} args - Arguments to find a TermAndCondition
+     * Find zero or one TermsOfService that matches the filter.
+     * @param {TermsOfServiceFindUniqueArgs} args - Arguments to find a TermsOfService
      * @example
-     * // Get one TermAndCondition
-     * const termAndCondition = await prisma.termAndCondition.findUnique({
+     * // Get one TermsOfService
+     * const termsOfService = await prisma.termsOfService.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends TermAndConditionFindUniqueArgs>(args: SelectSubset<T, TermAndConditionFindUniqueArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends TermsOfServiceFindUniqueArgs>(args: SelectSubset<T, TermsOfServiceFindUniqueArgs<ExtArgs>>): Prisma__TermsOfServiceClient<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one TermAndCondition that matches the filter or throw an error with `error.code='P2025'`
+     * Find one TermsOfService that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {TermAndConditionFindUniqueOrThrowArgs} args - Arguments to find a TermAndCondition
+     * @param {TermsOfServiceFindUniqueOrThrowArgs} args - Arguments to find a TermsOfService
      * @example
-     * // Get one TermAndCondition
-     * const termAndCondition = await prisma.termAndCondition.findUniqueOrThrow({
+     * // Get one TermsOfService
+     * const termsOfService = await prisma.termsOfService.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends TermAndConditionFindUniqueOrThrowArgs>(args: SelectSubset<T, TermAndConditionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends TermsOfServiceFindUniqueOrThrowArgs>(args: SelectSubset<T, TermsOfServiceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TermsOfServiceClient<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first TermAndCondition that matches the filter.
+     * Find the first TermsOfService that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermAndConditionFindFirstArgs} args - Arguments to find a TermAndCondition
+     * @param {TermsOfServiceFindFirstArgs} args - Arguments to find a TermsOfService
      * @example
-     * // Get one TermAndCondition
-     * const termAndCondition = await prisma.termAndCondition.findFirst({
+     * // Get one TermsOfService
+     * const termsOfService = await prisma.termsOfService.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends TermAndConditionFindFirstArgs>(args?: SelectSubset<T, TermAndConditionFindFirstArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends TermsOfServiceFindFirstArgs>(args?: SelectSubset<T, TermsOfServiceFindFirstArgs<ExtArgs>>): Prisma__TermsOfServiceClient<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first TermAndCondition that matches the filter or
+     * Find the first TermsOfService that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermAndConditionFindFirstOrThrowArgs} args - Arguments to find a TermAndCondition
+     * @param {TermsOfServiceFindFirstOrThrowArgs} args - Arguments to find a TermsOfService
      * @example
-     * // Get one TermAndCondition
-     * const termAndCondition = await prisma.termAndCondition.findFirstOrThrow({
+     * // Get one TermsOfService
+     * const termsOfService = await prisma.termsOfService.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends TermAndConditionFindFirstOrThrowArgs>(args?: SelectSubset<T, TermAndConditionFindFirstOrThrowArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends TermsOfServiceFindFirstOrThrowArgs>(args?: SelectSubset<T, TermsOfServiceFindFirstOrThrowArgs<ExtArgs>>): Prisma__TermsOfServiceClient<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more TermAndConditions that matches the filter.
+     * Find zero or more TermsOfServices that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermAndConditionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {TermsOfServiceFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all TermAndConditions
-     * const termAndConditions = await prisma.termAndCondition.findMany()
+     * // Get all TermsOfServices
+     * const termsOfServices = await prisma.termsOfService.findMany()
      * 
-     * // Get first 10 TermAndConditions
-     * const termAndConditions = await prisma.termAndCondition.findMany({ take: 10 })
+     * // Get first 10 TermsOfServices
+     * const termsOfServices = await prisma.termsOfService.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const termAndConditionWithIdOnly = await prisma.termAndCondition.findMany({ select: { id: true } })
+     * const termsOfServiceWithIdOnly = await prisma.termsOfService.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends TermAndConditionFindManyArgs>(args?: SelectSubset<T, TermAndConditionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends TermsOfServiceFindManyArgs>(args?: SelectSubset<T, TermsOfServiceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a TermAndCondition.
-     * @param {TermAndConditionCreateArgs} args - Arguments to create a TermAndCondition.
+     * Create a TermsOfService.
+     * @param {TermsOfServiceCreateArgs} args - Arguments to create a TermsOfService.
      * @example
-     * // Create one TermAndCondition
-     * const TermAndCondition = await prisma.termAndCondition.create({
+     * // Create one TermsOfService
+     * const TermsOfService = await prisma.termsOfService.create({
      *   data: {
-     *     // ... data to create a TermAndCondition
+     *     // ... data to create a TermsOfService
      *   }
      * })
      * 
      */
-    create<T extends TermAndConditionCreateArgs>(args: SelectSubset<T, TermAndConditionCreateArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends TermsOfServiceCreateArgs>(args: SelectSubset<T, TermsOfServiceCreateArgs<ExtArgs>>): Prisma__TermsOfServiceClient<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many TermAndConditions.
-     * @param {TermAndConditionCreateManyArgs} args - Arguments to create many TermAndConditions.
+     * Create many TermsOfServices.
+     * @param {TermsOfServiceCreateManyArgs} args - Arguments to create many TermsOfServices.
      * @example
-     * // Create many TermAndConditions
-     * const termAndCondition = await prisma.termAndCondition.createMany({
+     * // Create many TermsOfServices
+     * const termsOfService = await prisma.termsOfService.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends TermAndConditionCreateManyArgs>(args?: SelectSubset<T, TermAndConditionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends TermsOfServiceCreateManyArgs>(args?: SelectSubset<T, TermsOfServiceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many TermAndConditions and returns the data saved in the database.
-     * @param {TermAndConditionCreateManyAndReturnArgs} args - Arguments to create many TermAndConditions.
+     * Create many TermsOfServices and returns the data saved in the database.
+     * @param {TermsOfServiceCreateManyAndReturnArgs} args - Arguments to create many TermsOfServices.
      * @example
-     * // Create many TermAndConditions
-     * const termAndCondition = await prisma.termAndCondition.createManyAndReturn({
+     * // Create many TermsOfServices
+     * const termsOfService = await prisma.termsOfService.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many TermAndConditions and only return the `id`
-     * const termAndConditionWithIdOnly = await prisma.termAndCondition.createManyAndReturn({
+     * // Create many TermsOfServices and only return the `id`
+     * const termsOfServiceWithIdOnly = await prisma.termsOfService.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -16494,28 +16614,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends TermAndConditionCreateManyAndReturnArgs>(args?: SelectSubset<T, TermAndConditionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends TermsOfServiceCreateManyAndReturnArgs>(args?: SelectSubset<T, TermsOfServiceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a TermAndCondition.
-     * @param {TermAndConditionDeleteArgs} args - Arguments to delete one TermAndCondition.
+     * Delete a TermsOfService.
+     * @param {TermsOfServiceDeleteArgs} args - Arguments to delete one TermsOfService.
      * @example
-     * // Delete one TermAndCondition
-     * const TermAndCondition = await prisma.termAndCondition.delete({
+     * // Delete one TermsOfService
+     * const TermsOfService = await prisma.termsOfService.delete({
      *   where: {
-     *     // ... filter to delete one TermAndCondition
+     *     // ... filter to delete one TermsOfService
      *   }
      * })
      * 
      */
-    delete<T extends TermAndConditionDeleteArgs>(args: SelectSubset<T, TermAndConditionDeleteArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends TermsOfServiceDeleteArgs>(args: SelectSubset<T, TermsOfServiceDeleteArgs<ExtArgs>>): Prisma__TermsOfServiceClient<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one TermAndCondition.
-     * @param {TermAndConditionUpdateArgs} args - Arguments to update one TermAndCondition.
+     * Update one TermsOfService.
+     * @param {TermsOfServiceUpdateArgs} args - Arguments to update one TermsOfService.
      * @example
-     * // Update one TermAndCondition
-     * const termAndCondition = await prisma.termAndCondition.update({
+     * // Update one TermsOfService
+     * const termsOfService = await prisma.termsOfService.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -16525,30 +16645,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends TermAndConditionUpdateArgs>(args: SelectSubset<T, TermAndConditionUpdateArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends TermsOfServiceUpdateArgs>(args: SelectSubset<T, TermsOfServiceUpdateArgs<ExtArgs>>): Prisma__TermsOfServiceClient<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more TermAndConditions.
-     * @param {TermAndConditionDeleteManyArgs} args - Arguments to filter TermAndConditions to delete.
+     * Delete zero or more TermsOfServices.
+     * @param {TermsOfServiceDeleteManyArgs} args - Arguments to filter TermsOfServices to delete.
      * @example
-     * // Delete a few TermAndConditions
-     * const { count } = await prisma.termAndCondition.deleteMany({
+     * // Delete a few TermsOfServices
+     * const { count } = await prisma.termsOfService.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends TermAndConditionDeleteManyArgs>(args?: SelectSubset<T, TermAndConditionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends TermsOfServiceDeleteManyArgs>(args?: SelectSubset<T, TermsOfServiceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more TermAndConditions.
+     * Update zero or more TermsOfServices.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermAndConditionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {TermsOfServiceUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many TermAndConditions
-     * const termAndCondition = await prisma.termAndCondition.updateMany({
+     * // Update many TermsOfServices
+     * const termsOfService = await prisma.termsOfService.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -16558,14 +16678,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends TermAndConditionUpdateManyArgs>(args: SelectSubset<T, TermAndConditionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends TermsOfServiceUpdateManyArgs>(args: SelectSubset<T, TermsOfServiceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more TermAndConditions and returns the data updated in the database.
-     * @param {TermAndConditionUpdateManyAndReturnArgs} args - Arguments to update many TermAndConditions.
+     * Update zero or more TermsOfServices and returns the data updated in the database.
+     * @param {TermsOfServiceUpdateManyAndReturnArgs} args - Arguments to update many TermsOfServices.
      * @example
-     * // Update many TermAndConditions
-     * const termAndCondition = await prisma.termAndCondition.updateManyAndReturn({
+     * // Update many TermsOfServices
+     * const termsOfService = await prisma.termsOfService.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -16574,8 +16694,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more TermAndConditions and only return the `id`
-     * const termAndConditionWithIdOnly = await prisma.termAndCondition.updateManyAndReturn({
+     * // Update zero or more TermsOfServices and only return the `id`
+     * const termsOfServiceWithIdOnly = await prisma.termsOfService.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -16588,56 +16708,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends TermAndConditionUpdateManyAndReturnArgs>(args: SelectSubset<T, TermAndConditionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends TermsOfServiceUpdateManyAndReturnArgs>(args: SelectSubset<T, TermsOfServiceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one TermAndCondition.
-     * @param {TermAndConditionUpsertArgs} args - Arguments to update or create a TermAndCondition.
+     * Create or update one TermsOfService.
+     * @param {TermsOfServiceUpsertArgs} args - Arguments to update or create a TermsOfService.
      * @example
-     * // Update or create a TermAndCondition
-     * const termAndCondition = await prisma.termAndCondition.upsert({
+     * // Update or create a TermsOfService
+     * const termsOfService = await prisma.termsOfService.upsert({
      *   create: {
-     *     // ... data to create a TermAndCondition
+     *     // ... data to create a TermsOfService
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the TermAndCondition we want to update
+     *     // ... the filter for the TermsOfService we want to update
      *   }
      * })
      */
-    upsert<T extends TermAndConditionUpsertArgs>(args: SelectSubset<T, TermAndConditionUpsertArgs<ExtArgs>>): Prisma__TermAndConditionClient<$Result.GetResult<Prisma.$TermAndConditionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends TermsOfServiceUpsertArgs>(args: SelectSubset<T, TermsOfServiceUpsertArgs<ExtArgs>>): Prisma__TermsOfServiceClient<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of TermAndConditions.
+     * Count the number of TermsOfServices.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermAndConditionCountArgs} args - Arguments to filter TermAndConditions to count.
+     * @param {TermsOfServiceCountArgs} args - Arguments to filter TermsOfServices to count.
      * @example
-     * // Count the number of TermAndConditions
-     * const count = await prisma.termAndCondition.count({
+     * // Count the number of TermsOfServices
+     * const count = await prisma.termsOfService.count({
      *   where: {
-     *     // ... the filter for the TermAndConditions we want to count
+     *     // ... the filter for the TermsOfServices we want to count
      *   }
      * })
     **/
-    count<T extends TermAndConditionCountArgs>(
-      args?: Subset<T, TermAndConditionCountArgs>,
+    count<T extends TermsOfServiceCountArgs>(
+      args?: Subset<T, TermsOfServiceCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], TermAndConditionCountAggregateOutputType>
+          : GetScalarType<T['select'], TermsOfServiceCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a TermAndCondition.
+     * Allows you to perform aggregations operations on a TermsOfService.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermAndConditionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {TermsOfServiceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -16657,13 +16777,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends TermAndConditionAggregateArgs>(args: Subset<T, TermAndConditionAggregateArgs>): Prisma.PrismaPromise<GetTermAndConditionAggregateType<T>>
+    aggregate<T extends TermsOfServiceAggregateArgs>(args: Subset<T, TermsOfServiceAggregateArgs>): Prisma.PrismaPromise<GetTermsOfServiceAggregateType<T>>
 
     /**
-     * Group by TermAndCondition.
+     * Group by TermsOfService.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TermAndConditionGroupByArgs} args - Group by arguments.
+     * @param {TermsOfServiceGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -16678,14 +16798,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends TermAndConditionGroupByArgs,
+      T extends TermsOfServiceGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TermAndConditionGroupByArgs['orderBy'] }
-        : { orderBy?: TermAndConditionGroupByArgs['orderBy'] },
+        ? { orderBy: TermsOfServiceGroupByArgs['orderBy'] }
+        : { orderBy?: TermsOfServiceGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -16734,21 +16854,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, TermAndConditionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTermAndConditionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, TermsOfServiceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTermsOfServiceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the TermAndCondition model
+   * Fields of the TermsOfService model
    */
-  readonly fields: TermAndConditionFieldRefs;
+  readonly fields: TermsOfServiceFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for TermAndCondition.
+   * The delegate class that acts as a "Promise-like" for TermsOfService.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__TermAndConditionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__TermsOfServiceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    translations<T extends TermsOfService$translationsArgs<ExtArgs> = {}>(args?: Subset<T, TermsOfService$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16775,375 +16896,1521 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the TermAndCondition model
+   * Fields of the TermsOfService model
    */
-  interface TermAndConditionFieldRefs {
-    readonly id: FieldRef<"TermAndCondition", 'Int'>
-    readonly content: FieldRef<"TermAndCondition", 'String'>
-    readonly updated_at: FieldRef<"TermAndCondition", 'BigInt'>
+  interface TermsOfServiceFieldRefs {
+    readonly id: FieldRef<"TermsOfService", 'Int'>
+    readonly updated_at: FieldRef<"TermsOfService", 'BigInt'>
   }
     
 
   // Custom InputTypes
   /**
-   * TermAndCondition findUnique
+   * TermsOfService findUnique
    */
-  export type TermAndConditionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfService
      */
-    select?: TermAndConditionSelect<ExtArgs> | null
+    select?: TermsOfServiceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfService
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceOmit<ExtArgs> | null
     /**
-     * Filter, which TermAndCondition to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: TermAndConditionWhereUniqueInput
+    include?: TermsOfServiceInclude<ExtArgs> | null
+    /**
+     * Filter, which TermsOfService to fetch.
+     */
+    where: TermsOfServiceWhereUniqueInput
   }
 
   /**
-   * TermAndCondition findUniqueOrThrow
+   * TermsOfService findUniqueOrThrow
    */
-  export type TermAndConditionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfService
      */
-    select?: TermAndConditionSelect<ExtArgs> | null
+    select?: TermsOfServiceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfService
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceOmit<ExtArgs> | null
     /**
-     * Filter, which TermAndCondition to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: TermAndConditionWhereUniqueInput
+    include?: TermsOfServiceInclude<ExtArgs> | null
+    /**
+     * Filter, which TermsOfService to fetch.
+     */
+    where: TermsOfServiceWhereUniqueInput
   }
 
   /**
-   * TermAndCondition findFirst
+   * TermsOfService findFirst
    */
-  export type TermAndConditionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfService
      */
-    select?: TermAndConditionSelect<ExtArgs> | null
+    select?: TermsOfServiceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfService
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceOmit<ExtArgs> | null
     /**
-     * Filter, which TermAndCondition to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TermAndConditionWhereInput
+    include?: TermsOfServiceInclude<ExtArgs> | null
+    /**
+     * Filter, which TermsOfService to fetch.
+     */
+    where?: TermsOfServiceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TermAndConditions to fetch.
+     * Determine the order of TermsOfServices to fetch.
      */
-    orderBy?: TermAndConditionOrderByWithRelationInput | TermAndConditionOrderByWithRelationInput[]
+    orderBy?: TermsOfServiceOrderByWithRelationInput | TermsOfServiceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for TermAndConditions.
+     * Sets the position for searching for TermsOfServices.
      */
-    cursor?: TermAndConditionWhereUniqueInput
+    cursor?: TermsOfServiceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TermAndConditions from the position of the cursor.
+     * Take `±n` TermsOfServices from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TermAndConditions.
+     * Skip the first `n` TermsOfServices.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of TermAndConditions.
+     * Filter by unique combinations of TermsOfServices.
      */
-    distinct?: TermAndConditionScalarFieldEnum | TermAndConditionScalarFieldEnum[]
+    distinct?: TermsOfServiceScalarFieldEnum | TermsOfServiceScalarFieldEnum[]
   }
 
   /**
-   * TermAndCondition findFirstOrThrow
+   * TermsOfService findFirstOrThrow
    */
-  export type TermAndConditionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfService
      */
-    select?: TermAndConditionSelect<ExtArgs> | null
+    select?: TermsOfServiceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfService
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceOmit<ExtArgs> | null
     /**
-     * Filter, which TermAndCondition to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TermAndConditionWhereInput
+    include?: TermsOfServiceInclude<ExtArgs> | null
+    /**
+     * Filter, which TermsOfService to fetch.
+     */
+    where?: TermsOfServiceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TermAndConditions to fetch.
+     * Determine the order of TermsOfServices to fetch.
      */
-    orderBy?: TermAndConditionOrderByWithRelationInput | TermAndConditionOrderByWithRelationInput[]
+    orderBy?: TermsOfServiceOrderByWithRelationInput | TermsOfServiceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for TermAndConditions.
+     * Sets the position for searching for TermsOfServices.
      */
-    cursor?: TermAndConditionWhereUniqueInput
+    cursor?: TermsOfServiceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TermAndConditions from the position of the cursor.
+     * Take `±n` TermsOfServices from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TermAndConditions.
+     * Skip the first `n` TermsOfServices.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of TermAndConditions.
+     * Filter by unique combinations of TermsOfServices.
      */
-    distinct?: TermAndConditionScalarFieldEnum | TermAndConditionScalarFieldEnum[]
+    distinct?: TermsOfServiceScalarFieldEnum | TermsOfServiceScalarFieldEnum[]
   }
 
   /**
-   * TermAndCondition findMany
+   * TermsOfService findMany
    */
-  export type TermAndConditionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfService
      */
-    select?: TermAndConditionSelect<ExtArgs> | null
+    select?: TermsOfServiceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfService
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceOmit<ExtArgs> | null
     /**
-     * Filter, which TermAndConditions to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TermAndConditionWhereInput
+    include?: TermsOfServiceInclude<ExtArgs> | null
+    /**
+     * Filter, which TermsOfServices to fetch.
+     */
+    where?: TermsOfServiceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TermAndConditions to fetch.
+     * Determine the order of TermsOfServices to fetch.
      */
-    orderBy?: TermAndConditionOrderByWithRelationInput | TermAndConditionOrderByWithRelationInput[]
+    orderBy?: TermsOfServiceOrderByWithRelationInput | TermsOfServiceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing TermAndConditions.
+     * Sets the position for listing TermsOfServices.
      */
-    cursor?: TermAndConditionWhereUniqueInput
+    cursor?: TermsOfServiceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TermAndConditions from the position of the cursor.
+     * Take `±n` TermsOfServices from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TermAndConditions.
+     * Skip the first `n` TermsOfServices.
      */
     skip?: number
-    distinct?: TermAndConditionScalarFieldEnum | TermAndConditionScalarFieldEnum[]
+    distinct?: TermsOfServiceScalarFieldEnum | TermsOfServiceScalarFieldEnum[]
   }
 
   /**
-   * TermAndCondition create
+   * TermsOfService create
    */
-  export type TermAndConditionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfService
      */
-    select?: TermAndConditionSelect<ExtArgs> | null
+    select?: TermsOfServiceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfService
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceOmit<ExtArgs> | null
     /**
-     * The data needed to create a TermAndCondition.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<TermAndConditionCreateInput, TermAndConditionUncheckedCreateInput>
+    include?: TermsOfServiceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TermsOfService.
+     */
+    data: XOR<TermsOfServiceCreateInput, TermsOfServiceUncheckedCreateInput>
   }
 
   /**
-   * TermAndCondition createMany
+   * TermsOfService createMany
    */
-  export type TermAndConditionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many TermAndConditions.
+     * The data used to create many TermsOfServices.
      */
-    data: TermAndConditionCreateManyInput | TermAndConditionCreateManyInput[]
+    data: TermsOfServiceCreateManyInput | TermsOfServiceCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * TermAndCondition createManyAndReturn
+   * TermsOfService createManyAndReturn
    */
-  export type TermAndConditionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfService
      */
-    select?: TermAndConditionSelectCreateManyAndReturn<ExtArgs> | null
+    select?: TermsOfServiceSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfService
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceOmit<ExtArgs> | null
     /**
-     * The data used to create many TermAndConditions.
+     * The data used to create many TermsOfServices.
      */
-    data: TermAndConditionCreateManyInput | TermAndConditionCreateManyInput[]
+    data: TermsOfServiceCreateManyInput | TermsOfServiceCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * TermAndCondition update
+   * TermsOfService update
    */
-  export type TermAndConditionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfService
      */
-    select?: TermAndConditionSelect<ExtArgs> | null
+    select?: TermsOfServiceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfService
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceOmit<ExtArgs> | null
     /**
-     * The data needed to update a TermAndCondition.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<TermAndConditionUpdateInput, TermAndConditionUncheckedUpdateInput>
+    include?: TermsOfServiceInclude<ExtArgs> | null
     /**
-     * Choose, which TermAndCondition to update.
+     * The data needed to update a TermsOfService.
      */
-    where: TermAndConditionWhereUniqueInput
+    data: XOR<TermsOfServiceUpdateInput, TermsOfServiceUncheckedUpdateInput>
+    /**
+     * Choose, which TermsOfService to update.
+     */
+    where: TermsOfServiceWhereUniqueInput
   }
 
   /**
-   * TermAndCondition updateMany
+   * TermsOfService updateMany
    */
-  export type TermAndConditionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update TermAndConditions.
+     * The data used to update TermsOfServices.
      */
-    data: XOR<TermAndConditionUpdateManyMutationInput, TermAndConditionUncheckedUpdateManyInput>
+    data: XOR<TermsOfServiceUpdateManyMutationInput, TermsOfServiceUncheckedUpdateManyInput>
     /**
-     * Filter which TermAndConditions to update
+     * Filter which TermsOfServices to update
      */
-    where?: TermAndConditionWhereInput
+    where?: TermsOfServiceWhereInput
     /**
-     * Limit how many TermAndConditions to update.
+     * Limit how many TermsOfServices to update.
      */
     limit?: number
   }
 
   /**
-   * TermAndCondition updateManyAndReturn
+   * TermsOfService updateManyAndReturn
    */
-  export type TermAndConditionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfService
      */
-    select?: TermAndConditionSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: TermsOfServiceSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfService
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceOmit<ExtArgs> | null
     /**
-     * The data used to update TermAndConditions.
+     * The data used to update TermsOfServices.
      */
-    data: XOR<TermAndConditionUpdateManyMutationInput, TermAndConditionUncheckedUpdateManyInput>
+    data: XOR<TermsOfServiceUpdateManyMutationInput, TermsOfServiceUncheckedUpdateManyInput>
     /**
-     * Filter which TermAndConditions to update
+     * Filter which TermsOfServices to update
      */
-    where?: TermAndConditionWhereInput
+    where?: TermsOfServiceWhereInput
     /**
-     * Limit how many TermAndConditions to update.
+     * Limit how many TermsOfServices to update.
      */
     limit?: number
   }
 
   /**
-   * TermAndCondition upsert
+   * TermsOfService upsert
    */
-  export type TermAndConditionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfService
      */
-    select?: TermAndConditionSelect<ExtArgs> | null
+    select?: TermsOfServiceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfService
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceOmit<ExtArgs> | null
     /**
-     * The filter to search for the TermAndCondition to update in case it exists.
+     * Choose, which related nodes to fetch as well
      */
-    where: TermAndConditionWhereUniqueInput
+    include?: TermsOfServiceInclude<ExtArgs> | null
     /**
-     * In case the TermAndCondition found by the `where` argument doesn't exist, create a new TermAndCondition with this data.
+     * The filter to search for the TermsOfService to update in case it exists.
      */
-    create: XOR<TermAndConditionCreateInput, TermAndConditionUncheckedCreateInput>
+    where: TermsOfServiceWhereUniqueInput
     /**
-     * In case the TermAndCondition was found with the provided `where` argument, update it with this data.
+     * In case the TermsOfService found by the `where` argument doesn't exist, create a new TermsOfService with this data.
      */
-    update: XOR<TermAndConditionUpdateInput, TermAndConditionUncheckedUpdateInput>
+    create: XOR<TermsOfServiceCreateInput, TermsOfServiceUncheckedCreateInput>
+    /**
+     * In case the TermsOfService was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TermsOfServiceUpdateInput, TermsOfServiceUncheckedUpdateInput>
   }
 
   /**
-   * TermAndCondition delete
+   * TermsOfService delete
    */
-  export type TermAndConditionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfService
      */
-    select?: TermAndConditionSelect<ExtArgs> | null
+    select?: TermsOfServiceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfService
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceOmit<ExtArgs> | null
     /**
-     * Filter which TermAndCondition to delete.
+     * Choose, which related nodes to fetch as well
      */
-    where: TermAndConditionWhereUniqueInput
+    include?: TermsOfServiceInclude<ExtArgs> | null
+    /**
+     * Filter which TermsOfService to delete.
+     */
+    where: TermsOfServiceWhereUniqueInput
   }
 
   /**
-   * TermAndCondition deleteMany
+   * TermsOfService deleteMany
    */
-  export type TermAndConditionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfServiceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which TermAndConditions to delete
+     * Filter which TermsOfServices to delete
      */
-    where?: TermAndConditionWhereInput
+    where?: TermsOfServiceWhereInput
     /**
-     * Limit how many TermAndConditions to delete.
+     * Limit how many TermsOfServices to delete.
      */
     limit?: number
   }
 
   /**
-   * TermAndCondition without action
+   * TermsOfService.translations
    */
-  export type TermAndConditionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TermsOfService$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TermAndCondition
+     * Select specific fields to fetch from the TermsOfServiceTranslation
      */
-    select?: TermAndConditionSelect<ExtArgs> | null
+    select?: TermsOfServiceTranslationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TermAndCondition
+     * Omit specific fields from the TermsOfServiceTranslation
      */
-    omit?: TermAndConditionOmit<ExtArgs> | null
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationInclude<ExtArgs> | null
+    where?: TermsOfServiceTranslationWhereInput
+    orderBy?: TermsOfServiceTranslationOrderByWithRelationInput | TermsOfServiceTranslationOrderByWithRelationInput[]
+    cursor?: TermsOfServiceTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TermsOfServiceTranslationScalarFieldEnum | TermsOfServiceTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TermsOfService without action
+   */
+  export type TermsOfServiceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfService
+     */
+    select?: TermsOfServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfService
+     */
+    omit?: TermsOfServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TermsOfServiceTranslation
+   */
+
+  export type AggregateTermsOfServiceTranslation = {
+    _count: TermsOfServiceTranslationCountAggregateOutputType | null
+    _avg: TermsOfServiceTranslationAvgAggregateOutputType | null
+    _sum: TermsOfServiceTranslationSumAggregateOutputType | null
+    _min: TermsOfServiceTranslationMinAggregateOutputType | null
+    _max: TermsOfServiceTranslationMaxAggregateOutputType | null
+  }
+
+  export type TermsOfServiceTranslationAvgAggregateOutputType = {
+    id: number | null
+    terms_of_service_id: number | null
+  }
+
+  export type TermsOfServiceTranslationSumAggregateOutputType = {
+    id: number | null
+    terms_of_service_id: number | null
+  }
+
+  export type TermsOfServiceTranslationMinAggregateOutputType = {
+    id: number | null
+    terms_of_service_id: number | null
+    language: $Enums.Language | null
+    content: string | null
+  }
+
+  export type TermsOfServiceTranslationMaxAggregateOutputType = {
+    id: number | null
+    terms_of_service_id: number | null
+    language: $Enums.Language | null
+    content: string | null
+  }
+
+  export type TermsOfServiceTranslationCountAggregateOutputType = {
+    id: number
+    terms_of_service_id: number
+    language: number
+    content: number
+    _all: number
+  }
+
+
+  export type TermsOfServiceTranslationAvgAggregateInputType = {
+    id?: true
+    terms_of_service_id?: true
+  }
+
+  export type TermsOfServiceTranslationSumAggregateInputType = {
+    id?: true
+    terms_of_service_id?: true
+  }
+
+  export type TermsOfServiceTranslationMinAggregateInputType = {
+    id?: true
+    terms_of_service_id?: true
+    language?: true
+    content?: true
+  }
+
+  export type TermsOfServiceTranslationMaxAggregateInputType = {
+    id?: true
+    terms_of_service_id?: true
+    language?: true
+    content?: true
+  }
+
+  export type TermsOfServiceTranslationCountAggregateInputType = {
+    id?: true
+    terms_of_service_id?: true
+    language?: true
+    content?: true
+    _all?: true
+  }
+
+  export type TermsOfServiceTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TermsOfServiceTranslation to aggregate.
+     */
+    where?: TermsOfServiceTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TermsOfServiceTranslations to fetch.
+     */
+    orderBy?: TermsOfServiceTranslationOrderByWithRelationInput | TermsOfServiceTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TermsOfServiceTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TermsOfServiceTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TermsOfServiceTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TermsOfServiceTranslations
+    **/
+    _count?: true | TermsOfServiceTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TermsOfServiceTranslationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TermsOfServiceTranslationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TermsOfServiceTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TermsOfServiceTranslationMaxAggregateInputType
+  }
+
+  export type GetTermsOfServiceTranslationAggregateType<T extends TermsOfServiceTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateTermsOfServiceTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTermsOfServiceTranslation[P]>
+      : GetScalarType<T[P], AggregateTermsOfServiceTranslation[P]>
+  }
+
+
+
+
+  export type TermsOfServiceTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TermsOfServiceTranslationWhereInput
+    orderBy?: TermsOfServiceTranslationOrderByWithAggregationInput | TermsOfServiceTranslationOrderByWithAggregationInput[]
+    by: TermsOfServiceTranslationScalarFieldEnum[] | TermsOfServiceTranslationScalarFieldEnum
+    having?: TermsOfServiceTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TermsOfServiceTranslationCountAggregateInputType | true
+    _avg?: TermsOfServiceTranslationAvgAggregateInputType
+    _sum?: TermsOfServiceTranslationSumAggregateInputType
+    _min?: TermsOfServiceTranslationMinAggregateInputType
+    _max?: TermsOfServiceTranslationMaxAggregateInputType
+  }
+
+  export type TermsOfServiceTranslationGroupByOutputType = {
+    id: number
+    terms_of_service_id: number
+    language: $Enums.Language
+    content: string
+    _count: TermsOfServiceTranslationCountAggregateOutputType | null
+    _avg: TermsOfServiceTranslationAvgAggregateOutputType | null
+    _sum: TermsOfServiceTranslationSumAggregateOutputType | null
+    _min: TermsOfServiceTranslationMinAggregateOutputType | null
+    _max: TermsOfServiceTranslationMaxAggregateOutputType | null
+  }
+
+  type GetTermsOfServiceTranslationGroupByPayload<T extends TermsOfServiceTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TermsOfServiceTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TermsOfServiceTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TermsOfServiceTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], TermsOfServiceTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TermsOfServiceTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    terms_of_service_id?: boolean
+    language?: boolean
+    content?: boolean
+    terms_of_service?: boolean | TermsOfServiceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["termsOfServiceTranslation"]>
+
+  export type TermsOfServiceTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    terms_of_service_id?: boolean
+    language?: boolean
+    content?: boolean
+    terms_of_service?: boolean | TermsOfServiceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["termsOfServiceTranslation"]>
+
+  export type TermsOfServiceTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    terms_of_service_id?: boolean
+    language?: boolean
+    content?: boolean
+    terms_of_service?: boolean | TermsOfServiceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["termsOfServiceTranslation"]>
+
+  export type TermsOfServiceTranslationSelectScalar = {
+    id?: boolean
+    terms_of_service_id?: boolean
+    language?: boolean
+    content?: boolean
+  }
+
+  export type TermsOfServiceTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "terms_of_service_id" | "language" | "content", ExtArgs["result"]["termsOfServiceTranslation"]>
+  export type TermsOfServiceTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    terms_of_service?: boolean | TermsOfServiceDefaultArgs<ExtArgs>
+  }
+  export type TermsOfServiceTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    terms_of_service?: boolean | TermsOfServiceDefaultArgs<ExtArgs>
+  }
+  export type TermsOfServiceTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    terms_of_service?: boolean | TermsOfServiceDefaultArgs<ExtArgs>
+  }
+
+  export type $TermsOfServiceTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TermsOfServiceTranslation"
+    objects: {
+      terms_of_service: Prisma.$TermsOfServicePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      terms_of_service_id: number
+      language: $Enums.Language
+      content: string
+    }, ExtArgs["result"]["termsOfServiceTranslation"]>
+    composites: {}
+  }
+
+  type TermsOfServiceTranslationGetPayload<S extends boolean | null | undefined | TermsOfServiceTranslationDefaultArgs> = $Result.GetResult<Prisma.$TermsOfServiceTranslationPayload, S>
+
+  type TermsOfServiceTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TermsOfServiceTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TermsOfServiceTranslationCountAggregateInputType | true
+    }
+
+  export interface TermsOfServiceTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TermsOfServiceTranslation'], meta: { name: 'TermsOfServiceTranslation' } }
+    /**
+     * Find zero or one TermsOfServiceTranslation that matches the filter.
+     * @param {TermsOfServiceTranslationFindUniqueArgs} args - Arguments to find a TermsOfServiceTranslation
+     * @example
+     * // Get one TermsOfServiceTranslation
+     * const termsOfServiceTranslation = await prisma.termsOfServiceTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TermsOfServiceTranslationFindUniqueArgs>(args: SelectSubset<T, TermsOfServiceTranslationFindUniqueArgs<ExtArgs>>): Prisma__TermsOfServiceTranslationClient<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TermsOfServiceTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TermsOfServiceTranslationFindUniqueOrThrowArgs} args - Arguments to find a TermsOfServiceTranslation
+     * @example
+     * // Get one TermsOfServiceTranslation
+     * const termsOfServiceTranslation = await prisma.termsOfServiceTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TermsOfServiceTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, TermsOfServiceTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TermsOfServiceTranslationClient<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TermsOfServiceTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TermsOfServiceTranslationFindFirstArgs} args - Arguments to find a TermsOfServiceTranslation
+     * @example
+     * // Get one TermsOfServiceTranslation
+     * const termsOfServiceTranslation = await prisma.termsOfServiceTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TermsOfServiceTranslationFindFirstArgs>(args?: SelectSubset<T, TermsOfServiceTranslationFindFirstArgs<ExtArgs>>): Prisma__TermsOfServiceTranslationClient<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TermsOfServiceTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TermsOfServiceTranslationFindFirstOrThrowArgs} args - Arguments to find a TermsOfServiceTranslation
+     * @example
+     * // Get one TermsOfServiceTranslation
+     * const termsOfServiceTranslation = await prisma.termsOfServiceTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TermsOfServiceTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, TermsOfServiceTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__TermsOfServiceTranslationClient<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TermsOfServiceTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TermsOfServiceTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TermsOfServiceTranslations
+     * const termsOfServiceTranslations = await prisma.termsOfServiceTranslation.findMany()
+     * 
+     * // Get first 10 TermsOfServiceTranslations
+     * const termsOfServiceTranslations = await prisma.termsOfServiceTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const termsOfServiceTranslationWithIdOnly = await prisma.termsOfServiceTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TermsOfServiceTranslationFindManyArgs>(args?: SelectSubset<T, TermsOfServiceTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TermsOfServiceTranslation.
+     * @param {TermsOfServiceTranslationCreateArgs} args - Arguments to create a TermsOfServiceTranslation.
+     * @example
+     * // Create one TermsOfServiceTranslation
+     * const TermsOfServiceTranslation = await prisma.termsOfServiceTranslation.create({
+     *   data: {
+     *     // ... data to create a TermsOfServiceTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends TermsOfServiceTranslationCreateArgs>(args: SelectSubset<T, TermsOfServiceTranslationCreateArgs<ExtArgs>>): Prisma__TermsOfServiceTranslationClient<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TermsOfServiceTranslations.
+     * @param {TermsOfServiceTranslationCreateManyArgs} args - Arguments to create many TermsOfServiceTranslations.
+     * @example
+     * // Create many TermsOfServiceTranslations
+     * const termsOfServiceTranslation = await prisma.termsOfServiceTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TermsOfServiceTranslationCreateManyArgs>(args?: SelectSubset<T, TermsOfServiceTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TermsOfServiceTranslations and returns the data saved in the database.
+     * @param {TermsOfServiceTranslationCreateManyAndReturnArgs} args - Arguments to create many TermsOfServiceTranslations.
+     * @example
+     * // Create many TermsOfServiceTranslations
+     * const termsOfServiceTranslation = await prisma.termsOfServiceTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TermsOfServiceTranslations and only return the `id`
+     * const termsOfServiceTranslationWithIdOnly = await prisma.termsOfServiceTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TermsOfServiceTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, TermsOfServiceTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TermsOfServiceTranslation.
+     * @param {TermsOfServiceTranslationDeleteArgs} args - Arguments to delete one TermsOfServiceTranslation.
+     * @example
+     * // Delete one TermsOfServiceTranslation
+     * const TermsOfServiceTranslation = await prisma.termsOfServiceTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one TermsOfServiceTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TermsOfServiceTranslationDeleteArgs>(args: SelectSubset<T, TermsOfServiceTranslationDeleteArgs<ExtArgs>>): Prisma__TermsOfServiceTranslationClient<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TermsOfServiceTranslation.
+     * @param {TermsOfServiceTranslationUpdateArgs} args - Arguments to update one TermsOfServiceTranslation.
+     * @example
+     * // Update one TermsOfServiceTranslation
+     * const termsOfServiceTranslation = await prisma.termsOfServiceTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TermsOfServiceTranslationUpdateArgs>(args: SelectSubset<T, TermsOfServiceTranslationUpdateArgs<ExtArgs>>): Prisma__TermsOfServiceTranslationClient<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TermsOfServiceTranslations.
+     * @param {TermsOfServiceTranslationDeleteManyArgs} args - Arguments to filter TermsOfServiceTranslations to delete.
+     * @example
+     * // Delete a few TermsOfServiceTranslations
+     * const { count } = await prisma.termsOfServiceTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TermsOfServiceTranslationDeleteManyArgs>(args?: SelectSubset<T, TermsOfServiceTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TermsOfServiceTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TermsOfServiceTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TermsOfServiceTranslations
+     * const termsOfServiceTranslation = await prisma.termsOfServiceTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TermsOfServiceTranslationUpdateManyArgs>(args: SelectSubset<T, TermsOfServiceTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TermsOfServiceTranslations and returns the data updated in the database.
+     * @param {TermsOfServiceTranslationUpdateManyAndReturnArgs} args - Arguments to update many TermsOfServiceTranslations.
+     * @example
+     * // Update many TermsOfServiceTranslations
+     * const termsOfServiceTranslation = await prisma.termsOfServiceTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TermsOfServiceTranslations and only return the `id`
+     * const termsOfServiceTranslationWithIdOnly = await prisma.termsOfServiceTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TermsOfServiceTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, TermsOfServiceTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TermsOfServiceTranslation.
+     * @param {TermsOfServiceTranslationUpsertArgs} args - Arguments to update or create a TermsOfServiceTranslation.
+     * @example
+     * // Update or create a TermsOfServiceTranslation
+     * const termsOfServiceTranslation = await prisma.termsOfServiceTranslation.upsert({
+     *   create: {
+     *     // ... data to create a TermsOfServiceTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TermsOfServiceTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TermsOfServiceTranslationUpsertArgs>(args: SelectSubset<T, TermsOfServiceTranslationUpsertArgs<ExtArgs>>): Prisma__TermsOfServiceTranslationClient<$Result.GetResult<Prisma.$TermsOfServiceTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TermsOfServiceTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TermsOfServiceTranslationCountArgs} args - Arguments to filter TermsOfServiceTranslations to count.
+     * @example
+     * // Count the number of TermsOfServiceTranslations
+     * const count = await prisma.termsOfServiceTranslation.count({
+     *   where: {
+     *     // ... the filter for the TermsOfServiceTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends TermsOfServiceTranslationCountArgs>(
+      args?: Subset<T, TermsOfServiceTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TermsOfServiceTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TermsOfServiceTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TermsOfServiceTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TermsOfServiceTranslationAggregateArgs>(args: Subset<T, TermsOfServiceTranslationAggregateArgs>): Prisma.PrismaPromise<GetTermsOfServiceTranslationAggregateType<T>>
+
+    /**
+     * Group by TermsOfServiceTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TermsOfServiceTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TermsOfServiceTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TermsOfServiceTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: TermsOfServiceTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TermsOfServiceTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTermsOfServiceTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TermsOfServiceTranslation model
+   */
+  readonly fields: TermsOfServiceTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TermsOfServiceTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TermsOfServiceTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    terms_of_service<T extends TermsOfServiceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TermsOfServiceDefaultArgs<ExtArgs>>): Prisma__TermsOfServiceClient<$Result.GetResult<Prisma.$TermsOfServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TermsOfServiceTranslation model
+   */
+  interface TermsOfServiceTranslationFieldRefs {
+    readonly id: FieldRef<"TermsOfServiceTranslation", 'Int'>
+    readonly terms_of_service_id: FieldRef<"TermsOfServiceTranslation", 'Int'>
+    readonly language: FieldRef<"TermsOfServiceTranslation", 'Language'>
+    readonly content: FieldRef<"TermsOfServiceTranslation", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TermsOfServiceTranslation findUnique
+   */
+  export type TermsOfServiceTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TermsOfServiceTranslation to fetch.
+     */
+    where: TermsOfServiceTranslationWhereUniqueInput
+  }
+
+  /**
+   * TermsOfServiceTranslation findUniqueOrThrow
+   */
+  export type TermsOfServiceTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TermsOfServiceTranslation to fetch.
+     */
+    where: TermsOfServiceTranslationWhereUniqueInput
+  }
+
+  /**
+   * TermsOfServiceTranslation findFirst
+   */
+  export type TermsOfServiceTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TermsOfServiceTranslation to fetch.
+     */
+    where?: TermsOfServiceTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TermsOfServiceTranslations to fetch.
+     */
+    orderBy?: TermsOfServiceTranslationOrderByWithRelationInput | TermsOfServiceTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TermsOfServiceTranslations.
+     */
+    cursor?: TermsOfServiceTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TermsOfServiceTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TermsOfServiceTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TermsOfServiceTranslations.
+     */
+    distinct?: TermsOfServiceTranslationScalarFieldEnum | TermsOfServiceTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TermsOfServiceTranslation findFirstOrThrow
+   */
+  export type TermsOfServiceTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TermsOfServiceTranslation to fetch.
+     */
+    where?: TermsOfServiceTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TermsOfServiceTranslations to fetch.
+     */
+    orderBy?: TermsOfServiceTranslationOrderByWithRelationInput | TermsOfServiceTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TermsOfServiceTranslations.
+     */
+    cursor?: TermsOfServiceTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TermsOfServiceTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TermsOfServiceTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TermsOfServiceTranslations.
+     */
+    distinct?: TermsOfServiceTranslationScalarFieldEnum | TermsOfServiceTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TermsOfServiceTranslation findMany
+   */
+  export type TermsOfServiceTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which TermsOfServiceTranslations to fetch.
+     */
+    where?: TermsOfServiceTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TermsOfServiceTranslations to fetch.
+     */
+    orderBy?: TermsOfServiceTranslationOrderByWithRelationInput | TermsOfServiceTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TermsOfServiceTranslations.
+     */
+    cursor?: TermsOfServiceTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TermsOfServiceTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TermsOfServiceTranslations.
+     */
+    skip?: number
+    distinct?: TermsOfServiceTranslationScalarFieldEnum | TermsOfServiceTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * TermsOfServiceTranslation create
+   */
+  export type TermsOfServiceTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TermsOfServiceTranslation.
+     */
+    data: XOR<TermsOfServiceTranslationCreateInput, TermsOfServiceTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * TermsOfServiceTranslation createMany
+   */
+  export type TermsOfServiceTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TermsOfServiceTranslations.
+     */
+    data: TermsOfServiceTranslationCreateManyInput | TermsOfServiceTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TermsOfServiceTranslation createManyAndReturn
+   */
+  export type TermsOfServiceTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many TermsOfServiceTranslations.
+     */
+    data: TermsOfServiceTranslationCreateManyInput | TermsOfServiceTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TermsOfServiceTranslation update
+   */
+  export type TermsOfServiceTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TermsOfServiceTranslation.
+     */
+    data: XOR<TermsOfServiceTranslationUpdateInput, TermsOfServiceTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which TermsOfServiceTranslation to update.
+     */
+    where: TermsOfServiceTranslationWhereUniqueInput
+  }
+
+  /**
+   * TermsOfServiceTranslation updateMany
+   */
+  export type TermsOfServiceTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TermsOfServiceTranslations.
+     */
+    data: XOR<TermsOfServiceTranslationUpdateManyMutationInput, TermsOfServiceTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which TermsOfServiceTranslations to update
+     */
+    where?: TermsOfServiceTranslationWhereInput
+    /**
+     * Limit how many TermsOfServiceTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TermsOfServiceTranslation updateManyAndReturn
+   */
+  export type TermsOfServiceTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update TermsOfServiceTranslations.
+     */
+    data: XOR<TermsOfServiceTranslationUpdateManyMutationInput, TermsOfServiceTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which TermsOfServiceTranslations to update
+     */
+    where?: TermsOfServiceTranslationWhereInput
+    /**
+     * Limit how many TermsOfServiceTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TermsOfServiceTranslation upsert
+   */
+  export type TermsOfServiceTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TermsOfServiceTranslation to update in case it exists.
+     */
+    where: TermsOfServiceTranslationWhereUniqueInput
+    /**
+     * In case the TermsOfServiceTranslation found by the `where` argument doesn't exist, create a new TermsOfServiceTranslation with this data.
+     */
+    create: XOR<TermsOfServiceTranslationCreateInput, TermsOfServiceTranslationUncheckedCreateInput>
+    /**
+     * In case the TermsOfServiceTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TermsOfServiceTranslationUpdateInput, TermsOfServiceTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * TermsOfServiceTranslation delete
+   */
+  export type TermsOfServiceTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which TermsOfServiceTranslation to delete.
+     */
+    where: TermsOfServiceTranslationWhereUniqueInput
+  }
+
+  /**
+   * TermsOfServiceTranslation deleteMany
+   */
+  export type TermsOfServiceTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TermsOfServiceTranslations to delete
+     */
+    where?: TermsOfServiceTranslationWhereInput
+    /**
+     * Limit how many TermsOfServiceTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TermsOfServiceTranslation without action
+   */
+  export type TermsOfServiceTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TermsOfServiceTranslation
+     */
+    select?: TermsOfServiceTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TermsOfServiceTranslation
+     */
+    omit?: TermsOfServiceTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TermsOfServiceTranslationInclude<ExtArgs> | null
   }
 
 
@@ -23750,13 +25017,22 @@ export namespace Prisma {
   export type ProductPriceScalarFieldEnum = (typeof ProductPriceScalarFieldEnum)[keyof typeof ProductPriceScalarFieldEnum]
 
 
-  export const TermAndConditionScalarFieldEnum: {
+  export const TermsOfServiceScalarFieldEnum: {
     id: 'id',
-    content: 'content',
     updated_at: 'updated_at'
   };
 
-  export type TermAndConditionScalarFieldEnum = (typeof TermAndConditionScalarFieldEnum)[keyof typeof TermAndConditionScalarFieldEnum]
+  export type TermsOfServiceScalarFieldEnum = (typeof TermsOfServiceScalarFieldEnum)[keyof typeof TermsOfServiceScalarFieldEnum]
+
+
+  export const TermsOfServiceTranslationScalarFieldEnum: {
+    id: 'id',
+    terms_of_service_id: 'terms_of_service_id',
+    language: 'language',
+    content: 'content'
+  };
+
+  export type TermsOfServiceTranslationScalarFieldEnum = (typeof TermsOfServiceTranslationScalarFieldEnum)[keyof typeof TermsOfServiceTranslationScalarFieldEnum]
 
 
   export const PrivacyPolicyScalarFieldEnum: {
@@ -24679,48 +25955,98 @@ export namespace Prisma {
     price?: IntWithAggregatesFilter<"ProductPrice"> | number
   }
 
-  export type TermAndConditionWhereInput = {
-    AND?: TermAndConditionWhereInput | TermAndConditionWhereInput[]
-    OR?: TermAndConditionWhereInput[]
-    NOT?: TermAndConditionWhereInput | TermAndConditionWhereInput[]
-    id?: IntFilter<"TermAndCondition"> | number
-    content?: StringFilter<"TermAndCondition"> | string
-    updated_at?: BigIntFilter<"TermAndCondition"> | bigint | number
+  export type TermsOfServiceWhereInput = {
+    AND?: TermsOfServiceWhereInput | TermsOfServiceWhereInput[]
+    OR?: TermsOfServiceWhereInput[]
+    NOT?: TermsOfServiceWhereInput | TermsOfServiceWhereInput[]
+    id?: IntFilter<"TermsOfService"> | number
+    updated_at?: BigIntFilter<"TermsOfService"> | bigint | number
+    translations?: TermsOfServiceTranslationListRelationFilter
   }
 
-  export type TermAndConditionOrderByWithRelationInput = {
+  export type TermsOfServiceOrderByWithRelationInput = {
     id?: SortOrder
-    content?: SortOrder
     updated_at?: SortOrder
+    translations?: TermsOfServiceTranslationOrderByRelationAggregateInput
   }
 
-  export type TermAndConditionWhereUniqueInput = Prisma.AtLeast<{
+  export type TermsOfServiceWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: TermAndConditionWhereInput | TermAndConditionWhereInput[]
-    OR?: TermAndConditionWhereInput[]
-    NOT?: TermAndConditionWhereInput | TermAndConditionWhereInput[]
-    content?: StringFilter<"TermAndCondition"> | string
-    updated_at?: BigIntFilter<"TermAndCondition"> | bigint | number
+    AND?: TermsOfServiceWhereInput | TermsOfServiceWhereInput[]
+    OR?: TermsOfServiceWhereInput[]
+    NOT?: TermsOfServiceWhereInput | TermsOfServiceWhereInput[]
+    updated_at?: BigIntFilter<"TermsOfService"> | bigint | number
+    translations?: TermsOfServiceTranslationListRelationFilter
   }, "id">
 
-  export type TermAndConditionOrderByWithAggregationInput = {
+  export type TermsOfServiceOrderByWithAggregationInput = {
     id?: SortOrder
-    content?: SortOrder
     updated_at?: SortOrder
-    _count?: TermAndConditionCountOrderByAggregateInput
-    _avg?: TermAndConditionAvgOrderByAggregateInput
-    _max?: TermAndConditionMaxOrderByAggregateInput
-    _min?: TermAndConditionMinOrderByAggregateInput
-    _sum?: TermAndConditionSumOrderByAggregateInput
+    _count?: TermsOfServiceCountOrderByAggregateInput
+    _avg?: TermsOfServiceAvgOrderByAggregateInput
+    _max?: TermsOfServiceMaxOrderByAggregateInput
+    _min?: TermsOfServiceMinOrderByAggregateInput
+    _sum?: TermsOfServiceSumOrderByAggregateInput
   }
 
-  export type TermAndConditionScalarWhereWithAggregatesInput = {
-    AND?: TermAndConditionScalarWhereWithAggregatesInput | TermAndConditionScalarWhereWithAggregatesInput[]
-    OR?: TermAndConditionScalarWhereWithAggregatesInput[]
-    NOT?: TermAndConditionScalarWhereWithAggregatesInput | TermAndConditionScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"TermAndCondition"> | number
-    content?: StringWithAggregatesFilter<"TermAndCondition"> | string
-    updated_at?: BigIntWithAggregatesFilter<"TermAndCondition"> | bigint | number
+  export type TermsOfServiceScalarWhereWithAggregatesInput = {
+    AND?: TermsOfServiceScalarWhereWithAggregatesInput | TermsOfServiceScalarWhereWithAggregatesInput[]
+    OR?: TermsOfServiceScalarWhereWithAggregatesInput[]
+    NOT?: TermsOfServiceScalarWhereWithAggregatesInput | TermsOfServiceScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"TermsOfService"> | number
+    updated_at?: BigIntWithAggregatesFilter<"TermsOfService"> | bigint | number
+  }
+
+  export type TermsOfServiceTranslationWhereInput = {
+    AND?: TermsOfServiceTranslationWhereInput | TermsOfServiceTranslationWhereInput[]
+    OR?: TermsOfServiceTranslationWhereInput[]
+    NOT?: TermsOfServiceTranslationWhereInput | TermsOfServiceTranslationWhereInput[]
+    id?: IntFilter<"TermsOfServiceTranslation"> | number
+    terms_of_service_id?: IntFilter<"TermsOfServiceTranslation"> | number
+    language?: EnumLanguageFilter<"TermsOfServiceTranslation"> | $Enums.Language
+    content?: StringFilter<"TermsOfServiceTranslation"> | string
+    terms_of_service?: XOR<TermsOfServiceScalarRelationFilter, TermsOfServiceWhereInput>
+  }
+
+  export type TermsOfServiceTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    terms_of_service_id?: SortOrder
+    language?: SortOrder
+    content?: SortOrder
+    terms_of_service?: TermsOfServiceOrderByWithRelationInput
+  }
+
+  export type TermsOfServiceTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TermsOfServiceTranslationWhereInput | TermsOfServiceTranslationWhereInput[]
+    OR?: TermsOfServiceTranslationWhereInput[]
+    NOT?: TermsOfServiceTranslationWhereInput | TermsOfServiceTranslationWhereInput[]
+    terms_of_service_id?: IntFilter<"TermsOfServiceTranslation"> | number
+    language?: EnumLanguageFilter<"TermsOfServiceTranslation"> | $Enums.Language
+    content?: StringFilter<"TermsOfServiceTranslation"> | string
+    terms_of_service?: XOR<TermsOfServiceScalarRelationFilter, TermsOfServiceWhereInput>
+  }, "id">
+
+  export type TermsOfServiceTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    terms_of_service_id?: SortOrder
+    language?: SortOrder
+    content?: SortOrder
+    _count?: TermsOfServiceTranslationCountOrderByAggregateInput
+    _avg?: TermsOfServiceTranslationAvgOrderByAggregateInput
+    _max?: TermsOfServiceTranslationMaxOrderByAggregateInput
+    _min?: TermsOfServiceTranslationMinOrderByAggregateInput
+    _sum?: TermsOfServiceTranslationSumOrderByAggregateInput
+  }
+
+  export type TermsOfServiceTranslationScalarWhereWithAggregatesInput = {
+    AND?: TermsOfServiceTranslationScalarWhereWithAggregatesInput | TermsOfServiceTranslationScalarWhereWithAggregatesInput[]
+    OR?: TermsOfServiceTranslationScalarWhereWithAggregatesInput[]
+    NOT?: TermsOfServiceTranslationScalarWhereWithAggregatesInput | TermsOfServiceTranslationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"TermsOfServiceTranslation"> | number
+    terms_of_service_id?: IntWithAggregatesFilter<"TermsOfServiceTranslation"> | number
+    language?: EnumLanguageWithAggregatesFilter<"TermsOfServiceTranslation"> | $Enums.Language
+    content?: StringWithAggregatesFilter<"TermsOfServiceTranslation"> | string
   }
 
   export type PrivacyPolicyWhereInput = {
@@ -25730,43 +27056,85 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
   }
 
-  export type TermAndConditionCreateInput = {
-    content: string
+  export type TermsOfServiceCreateInput = {
     updated_at: bigint | number
+    translations?: TermsOfServiceTranslationCreateNestedManyWithoutTerms_of_serviceInput
   }
 
-  export type TermAndConditionUncheckedCreateInput = {
+  export type TermsOfServiceUncheckedCreateInput = {
     id?: number
-    content: string
     updated_at: bigint | number
+    translations?: TermsOfServiceTranslationUncheckedCreateNestedManyWithoutTerms_of_serviceInput
   }
 
-  export type TermAndConditionUpdateInput = {
-    content?: StringFieldUpdateOperationsInput | string
+  export type TermsOfServiceUpdateInput = {
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    translations?: TermsOfServiceTranslationUpdateManyWithoutTerms_of_serviceNestedInput
   }
 
-  export type TermAndConditionUncheckedUpdateInput = {
+  export type TermsOfServiceUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    translations?: TermsOfServiceTranslationUncheckedUpdateManyWithoutTerms_of_serviceNestedInput
   }
 
-  export type TermAndConditionCreateManyInput = {
+  export type TermsOfServiceCreateManyInput = {
     id?: number
-    content: string
     updated_at: bigint | number
   }
 
-  export type TermAndConditionUpdateManyMutationInput = {
-    content?: StringFieldUpdateOperationsInput | string
+  export type TermsOfServiceUpdateManyMutationInput = {
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
-  export type TermAndConditionUncheckedUpdateManyInput = {
+  export type TermsOfServiceUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type TermsOfServiceTranslationCreateInput = {
+    language: $Enums.Language
+    content: string
+    terms_of_service: TermsOfServiceCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type TermsOfServiceTranslationUncheckedCreateInput = {
+    id?: number
+    terms_of_service_id: number
+    language: $Enums.Language
+    content: string
+  }
+
+  export type TermsOfServiceTranslationUpdateInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
+    terms_of_service?: TermsOfServiceUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type TermsOfServiceTranslationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    terms_of_service_id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TermsOfServiceTranslationCreateManyInput = {
+    id?: number
+    terms_of_service_id: number
+    language: $Enums.Language
+    content: string
+  }
+
+  export type TermsOfServiceTranslationUpdateManyMutationInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TermsOfServiceTranslationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    terms_of_service_id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
   }
 
   export type PrivacyPolicyCreateInput = {
@@ -26697,32 +28065,92 @@ export namespace Prisma {
     price?: SortOrder
   }
 
-  export type TermAndConditionCountOrderByAggregateInput = {
+  export type TermsOfServiceTranslationListRelationFilter = {
+    every?: TermsOfServiceTranslationWhereInput
+    some?: TermsOfServiceTranslationWhereInput
+    none?: TermsOfServiceTranslationWhereInput
+  }
+
+  export type TermsOfServiceTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TermsOfServiceCountOrderByAggregateInput = {
     id?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type TermsOfServiceAvgOrderByAggregateInput = {
+    id?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type TermsOfServiceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type TermsOfServiceMinOrderByAggregateInput = {
+    id?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type TermsOfServiceSumOrderByAggregateInput = {
+    id?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type EnumLanguageFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
+  }
+
+  export type TermsOfServiceScalarRelationFilter = {
+    is?: TermsOfServiceWhereInput
+    isNot?: TermsOfServiceWhereInput
+  }
+
+  export type TermsOfServiceTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    terms_of_service_id?: SortOrder
+    language?: SortOrder
     content?: SortOrder
-    updated_at?: SortOrder
   }
 
-  export type TermAndConditionAvgOrderByAggregateInput = {
+  export type TermsOfServiceTranslationAvgOrderByAggregateInput = {
     id?: SortOrder
-    updated_at?: SortOrder
+    terms_of_service_id?: SortOrder
   }
 
-  export type TermAndConditionMaxOrderByAggregateInput = {
+  export type TermsOfServiceTranslationMaxOrderByAggregateInput = {
     id?: SortOrder
+    terms_of_service_id?: SortOrder
+    language?: SortOrder
     content?: SortOrder
-    updated_at?: SortOrder
   }
 
-  export type TermAndConditionMinOrderByAggregateInput = {
+  export type TermsOfServiceTranslationMinOrderByAggregateInput = {
     id?: SortOrder
+    terms_of_service_id?: SortOrder
+    language?: SortOrder
     content?: SortOrder
-    updated_at?: SortOrder
   }
 
-  export type TermAndConditionSumOrderByAggregateInput = {
+  export type TermsOfServiceTranslationSumOrderByAggregateInput = {
     id?: SortOrder
-    updated_at?: SortOrder
+    terms_of_service_id?: SortOrder
+  }
+
+  export type EnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLanguageFilter<$PrismaModel>
+    _max?: NestedEnumLanguageFilter<$PrismaModel>
   }
 
   export type PrivacyPolicyTranslationListRelationFilter = {
@@ -26760,13 +28188,6 @@ export namespace Prisma {
     updated_at?: SortOrder
   }
 
-  export type EnumLanguageFilter<$PrismaModel = never> = {
-    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
-    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
-  }
-
   export type PrivacyPolicyScalarRelationFilter = {
     is?: PrivacyPolicyWhereInput
     isNot?: PrivacyPolicyWhereInput
@@ -26801,16 +28222,6 @@ export namespace Prisma {
   export type PrivacyPolicyTranslationSumOrderByAggregateInput = {
     id?: SortOrder
     privacy_policy_id?: SortOrder
-  }
-
-  export type EnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
-    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumLanguageFilter<$PrismaModel>
-    _max?: NestedEnumLanguageFilter<$PrismaModel>
   }
 
   export type AboutUsTranslationListRelationFilter = {
@@ -27529,6 +28940,66 @@ export namespace Prisma {
     update?: XOR<XOR<ProductVariantUpdateToOneWithWhereWithoutProduct_pricesInput, ProductVariantUpdateWithoutProduct_pricesInput>, ProductVariantUncheckedUpdateWithoutProduct_pricesInput>
   }
 
+  export type TermsOfServiceTranslationCreateNestedManyWithoutTerms_of_serviceInput = {
+    create?: XOR<TermsOfServiceTranslationCreateWithoutTerms_of_serviceInput, TermsOfServiceTranslationUncheckedCreateWithoutTerms_of_serviceInput> | TermsOfServiceTranslationCreateWithoutTerms_of_serviceInput[] | TermsOfServiceTranslationUncheckedCreateWithoutTerms_of_serviceInput[]
+    connectOrCreate?: TermsOfServiceTranslationCreateOrConnectWithoutTerms_of_serviceInput | TermsOfServiceTranslationCreateOrConnectWithoutTerms_of_serviceInput[]
+    createMany?: TermsOfServiceTranslationCreateManyTerms_of_serviceInputEnvelope
+    connect?: TermsOfServiceTranslationWhereUniqueInput | TermsOfServiceTranslationWhereUniqueInput[]
+  }
+
+  export type TermsOfServiceTranslationUncheckedCreateNestedManyWithoutTerms_of_serviceInput = {
+    create?: XOR<TermsOfServiceTranslationCreateWithoutTerms_of_serviceInput, TermsOfServiceTranslationUncheckedCreateWithoutTerms_of_serviceInput> | TermsOfServiceTranslationCreateWithoutTerms_of_serviceInput[] | TermsOfServiceTranslationUncheckedCreateWithoutTerms_of_serviceInput[]
+    connectOrCreate?: TermsOfServiceTranslationCreateOrConnectWithoutTerms_of_serviceInput | TermsOfServiceTranslationCreateOrConnectWithoutTerms_of_serviceInput[]
+    createMany?: TermsOfServiceTranslationCreateManyTerms_of_serviceInputEnvelope
+    connect?: TermsOfServiceTranslationWhereUniqueInput | TermsOfServiceTranslationWhereUniqueInput[]
+  }
+
+  export type TermsOfServiceTranslationUpdateManyWithoutTerms_of_serviceNestedInput = {
+    create?: XOR<TermsOfServiceTranslationCreateWithoutTerms_of_serviceInput, TermsOfServiceTranslationUncheckedCreateWithoutTerms_of_serviceInput> | TermsOfServiceTranslationCreateWithoutTerms_of_serviceInput[] | TermsOfServiceTranslationUncheckedCreateWithoutTerms_of_serviceInput[]
+    connectOrCreate?: TermsOfServiceTranslationCreateOrConnectWithoutTerms_of_serviceInput | TermsOfServiceTranslationCreateOrConnectWithoutTerms_of_serviceInput[]
+    upsert?: TermsOfServiceTranslationUpsertWithWhereUniqueWithoutTerms_of_serviceInput | TermsOfServiceTranslationUpsertWithWhereUniqueWithoutTerms_of_serviceInput[]
+    createMany?: TermsOfServiceTranslationCreateManyTerms_of_serviceInputEnvelope
+    set?: TermsOfServiceTranslationWhereUniqueInput | TermsOfServiceTranslationWhereUniqueInput[]
+    disconnect?: TermsOfServiceTranslationWhereUniqueInput | TermsOfServiceTranslationWhereUniqueInput[]
+    delete?: TermsOfServiceTranslationWhereUniqueInput | TermsOfServiceTranslationWhereUniqueInput[]
+    connect?: TermsOfServiceTranslationWhereUniqueInput | TermsOfServiceTranslationWhereUniqueInput[]
+    update?: TermsOfServiceTranslationUpdateWithWhereUniqueWithoutTerms_of_serviceInput | TermsOfServiceTranslationUpdateWithWhereUniqueWithoutTerms_of_serviceInput[]
+    updateMany?: TermsOfServiceTranslationUpdateManyWithWhereWithoutTerms_of_serviceInput | TermsOfServiceTranslationUpdateManyWithWhereWithoutTerms_of_serviceInput[]
+    deleteMany?: TermsOfServiceTranslationScalarWhereInput | TermsOfServiceTranslationScalarWhereInput[]
+  }
+
+  export type TermsOfServiceTranslationUncheckedUpdateManyWithoutTerms_of_serviceNestedInput = {
+    create?: XOR<TermsOfServiceTranslationCreateWithoutTerms_of_serviceInput, TermsOfServiceTranslationUncheckedCreateWithoutTerms_of_serviceInput> | TermsOfServiceTranslationCreateWithoutTerms_of_serviceInput[] | TermsOfServiceTranslationUncheckedCreateWithoutTerms_of_serviceInput[]
+    connectOrCreate?: TermsOfServiceTranslationCreateOrConnectWithoutTerms_of_serviceInput | TermsOfServiceTranslationCreateOrConnectWithoutTerms_of_serviceInput[]
+    upsert?: TermsOfServiceTranslationUpsertWithWhereUniqueWithoutTerms_of_serviceInput | TermsOfServiceTranslationUpsertWithWhereUniqueWithoutTerms_of_serviceInput[]
+    createMany?: TermsOfServiceTranslationCreateManyTerms_of_serviceInputEnvelope
+    set?: TermsOfServiceTranslationWhereUniqueInput | TermsOfServiceTranslationWhereUniqueInput[]
+    disconnect?: TermsOfServiceTranslationWhereUniqueInput | TermsOfServiceTranslationWhereUniqueInput[]
+    delete?: TermsOfServiceTranslationWhereUniqueInput | TermsOfServiceTranslationWhereUniqueInput[]
+    connect?: TermsOfServiceTranslationWhereUniqueInput | TermsOfServiceTranslationWhereUniqueInput[]
+    update?: TermsOfServiceTranslationUpdateWithWhereUniqueWithoutTerms_of_serviceInput | TermsOfServiceTranslationUpdateWithWhereUniqueWithoutTerms_of_serviceInput[]
+    updateMany?: TermsOfServiceTranslationUpdateManyWithWhereWithoutTerms_of_serviceInput | TermsOfServiceTranslationUpdateManyWithWhereWithoutTerms_of_serviceInput[]
+    deleteMany?: TermsOfServiceTranslationScalarWhereInput | TermsOfServiceTranslationScalarWhereInput[]
+  }
+
+  export type TermsOfServiceCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<TermsOfServiceCreateWithoutTranslationsInput, TermsOfServiceUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: TermsOfServiceCreateOrConnectWithoutTranslationsInput
+    connect?: TermsOfServiceWhereUniqueInput
+  }
+
+  export type EnumLanguageFieldUpdateOperationsInput = {
+    set?: $Enums.Language
+  }
+
+  export type TermsOfServiceUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<TermsOfServiceCreateWithoutTranslationsInput, TermsOfServiceUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: TermsOfServiceCreateOrConnectWithoutTranslationsInput
+    upsert?: TermsOfServiceUpsertWithoutTranslationsInput
+    connect?: TermsOfServiceWhereUniqueInput
+    update?: XOR<XOR<TermsOfServiceUpdateToOneWithWhereWithoutTranslationsInput, TermsOfServiceUpdateWithoutTranslationsInput>, TermsOfServiceUncheckedUpdateWithoutTranslationsInput>
+  }
+
   export type PrivacyPolicyTranslationCreateNestedManyWithoutPrivacy_policyInput = {
     create?: XOR<PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput, PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput> | PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput[] | PrivacyPolicyTranslationUncheckedCreateWithoutPrivacy_policyInput[]
     connectOrCreate?: PrivacyPolicyTranslationCreateOrConnectWithoutPrivacy_policyInput | PrivacyPolicyTranslationCreateOrConnectWithoutPrivacy_policyInput[]
@@ -27575,10 +29046,6 @@ export namespace Prisma {
     create?: XOR<PrivacyPolicyCreateWithoutTranslationsInput, PrivacyPolicyUncheckedCreateWithoutTranslationsInput>
     connectOrCreate?: PrivacyPolicyCreateOrConnectWithoutTranslationsInput
     connect?: PrivacyPolicyWhereUniqueInput
-  }
-
-  export type EnumLanguageFieldUpdateOperationsInput = {
-    set?: $Enums.Language
   }
 
   export type PrivacyPolicyUpdateOneRequiredWithoutTranslationsNestedInput = {
@@ -29132,6 +30599,87 @@ export namespace Prisma {
     download_link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type TermsOfServiceTranslationCreateWithoutTerms_of_serviceInput = {
+    language: $Enums.Language
+    content: string
+  }
+
+  export type TermsOfServiceTranslationUncheckedCreateWithoutTerms_of_serviceInput = {
+    id?: number
+    language: $Enums.Language
+    content: string
+  }
+
+  export type TermsOfServiceTranslationCreateOrConnectWithoutTerms_of_serviceInput = {
+    where: TermsOfServiceTranslationWhereUniqueInput
+    create: XOR<TermsOfServiceTranslationCreateWithoutTerms_of_serviceInput, TermsOfServiceTranslationUncheckedCreateWithoutTerms_of_serviceInput>
+  }
+
+  export type TermsOfServiceTranslationCreateManyTerms_of_serviceInputEnvelope = {
+    data: TermsOfServiceTranslationCreateManyTerms_of_serviceInput | TermsOfServiceTranslationCreateManyTerms_of_serviceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TermsOfServiceTranslationUpsertWithWhereUniqueWithoutTerms_of_serviceInput = {
+    where: TermsOfServiceTranslationWhereUniqueInput
+    update: XOR<TermsOfServiceTranslationUpdateWithoutTerms_of_serviceInput, TermsOfServiceTranslationUncheckedUpdateWithoutTerms_of_serviceInput>
+    create: XOR<TermsOfServiceTranslationCreateWithoutTerms_of_serviceInput, TermsOfServiceTranslationUncheckedCreateWithoutTerms_of_serviceInput>
+  }
+
+  export type TermsOfServiceTranslationUpdateWithWhereUniqueWithoutTerms_of_serviceInput = {
+    where: TermsOfServiceTranslationWhereUniqueInput
+    data: XOR<TermsOfServiceTranslationUpdateWithoutTerms_of_serviceInput, TermsOfServiceTranslationUncheckedUpdateWithoutTerms_of_serviceInput>
+  }
+
+  export type TermsOfServiceTranslationUpdateManyWithWhereWithoutTerms_of_serviceInput = {
+    where: TermsOfServiceTranslationScalarWhereInput
+    data: XOR<TermsOfServiceTranslationUpdateManyMutationInput, TermsOfServiceTranslationUncheckedUpdateManyWithoutTerms_of_serviceInput>
+  }
+
+  export type TermsOfServiceTranslationScalarWhereInput = {
+    AND?: TermsOfServiceTranslationScalarWhereInput | TermsOfServiceTranslationScalarWhereInput[]
+    OR?: TermsOfServiceTranslationScalarWhereInput[]
+    NOT?: TermsOfServiceTranslationScalarWhereInput | TermsOfServiceTranslationScalarWhereInput[]
+    id?: IntFilter<"TermsOfServiceTranslation"> | number
+    terms_of_service_id?: IntFilter<"TermsOfServiceTranslation"> | number
+    language?: EnumLanguageFilter<"TermsOfServiceTranslation"> | $Enums.Language
+    content?: StringFilter<"TermsOfServiceTranslation"> | string
+  }
+
+  export type TermsOfServiceCreateWithoutTranslationsInput = {
+    updated_at: bigint | number
+  }
+
+  export type TermsOfServiceUncheckedCreateWithoutTranslationsInput = {
+    id?: number
+    updated_at: bigint | number
+  }
+
+  export type TermsOfServiceCreateOrConnectWithoutTranslationsInput = {
+    where: TermsOfServiceWhereUniqueInput
+    create: XOR<TermsOfServiceCreateWithoutTranslationsInput, TermsOfServiceUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type TermsOfServiceUpsertWithoutTranslationsInput = {
+    update: XOR<TermsOfServiceUpdateWithoutTranslationsInput, TermsOfServiceUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<TermsOfServiceCreateWithoutTranslationsInput, TermsOfServiceUncheckedCreateWithoutTranslationsInput>
+    where?: TermsOfServiceWhereInput
+  }
+
+  export type TermsOfServiceUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: TermsOfServiceWhereInput
+    data: XOR<TermsOfServiceUpdateWithoutTranslationsInput, TermsOfServiceUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type TermsOfServiceUpdateWithoutTranslationsInput = {
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type TermsOfServiceUncheckedUpdateWithoutTranslationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
   export type PrivacyPolicyTranslationCreateWithoutPrivacy_policyInput = {
     language: $Enums.Language
     content: string
@@ -29751,6 +31299,29 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     currency_code?: EnumCurrencyCodeFieldUpdateOperationsInput | $Enums.CurrencyCode
     price?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TermsOfServiceTranslationCreateManyTerms_of_serviceInput = {
+    id?: number
+    language: $Enums.Language
+    content: string
+  }
+
+  export type TermsOfServiceTranslationUpdateWithoutTerms_of_serviceInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TermsOfServiceTranslationUncheckedUpdateWithoutTerms_of_serviceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TermsOfServiceTranslationUncheckedUpdateManyWithoutTerms_of_serviceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    content?: StringFieldUpdateOperationsInput | string
   }
 
   export type PrivacyPolicyTranslationCreateManyPrivacy_policyInput = {

@@ -192,15 +192,28 @@ model ProductPrice {
 enum Language {
   id
   en
+
   @@map("language")
 }
 
-model TermAndCondition {
+model TermsOfService {
   id         Int    @id @default(autoincrement()) @db.SmallInt
-  content    String
   updated_at BigInt
 
-  @@map("terms_and_conditions")
+  translations TermsOfServiceTranslation[]
+
+  @@map("terms_of_service")
+}
+
+model TermsOfServiceTranslation {
+  id                  Int      @id @default(autoincrement()) @db.SmallInt
+  terms_of_service_id Int      @db.SmallInt
+  language            Language
+  content             String
+
+  terms_of_service TermsOfService @relation(fields: [terms_of_service_id], references: [id], onDelete: Cascade)
+
+  @@map("terms_of_service_translations")
 }
 
 model PrivacyPolicy {
@@ -213,31 +226,31 @@ model PrivacyPolicy {
 }
 
 model PrivacyPolicyTranslation {
-  id                  Int @id @default(autoincrement()) @db.SmallInt
-  privacy_policy_id   Int @db.SmallInt
-  language            Language
-  content             String
+  id                Int      @id @default(autoincrement()) @db.SmallInt
+  privacy_policy_id Int      @db.SmallInt
+  language          Language
+  content           String
 
-  privacy_policy      PrivacyPolicy @relation(fields: [privacy_policy_id], references: [id], onDelete: Cascade)
+  privacy_policy PrivacyPolicy @relation(fields: [privacy_policy_id], references: [id], onDelete: Cascade)
 
   @@map("privacy_policy_translations")
 }
 
 model AboutUs {
-  id      Int    @id @default(autoincrement()) @db.SmallInt
+  id Int @id @default(autoincrement()) @db.SmallInt
 
-  translations    AboutUsTranslation[]
+  translations AboutUsTranslation[]
 
   @@map("about_us")
 }
 
 model AboutUsTranslation {
-  id            Int @id @default(autoincrement()) @db.SmallInt
-  about_us_id   Int @db.SmallInt
-  language      Language
-  content       String
+  id          Int      @id @default(autoincrement()) @db.SmallInt
+  about_us_id Int      @db.SmallInt
+  language    Language
+  content     String
 
-  about_us      AboutUs @relation(fields: [about_us_id], references: [id], onDelete: Cascade)
+  about_us AboutUs @relation(fields: [about_us_id], references: [id], onDelete: Cascade)
 
   @@map("about_us_translations")
 }

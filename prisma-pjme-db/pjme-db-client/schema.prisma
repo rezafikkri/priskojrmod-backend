@@ -196,12 +196,24 @@ enum Language {
   @@map("language")
 }
 
-model TermAndCondition {
+model TermsOfService {
   id         Int    @id @default(autoincrement()) @db.SmallInt
-  content    String
   updated_at BigInt
 
-  @@map("terms_and_conditions")
+  translations TermsOfServiceTranslation[]
+
+  @@map("terms_of_service")
+}
+
+model TermsOfServiceTranslation {
+  id                  Int      @id @default(autoincrement()) @db.SmallInt
+  terms_of_service_id Int      @db.SmallInt
+  language            Language
+  content             String
+
+  terms_of_service TermsOfService @relation(fields: [terms_of_service_id], references: [id], onDelete: Cascade)
+
+  @@map("terms_of_service_translations")
 }
 
 model PrivacyPolicy {
