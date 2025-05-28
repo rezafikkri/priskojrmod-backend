@@ -64,10 +64,10 @@ describe('createAboutUs function', () => {
     };
 
     const prismaResult = {
-      id: 'about-id',
+      id: 1,
       translations: [
-        { id: 'trans-id', language: 'ID' },
-        { id: 'trans-en', language: 'EN' },
+        { id: 1, language: 'ID' },
+        { id: 2, language: 'EN' },
       ],
     };
 
