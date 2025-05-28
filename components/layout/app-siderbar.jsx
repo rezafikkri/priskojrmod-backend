@@ -42,7 +42,7 @@ const items = {
     title: 'Document',
     icon: <Script />,
     subItems: [
-      { title: 'Terms of Service', url: '/toc', },
+      { title: 'Terms of Service', url: '/terms-of-service', },
       { title: 'Privacy Policy', url: '/privacy-policy' },
       { title: 'About Us', url: '/about-us' },
       { title: 'FAQs', url: '/faq' },
