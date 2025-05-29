@@ -49,7 +49,7 @@ const items = {
     ],
   },
   product: [
-    { title: 'Categories', url: '/categories', icon: Category },
+    { title: 'Categories', url: '/category', icon: Category },
     { title: 'Licenses', url: '/licenses', icon: Copyright },
     { title: 'Owners', url: '/owners', icon: Users },
     { title: 'Products', url: '/products', icon: Package },

@@ -110,20 +110,19 @@ export default function DataTable({ categories: data }) {
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className="bg-muted/50">
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead
-                      key={header.id}
-                      className="px-3 py-2.5 h-auto text-zinc-600 dark:text-zinc-400"
-                    >
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                    </TableHead>
-                  )})}
+                {headerGroup.headers.map((header) => (
+                  <TableHead
+                    key={header.id}
+                    className={`px-3 py-2.5 h-auto text-zinc-600 dark:text-zinc-400 ${header.id === 'created_at' ? 'w-60' : ''}`}
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
@@ -134,7 +133,7 @@ export default function DataTable({ categories: data }) {
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' } ${cell.column.id === `translations_${titleLang}_title` ? 'max-w-150 whitespace-normal' : ''}`}
+                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' }`}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
@@ -154,7 +153,7 @@ export default function DataTable({ categories: data }) {
 
       {categories.length > 0 && (
         <p className="text-muted-foreground mt-4">
-          {categories.length} {faqs.length === 1 ? 'result' : 'results'}
+          {categories.length} {categories.length === 1 ? 'result' : 'results'}
         </p>
       )}
     </>
