@@ -11,6 +11,7 @@ import {
   deleteFaq,
   updateFaq,
 } from '@/lib/services/faq-service';
+import { Language } from '@/constants/enums';
 
 beforeAll(() => {
   vi.mock('server-only', () => ({}));
@@ -86,8 +87,8 @@ describe('createFaq function', () => {
         created_at: BigInt(Math.floor(new Date().getTime() / 1000)),
         translations: {
           create: [
-            { language: 'ID', title: 'Judul ID', content: 'Konten ID' },
-            { language: 'EN', title: 'Title EN', content: 'Content EN' },
+            { language: Language.ID, title: 'Judul ID', content: 'Konten ID' },
+            { language: Language.EN, title: 'Title EN', content: 'Content EN' },
           ],
         },
       },

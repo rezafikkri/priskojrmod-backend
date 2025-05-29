@@ -7,6 +7,7 @@ import {
   beforeAll,
 } from 'vitest';
 import { createAboutUs, updateAboutUs } from '@/lib/services/about-us-service';
+import { Language } from '@/constants/enums';
 
 beforeAll(() => {
   vi.mock('server-only', () => ({}));
@@ -66,8 +67,8 @@ describe('createAboutUs function', () => {
     const prismaResult = {
       id: 1,
       translations: [
-        { id: 1, language: 'ID' },
-        { id: 2, language: 'EN' },
+        { id: 1, language: Language.ID },
+        { id: 2, language: Language.EN },
       ],
     };
 
@@ -79,8 +80,8 @@ describe('createAboutUs function', () => {
       data: {
         translations: {
           create: [
-            { language: 'ID', content: inputContent.id },
-            { language: 'EN', content: inputContent.en },
+            { language: Language.ID, content: inputContent.id },
+            { language: Language.EN, content: inputContent.en },
           ],
         },
       },
