@@ -1,5 +1,7 @@
+import { getTermsOfService } from '@/lib/services/terms-of-service-service';
 import EditForm from './edit-form';
 
 export default async function TermsOfSeviceForm() {
-  return <EditForm termsOfService={null} />;
+  const termsOfService = await getTermsOfService();
+  return <EditForm termsOfService={termsOfService} />;
 }

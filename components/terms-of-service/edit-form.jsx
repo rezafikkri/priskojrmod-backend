@@ -14,6 +14,8 @@ import { useState } from 'react';
 import FormLanguageToggle from '../ui/form-language-toggle';
 import ContentInput from '../ui/content-input';
 import { formatDateTimeWIB } from '@/lib/format-date';
+import { addTermsOfService, editTermsOfService } from '@/actions/terms-of-service-actions';
+import { termsOfServiceSchema } from '@/lib/validators/terms-of-service-validator';
 
 export default function EditForm({ termsOfService }) {
   const [updatedAt, setUpdatedAt] = useState(termsOfService?.updated_at);
@@ -40,7 +42,7 @@ export default function EditForm({ termsOfService }) {
   }
 
   const form = useForm({
-    // resolver: zodResolver(privacyPolicySchema),
+    resolver: zodResolver(termsOfServiceSchema),
     defaultValues,
   });
 
@@ -48,34 +50,35 @@ export default function EditForm({ termsOfService }) {
   const { isSubmitting, errors } = form.formState;
 
   async function handleSubmit(data) {
-    // const saveRes = hasTermsOfService
-    //   ? await editPrivacyPolicy(data)
-    //   : await addPrivacyPolicy(data);
-    //
-    // if (saveRes.status === 'success') {
-    //   let successMessage;
-    //   if (hasTermsOfService) {
-    //     successMessage = 'Privacy Policy updated successfully.';
-    //     setUpdatedAt(saveRes.data.updated_at);
-    //   } else {
-    //     successMessage = 'Privacy Policy created successfully.';
-    //
-    //     // set id to form
-    //     form.register('id');
-    //     form.register('translationId.id');
-    //     form.register('translationId.en');
-    //     form.setValue('id', saveRes.data.id);
-    //     form.setValue('translationId.id', saveRes.data.translations.id.id);
-    //     form.setValue('translationId.en', saveRes.data.translations.id.en);
-    //
-    //     setUpdatedAt(saveRes.data.updated_at);
-    //     setHasTermsOfService(true);
-    //   }
-    //
-    //   toast.success(successMessage);
-    // } else {
-    //   toast.error(saveRes.message);
-    // }
+    console.dir(data);
+    const saveRes = hasTermsOfService
+      ? await editTermsOfService(data)
+      : await addTermsOfService(data);
+
+    if (saveRes.status === 'success') {
+      let successMessage;
+      if (hasTermsOfService) {
+        successMessage = 'Terms of Service updated successfully.';
+        setUpdatedAt(saveRes.data.updated_at);
+      } else {
+        successMessage = 'Terms of Service created successfully.';
+
+        // set id to form
+        form.register('id');
+        form.register('translationId.id');
+        form.register('translationId.en');
+        form.setValue('id', saveRes.data.id);
+        form.setValue('translationId.id', saveRes.data.translations.id.id);
+        form.setValue('translationId.en', saveRes.data.translations.id.en);
+
+        setUpdatedAt(saveRes.data.updated_at);
+        setHasTermsOfService(true);
+      }
+
+      toast.success(successMessage);
+    } else {
+      toast.error(saveRes.message);
+    }
   }
 
   return (
