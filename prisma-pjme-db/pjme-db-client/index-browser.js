@@ -164,7 +164,8 @@ exports.Prisma.LicenseScalarFieldEnum = {
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  slug: 'slug'
+  slug: 'slug',
+  created_at: 'created_at'
 };
 
 exports.Prisma.ProductScalarFieldEnum = {
