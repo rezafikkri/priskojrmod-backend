@@ -98,7 +98,7 @@ export default function CreateForm({
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-base">Name</FormLabel>
+                <FormLabel className="text-base">Customer Name</FormLabel>
                 <FormControl>
                   <Input disabled={isSubmitting} {...field} className="shadow-none md:text-base h-auto px-3 py-1.5" />
                 </FormControl>
