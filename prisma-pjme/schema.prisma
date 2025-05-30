@@ -110,7 +110,7 @@ model Product {
   owner_id      Int
   license_id    Int
   name          String    @db.VarChar(150)
-  slug          String    @db.VarChar(150)
+  slug          String    @db.VarChar(150) @unique
   description   String
   changelog     String?
   price_type    PriceType

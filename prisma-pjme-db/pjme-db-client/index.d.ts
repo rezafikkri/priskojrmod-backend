@@ -25637,6 +25637,7 @@ export namespace Prisma {
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    slug?: string
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
@@ -25645,7 +25646,6 @@ export namespace Prisma {
     owner_id?: IntFilter<"Product"> | number
     license_id?: IntFilter<"Product"> | number
     name?: StringFilter<"Product"> | string
-    slug?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
     changelog?: StringNullableFilter<"Product"> | string | null
     price_type?: EnumPriceTypeFilter<"Product"> | $Enums.PriceType
@@ -25660,7 +25660,7 @@ export namespace Prisma {
     product_coupons?: XOR<ProductCouponNullableScalarRelationFilter, ProductCouponWhereInput> | null
     product_images?: ProductImageListRelationFilter
     product_variants?: ProductVariantListRelationFilter
-  }, "id">
+  }, "id" | "slug">
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
