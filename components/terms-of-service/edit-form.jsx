@@ -50,7 +50,6 @@ export default function EditForm({ termsOfService }) {
   const { isSubmitting, errors } = form.formState;
 
   async function handleSubmit(data) {
-    console.dir(data);
     const saveRes = hasTermsOfService
       ? await editTermsOfService(data)
       : await addTermsOfService(data);
