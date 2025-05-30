@@ -88,7 +88,7 @@ model License {
 model Category {
   id         Int    @id @default(autoincrement())
   name       String @db.VarChar(100)
-  slug       String @db.VarChar(100)
+  slug       String @db.VarChar(100) @unique
   created_at BigInt
 
   products Product[]
