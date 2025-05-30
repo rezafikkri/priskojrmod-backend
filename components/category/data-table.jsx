@@ -27,6 +27,7 @@ import { MoreHorizontal } from 'lucide-react';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import { formatDateTimeWIB } from '@/lib/format-date';
+import { removeCategory } from '@/actions/category-actions';
 
 export default function DataTable({ categories: data }) {
   const [categories, setCategories] = useState(data);
@@ -39,13 +40,13 @@ export default function DataTable({ categories: data }) {
     // show loading
     const toastId = toast.loading('Deleting Category...');
     
-    const removeRes = await removeFaq(id);
+    const removeRes = await removeCategory(id);
 
     targetRow.classList.remove('opacity-50');
     targetActionBtn.removeAttribute('disabled');
 
     if (removeRes.status === 'success') {
-      setCategories(faqs.filter(faq => faq.id !== id));
+      setCategories(categories.filter(category => category.id !== id));
       toast.success('Category deleted successfully.', {
         id: toastId,
       });
