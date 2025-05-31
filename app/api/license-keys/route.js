@@ -19,8 +19,8 @@ export async function GET(req) {
   if (searchKey) {
     const licenseKeys = await searchLicenseKeys({
       select,
-      searchKey,
-      searchLimit: parseInt(process.env.SEARCH_LIMIT),
+      key: searchKey,
+      limit: parseInt(process.env.SEARCH_LIMIT),
     });
     dataResponse = {
       licenseKeys,

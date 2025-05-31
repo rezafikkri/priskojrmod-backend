@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import FormSkeleton from '@/components/loadings/form-skeleton';
 
 export const metadata = {
-  title: 'Edit FAQ - Prisko Jr Mod',
+  title: 'Edit Category - Prisko Jr Mod',
 };
 
 export default async function CategoryEditPage({ params }) {
@@ -11,7 +11,7 @@ export default async function CategoryEditPage({ params }) {
 
   return (
     <>
-      <h1 className="text-2xl mb-7 font-bold">Edit FAQ</h1>
+      <h1 className="text-2xl mb-7 font-bold">Edit Category</h1>
       <Suspense fallback={<FormSkeleton />}>
         <CategoryForm id={id} />
       </Suspense>

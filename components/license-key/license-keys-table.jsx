@@ -27,6 +27,7 @@ import {
 } from '@/components/ui/tooltip';
 import { removeLicenseKey } from '@/actions/license-key-actions';
 import { toast } from 'sonner';
+import { searchKeySchema } from '@/lib/validators/base-validator';
 
 export default function LicenseKeysTable() {
   const queryClient = useQueryClient();
@@ -52,16 +53,16 @@ export default function LicenseKeysTable() {
       isRerender.current = true;
     }
 
-    const key = searchRef.current.value;
-
-    if (key.trim() === '') return false;    
+    const keyResult = searchKeySchema.safeParse(searchRef.current.value);
+    if (!keyResult.success) return false;
+    const parsedKey = keyResult.data;
     
     setIsSearching(true);
     try {
       const result = await queryClient.fetchQuery({
-        queryKey: ['licenseKeysSearch', key],
+        queryKey: ['licenseKeysSearch', parsedKey],
         queryFn: async () => {
-          const res = await fetch(`/api/license-keys?sk=${key}`);
+          const res = await fetch(`/api/license-keys?sk=${parsedKey}`);
           const resJson = await res.json();
           return resJson;
         },

@@ -7,19 +7,14 @@ import { getCategory } from '@/lib/services/category-service';
 import EditForm from './edit-form';
 
 export default async function CategoryForm({ id }) {
-  const notFoundAlert = (
+  const category = await getCategory(id);
+
+  if (!category) return (
     <Alert className="lg:max-w-2/3">
       <Error404 />
       <AlertTitle>Category not found.</AlertTitle>
     </Alert>
   );
-
-  const parsedId = parseInt(id);
-  if (isNaN(parsedId)) return notFoundAlert;
-
-  const category = await getCategory(parsedId);
-
-  if (!category) return notFoundAlert;
 
   return <EditForm category={category} />
 }

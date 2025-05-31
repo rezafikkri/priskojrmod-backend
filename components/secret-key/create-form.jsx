@@ -15,7 +15,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { Loader2, ArrowLeft } from 'lucide-react';
-import { secretKeySchema } from '@/lib/validators/secret-key-validator';
+import { createSecretKeySchema } from '@/lib/validators/secret-key-validator';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import random32Bytes from '@/actions/random-32-bytes-actions';
@@ -23,7 +23,7 @@ import { addSecretKey } from '@/actions/secret-key-actions';
 
 export default function CreateForm() {
   const form = useForm({
-    resolver: zodResolver(secretKeySchema),
+    resolver: zodResolver(createSecretKeySchema),
     defaultValues: {
       key: '',
       app_name: '',
