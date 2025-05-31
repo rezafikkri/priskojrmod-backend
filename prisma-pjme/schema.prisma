@@ -77,18 +77,30 @@ model Customer {
 
 model License {
   id         Int    @id @default(autoincrement())
-  content    String
   updated_at BigInt
 
-  products Product[]
+  products     Product[]
+  translations LicenseTranslation[]
 
   @@map("licenses")
+}
+
+model LicenseTranslation {
+  id         Int      @id @default(autoincrement())
+  license_id Int
+  language   Language
+  name       String   @db.VarChar(100)
+  content    String
+
+  license License @relation(fields: [license_id], references: [id], onDelete: Cascade)
+
+  @@map("license_translations")
 }
 
 model Category {
   id         Int    @id @default(autoincrement())
   name       String @db.VarChar(100)
-  slug       String @db.VarChar(100) @unique
+  slug       String @unique @db.VarChar(100)
   created_at BigInt
 
   products Product[]
@@ -110,7 +122,7 @@ model Product {
   owner_id      Int
   license_id    Int
   name          String    @db.VarChar(150)
-  slug          String    @db.VarChar(150) @unique
+  slug          String    @unique @db.VarChar(150)
   description   String
   changelog     String?
   price_type    PriceType

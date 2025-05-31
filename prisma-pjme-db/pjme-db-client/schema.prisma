@@ -77,12 +77,24 @@ model Customer {
 
 model License {
   id         Int    @id @default(autoincrement())
-  content    String
   updated_at BigInt
 
-  products Product[]
+  products     Product[]
+  translations LicenseTranslation[]
 
   @@map("licenses")
+}
+
+model LicenseTranslation {
+  id         Int      @id @default(autoincrement())
+  license_id Int
+  language   Language
+  name       String   @db.VarChar(100)
+  content    String
+
+  license License @relation(fields: [license_id], references: [id], onDelete: Cascade)
+
+  @@map("license_translations")
 }
 
 model Category {

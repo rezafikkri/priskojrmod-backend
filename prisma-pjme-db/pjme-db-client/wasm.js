@@ -157,8 +157,15 @@ exports.Prisma.CustomerScalarFieldEnum = {
 
 exports.Prisma.LicenseScalarFieldEnum = {
   id: 'id',
-  content: 'content',
   updated_at: 'updated_at'
+};
+
+exports.Prisma.LicenseTranslationScalarFieldEnum = {
+  id: 'id',
+  license_id: 'license_id',
+  language: 'language',
+  name: 'name',
+  content: 'content'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {
@@ -289,14 +296,14 @@ exports.CurrencyCode = exports.$Enums.CurrencyCode = {
   USD: 'USD'
 };
 
-exports.PriceType = exports.$Enums.PriceType = {
-  paid: 'paid',
-  free: 'free'
-};
-
 exports.Language = exports.$Enums.Language = {
   id: 'id',
   en: 'en'
+};
+
+exports.PriceType = exports.$Enums.PriceType = {
+  paid: 'paid',
+  free: 'free'
 };
 
 exports.Prisma.ModelName = {
@@ -305,6 +312,7 @@ exports.Prisma.ModelName = {
   Owner: 'Owner',
   Customer: 'Customer',
   License: 'License',
+  LicenseTranslation: 'LicenseTranslation',
   Category: 'Category',
   Product: 'Product',
   ProductDiscount: 'ProductDiscount',

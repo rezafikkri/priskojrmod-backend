@@ -39,6 +39,11 @@ export type Customer = $Result.DefaultSelection<Prisma.$CustomerPayload>
  */
 export type License = $Result.DefaultSelection<Prisma.$LicensePayload>
 /**
+ * Model LicenseTranslation
+ * 
+ */
+export type LicenseTranslation = $Result.DefaultSelection<Prisma.$LicenseTranslationPayload>
+/**
  * Model Category
  * 
  */
@@ -329,6 +334,16 @@ export class PrismaClient<
     * ```
     */
   get license(): Prisma.LicenseDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.licenseTranslation`: Exposes CRUD operations for the **LicenseTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LicenseTranslations
+    * const licenseTranslations = await prisma.licenseTranslation.findMany()
+    * ```
+    */
+  get licenseTranslation(): Prisma.LicenseTranslationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.category`: Exposes CRUD operations for the **Category** model.
@@ -924,6 +939,7 @@ export namespace Prisma {
     Owner: 'Owner',
     Customer: 'Customer',
     License: 'License',
+    LicenseTranslation: 'LicenseTranslation',
     Category: 'Category',
     Product: 'Product',
     ProductDiscount: 'ProductDiscount',
@@ -957,7 +973,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "donationLink" | "owner" | "customer" | "license" | "category" | "product" | "productDiscount" | "productCoupon" | "productImage" | "productVariant" | "productPrice" | "termsOfService" | "termsOfServiceTranslation" | "privacyPolicy" | "privacyPolicyTranslation" | "aboutUs" | "aboutUsTranslation" | "faq" | "faqTranslation"
+      modelProps: "admin" | "donationLink" | "owner" | "customer" | "license" | "licenseTranslation" | "category" | "product" | "productDiscount" | "productCoupon" | "productImage" | "productVariant" | "productPrice" | "termsOfService" | "termsOfServiceTranslation" | "privacyPolicy" | "privacyPolicyTranslation" | "aboutUs" | "aboutUsTranslation" | "faq" | "faqTranslation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1328,6 +1344,80 @@ export namespace Prisma {
           count: {
             args: Prisma.LicenseCountArgs<ExtArgs>
             result: $Utils.Optional<LicenseCountAggregateOutputType> | number
+          }
+        }
+      }
+      LicenseTranslation: {
+        payload: Prisma.$LicenseTranslationPayload<ExtArgs>
+        fields: Prisma.LicenseTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LicenseTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LicenseTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LicenseTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LicenseTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.LicenseTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LicenseTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LicenseTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LicenseTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.LicenseTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LicenseTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.LicenseTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LicenseTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.LicenseTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LicenseTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LicenseTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.LicenseTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LicenseTranslationPayload>
+          }
+          update: {
+            args: Prisma.LicenseTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LicenseTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.LicenseTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LicenseTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LicenseTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LicenseTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.LicenseTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LicenseTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.LicenseTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLicenseTranslation>
+          }
+          groupBy: {
+            args: Prisma.LicenseTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LicenseTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LicenseTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<LicenseTranslationCountAggregateOutputType> | number
           }
         }
       }
@@ -2530,6 +2620,7 @@ export namespace Prisma {
     owner?: OwnerOmit
     customer?: CustomerOmit
     license?: LicenseOmit
+    licenseTranslation?: LicenseTranslationOmit
     category?: CategoryOmit
     product?: ProductOmit
     productDiscount?: ProductDiscountOmit
@@ -2711,10 +2802,12 @@ export namespace Prisma {
 
   export type LicenseCountOutputType = {
     products: number
+    translations: number
   }
 
   export type LicenseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | LicenseCountOutputTypeCountProductsArgs
+    translations?: boolean | LicenseCountOutputTypeCountTranslationsArgs
   }
 
   // Custom InputTypes
@@ -2733,6 +2826,13 @@ export namespace Prisma {
    */
   export type LicenseCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductWhereInput
+  }
+
+  /**
+   * LicenseCountOutputType without action
+   */
+  export type LicenseCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LicenseTranslationWhereInput
   }
 
 
@@ -7352,19 +7452,16 @@ export namespace Prisma {
 
   export type LicenseMinAggregateOutputType = {
     id: number | null
-    content: string | null
     updated_at: bigint | null
   }
 
   export type LicenseMaxAggregateOutputType = {
     id: number | null
-    content: string | null
     updated_at: bigint | null
   }
 
   export type LicenseCountAggregateOutputType = {
     id: number
-    content: number
     updated_at: number
     _all: number
   }
@@ -7382,19 +7479,16 @@ export namespace Prisma {
 
   export type LicenseMinAggregateInputType = {
     id?: true
-    content?: true
     updated_at?: true
   }
 
   export type LicenseMaxAggregateInputType = {
     id?: true
-    content?: true
     updated_at?: true
   }
 
   export type LicenseCountAggregateInputType = {
     id?: true
-    content?: true
     updated_at?: true
     _all?: true
   }
@@ -7487,7 +7581,6 @@ export namespace Prisma {
 
   export type LicenseGroupByOutputType = {
     id: number
-    content: string
     updated_at: bigint
     _count: LicenseCountAggregateOutputType | null
     _avg: LicenseAvgAggregateOutputType | null
@@ -7512,33 +7605,31 @@ export namespace Prisma {
 
   export type LicenseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    content?: boolean
     updated_at?: boolean
     products?: boolean | License$productsArgs<ExtArgs>
+    translations?: boolean | License$translationsArgs<ExtArgs>
     _count?: boolean | LicenseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["license"]>
 
   export type LicenseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    content?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["license"]>
 
   export type LicenseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    content?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["license"]>
 
   export type LicenseSelectScalar = {
     id?: boolean
-    content?: boolean
     updated_at?: boolean
   }
 
-  export type LicenseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "updated_at", ExtArgs["result"]["license"]>
+  export type LicenseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "updated_at", ExtArgs["result"]["license"]>
   export type LicenseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | License$productsArgs<ExtArgs>
+    translations?: boolean | License$translationsArgs<ExtArgs>
     _count?: boolean | LicenseCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LicenseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7548,10 +7639,10 @@ export namespace Prisma {
     name: "License"
     objects: {
       products: Prisma.$ProductPayload<ExtArgs>[]
+      translations: Prisma.$LicenseTranslationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      content: string
       updated_at: bigint
     }, ExtArgs["result"]["license"]>
     composites: {}
@@ -7948,6 +8039,7 @@ export namespace Prisma {
   export interface Prisma__LicenseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     products<T extends License$productsArgs<ExtArgs> = {}>(args?: Subset<T, License$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    translations<T extends License$translationsArgs<ExtArgs> = {}>(args?: Subset<T, License$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7978,7 +8070,6 @@ export namespace Prisma {
    */
   interface LicenseFieldRefs {
     readonly id: FieldRef<"License", 'Int'>
-    readonly content: FieldRef<"License", 'String'>
     readonly updated_at: FieldRef<"License", 'BigInt'>
   }
     
@@ -8392,6 +8483,30 @@ export namespace Prisma {
   }
 
   /**
+   * License.translations
+   */
+  export type License$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationInclude<ExtArgs> | null
+    where?: LicenseTranslationWhereInput
+    orderBy?: LicenseTranslationOrderByWithRelationInput | LicenseTranslationOrderByWithRelationInput[]
+    cursor?: LicenseTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LicenseTranslationScalarFieldEnum | LicenseTranslationScalarFieldEnum[]
+  }
+
+  /**
    * License without action
    */
   export type LicenseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8407,6 +8522,1102 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: LicenseInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LicenseTranslation
+   */
+
+  export type AggregateLicenseTranslation = {
+    _count: LicenseTranslationCountAggregateOutputType | null
+    _avg: LicenseTranslationAvgAggregateOutputType | null
+    _sum: LicenseTranslationSumAggregateOutputType | null
+    _min: LicenseTranslationMinAggregateOutputType | null
+    _max: LicenseTranslationMaxAggregateOutputType | null
+  }
+
+  export type LicenseTranslationAvgAggregateOutputType = {
+    id: number | null
+    license_id: number | null
+  }
+
+  export type LicenseTranslationSumAggregateOutputType = {
+    id: number | null
+    license_id: number | null
+  }
+
+  export type LicenseTranslationMinAggregateOutputType = {
+    id: number | null
+    license_id: number | null
+    language: $Enums.Language | null
+    name: string | null
+    content: string | null
+  }
+
+  export type LicenseTranslationMaxAggregateOutputType = {
+    id: number | null
+    license_id: number | null
+    language: $Enums.Language | null
+    name: string | null
+    content: string | null
+  }
+
+  export type LicenseTranslationCountAggregateOutputType = {
+    id: number
+    license_id: number
+    language: number
+    name: number
+    content: number
+    _all: number
+  }
+
+
+  export type LicenseTranslationAvgAggregateInputType = {
+    id?: true
+    license_id?: true
+  }
+
+  export type LicenseTranslationSumAggregateInputType = {
+    id?: true
+    license_id?: true
+  }
+
+  export type LicenseTranslationMinAggregateInputType = {
+    id?: true
+    license_id?: true
+    language?: true
+    name?: true
+    content?: true
+  }
+
+  export type LicenseTranslationMaxAggregateInputType = {
+    id?: true
+    license_id?: true
+    language?: true
+    name?: true
+    content?: true
+  }
+
+  export type LicenseTranslationCountAggregateInputType = {
+    id?: true
+    license_id?: true
+    language?: true
+    name?: true
+    content?: true
+    _all?: true
+  }
+
+  export type LicenseTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LicenseTranslation to aggregate.
+     */
+    where?: LicenseTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LicenseTranslations to fetch.
+     */
+    orderBy?: LicenseTranslationOrderByWithRelationInput | LicenseTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LicenseTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LicenseTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LicenseTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LicenseTranslations
+    **/
+    _count?: true | LicenseTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LicenseTranslationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LicenseTranslationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LicenseTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LicenseTranslationMaxAggregateInputType
+  }
+
+  export type GetLicenseTranslationAggregateType<T extends LicenseTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateLicenseTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLicenseTranslation[P]>
+      : GetScalarType<T[P], AggregateLicenseTranslation[P]>
+  }
+
+
+
+
+  export type LicenseTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LicenseTranslationWhereInput
+    orderBy?: LicenseTranslationOrderByWithAggregationInput | LicenseTranslationOrderByWithAggregationInput[]
+    by: LicenseTranslationScalarFieldEnum[] | LicenseTranslationScalarFieldEnum
+    having?: LicenseTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LicenseTranslationCountAggregateInputType | true
+    _avg?: LicenseTranslationAvgAggregateInputType
+    _sum?: LicenseTranslationSumAggregateInputType
+    _min?: LicenseTranslationMinAggregateInputType
+    _max?: LicenseTranslationMaxAggregateInputType
+  }
+
+  export type LicenseTranslationGroupByOutputType = {
+    id: number
+    license_id: number
+    language: $Enums.Language
+    name: string
+    content: string
+    _count: LicenseTranslationCountAggregateOutputType | null
+    _avg: LicenseTranslationAvgAggregateOutputType | null
+    _sum: LicenseTranslationSumAggregateOutputType | null
+    _min: LicenseTranslationMinAggregateOutputType | null
+    _max: LicenseTranslationMaxAggregateOutputType | null
+  }
+
+  type GetLicenseTranslationGroupByPayload<T extends LicenseTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LicenseTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LicenseTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LicenseTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], LicenseTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LicenseTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    license_id?: boolean
+    language?: boolean
+    name?: boolean
+    content?: boolean
+    license?: boolean | LicenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["licenseTranslation"]>
+
+  export type LicenseTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    license_id?: boolean
+    language?: boolean
+    name?: boolean
+    content?: boolean
+    license?: boolean | LicenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["licenseTranslation"]>
+
+  export type LicenseTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    license_id?: boolean
+    language?: boolean
+    name?: boolean
+    content?: boolean
+    license?: boolean | LicenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["licenseTranslation"]>
+
+  export type LicenseTranslationSelectScalar = {
+    id?: boolean
+    license_id?: boolean
+    language?: boolean
+    name?: boolean
+    content?: boolean
+  }
+
+  export type LicenseTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "license_id" | "language" | "name" | "content", ExtArgs["result"]["licenseTranslation"]>
+  export type LicenseTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    license?: boolean | LicenseDefaultArgs<ExtArgs>
+  }
+  export type LicenseTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    license?: boolean | LicenseDefaultArgs<ExtArgs>
+  }
+  export type LicenseTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    license?: boolean | LicenseDefaultArgs<ExtArgs>
+  }
+
+  export type $LicenseTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LicenseTranslation"
+    objects: {
+      license: Prisma.$LicensePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      license_id: number
+      language: $Enums.Language
+      name: string
+      content: string
+    }, ExtArgs["result"]["licenseTranslation"]>
+    composites: {}
+  }
+
+  type LicenseTranslationGetPayload<S extends boolean | null | undefined | LicenseTranslationDefaultArgs> = $Result.GetResult<Prisma.$LicenseTranslationPayload, S>
+
+  type LicenseTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LicenseTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LicenseTranslationCountAggregateInputType | true
+    }
+
+  export interface LicenseTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LicenseTranslation'], meta: { name: 'LicenseTranslation' } }
+    /**
+     * Find zero or one LicenseTranslation that matches the filter.
+     * @param {LicenseTranslationFindUniqueArgs} args - Arguments to find a LicenseTranslation
+     * @example
+     * // Get one LicenseTranslation
+     * const licenseTranslation = await prisma.licenseTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LicenseTranslationFindUniqueArgs>(args: SelectSubset<T, LicenseTranslationFindUniqueArgs<ExtArgs>>): Prisma__LicenseTranslationClient<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LicenseTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LicenseTranslationFindUniqueOrThrowArgs} args - Arguments to find a LicenseTranslation
+     * @example
+     * // Get one LicenseTranslation
+     * const licenseTranslation = await prisma.licenseTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LicenseTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, LicenseTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LicenseTranslationClient<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LicenseTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LicenseTranslationFindFirstArgs} args - Arguments to find a LicenseTranslation
+     * @example
+     * // Get one LicenseTranslation
+     * const licenseTranslation = await prisma.licenseTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LicenseTranslationFindFirstArgs>(args?: SelectSubset<T, LicenseTranslationFindFirstArgs<ExtArgs>>): Prisma__LicenseTranslationClient<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LicenseTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LicenseTranslationFindFirstOrThrowArgs} args - Arguments to find a LicenseTranslation
+     * @example
+     * // Get one LicenseTranslation
+     * const licenseTranslation = await prisma.licenseTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LicenseTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, LicenseTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__LicenseTranslationClient<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LicenseTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LicenseTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LicenseTranslations
+     * const licenseTranslations = await prisma.licenseTranslation.findMany()
+     * 
+     * // Get first 10 LicenseTranslations
+     * const licenseTranslations = await prisma.licenseTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const licenseTranslationWithIdOnly = await prisma.licenseTranslation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LicenseTranslationFindManyArgs>(args?: SelectSubset<T, LicenseTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LicenseTranslation.
+     * @param {LicenseTranslationCreateArgs} args - Arguments to create a LicenseTranslation.
+     * @example
+     * // Create one LicenseTranslation
+     * const LicenseTranslation = await prisma.licenseTranslation.create({
+     *   data: {
+     *     // ... data to create a LicenseTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends LicenseTranslationCreateArgs>(args: SelectSubset<T, LicenseTranslationCreateArgs<ExtArgs>>): Prisma__LicenseTranslationClient<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LicenseTranslations.
+     * @param {LicenseTranslationCreateManyArgs} args - Arguments to create many LicenseTranslations.
+     * @example
+     * // Create many LicenseTranslations
+     * const licenseTranslation = await prisma.licenseTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LicenseTranslationCreateManyArgs>(args?: SelectSubset<T, LicenseTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LicenseTranslations and returns the data saved in the database.
+     * @param {LicenseTranslationCreateManyAndReturnArgs} args - Arguments to create many LicenseTranslations.
+     * @example
+     * // Create many LicenseTranslations
+     * const licenseTranslation = await prisma.licenseTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LicenseTranslations and only return the `id`
+     * const licenseTranslationWithIdOnly = await prisma.licenseTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LicenseTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, LicenseTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LicenseTranslation.
+     * @param {LicenseTranslationDeleteArgs} args - Arguments to delete one LicenseTranslation.
+     * @example
+     * // Delete one LicenseTranslation
+     * const LicenseTranslation = await prisma.licenseTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one LicenseTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LicenseTranslationDeleteArgs>(args: SelectSubset<T, LicenseTranslationDeleteArgs<ExtArgs>>): Prisma__LicenseTranslationClient<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LicenseTranslation.
+     * @param {LicenseTranslationUpdateArgs} args - Arguments to update one LicenseTranslation.
+     * @example
+     * // Update one LicenseTranslation
+     * const licenseTranslation = await prisma.licenseTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LicenseTranslationUpdateArgs>(args: SelectSubset<T, LicenseTranslationUpdateArgs<ExtArgs>>): Prisma__LicenseTranslationClient<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LicenseTranslations.
+     * @param {LicenseTranslationDeleteManyArgs} args - Arguments to filter LicenseTranslations to delete.
+     * @example
+     * // Delete a few LicenseTranslations
+     * const { count } = await prisma.licenseTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LicenseTranslationDeleteManyArgs>(args?: SelectSubset<T, LicenseTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LicenseTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LicenseTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LicenseTranslations
+     * const licenseTranslation = await prisma.licenseTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LicenseTranslationUpdateManyArgs>(args: SelectSubset<T, LicenseTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LicenseTranslations and returns the data updated in the database.
+     * @param {LicenseTranslationUpdateManyAndReturnArgs} args - Arguments to update many LicenseTranslations.
+     * @example
+     * // Update many LicenseTranslations
+     * const licenseTranslation = await prisma.licenseTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LicenseTranslations and only return the `id`
+     * const licenseTranslationWithIdOnly = await prisma.licenseTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LicenseTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, LicenseTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LicenseTranslation.
+     * @param {LicenseTranslationUpsertArgs} args - Arguments to update or create a LicenseTranslation.
+     * @example
+     * // Update or create a LicenseTranslation
+     * const licenseTranslation = await prisma.licenseTranslation.upsert({
+     *   create: {
+     *     // ... data to create a LicenseTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LicenseTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LicenseTranslationUpsertArgs>(args: SelectSubset<T, LicenseTranslationUpsertArgs<ExtArgs>>): Prisma__LicenseTranslationClient<$Result.GetResult<Prisma.$LicenseTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LicenseTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LicenseTranslationCountArgs} args - Arguments to filter LicenseTranslations to count.
+     * @example
+     * // Count the number of LicenseTranslations
+     * const count = await prisma.licenseTranslation.count({
+     *   where: {
+     *     // ... the filter for the LicenseTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends LicenseTranslationCountArgs>(
+      args?: Subset<T, LicenseTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LicenseTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LicenseTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LicenseTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LicenseTranslationAggregateArgs>(args: Subset<T, LicenseTranslationAggregateArgs>): Prisma.PrismaPromise<GetLicenseTranslationAggregateType<T>>
+
+    /**
+     * Group by LicenseTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LicenseTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LicenseTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LicenseTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: LicenseTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LicenseTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLicenseTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LicenseTranslation model
+   */
+  readonly fields: LicenseTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LicenseTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LicenseTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    license<T extends LicenseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LicenseDefaultArgs<ExtArgs>>): Prisma__LicenseClient<$Result.GetResult<Prisma.$LicensePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LicenseTranslation model
+   */
+  interface LicenseTranslationFieldRefs {
+    readonly id: FieldRef<"LicenseTranslation", 'Int'>
+    readonly license_id: FieldRef<"LicenseTranslation", 'Int'>
+    readonly language: FieldRef<"LicenseTranslation", 'Language'>
+    readonly name: FieldRef<"LicenseTranslation", 'String'>
+    readonly content: FieldRef<"LicenseTranslation", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LicenseTranslation findUnique
+   */
+  export type LicenseTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which LicenseTranslation to fetch.
+     */
+    where: LicenseTranslationWhereUniqueInput
+  }
+
+  /**
+   * LicenseTranslation findUniqueOrThrow
+   */
+  export type LicenseTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which LicenseTranslation to fetch.
+     */
+    where: LicenseTranslationWhereUniqueInput
+  }
+
+  /**
+   * LicenseTranslation findFirst
+   */
+  export type LicenseTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which LicenseTranslation to fetch.
+     */
+    where?: LicenseTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LicenseTranslations to fetch.
+     */
+    orderBy?: LicenseTranslationOrderByWithRelationInput | LicenseTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LicenseTranslations.
+     */
+    cursor?: LicenseTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LicenseTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LicenseTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LicenseTranslations.
+     */
+    distinct?: LicenseTranslationScalarFieldEnum | LicenseTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * LicenseTranslation findFirstOrThrow
+   */
+  export type LicenseTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which LicenseTranslation to fetch.
+     */
+    where?: LicenseTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LicenseTranslations to fetch.
+     */
+    orderBy?: LicenseTranslationOrderByWithRelationInput | LicenseTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LicenseTranslations.
+     */
+    cursor?: LicenseTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LicenseTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LicenseTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LicenseTranslations.
+     */
+    distinct?: LicenseTranslationScalarFieldEnum | LicenseTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * LicenseTranslation findMany
+   */
+  export type LicenseTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which LicenseTranslations to fetch.
+     */
+    where?: LicenseTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LicenseTranslations to fetch.
+     */
+    orderBy?: LicenseTranslationOrderByWithRelationInput | LicenseTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LicenseTranslations.
+     */
+    cursor?: LicenseTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LicenseTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LicenseTranslations.
+     */
+    skip?: number
+    distinct?: LicenseTranslationScalarFieldEnum | LicenseTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * LicenseTranslation create
+   */
+  export type LicenseTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LicenseTranslation.
+     */
+    data: XOR<LicenseTranslationCreateInput, LicenseTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * LicenseTranslation createMany
+   */
+  export type LicenseTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LicenseTranslations.
+     */
+    data: LicenseTranslationCreateManyInput | LicenseTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LicenseTranslation createManyAndReturn
+   */
+  export type LicenseTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many LicenseTranslations.
+     */
+    data: LicenseTranslationCreateManyInput | LicenseTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LicenseTranslation update
+   */
+  export type LicenseTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LicenseTranslation.
+     */
+    data: XOR<LicenseTranslationUpdateInput, LicenseTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which LicenseTranslation to update.
+     */
+    where: LicenseTranslationWhereUniqueInput
+  }
+
+  /**
+   * LicenseTranslation updateMany
+   */
+  export type LicenseTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LicenseTranslations.
+     */
+    data: XOR<LicenseTranslationUpdateManyMutationInput, LicenseTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which LicenseTranslations to update
+     */
+    where?: LicenseTranslationWhereInput
+    /**
+     * Limit how many LicenseTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LicenseTranslation updateManyAndReturn
+   */
+  export type LicenseTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update LicenseTranslations.
+     */
+    data: XOR<LicenseTranslationUpdateManyMutationInput, LicenseTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which LicenseTranslations to update
+     */
+    where?: LicenseTranslationWhereInput
+    /**
+     * Limit how many LicenseTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LicenseTranslation upsert
+   */
+  export type LicenseTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LicenseTranslation to update in case it exists.
+     */
+    where: LicenseTranslationWhereUniqueInput
+    /**
+     * In case the LicenseTranslation found by the `where` argument doesn't exist, create a new LicenseTranslation with this data.
+     */
+    create: XOR<LicenseTranslationCreateInput, LicenseTranslationUncheckedCreateInput>
+    /**
+     * In case the LicenseTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LicenseTranslationUpdateInput, LicenseTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * LicenseTranslation delete
+   */
+  export type LicenseTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which LicenseTranslation to delete.
+     */
+    where: LicenseTranslationWhereUniqueInput
+  }
+
+  /**
+   * LicenseTranslation deleteMany
+   */
+  export type LicenseTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LicenseTranslations to delete
+     */
+    where?: LicenseTranslationWhereInput
+    /**
+     * Limit how many LicenseTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LicenseTranslation without action
+   */
+  export type LicenseTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LicenseTranslation
+     */
+    select?: LicenseTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LicenseTranslation
+     */
+    omit?: LicenseTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LicenseTranslationInclude<ExtArgs> | null
   }
 
 
@@ -24946,11 +26157,21 @@ export namespace Prisma {
 
   export const LicenseScalarFieldEnum: {
     id: 'id',
-    content: 'content',
     updated_at: 'updated_at'
   };
 
   export type LicenseScalarFieldEnum = (typeof LicenseScalarFieldEnum)[keyof typeof LicenseScalarFieldEnum]
+
+
+  export const LicenseTranslationScalarFieldEnum: {
+    id: 'id',
+    license_id: 'license_id',
+    language: 'language',
+    name: 'name',
+    content: 'content'
+  };
+
+  export type LicenseTranslationScalarFieldEnum = (typeof LicenseTranslationScalarFieldEnum)[keyof typeof LicenseTranslationScalarFieldEnum]
 
 
   export const CategoryScalarFieldEnum: {
@@ -25193,6 +26414,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Language'
+   */
+  export type EnumLanguageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Language'>
+    
+
+
+  /**
+   * Reference to a field of type 'Language[]'
+   */
+  export type ListEnumLanguageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Language[]'>
+    
+
+
+  /**
    * Reference to a field of type 'PriceType'
    */
   export type EnumPriceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PriceType'>
@@ -25210,20 +26445,6 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
-   * Reference to a field of type 'Language'
-   */
-  export type EnumLanguageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Language'>
-    
-
-
-  /**
-   * Reference to a field of type 'Language[]'
-   */
-  export type ListEnumLanguageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Language[]'>
     
 
 
@@ -25490,16 +26711,16 @@ export namespace Prisma {
     OR?: LicenseWhereInput[]
     NOT?: LicenseWhereInput | LicenseWhereInput[]
     id?: IntFilter<"License"> | number
-    content?: StringFilter<"License"> | string
     updated_at?: BigIntFilter<"License"> | bigint | number
     products?: ProductListRelationFilter
+    translations?: LicenseTranslationListRelationFilter
   }
 
   export type LicenseOrderByWithRelationInput = {
     id?: SortOrder
-    content?: SortOrder
     updated_at?: SortOrder
     products?: ProductOrderByRelationAggregateInput
+    translations?: LicenseTranslationOrderByRelationAggregateInput
   }
 
   export type LicenseWhereUniqueInput = Prisma.AtLeast<{
@@ -25507,14 +26728,13 @@ export namespace Prisma {
     AND?: LicenseWhereInput | LicenseWhereInput[]
     OR?: LicenseWhereInput[]
     NOT?: LicenseWhereInput | LicenseWhereInput[]
-    content?: StringFilter<"License"> | string
     updated_at?: BigIntFilter<"License"> | bigint | number
     products?: ProductListRelationFilter
+    translations?: LicenseTranslationListRelationFilter
   }, "id">
 
   export type LicenseOrderByWithAggregationInput = {
     id?: SortOrder
-    content?: SortOrder
     updated_at?: SortOrder
     _count?: LicenseCountOrderByAggregateInput
     _avg?: LicenseAvgOrderByAggregateInput
@@ -25528,8 +26748,64 @@ export namespace Prisma {
     OR?: LicenseScalarWhereWithAggregatesInput[]
     NOT?: LicenseScalarWhereWithAggregatesInput | LicenseScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"License"> | number
-    content?: StringWithAggregatesFilter<"License"> | string
     updated_at?: BigIntWithAggregatesFilter<"License"> | bigint | number
+  }
+
+  export type LicenseTranslationWhereInput = {
+    AND?: LicenseTranslationWhereInput | LicenseTranslationWhereInput[]
+    OR?: LicenseTranslationWhereInput[]
+    NOT?: LicenseTranslationWhereInput | LicenseTranslationWhereInput[]
+    id?: IntFilter<"LicenseTranslation"> | number
+    license_id?: IntFilter<"LicenseTranslation"> | number
+    language?: EnumLanguageFilter<"LicenseTranslation"> | $Enums.Language
+    name?: StringFilter<"LicenseTranslation"> | string
+    content?: StringFilter<"LicenseTranslation"> | string
+    license?: XOR<LicenseScalarRelationFilter, LicenseWhereInput>
+  }
+
+  export type LicenseTranslationOrderByWithRelationInput = {
+    id?: SortOrder
+    license_id?: SortOrder
+    language?: SortOrder
+    name?: SortOrder
+    content?: SortOrder
+    license?: LicenseOrderByWithRelationInput
+  }
+
+  export type LicenseTranslationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: LicenseTranslationWhereInput | LicenseTranslationWhereInput[]
+    OR?: LicenseTranslationWhereInput[]
+    NOT?: LicenseTranslationWhereInput | LicenseTranslationWhereInput[]
+    license_id?: IntFilter<"LicenseTranslation"> | number
+    language?: EnumLanguageFilter<"LicenseTranslation"> | $Enums.Language
+    name?: StringFilter<"LicenseTranslation"> | string
+    content?: StringFilter<"LicenseTranslation"> | string
+    license?: XOR<LicenseScalarRelationFilter, LicenseWhereInput>
+  }, "id">
+
+  export type LicenseTranslationOrderByWithAggregationInput = {
+    id?: SortOrder
+    license_id?: SortOrder
+    language?: SortOrder
+    name?: SortOrder
+    content?: SortOrder
+    _count?: LicenseTranslationCountOrderByAggregateInput
+    _avg?: LicenseTranslationAvgOrderByAggregateInput
+    _max?: LicenseTranslationMaxOrderByAggregateInput
+    _min?: LicenseTranslationMinOrderByAggregateInput
+    _sum?: LicenseTranslationSumOrderByAggregateInput
+  }
+
+  export type LicenseTranslationScalarWhereWithAggregatesInput = {
+    AND?: LicenseTranslationScalarWhereWithAggregatesInput | LicenseTranslationScalarWhereWithAggregatesInput[]
+    OR?: LicenseTranslationScalarWhereWithAggregatesInput[]
+    NOT?: LicenseTranslationScalarWhereWithAggregatesInput | LicenseTranslationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"LicenseTranslation"> | number
+    license_id?: IntWithAggregatesFilter<"LicenseTranslation"> | number
+    language?: EnumLanguageWithAggregatesFilter<"LicenseTranslation"> | $Enums.Language
+    name?: StringWithAggregatesFilter<"LicenseTranslation"> | string
+    content?: StringWithAggregatesFilter<"LicenseTranslation"> | string
   }
 
   export type CategoryWhereInput = {
@@ -26605,46 +27881,95 @@ export namespace Prisma {
   }
 
   export type LicenseCreateInput = {
-    content: string
     updated_at: bigint | number
     products?: ProductCreateNestedManyWithoutLicenseInput
+    translations?: LicenseTranslationCreateNestedManyWithoutLicenseInput
   }
 
   export type LicenseUncheckedCreateInput = {
     id?: number
-    content: string
     updated_at: bigint | number
     products?: ProductUncheckedCreateNestedManyWithoutLicenseInput
+    translations?: LicenseTranslationUncheckedCreateNestedManyWithoutLicenseInput
   }
 
   export type LicenseUpdateInput = {
-    content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     products?: ProductUpdateManyWithoutLicenseNestedInput
+    translations?: LicenseTranslationUpdateManyWithoutLicenseNestedInput
   }
 
   export type LicenseUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     products?: ProductUncheckedUpdateManyWithoutLicenseNestedInput
+    translations?: LicenseTranslationUncheckedUpdateManyWithoutLicenseNestedInput
   }
 
   export type LicenseCreateManyInput = {
     id?: number
-    content: string
     updated_at: bigint | number
   }
 
   export type LicenseUpdateManyMutationInput = {
-    content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type LicenseUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type LicenseTranslationCreateInput = {
+    language: $Enums.Language
+    name: string
+    content: string
+    license: LicenseCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type LicenseTranslationUncheckedCreateInput = {
+    id?: number
+    license_id: number
+    language: $Enums.Language
+    name: string
+    content: string
+  }
+
+  export type LicenseTranslationUpdateInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    license?: LicenseUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type LicenseTranslationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    license_id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LicenseTranslationCreateManyInput = {
+    id?: number
+    license_id: number
+    language: $Enums.Language
+    name: string
+    content: string
+  }
+
+  export type LicenseTranslationUpdateManyMutationInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LicenseTranslationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    license_id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
   }
 
   export type CategoryCreateInput = {
@@ -27707,9 +29032,18 @@ export namespace Prisma {
     _max?: NestedBigIntFilter<$PrismaModel>
   }
 
+  export type LicenseTranslationListRelationFilter = {
+    every?: LicenseTranslationWhereInput
+    some?: LicenseTranslationWhereInput
+    none?: LicenseTranslationWhereInput
+  }
+
+  export type LicenseTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type LicenseCountOrderByAggregateInput = {
     id?: SortOrder
-    content?: SortOrder
     updated_at?: SortOrder
   }
 
@@ -27720,19 +29054,73 @@ export namespace Prisma {
 
   export type LicenseMaxOrderByAggregateInput = {
     id?: SortOrder
-    content?: SortOrder
     updated_at?: SortOrder
   }
 
   export type LicenseMinOrderByAggregateInput = {
     id?: SortOrder
-    content?: SortOrder
     updated_at?: SortOrder
   }
 
   export type LicenseSumOrderByAggregateInput = {
     id?: SortOrder
     updated_at?: SortOrder
+  }
+
+  export type EnumLanguageFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
+  }
+
+  export type LicenseScalarRelationFilter = {
+    is?: LicenseWhereInput
+    isNot?: LicenseWhereInput
+  }
+
+  export type LicenseTranslationCountOrderByAggregateInput = {
+    id?: SortOrder
+    license_id?: SortOrder
+    language?: SortOrder
+    name?: SortOrder
+    content?: SortOrder
+  }
+
+  export type LicenseTranslationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    license_id?: SortOrder
+  }
+
+  export type LicenseTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    license_id?: SortOrder
+    language?: SortOrder
+    name?: SortOrder
+    content?: SortOrder
+  }
+
+  export type LicenseTranslationMinOrderByAggregateInput = {
+    id?: SortOrder
+    license_id?: SortOrder
+    language?: SortOrder
+    name?: SortOrder
+    content?: SortOrder
+  }
+
+  export type LicenseTranslationSumOrderByAggregateInput = {
+    id?: SortOrder
+    license_id?: SortOrder
+  }
+
+  export type EnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLanguageFilter<$PrismaModel>
+    _max?: NestedEnumLanguageFilter<$PrismaModel>
   }
 
   export type CategoryCountOrderByAggregateInput = {
@@ -27793,11 +29181,6 @@ export namespace Prisma {
   export type OwnerScalarRelationFilter = {
     is?: OwnerWhereInput
     isNot?: OwnerWhereInput
-  }
-
-  export type LicenseScalarRelationFilter = {
-    is?: LicenseWhereInput
-    isNot?: LicenseWhereInput
   }
 
   export type ProductDiscountNullableScalarRelationFilter = {
@@ -28135,13 +29518,6 @@ export namespace Prisma {
     updated_at?: SortOrder
   }
 
-  export type EnumLanguageFilter<$PrismaModel = never> = {
-    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
-    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
-  }
-
   export type TermsOfServiceScalarRelationFilter = {
     is?: TermsOfServiceWhereInput
     isNot?: TermsOfServiceWhereInput
@@ -28176,16 +29552,6 @@ export namespace Prisma {
   export type TermsOfServiceTranslationSumOrderByAggregateInput = {
     id?: SortOrder
     terms_of_service_id?: SortOrder
-  }
-
-  export type EnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
-    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumLanguageFilter<$PrismaModel>
-    _max?: NestedEnumLanguageFilter<$PrismaModel>
   }
 
   export type PrivacyPolicyTranslationListRelationFilter = {
@@ -28574,11 +29940,25 @@ export namespace Prisma {
     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
   }
 
+  export type LicenseTranslationCreateNestedManyWithoutLicenseInput = {
+    create?: XOR<LicenseTranslationCreateWithoutLicenseInput, LicenseTranslationUncheckedCreateWithoutLicenseInput> | LicenseTranslationCreateWithoutLicenseInput[] | LicenseTranslationUncheckedCreateWithoutLicenseInput[]
+    connectOrCreate?: LicenseTranslationCreateOrConnectWithoutLicenseInput | LicenseTranslationCreateOrConnectWithoutLicenseInput[]
+    createMany?: LicenseTranslationCreateManyLicenseInputEnvelope
+    connect?: LicenseTranslationWhereUniqueInput | LicenseTranslationWhereUniqueInput[]
+  }
+
   export type ProductUncheckedCreateNestedManyWithoutLicenseInput = {
     create?: XOR<ProductCreateWithoutLicenseInput, ProductUncheckedCreateWithoutLicenseInput> | ProductCreateWithoutLicenseInput[] | ProductUncheckedCreateWithoutLicenseInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutLicenseInput | ProductCreateOrConnectWithoutLicenseInput[]
     createMany?: ProductCreateManyLicenseInputEnvelope
     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type LicenseTranslationUncheckedCreateNestedManyWithoutLicenseInput = {
+    create?: XOR<LicenseTranslationCreateWithoutLicenseInput, LicenseTranslationUncheckedCreateWithoutLicenseInput> | LicenseTranslationCreateWithoutLicenseInput[] | LicenseTranslationUncheckedCreateWithoutLicenseInput[]
+    connectOrCreate?: LicenseTranslationCreateOrConnectWithoutLicenseInput | LicenseTranslationCreateOrConnectWithoutLicenseInput[]
+    createMany?: LicenseTranslationCreateManyLicenseInputEnvelope
+    connect?: LicenseTranslationWhereUniqueInput | LicenseTranslationWhereUniqueInput[]
   }
 
   export type ProductUpdateManyWithoutLicenseNestedInput = {
@@ -28595,6 +29975,20 @@ export namespace Prisma {
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
   }
 
+  export type LicenseTranslationUpdateManyWithoutLicenseNestedInput = {
+    create?: XOR<LicenseTranslationCreateWithoutLicenseInput, LicenseTranslationUncheckedCreateWithoutLicenseInput> | LicenseTranslationCreateWithoutLicenseInput[] | LicenseTranslationUncheckedCreateWithoutLicenseInput[]
+    connectOrCreate?: LicenseTranslationCreateOrConnectWithoutLicenseInput | LicenseTranslationCreateOrConnectWithoutLicenseInput[]
+    upsert?: LicenseTranslationUpsertWithWhereUniqueWithoutLicenseInput | LicenseTranslationUpsertWithWhereUniqueWithoutLicenseInput[]
+    createMany?: LicenseTranslationCreateManyLicenseInputEnvelope
+    set?: LicenseTranslationWhereUniqueInput | LicenseTranslationWhereUniqueInput[]
+    disconnect?: LicenseTranslationWhereUniqueInput | LicenseTranslationWhereUniqueInput[]
+    delete?: LicenseTranslationWhereUniqueInput | LicenseTranslationWhereUniqueInput[]
+    connect?: LicenseTranslationWhereUniqueInput | LicenseTranslationWhereUniqueInput[]
+    update?: LicenseTranslationUpdateWithWhereUniqueWithoutLicenseInput | LicenseTranslationUpdateWithWhereUniqueWithoutLicenseInput[]
+    updateMany?: LicenseTranslationUpdateManyWithWhereWithoutLicenseInput | LicenseTranslationUpdateManyWithWhereWithoutLicenseInput[]
+    deleteMany?: LicenseTranslationScalarWhereInput | LicenseTranslationScalarWhereInput[]
+  }
+
   export type ProductUncheckedUpdateManyWithoutLicenseNestedInput = {
     create?: XOR<ProductCreateWithoutLicenseInput, ProductUncheckedCreateWithoutLicenseInput> | ProductCreateWithoutLicenseInput[] | ProductUncheckedCreateWithoutLicenseInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutLicenseInput | ProductCreateOrConnectWithoutLicenseInput[]
@@ -28607,6 +30001,38 @@ export namespace Prisma {
     update?: ProductUpdateWithWhereUniqueWithoutLicenseInput | ProductUpdateWithWhereUniqueWithoutLicenseInput[]
     updateMany?: ProductUpdateManyWithWhereWithoutLicenseInput | ProductUpdateManyWithWhereWithoutLicenseInput[]
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  }
+
+  export type LicenseTranslationUncheckedUpdateManyWithoutLicenseNestedInput = {
+    create?: XOR<LicenseTranslationCreateWithoutLicenseInput, LicenseTranslationUncheckedCreateWithoutLicenseInput> | LicenseTranslationCreateWithoutLicenseInput[] | LicenseTranslationUncheckedCreateWithoutLicenseInput[]
+    connectOrCreate?: LicenseTranslationCreateOrConnectWithoutLicenseInput | LicenseTranslationCreateOrConnectWithoutLicenseInput[]
+    upsert?: LicenseTranslationUpsertWithWhereUniqueWithoutLicenseInput | LicenseTranslationUpsertWithWhereUniqueWithoutLicenseInput[]
+    createMany?: LicenseTranslationCreateManyLicenseInputEnvelope
+    set?: LicenseTranslationWhereUniqueInput | LicenseTranslationWhereUniqueInput[]
+    disconnect?: LicenseTranslationWhereUniqueInput | LicenseTranslationWhereUniqueInput[]
+    delete?: LicenseTranslationWhereUniqueInput | LicenseTranslationWhereUniqueInput[]
+    connect?: LicenseTranslationWhereUniqueInput | LicenseTranslationWhereUniqueInput[]
+    update?: LicenseTranslationUpdateWithWhereUniqueWithoutLicenseInput | LicenseTranslationUpdateWithWhereUniqueWithoutLicenseInput[]
+    updateMany?: LicenseTranslationUpdateManyWithWhereWithoutLicenseInput | LicenseTranslationUpdateManyWithWhereWithoutLicenseInput[]
+    deleteMany?: LicenseTranslationScalarWhereInput | LicenseTranslationScalarWhereInput[]
+  }
+
+  export type LicenseCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<LicenseCreateWithoutTranslationsInput, LicenseUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: LicenseCreateOrConnectWithoutTranslationsInput
+    connect?: LicenseWhereUniqueInput
+  }
+
+  export type EnumLanguageFieldUpdateOperationsInput = {
+    set?: $Enums.Language
+  }
+
+  export type LicenseUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<LicenseCreateWithoutTranslationsInput, LicenseUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: LicenseCreateOrConnectWithoutTranslationsInput
+    upsert?: LicenseUpsertWithoutTranslationsInput
+    connect?: LicenseWhereUniqueInput
+    update?: XOR<XOR<LicenseUpdateToOneWithWhereWithoutTranslationsInput, LicenseUpdateWithoutTranslationsInput>, LicenseUncheckedUpdateWithoutTranslationsInput>
   }
 
   export type ProductCreateNestedManyWithoutCategoryInput = {
@@ -29023,10 +30449,6 @@ export namespace Prisma {
     connect?: TermsOfServiceWhereUniqueInput
   }
 
-  export type EnumLanguageFieldUpdateOperationsInput = {
-    set?: $Enums.Language
-  }
-
   export type TermsOfServiceUpdateOneRequiredWithoutTranslationsNestedInput = {
     create?: XOR<TermsOfServiceCreateWithoutTranslationsInput, TermsOfServiceUncheckedCreateWithoutTranslationsInput>
     connectOrCreate?: TermsOfServiceCreateOrConnectWithoutTranslationsInput
@@ -29358,6 +30780,23 @@ export namespace Prisma {
     _max?: NestedBigIntFilter<$PrismaModel>
   }
 
+  export type NestedEnumLanguageFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
+  }
+
+  export type NestedEnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLanguageFilter<$PrismaModel>
+    _max?: NestedEnumLanguageFilter<$PrismaModel>
+  }
+
   export type NestedUuidFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -29411,23 +30850,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedEnumLanguageFilter<$PrismaModel = never> = {
-    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
-    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
-  }
-
-  export type NestedEnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
-    in?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Language[] | ListEnumLanguageFieldRefInput<$PrismaModel>
-    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumLanguageFilter<$PrismaModel>
-    _max?: NestedEnumLanguageFilter<$PrismaModel>
   }
 
   export type DonationLinkCreateWithoutAdminInput = {
@@ -29728,6 +31150,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type LicenseTranslationCreateWithoutLicenseInput = {
+    language: $Enums.Language
+    name: string
+    content: string
+  }
+
+  export type LicenseTranslationUncheckedCreateWithoutLicenseInput = {
+    id?: number
+    language: $Enums.Language
+    name: string
+    content: string
+  }
+
+  export type LicenseTranslationCreateOrConnectWithoutLicenseInput = {
+    where: LicenseTranslationWhereUniqueInput
+    create: XOR<LicenseTranslationCreateWithoutLicenseInput, LicenseTranslationUncheckedCreateWithoutLicenseInput>
+  }
+
+  export type LicenseTranslationCreateManyLicenseInputEnvelope = {
+    data: LicenseTranslationCreateManyLicenseInput | LicenseTranslationCreateManyLicenseInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ProductUpsertWithWhereUniqueWithoutLicenseInput = {
     where: ProductWhereUniqueInput
     update: XOR<ProductUpdateWithoutLicenseInput, ProductUncheckedUpdateWithoutLicenseInput>
@@ -29742,6 +31187,71 @@ export namespace Prisma {
   export type ProductUpdateManyWithWhereWithoutLicenseInput = {
     where: ProductScalarWhereInput
     data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutLicenseInput>
+  }
+
+  export type LicenseTranslationUpsertWithWhereUniqueWithoutLicenseInput = {
+    where: LicenseTranslationWhereUniqueInput
+    update: XOR<LicenseTranslationUpdateWithoutLicenseInput, LicenseTranslationUncheckedUpdateWithoutLicenseInput>
+    create: XOR<LicenseTranslationCreateWithoutLicenseInput, LicenseTranslationUncheckedCreateWithoutLicenseInput>
+  }
+
+  export type LicenseTranslationUpdateWithWhereUniqueWithoutLicenseInput = {
+    where: LicenseTranslationWhereUniqueInput
+    data: XOR<LicenseTranslationUpdateWithoutLicenseInput, LicenseTranslationUncheckedUpdateWithoutLicenseInput>
+  }
+
+  export type LicenseTranslationUpdateManyWithWhereWithoutLicenseInput = {
+    where: LicenseTranslationScalarWhereInput
+    data: XOR<LicenseTranslationUpdateManyMutationInput, LicenseTranslationUncheckedUpdateManyWithoutLicenseInput>
+  }
+
+  export type LicenseTranslationScalarWhereInput = {
+    AND?: LicenseTranslationScalarWhereInput | LicenseTranslationScalarWhereInput[]
+    OR?: LicenseTranslationScalarWhereInput[]
+    NOT?: LicenseTranslationScalarWhereInput | LicenseTranslationScalarWhereInput[]
+    id?: IntFilter<"LicenseTranslation"> | number
+    license_id?: IntFilter<"LicenseTranslation"> | number
+    language?: EnumLanguageFilter<"LicenseTranslation"> | $Enums.Language
+    name?: StringFilter<"LicenseTranslation"> | string
+    content?: StringFilter<"LicenseTranslation"> | string
+  }
+
+  export type LicenseCreateWithoutTranslationsInput = {
+    updated_at: bigint | number
+    products?: ProductCreateNestedManyWithoutLicenseInput
+  }
+
+  export type LicenseUncheckedCreateWithoutTranslationsInput = {
+    id?: number
+    updated_at: bigint | number
+    products?: ProductUncheckedCreateNestedManyWithoutLicenseInput
+  }
+
+  export type LicenseCreateOrConnectWithoutTranslationsInput = {
+    where: LicenseWhereUniqueInput
+    create: XOR<LicenseCreateWithoutTranslationsInput, LicenseUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type LicenseUpsertWithoutTranslationsInput = {
+    update: XOR<LicenseUpdateWithoutTranslationsInput, LicenseUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<LicenseCreateWithoutTranslationsInput, LicenseUncheckedCreateWithoutTranslationsInput>
+    where?: LicenseWhereInput
+  }
+
+  export type LicenseUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: LicenseWhereInput
+    data: XOR<LicenseUpdateWithoutTranslationsInput, LicenseUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type LicenseUpdateWithoutTranslationsInput = {
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    products?: ProductUpdateManyWithoutLicenseNestedInput
+  }
+
+  export type LicenseUncheckedUpdateWithoutTranslationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    products?: ProductUncheckedUpdateManyWithoutLicenseNestedInput
   }
 
   export type ProductCreateWithoutCategoryInput = {
@@ -29872,14 +31382,14 @@ export namespace Prisma {
   }
 
   export type LicenseCreateWithoutProductsInput = {
-    content: string
     updated_at: bigint | number
+    translations?: LicenseTranslationCreateNestedManyWithoutLicenseInput
   }
 
   export type LicenseUncheckedCreateWithoutProductsInput = {
     id?: number
-    content: string
     updated_at: bigint | number
+    translations?: LicenseTranslationUncheckedCreateNestedManyWithoutLicenseInput
   }
 
   export type LicenseCreateOrConnectWithoutProductsInput = {
@@ -30066,14 +31576,14 @@ export namespace Prisma {
   }
 
   export type LicenseUpdateWithoutProductsInput = {
-    content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    translations?: LicenseTranslationUpdateManyWithoutLicenseNestedInput
   }
 
   export type LicenseUncheckedUpdateWithoutProductsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    translations?: LicenseTranslationUncheckedUpdateManyWithoutLicenseNestedInput
   }
 
   export type ProductDiscountUpsertWithoutProductInput = {
@@ -31137,6 +32647,13 @@ export namespace Prisma {
     updated_at: bigint | number
   }
 
+  export type LicenseTranslationCreateManyLicenseInput = {
+    id?: number
+    language: $Enums.Language
+    name: string
+    content: string
+  }
+
   export type ProductUpdateWithoutLicenseInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -31188,6 +32705,26 @@ export namespace Prisma {
     download_link?: NullableStringFieldUpdateOperationsInput | string | null
     released_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type LicenseTranslationUpdateWithoutLicenseInput = {
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LicenseTranslationUncheckedUpdateWithoutLicenseInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LicenseTranslationUncheckedUpdateManyWithoutLicenseInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductCreateManyCategoryInput = {
