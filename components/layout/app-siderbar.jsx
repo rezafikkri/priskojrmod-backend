@@ -50,9 +50,9 @@ const items = {
   },
   product: [
     { title: 'Categories', url: '/category', icon: Category },
-    { title: 'Licenses', url: '/licenses', icon: Copyright },
-    { title: 'Owners', url: '/owners', icon: Users },
-    { title: 'Products', url: '/products', icon: Package },
+    { title: 'Licenses', url: '/license', icon: Copyright },
+    { title: 'Owners', url: '/owner', icon: Users },
+    { title: 'Products', url: '/product', icon: Package },
   ],
   application: [
     { title: 'License Key', url: '/license-key', icon: Key },
