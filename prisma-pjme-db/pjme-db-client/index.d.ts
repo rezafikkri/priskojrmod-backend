@@ -7442,26 +7442,31 @@ export namespace Prisma {
 
   export type LicenseAvgAggregateOutputType = {
     id: number | null
+    created_at: number | null
     updated_at: number | null
   }
 
   export type LicenseSumAggregateOutputType = {
     id: number | null
+    created_at: bigint | null
     updated_at: bigint | null
   }
 
   export type LicenseMinAggregateOutputType = {
     id: number | null
+    created_at: bigint | null
     updated_at: bigint | null
   }
 
   export type LicenseMaxAggregateOutputType = {
     id: number | null
+    created_at: bigint | null
     updated_at: bigint | null
   }
 
   export type LicenseCountAggregateOutputType = {
     id: number
+    created_at: number
     updated_at: number
     _all: number
   }
@@ -7469,26 +7474,31 @@ export namespace Prisma {
 
   export type LicenseAvgAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type LicenseSumAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type LicenseMinAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type LicenseMaxAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type LicenseCountAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
     _all?: true
   }
@@ -7581,6 +7591,7 @@ export namespace Prisma {
 
   export type LicenseGroupByOutputType = {
     id: number
+    created_at: bigint
     updated_at: bigint
     _count: LicenseCountAggregateOutputType | null
     _avg: LicenseAvgAggregateOutputType | null
@@ -7605,6 +7616,7 @@ export namespace Prisma {
 
   export type LicenseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
     products?: boolean | License$productsArgs<ExtArgs>
     translations?: boolean | License$translationsArgs<ExtArgs>
@@ -7613,20 +7625,23 @@ export namespace Prisma {
 
   export type LicenseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["license"]>
 
   export type LicenseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["license"]>
 
   export type LicenseSelectScalar = {
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
   }
 
-  export type LicenseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "updated_at", ExtArgs["result"]["license"]>
+  export type LicenseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "updated_at", ExtArgs["result"]["license"]>
   export type LicenseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | License$productsArgs<ExtArgs>
     translations?: boolean | License$translationsArgs<ExtArgs>
@@ -7643,6 +7658,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      created_at: bigint
       updated_at: bigint
     }, ExtArgs["result"]["license"]>
     composites: {}
@@ -8070,6 +8086,7 @@ export namespace Prisma {
    */
   interface LicenseFieldRefs {
     readonly id: FieldRef<"License", 'Int'>
+    readonly created_at: FieldRef<"License", 'BigInt'>
     readonly updated_at: FieldRef<"License", 'BigInt'>
   }
     
@@ -26157,6 +26174,7 @@ export namespace Prisma {
 
   export const LicenseScalarFieldEnum: {
     id: 'id',
+    created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
@@ -26711,6 +26729,7 @@ export namespace Prisma {
     OR?: LicenseWhereInput[]
     NOT?: LicenseWhereInput | LicenseWhereInput[]
     id?: IntFilter<"License"> | number
+    created_at?: BigIntFilter<"License"> | bigint | number
     updated_at?: BigIntFilter<"License"> | bigint | number
     products?: ProductListRelationFilter
     translations?: LicenseTranslationListRelationFilter
@@ -26718,6 +26737,7 @@ export namespace Prisma {
 
   export type LicenseOrderByWithRelationInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
     products?: ProductOrderByRelationAggregateInput
     translations?: LicenseTranslationOrderByRelationAggregateInput
@@ -26728,6 +26748,7 @@ export namespace Prisma {
     AND?: LicenseWhereInput | LicenseWhereInput[]
     OR?: LicenseWhereInput[]
     NOT?: LicenseWhereInput | LicenseWhereInput[]
+    created_at?: BigIntFilter<"License"> | bigint | number
     updated_at?: BigIntFilter<"License"> | bigint | number
     products?: ProductListRelationFilter
     translations?: LicenseTranslationListRelationFilter
@@ -26735,6 +26756,7 @@ export namespace Prisma {
 
   export type LicenseOrderByWithAggregationInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
     _count?: LicenseCountOrderByAggregateInput
     _avg?: LicenseAvgOrderByAggregateInput
@@ -26748,6 +26770,7 @@ export namespace Prisma {
     OR?: LicenseScalarWhereWithAggregatesInput[]
     NOT?: LicenseScalarWhereWithAggregatesInput | LicenseScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"License"> | number
+    created_at?: BigIntWithAggregatesFilter<"License"> | bigint | number
     updated_at?: BigIntWithAggregatesFilter<"License"> | bigint | number
   }
 
@@ -27881,6 +27904,7 @@ export namespace Prisma {
   }
 
   export type LicenseCreateInput = {
+    created_at: bigint | number
     updated_at: bigint | number
     products?: ProductCreateNestedManyWithoutLicenseInput
     translations?: LicenseTranslationCreateNestedManyWithoutLicenseInput
@@ -27888,12 +27912,14 @@ export namespace Prisma {
 
   export type LicenseUncheckedCreateInput = {
     id?: number
+    created_at: bigint | number
     updated_at: bigint | number
     products?: ProductUncheckedCreateNestedManyWithoutLicenseInput
     translations?: LicenseTranslationUncheckedCreateNestedManyWithoutLicenseInput
   }
 
   export type LicenseUpdateInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     products?: ProductUpdateManyWithoutLicenseNestedInput
     translations?: LicenseTranslationUpdateManyWithoutLicenseNestedInput
@@ -27901,6 +27927,7 @@ export namespace Prisma {
 
   export type LicenseUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     products?: ProductUncheckedUpdateManyWithoutLicenseNestedInput
     translations?: LicenseTranslationUncheckedUpdateManyWithoutLicenseNestedInput
@@ -27908,15 +27935,18 @@ export namespace Prisma {
 
   export type LicenseCreateManyInput = {
     id?: number
+    created_at: bigint | number
     updated_at: bigint | number
   }
 
   export type LicenseUpdateManyMutationInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type LicenseUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
@@ -29044,26 +29074,31 @@ export namespace Prisma {
 
   export type LicenseCountOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type LicenseAvgOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type LicenseMaxOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type LicenseMinOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type LicenseSumOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
@@ -31217,12 +31252,14 @@ export namespace Prisma {
   }
 
   export type LicenseCreateWithoutTranslationsInput = {
+    created_at: bigint | number
     updated_at: bigint | number
     products?: ProductCreateNestedManyWithoutLicenseInput
   }
 
   export type LicenseUncheckedCreateWithoutTranslationsInput = {
     id?: number
+    created_at: bigint | number
     updated_at: bigint | number
     products?: ProductUncheckedCreateNestedManyWithoutLicenseInput
   }
@@ -31244,12 +31281,14 @@ export namespace Prisma {
   }
 
   export type LicenseUpdateWithoutTranslationsInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     products?: ProductUpdateManyWithoutLicenseNestedInput
   }
 
   export type LicenseUncheckedUpdateWithoutTranslationsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     products?: ProductUncheckedUpdateManyWithoutLicenseNestedInput
   }
@@ -31382,12 +31421,14 @@ export namespace Prisma {
   }
 
   export type LicenseCreateWithoutProductsInput = {
+    created_at: bigint | number
     updated_at: bigint | number
     translations?: LicenseTranslationCreateNestedManyWithoutLicenseInput
   }
 
   export type LicenseUncheckedCreateWithoutProductsInput = {
     id?: number
+    created_at: bigint | number
     updated_at: bigint | number
     translations?: LicenseTranslationUncheckedCreateNestedManyWithoutLicenseInput
   }
@@ -31576,12 +31617,14 @@ export namespace Prisma {
   }
 
   export type LicenseUpdateWithoutProductsInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: LicenseTranslationUpdateManyWithoutLicenseNestedInput
   }
 
   export type LicenseUncheckedUpdateWithoutProductsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: LicenseTranslationUncheckedUpdateManyWithoutLicenseNestedInput
   }

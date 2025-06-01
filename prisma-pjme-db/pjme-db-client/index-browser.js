@@ -157,6 +157,7 @@ exports.Prisma.CustomerScalarFieldEnum = {
 
 exports.Prisma.LicenseScalarFieldEnum = {
   id: 'id',
+  created_at: 'created_at',
   updated_at: 'updated_at'
 };
 
