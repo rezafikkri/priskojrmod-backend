@@ -1,3 +1,5 @@
+'use client';
+
 import {
   FormControl,
   FormDescription,
@@ -5,36 +7,32 @@ import {
   FormLabel,
 } from '../ui/form';
 import { Badge } from '@/components/ui/badge';
-import Editor from '../ui/editor';
+import { Input } from '../ui/input';
 
-export default function ContentInput({
+export default function NameInput({
   field,
   formState,
   activeLang,
-  isResetEditor,
-  description = 'Enter the content.',
 }) {
   const { errors, isSubmitting } = formState;
-  const isContentError = Boolean(errors.content && errors.content[activeLang]);
 
   return (
     <FormItem>
       <FormLabel className="text-base">
-        Content
+        Name
         <Badge variant="secondary">{activeLang.toUpperCase()}</Badge>
-      </FormLabel>
+      </FormLabel> 
       <FormControl>
-        <Editor
+        <Input
+          disabled={isSubmitting}
+          className="shadow-none md:text-base h-auto px-3 py-1.5 dark:bg-transparent"
           {...field}
-          isError={isContentError}
-          isSubmitting={isSubmitting}
-          isResetEditor={isResetEditor}
         />
       </FormControl>
-      <FormDescription>{description}</FormDescription>
-      {isContentError && (
+      <FormDescription>Enter the license name (e.g., Free License, Personal License, Pro App License).</FormDescription>
+      {(errors.name && errors.name[activeLang]) && (
         <p className="text-destructive text-sm">
-          {errors.content[activeLang].message}
+          {errors.name[activeLang].message}
         </p>
       )}
     </FormItem>
