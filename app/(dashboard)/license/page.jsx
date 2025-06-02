@@ -7,7 +7,7 @@ import Link from 'next/link';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Licenses - Prisko Jr Mod',
+  title: 'Licenses',
 };
 
 export default function LicenseListPage() {
