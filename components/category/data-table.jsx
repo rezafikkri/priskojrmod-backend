@@ -28,6 +28,7 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 import { formatDateTimeWIB } from '@/lib/format-date';
 import { removeCategory } from '@/actions/category-actions';
+import { getTableHeaderWidth } from '@/lib/utils';
 
 export default function DataTable({ categories: data }) {
   const [categories, setCategories] = useState(data);
@@ -114,7 +115,7 @@ export default function DataTable({ categories: data }) {
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className={`px-3 py-2.5 h-auto text-zinc-600 dark:text-zinc-400 ${header.id === 'created_at' ? 'w-60' : ''}`}
+                    className={`px-3 py-2.5 h-auto text-zinc-600 dark:text-zinc-400 ${getTableHeaderWidth(header.id)}`}
                   >
                     {header.isPlaceholder
                       ? null

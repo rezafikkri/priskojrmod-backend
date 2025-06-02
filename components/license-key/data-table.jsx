@@ -29,6 +29,7 @@ import Dot from '../icon/Dot';
 import DeleteDialog from './delete-dialog';
 import Link from 'next/link';
 import { formatDateTimeWIB } from '@/lib/format-date';
+import { getTableHeaderWidth } from '@/lib/utils';
 
 export default function DataTable({
   licenseKey: {
@@ -151,7 +152,7 @@ export default function DataTable({
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className="px-3 py-2.5 text-zinc-600 dark:text-zinc-400 h-auto"
+                    className={`px-3 py-2.5 text-zinc-600 dark:text-zinc-400 h-auto ${getTableHeaderWidth(header.id)}`}
                   >
                     {header.isPlaceholder
                       ? null

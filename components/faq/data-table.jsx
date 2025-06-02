@@ -29,6 +29,7 @@ import { removeFaq } from '@/actions/faq-actions';
 import Link from 'next/link';
 import { Language } from '@/constants/enums';
 import { formatDateTimeWIB } from '@/lib/format-date';
+import { getTableHeaderWidth } from '@/lib/utils';
 
 export default function DataTable({ faqs: data }) {
   const [faqs, setFaqs] = useState(data);
@@ -136,7 +137,7 @@ export default function DataTable({ faqs: data }) {
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className={`px-3 py-2.5 h-auto text-zinc-600 dark:text-zinc-400 ${header.id === `translations_title_${titleLang}` ? 'max-w-150' : ''}`}
+                    className={`px-3 py-2.5 h-auto text-zinc-600 dark:text-zinc-400 ${getTableHeaderWidth(header.id)}`}
                   >
                     {header.isPlaceholder
                       ? null
