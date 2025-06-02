@@ -151,6 +151,7 @@ describe('getSecretKeys function', () => {
         id: true,
         app_name: true,
       },
+      orderBy: { created_at: 'desc' },
     });
   });
 });

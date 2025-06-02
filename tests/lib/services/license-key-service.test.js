@@ -168,8 +168,8 @@ describe('searchLicenseKeys function', () => {
 
     await searchLicenseKeys({
       select: { id: true, key: true },
-      searchKey: 'test',
-      searchLimit: 5,
+      key: 'test',
+      limit: 5,
     });
 
     expect(pjmaDBPrismaClient.LicenseKey.findMany).toHaveBeenCalledWith({
@@ -204,10 +204,10 @@ describe('deleteLicenseKey function', () => {
 
     verifySession.mockResolvedValue({ isAuth: true, userId: 'abc' });
 
-    await deleteLicenseKey('123');
+    await deleteLicenseKey('f28fe573-7fc9-4c0f-bd89-c698266fd4cf');
 
     expect(pjmaDBPrismaClient.LicenseKey.delete).toHaveBeenCalledWith({
-      where: { id: '123' },
+      where: { id: 'f28fe573-7fc9-4c0f-bd89-c698266fd4cf' },
       select: { id: true },
     });
   });
