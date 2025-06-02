@@ -28,6 +28,7 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 import { Language } from '@/constants/enums';
 import { formatDateTimeWIB } from '@/lib/format-date';
+import { getTableHeaderWidth } from '@/lib/utils';
 
 export default function DataTable({ licenses: data }) {
   const [licenses, setLicenses] = useState(data);
@@ -140,7 +141,7 @@ export default function DataTable({ licenses: data }) {
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className={`px-3 py-2.5 h-auto text-zinc-600 dark:text-zinc-400 ${header.id === `translations_name_${nameLang}` ? 'max-w-150' : ''}`}
+                    className={`px-3 py-2.5 h-auto text-zinc-600 dark:text-zinc-400 ${getTableHeaderWidth(header.id)}`}
                   >
                     {header.isPlaceholder
                       ? null
@@ -160,7 +161,7 @@ export default function DataTable({ licenses: data }) {
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' } ${cell.column.id === `translations_name_${nameLang}` ? 'whitespace-normal' : ''}`}
+                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' }`}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
