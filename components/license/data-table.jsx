@@ -29,6 +29,7 @@ import Link from 'next/link';
 import { Language } from '@/constants/enums';
 import { formatDateTimeWIB } from '@/lib/format-date';
 import { getTableHeaderWidth } from '@/lib/utils';
+import { removeLicense } from '@/actions/license-actions';
 
 export default function DataTable({ licenses: data }) {
   const [licenses, setLicenses] = useState(data);
@@ -42,13 +43,13 @@ export default function DataTable({ licenses: data }) {
     // show loading
     const toastId = toast.loading('Deleting License...');
     
-    // const removeRes = await removeFaq(id);
+    const removeRes = await removeLicense(id);
 
     targetRow.classList.remove('opacity-50');
     targetActionBtn.removeAttribute('disabled');
 
     if (removeRes.status === 'success') {
-      setFaqs(faqs.filter(faq => faq.id !== id));
+      setLicenses(licenses.filter(license => license.id !== id));
       toast.success('License deleted successfully.', {
         id: toastId,
       });
@@ -171,7 +172,7 @@ export default function DataTable({ licenses: data }) {
             ) : (
                 <TableRow>
                   <TableCell colSpan={columns.length} className="h-24 text-center">
-                    No results.
+                    No results
                   </TableCell>
                 </TableRow>
               )}

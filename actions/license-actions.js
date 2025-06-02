@@ -1,6 +1,6 @@
 'use server';
 
-import { createLicense, updateLicense } from '@/lib/services/license-service';
+import { createLicense, deleteLicense, updateLicense } from '@/lib/services/license-service';
 
 export async function addLicense(data) {
   try {
@@ -14,6 +14,15 @@ export async function addLicense(data) {
 export async function editLicense(data) {
   try {
     await updateLicense(data);
+    return { status: 'success' };
+  } catch (err) {
+    return { status: 'error', message: err.message };
+  }
+}
+
+export async function removeLicense(id) {
+  try {
+    await deleteLicense(id);
     return { status: 'success' };
   } catch (err) {
     return { status: 'error', message: err.message };
