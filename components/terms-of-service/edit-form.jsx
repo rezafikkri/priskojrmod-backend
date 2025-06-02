@@ -95,6 +95,7 @@ export default function EditForm({ termsOfService }) {
                   field={field}
                   formState={formState}
                   activeLang={Language.ID}
+                  description="Enter term of service content."
                 />
               )}
             />
@@ -108,6 +109,7 @@ export default function EditForm({ termsOfService }) {
                   field={field}
                   formState={formState}
                   activeLang={Language.EN}
+                  description="Enter term of service content."
                 />
               )}
             />

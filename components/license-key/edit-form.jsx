@@ -114,7 +114,7 @@ export default function EditForm({
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription>Select secret key based on application name!</FormDescription>
+                <FormDescription>Select secret key based on application name.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -128,7 +128,7 @@ export default function EditForm({
                 <FormControl>
                   <Input disabled={isSubmitting} {...field} className="shadow-none md:text-base h-auto px-3 py-1.5" />
                 </FormControl>
-                <FormDescription>Enter customer name!</FormDescription>
+                <FormDescription>Enter the customer name.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -160,7 +160,7 @@ export default function EditForm({
                     </FormItem>
                   </RadioGroup>
                 </FormControl>
-                <FormDescription>Select activation type: online or offline!</FormDescription>
+                <FormDescription>Select activation type: online or offline.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}

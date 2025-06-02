@@ -12,7 +12,7 @@ export default function ContentInput({
   formState,
   activeLang,
   isResetEditor,
-  description = 'Enter the content.',
+  description,
 }) {
   const { errors, isSubmitting } = formState;
   const isContentError = Boolean(errors.content && errors.content[activeLang]);

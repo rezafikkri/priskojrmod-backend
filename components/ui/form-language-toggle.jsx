@@ -37,7 +37,7 @@ export default function FormLanguageToggle({
           English
         </Button>
       </div>
-      <p className="text-sm text-muted-foreground">Select a language to enter the content.</p>
+      <p className="text-sm text-muted-foreground">Select a language to enter content.</p>
       {hasOtherSectionError(errors, activeLang) && (
         <p className="text-destructive text-sm">
           There are errors in the {activeLang === Language.ID ? 'English' : 'Indonesian'} section.

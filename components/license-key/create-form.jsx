@@ -102,7 +102,7 @@ export default function CreateForm({
                 <FormControl>
                   <Input disabled={isSubmitting} {...field} className="shadow-none md:text-base h-auto px-3 py-1.5" />
                 </FormControl>
-                <FormDescription>Enter customer name.</FormDescription>
+                <FormDescription>Enter the customer name.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -116,7 +116,7 @@ export default function CreateForm({
                 <FormControl>
                   <Input type="email" disabled={isSubmitting} {...field} className="shadow-none md:text-base h-auto px-3 py-1.5" />
                 </FormControl>
-                <FormDescription>Enter customer email.</FormDescription>
+                <FormDescription>Enter the customer email.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
