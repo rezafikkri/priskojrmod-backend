@@ -232,7 +232,7 @@ model TermsOfServiceTranslation {
 
 model PrivacyPolicy {
   id         Int    @id @default(autoincrement()) @db.SmallInt
-  created_at BigInt @default(0)
+  created_at BigInt
   updated_at BigInt
 
   translations PrivacyPolicyTranslation[]

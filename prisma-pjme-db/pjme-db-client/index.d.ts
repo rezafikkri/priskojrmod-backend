@@ -28546,14 +28546,14 @@ export namespace Prisma {
   }
 
   export type PrivacyPolicyCreateInput = {
-    created_at?: bigint | number
+    created_at: bigint | number
     updated_at: bigint | number
     translations?: PrivacyPolicyTranslationCreateNestedManyWithoutPrivacy_policyInput
   }
 
   export type PrivacyPolicyUncheckedCreateInput = {
     id?: number
-    created_at?: bigint | number
+    created_at: bigint | number
     updated_at: bigint | number
     translations?: PrivacyPolicyTranslationUncheckedCreateNestedManyWithoutPrivacy_policyInput
   }
@@ -28573,7 +28573,7 @@ export namespace Prisma {
 
   export type PrivacyPolicyCreateManyInput = {
     id?: number
-    created_at?: bigint | number
+    created_at: bigint | number
     updated_at: bigint | number
   }
 
@@ -32355,13 +32355,13 @@ export namespace Prisma {
   }
 
   export type PrivacyPolicyCreateWithoutTranslationsInput = {
-    created_at?: bigint | number
+    created_at: bigint | number
     updated_at: bigint | number
   }
 
   export type PrivacyPolicyUncheckedCreateWithoutTranslationsInput = {
     id?: number
-    created_at?: bigint | number
+    created_at: bigint | number
     updated_at: bigint | number
   }
 
