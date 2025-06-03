@@ -135,7 +135,8 @@ exports.Prisma.LicenseKeyScalarFieldEnum = {
   key: 'key',
   used_for_activate: 'used_for_activate',
   used_for_download: 'used_for_download',
-  created_at: 'created_at'
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.SortOrder = {
