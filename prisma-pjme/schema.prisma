@@ -212,6 +212,7 @@ enum Language {
 
 model TermsOfService {
   id         Int    @id @default(autoincrement()) @db.SmallInt
+  created_at BigInt @default(1748910288)
   updated_at BigInt
 
   translations TermsOfServiceTranslation[]

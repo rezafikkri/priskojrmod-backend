@@ -17521,26 +17521,31 @@ export namespace Prisma {
 
   export type TermsOfServiceAvgAggregateOutputType = {
     id: number | null
+    created_at: number | null
     updated_at: number | null
   }
 
   export type TermsOfServiceSumAggregateOutputType = {
     id: number | null
+    created_at: bigint | null
     updated_at: bigint | null
   }
 
   export type TermsOfServiceMinAggregateOutputType = {
     id: number | null
+    created_at: bigint | null
     updated_at: bigint | null
   }
 
   export type TermsOfServiceMaxAggregateOutputType = {
     id: number | null
+    created_at: bigint | null
     updated_at: bigint | null
   }
 
   export type TermsOfServiceCountAggregateOutputType = {
     id: number
+    created_at: number
     updated_at: number
     _all: number
   }
@@ -17548,26 +17553,31 @@ export namespace Prisma {
 
   export type TermsOfServiceAvgAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type TermsOfServiceSumAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type TermsOfServiceMinAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type TermsOfServiceMaxAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type TermsOfServiceCountAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
     _all?: true
   }
@@ -17660,6 +17670,7 @@ export namespace Prisma {
 
   export type TermsOfServiceGroupByOutputType = {
     id: number
+    created_at: bigint
     updated_at: bigint
     _count: TermsOfServiceCountAggregateOutputType | null
     _avg: TermsOfServiceAvgAggregateOutputType | null
@@ -17684,6 +17695,7 @@ export namespace Prisma {
 
   export type TermsOfServiceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
     translations?: boolean | TermsOfService$translationsArgs<ExtArgs>
     _count?: boolean | TermsOfServiceCountOutputTypeDefaultArgs<ExtArgs>
@@ -17691,20 +17703,23 @@ export namespace Prisma {
 
   export type TermsOfServiceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["termsOfService"]>
 
   export type TermsOfServiceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["termsOfService"]>
 
   export type TermsOfServiceSelectScalar = {
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
   }
 
-  export type TermsOfServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "updated_at", ExtArgs["result"]["termsOfService"]>
+  export type TermsOfServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "updated_at", ExtArgs["result"]["termsOfService"]>
   export type TermsOfServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     translations?: boolean | TermsOfService$translationsArgs<ExtArgs>
     _count?: boolean | TermsOfServiceCountOutputTypeDefaultArgs<ExtArgs>
@@ -17719,6 +17734,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      created_at: bigint
       updated_at: bigint
     }, ExtArgs["result"]["termsOfService"]>
     composites: {}
@@ -18145,6 +18161,7 @@ export namespace Prisma {
    */
   interface TermsOfServiceFieldRefs {
     readonly id: FieldRef<"TermsOfService", 'Int'>
+    readonly created_at: FieldRef<"TermsOfService", 'BigInt'>
     readonly updated_at: FieldRef<"TermsOfService", 'BigInt'>
   }
     
@@ -26293,6 +26310,7 @@ export namespace Prisma {
 
   export const TermsOfServiceScalarFieldEnum: {
     id: 'id',
+    created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
@@ -27300,12 +27318,14 @@ export namespace Prisma {
     OR?: TermsOfServiceWhereInput[]
     NOT?: TermsOfServiceWhereInput | TermsOfServiceWhereInput[]
     id?: IntFilter<"TermsOfService"> | number
+    created_at?: BigIntFilter<"TermsOfService"> | bigint | number
     updated_at?: BigIntFilter<"TermsOfService"> | bigint | number
     translations?: TermsOfServiceTranslationListRelationFilter
   }
 
   export type TermsOfServiceOrderByWithRelationInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
     translations?: TermsOfServiceTranslationOrderByRelationAggregateInput
   }
@@ -27315,12 +27335,14 @@ export namespace Prisma {
     AND?: TermsOfServiceWhereInput | TermsOfServiceWhereInput[]
     OR?: TermsOfServiceWhereInput[]
     NOT?: TermsOfServiceWhereInput | TermsOfServiceWhereInput[]
+    created_at?: BigIntFilter<"TermsOfService"> | bigint | number
     updated_at?: BigIntFilter<"TermsOfService"> | bigint | number
     translations?: TermsOfServiceTranslationListRelationFilter
   }, "id">
 
   export type TermsOfServiceOrderByWithAggregationInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
     _count?: TermsOfServiceCountOrderByAggregateInput
     _avg?: TermsOfServiceAvgOrderByAggregateInput
@@ -27334,6 +27356,7 @@ export namespace Prisma {
     OR?: TermsOfServiceScalarWhereWithAggregatesInput[]
     NOT?: TermsOfServiceScalarWhereWithAggregatesInput | TermsOfServiceScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"TermsOfService"> | number
+    created_at?: BigIntWithAggregatesFilter<"TermsOfService"> | bigint | number
     updated_at?: BigIntWithAggregatesFilter<"TermsOfService"> | bigint | number
   }
 
@@ -28465,38 +28488,45 @@ export namespace Prisma {
   }
 
   export type TermsOfServiceCreateInput = {
+    created_at?: bigint | number
     updated_at: bigint | number
     translations?: TermsOfServiceTranslationCreateNestedManyWithoutTerms_of_serviceInput
   }
 
   export type TermsOfServiceUncheckedCreateInput = {
     id?: number
+    created_at?: bigint | number
     updated_at: bigint | number
     translations?: TermsOfServiceTranslationUncheckedCreateNestedManyWithoutTerms_of_serviceInput
   }
 
   export type TermsOfServiceUpdateInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: TermsOfServiceTranslationUpdateManyWithoutTerms_of_serviceNestedInput
   }
 
   export type TermsOfServiceUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: TermsOfServiceTranslationUncheckedUpdateManyWithoutTerms_of_serviceNestedInput
   }
 
   export type TermsOfServiceCreateManyInput = {
     id?: number
+    created_at?: bigint | number
     updated_at: bigint | number
   }
 
   export type TermsOfServiceUpdateManyMutationInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type TermsOfServiceUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
@@ -29560,26 +29590,31 @@ export namespace Prisma {
 
   export type TermsOfServiceCountOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type TermsOfServiceAvgOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type TermsOfServiceMaxOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type TermsOfServiceMinOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type TermsOfServiceSumOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
@@ -32274,11 +32309,13 @@ export namespace Prisma {
   }
 
   export type TermsOfServiceCreateWithoutTranslationsInput = {
+    created_at?: bigint | number
     updated_at: bigint | number
   }
 
   export type TermsOfServiceUncheckedCreateWithoutTranslationsInput = {
     id?: number
+    created_at?: bigint | number
     updated_at: bigint | number
   }
 
@@ -32299,11 +32336,13 @@ export namespace Prisma {
   }
 
   export type TermsOfServiceUpdateWithoutTranslationsInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type TermsOfServiceUncheckedUpdateWithoutTranslationsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
