@@ -103,6 +103,7 @@ model Category {
   name       String @db.VarChar(100)
   slug       String @unique @db.VarChar(100)
   created_at BigInt
+  updated_at BigInt @default(1748924955)
 
   products Product[]
 

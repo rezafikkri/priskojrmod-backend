@@ -173,7 +173,8 @@ exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
-  created_at: 'created_at'
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.ProductScalarFieldEnum = {
@@ -269,8 +270,8 @@ exports.Prisma.AboutUsTranslationScalarFieldEnum = {
 
 exports.Prisma.FaqScalarFieldEnum = {
   id: 'id',
-  updated_at: 'updated_at',
-  created_at: 'created_at'
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.FaqTranslationScalarFieldEnum = {

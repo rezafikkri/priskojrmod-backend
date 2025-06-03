@@ -9653,11 +9653,13 @@ export namespace Prisma {
   export type CategoryAvgAggregateOutputType = {
     id: number | null
     created_at: number | null
+    updated_at: number | null
   }
 
   export type CategorySumAggregateOutputType = {
     id: number | null
     created_at: bigint | null
+    updated_at: bigint | null
   }
 
   export type CategoryMinAggregateOutputType = {
@@ -9665,6 +9667,7 @@ export namespace Prisma {
     name: string | null
     slug: string | null
     created_at: bigint | null
+    updated_at: bigint | null
   }
 
   export type CategoryMaxAggregateOutputType = {
@@ -9672,6 +9675,7 @@ export namespace Prisma {
     name: string | null
     slug: string | null
     created_at: bigint | null
+    updated_at: bigint | null
   }
 
   export type CategoryCountAggregateOutputType = {
@@ -9679,6 +9683,7 @@ export namespace Prisma {
     name: number
     slug: number
     created_at: number
+    updated_at: number
     _all: number
   }
 
@@ -9686,11 +9691,13 @@ export namespace Prisma {
   export type CategoryAvgAggregateInputType = {
     id?: true
     created_at?: true
+    updated_at?: true
   }
 
   export type CategorySumAggregateInputType = {
     id?: true
     created_at?: true
+    updated_at?: true
   }
 
   export type CategoryMinAggregateInputType = {
@@ -9698,6 +9705,7 @@ export namespace Prisma {
     name?: true
     slug?: true
     created_at?: true
+    updated_at?: true
   }
 
   export type CategoryMaxAggregateInputType = {
@@ -9705,6 +9713,7 @@ export namespace Prisma {
     name?: true
     slug?: true
     created_at?: true
+    updated_at?: true
   }
 
   export type CategoryCountAggregateInputType = {
@@ -9712,6 +9721,7 @@ export namespace Prisma {
     name?: true
     slug?: true
     created_at?: true
+    updated_at?: true
     _all?: true
   }
 
@@ -9806,6 +9816,7 @@ export namespace Prisma {
     name: string
     slug: string
     created_at: bigint
+    updated_at: bigint
     _count: CategoryCountAggregateOutputType | null
     _avg: CategoryAvgAggregateOutputType | null
     _sum: CategorySumAggregateOutputType | null
@@ -9832,6 +9843,7 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     created_at?: boolean
+    updated_at?: boolean
     products?: boolean | Category$productsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
@@ -9841,6 +9853,7 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     created_at?: boolean
+    updated_at?: boolean
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9848,6 +9861,7 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     created_at?: boolean
+    updated_at?: boolean
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectScalar = {
@@ -9855,9 +9869,10 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     created_at?: boolean
+    updated_at?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "created_at", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "created_at" | "updated_at", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | Category$productsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
@@ -9875,6 +9890,7 @@ export namespace Prisma {
       name: string
       slug: string
       created_at: bigint
+      updated_at: bigint
     }, ExtArgs["result"]["category"]>
     composites: {}
   }
@@ -10303,6 +10319,7 @@ export namespace Prisma {
     readonly name: FieldRef<"Category", 'String'>
     readonly slug: FieldRef<"Category", 'String'>
     readonly created_at: FieldRef<"Category", 'BigInt'>
+    readonly updated_at: FieldRef<"Category", 'BigInt'>
   }
     
 
@@ -23994,64 +24011,64 @@ export namespace Prisma {
 
   export type FaqAvgAggregateOutputType = {
     id: number | null
-    updated_at: number | null
     created_at: number | null
+    updated_at: number | null
   }
 
   export type FaqSumAggregateOutputType = {
     id: number | null
-    updated_at: bigint | null
     created_at: bigint | null
+    updated_at: bigint | null
   }
 
   export type FaqMinAggregateOutputType = {
     id: number | null
-    updated_at: bigint | null
     created_at: bigint | null
+    updated_at: bigint | null
   }
 
   export type FaqMaxAggregateOutputType = {
     id: number | null
-    updated_at: bigint | null
     created_at: bigint | null
+    updated_at: bigint | null
   }
 
   export type FaqCountAggregateOutputType = {
     id: number
-    updated_at: number
     created_at: number
+    updated_at: number
     _all: number
   }
 
 
   export type FaqAvgAggregateInputType = {
     id?: true
-    updated_at?: true
     created_at?: true
+    updated_at?: true
   }
 
   export type FaqSumAggregateInputType = {
     id?: true
-    updated_at?: true
     created_at?: true
+    updated_at?: true
   }
 
   export type FaqMinAggregateInputType = {
     id?: true
-    updated_at?: true
     created_at?: true
+    updated_at?: true
   }
 
   export type FaqMaxAggregateInputType = {
     id?: true
-    updated_at?: true
     created_at?: true
+    updated_at?: true
   }
 
   export type FaqCountAggregateInputType = {
     id?: true
-    updated_at?: true
     created_at?: true
+    updated_at?: true
     _all?: true
   }
 
@@ -24143,8 +24160,8 @@ export namespace Prisma {
 
   export type FaqGroupByOutputType = {
     id: number
-    updated_at: bigint
     created_at: bigint
+    updated_at: bigint
     _count: FaqCountAggregateOutputType | null
     _avg: FaqAvgAggregateOutputType | null
     _sum: FaqSumAggregateOutputType | null
@@ -24168,31 +24185,31 @@ export namespace Prisma {
 
   export type FaqSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    updated_at?: boolean
     created_at?: boolean
+    updated_at?: boolean
     translations?: boolean | Faq$translationsArgs<ExtArgs>
     _count?: boolean | FaqCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["faq"]>
 
   export type FaqSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    updated_at?: boolean
     created_at?: boolean
+    updated_at?: boolean
   }, ExtArgs["result"]["faq"]>
 
   export type FaqSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    updated_at?: boolean
     created_at?: boolean
+    updated_at?: boolean
   }, ExtArgs["result"]["faq"]>
 
   export type FaqSelectScalar = {
     id?: boolean
-    updated_at?: boolean
     created_at?: boolean
+    updated_at?: boolean
   }
 
-  export type FaqOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "updated_at" | "created_at", ExtArgs["result"]["faq"]>
+  export type FaqOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "updated_at", ExtArgs["result"]["faq"]>
   export type FaqInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     translations?: boolean | Faq$translationsArgs<ExtArgs>
     _count?: boolean | FaqCountOutputTypeDefaultArgs<ExtArgs>
@@ -24207,8 +24224,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      updated_at: bigint
       created_at: bigint
+      updated_at: bigint
     }, ExtArgs["result"]["faq"]>
     composites: {}
   }
@@ -24634,8 +24651,8 @@ export namespace Prisma {
    */
   interface FaqFieldRefs {
     readonly id: FieldRef<"Faq", 'Int'>
-    readonly updated_at: FieldRef<"Faq", 'BigInt'>
     readonly created_at: FieldRef<"Faq", 'BigInt'>
+    readonly updated_at: FieldRef<"Faq", 'BigInt'>
   }
     
 
@@ -26247,7 +26264,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     slug: 'slug',
-    created_at: 'created_at'
+    created_at: 'created_at',
+    updated_at: 'updated_at'
   };
 
   export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
@@ -26382,8 +26400,8 @@ export namespace Prisma {
 
   export const FaqScalarFieldEnum: {
     id: 'id',
-    updated_at: 'updated_at',
-    created_at: 'created_at'
+    created_at: 'created_at',
+    updated_at: 'updated_at'
   };
 
   export type FaqScalarFieldEnum = (typeof FaqScalarFieldEnum)[keyof typeof FaqScalarFieldEnum]
@@ -26893,6 +26911,7 @@ export namespace Prisma {
     name?: StringFilter<"Category"> | string
     slug?: StringFilter<"Category"> | string
     created_at?: BigIntFilter<"Category"> | bigint | number
+    updated_at?: BigIntFilter<"Category"> | bigint | number
     products?: ProductListRelationFilter
   }
 
@@ -26901,6 +26920,7 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
     products?: ProductOrderByRelationAggregateInput
   }
 
@@ -26912,6 +26932,7 @@ export namespace Prisma {
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     name?: StringFilter<"Category"> | string
     created_at?: BigIntFilter<"Category"> | bigint | number
+    updated_at?: BigIntFilter<"Category"> | bigint | number
     products?: ProductListRelationFilter
   }, "id" | "slug">
 
@@ -26920,6 +26941,7 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
     _avg?: CategoryAvgOrderByAggregateInput
     _max?: CategoryMaxOrderByAggregateInput
@@ -26935,6 +26957,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Category"> | string
     slug?: StringWithAggregatesFilter<"Category"> | string
     created_at?: BigIntWithAggregatesFilter<"Category"> | bigint | number
+    updated_at?: BigIntWithAggregatesFilter<"Category"> | bigint | number
   }
 
   export type ProductWhereInput = {
@@ -27623,15 +27646,15 @@ export namespace Prisma {
     OR?: FaqWhereInput[]
     NOT?: FaqWhereInput | FaqWhereInput[]
     id?: IntFilter<"Faq"> | number
-    updated_at?: BigIntFilter<"Faq"> | bigint | number
     created_at?: BigIntFilter<"Faq"> | bigint | number
+    updated_at?: BigIntFilter<"Faq"> | bigint | number
     translations?: FaqTranslationListRelationFilter
   }
 
   export type FaqOrderByWithRelationInput = {
     id?: SortOrder
-    updated_at?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
     translations?: FaqTranslationOrderByRelationAggregateInput
   }
 
@@ -27640,15 +27663,15 @@ export namespace Prisma {
     AND?: FaqWhereInput | FaqWhereInput[]
     OR?: FaqWhereInput[]
     NOT?: FaqWhereInput | FaqWhereInput[]
-    updated_at?: BigIntFilter<"Faq"> | bigint | number
     created_at?: BigIntFilter<"Faq"> | bigint | number
+    updated_at?: BigIntFilter<"Faq"> | bigint | number
     translations?: FaqTranslationListRelationFilter
   }, "id">
 
   export type FaqOrderByWithAggregationInput = {
     id?: SortOrder
-    updated_at?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
     _count?: FaqCountOrderByAggregateInput
     _avg?: FaqAvgOrderByAggregateInput
     _max?: FaqMaxOrderByAggregateInput
@@ -27661,8 +27684,8 @@ export namespace Prisma {
     OR?: FaqScalarWhereWithAggregatesInput[]
     NOT?: FaqScalarWhereWithAggregatesInput | FaqScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Faq"> | number
-    updated_at?: BigIntWithAggregatesFilter<"Faq"> | bigint | number
     created_at?: BigIntWithAggregatesFilter<"Faq"> | bigint | number
+    updated_at?: BigIntWithAggregatesFilter<"Faq"> | bigint | number
   }
 
   export type FaqTranslationWhereInput = {
@@ -28075,6 +28098,7 @@ export namespace Prisma {
     name: string
     slug: string
     created_at: bigint | number
+    updated_at?: bigint | number
     products?: ProductCreateNestedManyWithoutCategoryInput
   }
 
@@ -28083,6 +28107,7 @@ export namespace Prisma {
     name: string
     slug: string
     created_at: bigint | number
+    updated_at?: bigint | number
     products?: ProductUncheckedCreateNestedManyWithoutCategoryInput
   }
 
@@ -28090,6 +28115,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     products?: ProductUpdateManyWithoutCategoryNestedInput
   }
 
@@ -28098,6 +28124,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     products?: ProductUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
@@ -28106,12 +28133,14 @@ export namespace Prisma {
     name: string
     slug: string
     created_at: bigint | number
+    updated_at?: bigint | number
   }
 
   export type CategoryUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type CategoryUncheckedUpdateManyInput = {
@@ -28119,6 +28148,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type ProductCreateInput = {
@@ -28762,46 +28792,46 @@ export namespace Prisma {
   }
 
   export type FaqCreateInput = {
-    updated_at: bigint | number
     created_at: bigint | number
+    updated_at: bigint | number
     translations?: FaqTranslationCreateNestedManyWithoutFaqInput
   }
 
   export type FaqUncheckedCreateInput = {
     id?: number
-    updated_at: bigint | number
     created_at: bigint | number
+    updated_at: bigint | number
     translations?: FaqTranslationUncheckedCreateNestedManyWithoutFaqInput
   }
 
   export type FaqUpdateInput = {
-    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: FaqTranslationUpdateManyWithoutFaqNestedInput
   }
 
   export type FaqUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: FaqTranslationUncheckedUpdateManyWithoutFaqNestedInput
   }
 
   export type FaqCreateManyInput = {
     id?: number
-    updated_at: bigint | number
     created_at: bigint | number
+    updated_at: bigint | number
   }
 
   export type FaqUpdateManyMutationInput = {
-    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type FaqUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type FaqTranslationCreateInput = {
@@ -29253,11 +29283,13 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type CategoryAvgOrderByAggregateInput = {
     id?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type CategoryMaxOrderByAggregateInput = {
@@ -29265,6 +29297,7 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type CategoryMinOrderByAggregateInput = {
@@ -29272,11 +29305,13 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type CategorySumOrderByAggregateInput = {
     id?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type UuidFilter<$PrismaModel = never> = {
@@ -29838,32 +29873,32 @@ export namespace Prisma {
 
   export type FaqCountOrderByAggregateInput = {
     id?: SortOrder
-    updated_at?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type FaqAvgOrderByAggregateInput = {
     id?: SortOrder
-    updated_at?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type FaqMaxOrderByAggregateInput = {
     id?: SortOrder
-    updated_at?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type FaqMinOrderByAggregateInput = {
     id?: SortOrder
-    updated_at?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type FaqSumOrderByAggregateInput = {
     id?: SortOrder
-    updated_at?: SortOrder
     created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type FaqScalarRelationFilter = {
@@ -31491,6 +31526,7 @@ export namespace Prisma {
     name: string
     slug: string
     created_at: bigint | number
+    updated_at?: bigint | number
   }
 
   export type CategoryUncheckedCreateWithoutProductsInput = {
@@ -31498,6 +31534,7 @@ export namespace Prisma {
     name: string
     slug: string
     created_at: bigint | number
+    updated_at?: bigint | number
   }
 
   export type CategoryCreateOrConnectWithoutProductsInput = {
@@ -31675,6 +31712,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type CategoryUncheckedUpdateWithoutProductsInput = {
@@ -31682,6 +31720,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type OwnerUpsertWithoutProductsInput = {
@@ -32596,14 +32635,14 @@ export namespace Prisma {
   }
 
   export type FaqCreateWithoutTranslationsInput = {
-    updated_at: bigint | number
     created_at: bigint | number
+    updated_at: bigint | number
   }
 
   export type FaqUncheckedCreateWithoutTranslationsInput = {
     id?: number
-    updated_at: bigint | number
     created_at: bigint | number
+    updated_at: bigint | number
   }
 
   export type FaqCreateOrConnectWithoutTranslationsInput = {
@@ -32623,14 +32662,14 @@ export namespace Prisma {
   }
 
   export type FaqUpdateWithoutTranslationsInput = {
-    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type FaqUncheckedUpdateWithoutTranslationsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type DonationLinkCreateManyAdminInput = {
