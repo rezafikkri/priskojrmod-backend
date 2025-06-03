@@ -28488,14 +28488,14 @@ export namespace Prisma {
   }
 
   export type TermsOfServiceCreateInput = {
-    created_at?: bigint | number
+    created_at: bigint | number
     updated_at: bigint | number
     translations?: TermsOfServiceTranslationCreateNestedManyWithoutTerms_of_serviceInput
   }
 
   export type TermsOfServiceUncheckedCreateInput = {
     id?: number
-    created_at?: bigint | number
+    created_at: bigint | number
     updated_at: bigint | number
     translations?: TermsOfServiceTranslationUncheckedCreateNestedManyWithoutTerms_of_serviceInput
   }
@@ -28515,7 +28515,7 @@ export namespace Prisma {
 
   export type TermsOfServiceCreateManyInput = {
     id?: number
-    created_at?: bigint | number
+    created_at: bigint | number
     updated_at: bigint | number
   }
 
@@ -32309,13 +32309,13 @@ export namespace Prisma {
   }
 
   export type TermsOfServiceCreateWithoutTranslationsInput = {
-    created_at?: bigint | number
+    created_at: bigint | number
     updated_at: bigint | number
   }
 
   export type TermsOfServiceUncheckedCreateWithoutTranslationsInput = {
     id?: number
-    created_at?: bigint | number
+    created_at: bigint | number
     updated_at: bigint | number
   }
 
