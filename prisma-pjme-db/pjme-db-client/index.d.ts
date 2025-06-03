@@ -19673,26 +19673,31 @@ export namespace Prisma {
 
   export type PrivacyPolicyAvgAggregateOutputType = {
     id: number | null
+    created_at: number | null
     updated_at: number | null
   }
 
   export type PrivacyPolicySumAggregateOutputType = {
     id: number | null
+    created_at: bigint | null
     updated_at: bigint | null
   }
 
   export type PrivacyPolicyMinAggregateOutputType = {
     id: number | null
+    created_at: bigint | null
     updated_at: bigint | null
   }
 
   export type PrivacyPolicyMaxAggregateOutputType = {
     id: number | null
+    created_at: bigint | null
     updated_at: bigint | null
   }
 
   export type PrivacyPolicyCountAggregateOutputType = {
     id: number
+    created_at: number
     updated_at: number
     _all: number
   }
@@ -19700,26 +19705,31 @@ export namespace Prisma {
 
   export type PrivacyPolicyAvgAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type PrivacyPolicySumAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type PrivacyPolicyMinAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type PrivacyPolicyMaxAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
   }
 
   export type PrivacyPolicyCountAggregateInputType = {
     id?: true
+    created_at?: true
     updated_at?: true
     _all?: true
   }
@@ -19812,6 +19822,7 @@ export namespace Prisma {
 
   export type PrivacyPolicyGroupByOutputType = {
     id: number
+    created_at: bigint
     updated_at: bigint
     _count: PrivacyPolicyCountAggregateOutputType | null
     _avg: PrivacyPolicyAvgAggregateOutputType | null
@@ -19836,6 +19847,7 @@ export namespace Prisma {
 
   export type PrivacyPolicySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
     translations?: boolean | PrivacyPolicy$translationsArgs<ExtArgs>
     _count?: boolean | PrivacyPolicyCountOutputTypeDefaultArgs<ExtArgs>
@@ -19843,20 +19855,23 @@ export namespace Prisma {
 
   export type PrivacyPolicySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["privacyPolicy"]>
 
   export type PrivacyPolicySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["privacyPolicy"]>
 
   export type PrivacyPolicySelectScalar = {
     id?: boolean
+    created_at?: boolean
     updated_at?: boolean
   }
 
-  export type PrivacyPolicyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "updated_at", ExtArgs["result"]["privacyPolicy"]>
+  export type PrivacyPolicyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "updated_at", ExtArgs["result"]["privacyPolicy"]>
   export type PrivacyPolicyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     translations?: boolean | PrivacyPolicy$translationsArgs<ExtArgs>
     _count?: boolean | PrivacyPolicyCountOutputTypeDefaultArgs<ExtArgs>
@@ -19871,6 +19886,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      created_at: bigint
       updated_at: bigint
     }, ExtArgs["result"]["privacyPolicy"]>
     composites: {}
@@ -20297,6 +20313,7 @@ export namespace Prisma {
    */
   interface PrivacyPolicyFieldRefs {
     readonly id: FieldRef<"PrivacyPolicy", 'Int'>
+    readonly created_at: FieldRef<"PrivacyPolicy", 'BigInt'>
     readonly updated_at: FieldRef<"PrivacyPolicy", 'BigInt'>
   }
     
@@ -26294,6 +26311,7 @@ export namespace Prisma {
 
   export const PrivacyPolicyScalarFieldEnum: {
     id: 'id',
+    created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
@@ -27376,12 +27394,14 @@ export namespace Prisma {
     OR?: PrivacyPolicyWhereInput[]
     NOT?: PrivacyPolicyWhereInput | PrivacyPolicyWhereInput[]
     id?: IntFilter<"PrivacyPolicy"> | number
+    created_at?: BigIntFilter<"PrivacyPolicy"> | bigint | number
     updated_at?: BigIntFilter<"PrivacyPolicy"> | bigint | number
     translations?: PrivacyPolicyTranslationListRelationFilter
   }
 
   export type PrivacyPolicyOrderByWithRelationInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
     translations?: PrivacyPolicyTranslationOrderByRelationAggregateInput
   }
@@ -27391,12 +27411,14 @@ export namespace Prisma {
     AND?: PrivacyPolicyWhereInput | PrivacyPolicyWhereInput[]
     OR?: PrivacyPolicyWhereInput[]
     NOT?: PrivacyPolicyWhereInput | PrivacyPolicyWhereInput[]
+    created_at?: BigIntFilter<"PrivacyPolicy"> | bigint | number
     updated_at?: BigIntFilter<"PrivacyPolicy"> | bigint | number
     translations?: PrivacyPolicyTranslationListRelationFilter
   }, "id">
 
   export type PrivacyPolicyOrderByWithAggregationInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
     _count?: PrivacyPolicyCountOrderByAggregateInput
     _avg?: PrivacyPolicyAvgOrderByAggregateInput
@@ -27410,6 +27432,7 @@ export namespace Prisma {
     OR?: PrivacyPolicyScalarWhereWithAggregatesInput[]
     NOT?: PrivacyPolicyScalarWhereWithAggregatesInput | PrivacyPolicyScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"PrivacyPolicy"> | number
+    created_at?: BigIntWithAggregatesFilter<"PrivacyPolicy"> | bigint | number
     updated_at?: BigIntWithAggregatesFilter<"PrivacyPolicy"> | bigint | number
   }
 
@@ -28523,38 +28546,45 @@ export namespace Prisma {
   }
 
   export type PrivacyPolicyCreateInput = {
+    created_at?: bigint | number
     updated_at: bigint | number
     translations?: PrivacyPolicyTranslationCreateNestedManyWithoutPrivacy_policyInput
   }
 
   export type PrivacyPolicyUncheckedCreateInput = {
     id?: number
+    created_at?: bigint | number
     updated_at: bigint | number
     translations?: PrivacyPolicyTranslationUncheckedCreateNestedManyWithoutPrivacy_policyInput
   }
 
   export type PrivacyPolicyUpdateInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: PrivacyPolicyTranslationUpdateManyWithoutPrivacy_policyNestedInput
   }
 
   export type PrivacyPolicyUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: PrivacyPolicyTranslationUncheckedUpdateManyWithoutPrivacy_policyNestedInput
   }
 
   export type PrivacyPolicyCreateManyInput = {
     id?: number
+    created_at?: bigint | number
     updated_at: bigint | number
   }
 
   export type PrivacyPolicyUpdateManyMutationInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type PrivacyPolicyUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
@@ -29601,26 +29631,31 @@ export namespace Prisma {
 
   export type PrivacyPolicyCountOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type PrivacyPolicyAvgOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type PrivacyPolicyMaxOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type PrivacyPolicyMinOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type PrivacyPolicySumOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
@@ -32320,11 +32355,13 @@ export namespace Prisma {
   }
 
   export type PrivacyPolicyCreateWithoutTranslationsInput = {
+    created_at?: bigint | number
     updated_at: bigint | number
   }
 
   export type PrivacyPolicyUncheckedCreateWithoutTranslationsInput = {
     id?: number
+    created_at?: bigint | number
     updated_at: bigint | number
   }
 
@@ -32345,11 +32382,13 @@ export namespace Prisma {
   }
 
   export type PrivacyPolicyUpdateWithoutTranslationsInput = {
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type PrivacyPolicyUncheckedUpdateWithoutTranslationsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
