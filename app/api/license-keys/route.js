@@ -12,6 +12,7 @@ export async function GET(req) {
     used_for_activate: true,
     used_for_download: true,
     created_at: true,
+    updated_at: true,
   };
 
   let dataResponse;

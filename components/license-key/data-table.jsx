@@ -54,11 +54,6 @@ export default function DataTable({
       header: 'Email',
     },
     {
-      accessorKey: 'key',
-      header: 'License Key',
-      cell: ({ row }) => row.getValue('key').substring(0, 30) + '...',
-    },
-    {
       accessorKey: 'used_for_activate',
       header: <div className="text-center">Activate</div>,
       cell: ({ row }) => (
@@ -86,6 +81,11 @@ export default function DataTable({
       cell: ({ row }) => formatDateTimeWIB(row.getValue('created_at')),
     },
     {
+      accessorKey: 'updated_at',
+      header: () => 'Updated At',
+      cell: ({ row }) => formatDateTimeWIB(row.getValue('updated_at')),
+    },
+    {
       id: 'actions',
       enableHiding: false,
       cell: ({ row }) => {
@@ -105,7 +105,7 @@ export default function DataTable({
                 className="w-full text-base"
                 asChild
               >
-                <button onClick={() => navigator.clipboard.writeText(row.getValue('key'))}>
+                <button onClick={() => navigator.clipboard.writeText(row.original.key)}>
                   Copy License Key
                 </button>
               </DropdownMenuItem>
