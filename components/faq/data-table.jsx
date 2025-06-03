@@ -91,6 +91,11 @@ export default function DataTable({ faqs: data }) {
       cell: ({ row }) => formatDateTimeWIB(row.getValue('created_at')),
     },
     {
+      accessorKey: 'updated_at',
+      header: 'Updated At',
+      cell: ({ row }) => formatDateTimeWIB(row.getValue('updated_at')),
+    },
+    {
       id: 'actions',
       enableHiding: false,
       cell: ({ row }) => {
