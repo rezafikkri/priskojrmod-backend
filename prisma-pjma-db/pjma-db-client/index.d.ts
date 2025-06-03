@@ -3559,7 +3559,7 @@ export namespace Prisma {
     used_for_activate?: boolean
     used_for_download?: boolean
     created_at: bigint | number
-    updated_at?: bigint | number
+    updated_at: bigint | number
     secret_key: SecretKeyLicenseCreateNestedOneWithoutLicense_keyInput
   }
 
@@ -3571,7 +3571,7 @@ export namespace Prisma {
     used_for_activate?: boolean
     used_for_download?: boolean
     created_at: bigint | number
-    updated_at?: bigint | number
+    updated_at: bigint | number
   }
 
   export type LicenseKeyUpdateInput = {
@@ -3604,7 +3604,7 @@ export namespace Prisma {
     used_for_activate?: boolean
     used_for_download?: boolean
     created_at: bigint | number
-    updated_at?: bigint | number
+    updated_at: bigint | number
   }
 
   export type LicenseKeyUpdateManyMutationInput = {
@@ -4019,7 +4019,7 @@ export namespace Prisma {
     used_for_activate?: boolean
     used_for_download?: boolean
     created_at: bigint | number
-    updated_at?: bigint | number
+    updated_at: bigint | number
   }
 
   export type LicenseKeyUncheckedCreateWithoutSecret_keyInput = {
@@ -4029,7 +4029,7 @@ export namespace Prisma {
     used_for_activate?: boolean
     used_for_download?: boolean
     created_at: bigint | number
-    updated_at?: bigint | number
+    updated_at: bigint | number
   }
 
   export type LicenseKeyCreateOrConnectWithoutSecret_keyInput = {
@@ -4127,7 +4127,7 @@ export namespace Prisma {
     used_for_activate?: boolean
     used_for_download?: boolean
     created_at: bigint | number
-    updated_at?: bigint | number
+    updated_at: bigint | number
   }
 
   export type LicenseKeyUpdateWithoutSecret_keyInput = {
