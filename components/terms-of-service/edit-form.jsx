@@ -18,6 +18,7 @@ import { addTermsOfService, editTermsOfService } from '@/actions/terms-of-servic
 import { termsOfServiceSchema } from '@/lib/validators/terms-of-service-validator';
 
 export default function EditForm({ termsOfService }) {
+  const [createdAt, setCreatedAt] = useState(termsOfService?.created_at);
   const [updatedAt, setUpdatedAt] = useState(termsOfService?.updated_at);
   const [hasTermsOfService, setHasTermsOfService] = useState(termsOfService !== null);
   // generate form default values
@@ -70,6 +71,7 @@ export default function EditForm({ termsOfService }) {
         form.setValue('translationId.id', saveRes.data.translations.id.id);
         form.setValue('translationId.en', saveRes.data.translations.id.en);
 
+        setCreatedAt(saveRes.data.created_at);
         setUpdatedAt(saveRes.data.updated_at);
         setHasTermsOfService(true);
       }
@@ -116,8 +118,9 @@ export default function EditForm({ termsOfService }) {
           )}
 
           {hasTermsOfService && (
-            <p className="text-sm text-muted-foreground">
-              Last updated: {formatDateTimeWIB(updatedAt)}
+            <p className="text-sm text-zinc-600 [&_span]:block space-y-2.5">
+              <span>Created on: {formatDateTimeWIB(createdAt)}</span>
+              <span>Last updated: {formatDateTimeWIB(updatedAt)}</span>
             </p>
           )}
 
