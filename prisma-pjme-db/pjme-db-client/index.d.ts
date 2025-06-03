@@ -28098,7 +28098,7 @@ export namespace Prisma {
     name: string
     slug: string
     created_at: bigint | number
-    updated_at?: bigint | number
+    updated_at: bigint | number
     products?: ProductCreateNestedManyWithoutCategoryInput
   }
 
@@ -28107,7 +28107,7 @@ export namespace Prisma {
     name: string
     slug: string
     created_at: bigint | number
-    updated_at?: bigint | number
+    updated_at: bigint | number
     products?: ProductUncheckedCreateNestedManyWithoutCategoryInput
   }
 
@@ -28133,7 +28133,7 @@ export namespace Prisma {
     name: string
     slug: string
     created_at: bigint | number
-    updated_at?: bigint | number
+    updated_at: bigint | number
   }
 
   export type CategoryUpdateManyMutationInput = {
@@ -31526,7 +31526,7 @@ export namespace Prisma {
     name: string
     slug: string
     created_at: bigint | number
-    updated_at?: bigint | number
+    updated_at: bigint | number
   }
 
   export type CategoryUncheckedCreateWithoutProductsInput = {
@@ -31534,7 +31534,7 @@ export namespace Prisma {
     name: string
     slug: string
     created_at: bigint | number
-    updated_at?: bigint | number
+    updated_at: bigint | number
   }
 
   export type CategoryCreateOrConnectWithoutProductsInput = {
