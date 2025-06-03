@@ -273,6 +273,7 @@ model AboutUsTranslation {
 
 model Faq {
   id         Int    @id @default(autoincrement())
+  updated_at BigInt
   created_at BigInt
 
   translations FaqTranslation[]

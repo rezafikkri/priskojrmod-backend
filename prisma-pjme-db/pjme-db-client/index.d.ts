@@ -23994,26 +23994,31 @@ export namespace Prisma {
 
   export type FaqAvgAggregateOutputType = {
     id: number | null
+    updated_at: number | null
     created_at: number | null
   }
 
   export type FaqSumAggregateOutputType = {
     id: number | null
+    updated_at: bigint | null
     created_at: bigint | null
   }
 
   export type FaqMinAggregateOutputType = {
     id: number | null
+    updated_at: bigint | null
     created_at: bigint | null
   }
 
   export type FaqMaxAggregateOutputType = {
     id: number | null
+    updated_at: bigint | null
     created_at: bigint | null
   }
 
   export type FaqCountAggregateOutputType = {
     id: number
+    updated_at: number
     created_at: number
     _all: number
   }
@@ -24021,26 +24026,31 @@ export namespace Prisma {
 
   export type FaqAvgAggregateInputType = {
     id?: true
+    updated_at?: true
     created_at?: true
   }
 
   export type FaqSumAggregateInputType = {
     id?: true
+    updated_at?: true
     created_at?: true
   }
 
   export type FaqMinAggregateInputType = {
     id?: true
+    updated_at?: true
     created_at?: true
   }
 
   export type FaqMaxAggregateInputType = {
     id?: true
+    updated_at?: true
     created_at?: true
   }
 
   export type FaqCountAggregateInputType = {
     id?: true
+    updated_at?: true
     created_at?: true
     _all?: true
   }
@@ -24133,6 +24143,7 @@ export namespace Prisma {
 
   export type FaqGroupByOutputType = {
     id: number
+    updated_at: bigint
     created_at: bigint
     _count: FaqCountAggregateOutputType | null
     _avg: FaqAvgAggregateOutputType | null
@@ -24157,6 +24168,7 @@ export namespace Prisma {
 
   export type FaqSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    updated_at?: boolean
     created_at?: boolean
     translations?: boolean | Faq$translationsArgs<ExtArgs>
     _count?: boolean | FaqCountOutputTypeDefaultArgs<ExtArgs>
@@ -24164,20 +24176,23 @@ export namespace Prisma {
 
   export type FaqSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    updated_at?: boolean
     created_at?: boolean
   }, ExtArgs["result"]["faq"]>
 
   export type FaqSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    updated_at?: boolean
     created_at?: boolean
   }, ExtArgs["result"]["faq"]>
 
   export type FaqSelectScalar = {
     id?: boolean
+    updated_at?: boolean
     created_at?: boolean
   }
 
-  export type FaqOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at", ExtArgs["result"]["faq"]>
+  export type FaqOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "updated_at" | "created_at", ExtArgs["result"]["faq"]>
   export type FaqInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     translations?: boolean | Faq$translationsArgs<ExtArgs>
     _count?: boolean | FaqCountOutputTypeDefaultArgs<ExtArgs>
@@ -24192,6 +24207,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      updated_at: bigint
       created_at: bigint
     }, ExtArgs["result"]["faq"]>
     composites: {}
@@ -24618,6 +24634,7 @@ export namespace Prisma {
    */
   interface FaqFieldRefs {
     readonly id: FieldRef<"Faq", 'Int'>
+    readonly updated_at: FieldRef<"Faq", 'BigInt'>
     readonly created_at: FieldRef<"Faq", 'BigInt'>
   }
     
@@ -26365,6 +26382,7 @@ export namespace Prisma {
 
   export const FaqScalarFieldEnum: {
     id: 'id',
+    updated_at: 'updated_at',
     created_at: 'created_at'
   };
 
@@ -27605,12 +27623,14 @@ export namespace Prisma {
     OR?: FaqWhereInput[]
     NOT?: FaqWhereInput | FaqWhereInput[]
     id?: IntFilter<"Faq"> | number
+    updated_at?: BigIntFilter<"Faq"> | bigint | number
     created_at?: BigIntFilter<"Faq"> | bigint | number
     translations?: FaqTranslationListRelationFilter
   }
 
   export type FaqOrderByWithRelationInput = {
     id?: SortOrder
+    updated_at?: SortOrder
     created_at?: SortOrder
     translations?: FaqTranslationOrderByRelationAggregateInput
   }
@@ -27620,12 +27640,14 @@ export namespace Prisma {
     AND?: FaqWhereInput | FaqWhereInput[]
     OR?: FaqWhereInput[]
     NOT?: FaqWhereInput | FaqWhereInput[]
+    updated_at?: BigIntFilter<"Faq"> | bigint | number
     created_at?: BigIntFilter<"Faq"> | bigint | number
     translations?: FaqTranslationListRelationFilter
   }, "id">
 
   export type FaqOrderByWithAggregationInput = {
     id?: SortOrder
+    updated_at?: SortOrder
     created_at?: SortOrder
     _count?: FaqCountOrderByAggregateInput
     _avg?: FaqAvgOrderByAggregateInput
@@ -27639,6 +27661,7 @@ export namespace Prisma {
     OR?: FaqScalarWhereWithAggregatesInput[]
     NOT?: FaqScalarWhereWithAggregatesInput | FaqScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Faq"> | number
+    updated_at?: BigIntWithAggregatesFilter<"Faq"> | bigint | number
     created_at?: BigIntWithAggregatesFilter<"Faq"> | bigint | number
   }
 
@@ -28739,38 +28762,45 @@ export namespace Prisma {
   }
 
   export type FaqCreateInput = {
+    updated_at: bigint | number
     created_at: bigint | number
     translations?: FaqTranslationCreateNestedManyWithoutFaqInput
   }
 
   export type FaqUncheckedCreateInput = {
     id?: number
+    updated_at: bigint | number
     created_at: bigint | number
     translations?: FaqTranslationUncheckedCreateNestedManyWithoutFaqInput
   }
 
   export type FaqUpdateInput = {
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: FaqTranslationUpdateManyWithoutFaqNestedInput
   }
 
   export type FaqUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: FaqTranslationUncheckedUpdateManyWithoutFaqNestedInput
   }
 
   export type FaqCreateManyInput = {
     id?: number
+    updated_at: bigint | number
     created_at: bigint | number
   }
 
   export type FaqUpdateManyMutationInput = {
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type FaqUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
@@ -29808,26 +29838,31 @@ export namespace Prisma {
 
   export type FaqCountOrderByAggregateInput = {
     id?: SortOrder
+    updated_at?: SortOrder
     created_at?: SortOrder
   }
 
   export type FaqAvgOrderByAggregateInput = {
     id?: SortOrder
+    updated_at?: SortOrder
     created_at?: SortOrder
   }
 
   export type FaqMaxOrderByAggregateInput = {
     id?: SortOrder
+    updated_at?: SortOrder
     created_at?: SortOrder
   }
 
   export type FaqMinOrderByAggregateInput = {
     id?: SortOrder
+    updated_at?: SortOrder
     created_at?: SortOrder
   }
 
   export type FaqSumOrderByAggregateInput = {
     id?: SortOrder
+    updated_at?: SortOrder
     created_at?: SortOrder
   }
 
@@ -32561,11 +32596,13 @@ export namespace Prisma {
   }
 
   export type FaqCreateWithoutTranslationsInput = {
+    updated_at: bigint | number
     created_at: bigint | number
   }
 
   export type FaqUncheckedCreateWithoutTranslationsInput = {
     id?: number
+    updated_at: bigint | number
     created_at: bigint | number
   }
 
@@ -32586,11 +32623,13 @@ export namespace Prisma {
   }
 
   export type FaqUpdateWithoutTranslationsInput = {
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type FaqUncheckedUpdateWithoutTranslationsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 

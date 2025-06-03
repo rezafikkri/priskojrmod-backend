@@ -269,6 +269,7 @@ exports.Prisma.AboutUsTranslationScalarFieldEnum = {
 
 exports.Prisma.FaqScalarFieldEnum = {
   id: 'id',
+  updated_at: 'updated_at',
   created_at: 'created_at'
 };
 
