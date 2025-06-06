@@ -30,6 +30,11 @@ import DeleteDialog from './delete-dialog';
 import Link from 'next/link';
 import { formatDateTimeWIB } from '@/lib/format-date';
 import { getTableHeaderWidth } from '@/lib/utils';
+import { Checkbox } from '../ui/checkbox';
+import {
+  Alert,
+  AlertDescription,
+} from '@/components/ui/alert';
 
 export default function DataTable({
   licenseKey: {
@@ -38,17 +43,43 @@ export default function DataTable({
     isTooMany,
   },
   pageInfo,
-  onPagination,
+  onPaginationChange,
   pagination,
   isPlaceholderData,
   searchKey,
   deleteMutation,
+  onRowSelectionChange,
+  rowSelection,
 }) {
   const [deleteData, setDeleteData] = useState(null);
   const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
 
   // table definition
   const columns = useMemo(() => [
+    {
+      id: 'select',
+      enableHiding: false,
+      enableSorting: false,
+      header: ({ table }) => (
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && 'indeterminate')
+          }
+          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          aria-label="Select all"
+          className="shadow-none bg-background"
+        />
+      ),
+      cell: ({ row }) => (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          aria-label="Select row"
+          className="shadow-none bg-background"
+        />
+      ),
+    },
     {
       accessorKey: 'email',
       header: 'Email',
@@ -135,15 +166,27 @@ export default function DataTable({
     rowCount,
     state: {
       pagination,
+      rowSelection,
     },
-    onPaginationChange: onPagination,
+    onPaginationChange,
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
-    debugTable: true,
+    getRowId: row => row.id,
+    onRowSelectionChange,
   });
+
+  console.dir(Object.keys(table.getState().rowSelection));
+  console.log('row selected in all page: ' + Object.keys(table.getState().rowSelection).length);
+  console.dir('row selectted in current page: ' + table.getSelectedRowModel().rows.length);
 
   return (
     <>
+      <Alert className="mb-4 flex items-center justify-center -mx-4 w-auto border-x-0 rounded-none text-center h-[50px] p-0">
+        <AlertDescription className="text-base inline-block">
+          <span className="pe-1">30 rows selected across pages.</span>
+          <Button variant="ghost" className="text-base h-auto py-0.5 px-1.5">Clear Selection</Button>
+        </AlertDescription>
+      </Alert>
       <div className="rounded-md border">
         <Table className="text-base">
           <TableHeader>
@@ -152,7 +195,7 @@ export default function DataTable({
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className={`px-3 py-2.5 text-zinc-600 dark:text-zinc-400 h-auto ${getTableHeaderWidth(header.id)}`}
+                    className={`px-3 py-2.5 text-zinc-600 dark:text-zinc-400 h-auto ${getTableHeaderWidth(header.id)} ${header.id === 'select' ? 'flex h-[44.5px] items-center' : ''}`}
                   >
                     {header.isPlaceholder
                       ? null
@@ -168,11 +211,15 @@ export default function DataTable({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} id={`row${row.original.id}`}>
+                <TableRow
+                  key={row.id}
+                  id={`row${row.original.id}`}
+                  data-state={row.getIsSelected() && 'selected'}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' }`}
+                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' } ${cell.column.id === 'select' ? 'flex h-[57px] items-center' : ''}`}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>

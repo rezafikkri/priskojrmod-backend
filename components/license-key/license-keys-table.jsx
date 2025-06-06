@@ -7,7 +7,6 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { generatePageInfo, isLastPage } from '@/lib/utils';
-import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Search, AlertCircle, X } from 'lucide-react';
@@ -28,6 +27,7 @@ import {
 import { removeLicenseKey } from '@/actions/license-key-actions';
 import { toast } from 'sonner';
 import { searchKeySchema } from '@/lib/validators/base-validator';
+import FiltersPopover from './filters-popover';
 
 export default function LicenseKeysTable() {
   const queryClient = useQueryClient();
@@ -40,6 +40,7 @@ export default function LicenseKeysTable() {
     pageSize: process.env.NEXT_PUBLIC_PAGE_SIZE,
   });
   const isPaginationChangeWhenDelete = useRef(false);
+  const [rowSelection, setRowSelection] = useState({});
 
   function handlePagination(paginationData) {
     if (!isRerender.current) {
@@ -231,10 +232,11 @@ export default function LicenseKeysTable() {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row md:justify-between gap-3 items-start mb-5">
-        <Button asChild variant="outline" className="w-full md:w-auto h-auto text-base px-3 py-1.5">
-          <Link href="/license-key/new">Create License Key</Link>
-        </Button>
+      <div className="flex flex-col-reverse md:flex-row md:justify-between gap-3 items-start mb-4">
+        <div className="flex space-x-3">
+          <FiltersPopover />
+          <Button variant="outline" className="text-base px-3 py-1.5 h-auto">Set Can Regenerate</Button>
+        </div>
         <div className="flex shadow-xs rounded-md w-full lg:w-1/3">
           <div className="relative flex items-center w-full -me-[1px] z-1">
             <Input
@@ -286,11 +288,13 @@ export default function LicenseKeysTable() {
         <DataTable
           licenseKey={licenseKey}
           pageInfo={pageInfo}
-          onPagination={handlePagination}
+          onPaginationChange={handlePagination}
           pagination={pagination}
           isPlaceholderData={isPlaceholderDataLK}
           searchKey={searchRef?.current?.value}
           deleteMutation={deleteMutation}
+          onRowSelectionChange={setRowSelection}
+          rowSelection={rowSelection}
         />
       )}
 

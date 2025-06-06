@@ -29,9 +29,9 @@ async function main() {
   const secretKeyId = 1n;
   const licenseKeys = [];
 
-  for (let i = 0; i < 24; i++) {
+  for (let i = 0; i < 124; i++) {
     const email = faker.internet.email().toLowerCase();
-    const createdAt = Math.floor(Date.now() / 1000) + 3600 + (i * 2);
+    const currentTime = BigInt(Math.floor((Date.now() / 1000) + (60 * 60 * 24 * i)));
     const payload = generateLicenseKeyPayload(email);
     const key = generateJwtKey(payload);
 
@@ -41,7 +41,8 @@ async function main() {
       secret_key_id: secretKeyId,
       used_for_activate: false,
       used_for_download: false,
-      created_at: createdAt,
+      created_at: currentTime,
+      updated_at: currentTime,
     });
   }
 
