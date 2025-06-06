@@ -135,8 +135,10 @@ exports.Prisma.LicenseKeyScalarFieldEnum = {
   key: 'key',
   used_for_activate: 'used_for_activate',
   used_for_download: 'used_for_download',
+  can_regenerate: 'can_regenerate',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  regenerated_at: 'regenerated_at'
 };
 
 exports.Prisma.SortOrder = {
@@ -147,6 +149,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 
