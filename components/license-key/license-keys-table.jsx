@@ -20,12 +20,6 @@ import { removeLicenseKey } from '@/actions/license-key-actions';
 import { toast } from 'sonner';
 import { searchKeySchema } from '@/lib/validators/base-validator';
 import { Input } from '../ui/input';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
 import FiltersPopover from './filters-popover';
 import { Button } from '../ui/button';
 import { Columns } from 'lucide-react';
@@ -54,6 +48,7 @@ export default function LicenseKeysTable() {
   const isPaginationChangeWhenDelete = useRef(false);
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState({
+    regenerated_at: false,
     created_at: false,
     updated_at: false,
   });
@@ -295,14 +290,14 @@ export default function LicenseKeysTable() {
           </div>
 
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <TooltipWrapper text="Manage columns">
+            <TooltipWrapper text="Manage columns">
+              <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="px-3 py-1.5 h-auto">
                   <Columns />
                 </Button>
-              </TooltipWrapper>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-50">
+              </DropdownMenuTrigger>
+            </TooltipWrapper>
+            <DropdownMenuContent align="end" className="min-w-50" onCloseAutoFocus={(e) => e.preventDefault()}>
               <DropdownMenuLabel className="text-muted-foreground text-[15px]">Columns</DropdownMenuLabel>
               {Object.entries(columnVisibility).map((column) => (
                 <DropdownMenuCheckboxItem

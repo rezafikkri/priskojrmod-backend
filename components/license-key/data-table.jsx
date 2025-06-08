@@ -32,6 +32,7 @@ import { formatDateTimeWIB } from '@/lib/format-date';
 import { getTableHeaderWidth } from '@/lib/utils';
 import { Checkbox } from '../ui/checkbox';
 import SelectionAlert from './selection-alert';
+import { Minus } from 'lucide-react';
 
 export default function DataTable({
   licenseKey,
@@ -109,6 +110,19 @@ export default function DataTable({
         }</div>
       ),
       enableHiding: false,
+    },
+    {
+      accessorKey: 'expired_at',
+      header: () => 'Expired At',
+      cell: ({ row }) => formatDateTimeWIB(row.getValue('expired_at')),
+    },
+    {
+      accessorKey: 'regenerated_at',
+      header: () => 'Regenerated At',
+      cell: ({ row }) => 
+        row.getValue('regenerated_at')
+          ? formatDateTimeWIB(row.getValue('regenerated_at'))
+          : <Minus className="size-4 text-zinc-300" />,
     },
     {
       accessorKey: 'created_at',
