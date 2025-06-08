@@ -7,9 +7,7 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { generatePageInfo, isLastPage } from '@/lib/utils';
-import { Button } from '../ui/button';
-import { Input } from '../ui/input';
-import { Search, AlertCircle, X } from 'lucide-react';
+import { AlertCircle, Search, X } from 'lucide-react';
 import DataTable from './data-table';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import TablePaginationSekeleton from '../loadings/table-pagination-skeleton';
@@ -18,16 +16,29 @@ import {
   Alert,
   AlertTitle,
 } from '@/components/ui/alert';
+import { removeLicenseKey } from '@/actions/license-key-actions';
+import { toast } from 'sonner';
+import { searchKeySchema } from '@/lib/validators/base-validator';
+import { Input } from '../ui/input';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { removeLicenseKey } from '@/actions/license-key-actions';
-import { toast } from 'sonner';
-import { searchKeySchema } from '@/lib/validators/base-validator';
 import FiltersPopover from './filters-popover';
+import { Button } from '../ui/button';
+import { Columns } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+  DropdownMenuCheckboxItem,
+} from '@/components/ui/dropdown-menu';
+import Link from 'next/link';
+import { Plus } from 'lucide-react';
+import TooltipWrapper from '../ui/tooltip-wrapper';
 
 export default function LicenseKeysTable() {
   const queryClient = useQueryClient();
@@ -35,12 +46,17 @@ export default function LicenseKeysTable() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchedLicenseKey, setSearchedLicenseKey] = useState(null);
   const searchRef = useRef(null);
+  // table state
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: process.env.NEXT_PUBLIC_PAGE_SIZE,
   });
   const isPaginationChangeWhenDelete = useRef(false);
   const [rowSelection, setRowSelection] = useState({});
+  const [columnVisibility, setColumnVisibility] = useState({
+    created_at: false,
+    updated_at: false,
+  });
 
   function handlePagination(paginationData) {
     if (!isRerender.current) {
@@ -49,7 +65,7 @@ export default function LicenseKeysTable() {
     setPagination(paginationData);
   }
 
-  async function handleSubmitSearch() {
+  async function handleSearch() {
     if (!isRerender.current) {
       isRerender.current = true;
     }
@@ -79,7 +95,7 @@ export default function LicenseKeysTable() {
 
   function handleEnterSearch(e) {
     if (e.key === 'Enter') {
-      handleSubmitSearch();
+      handleSearch();
     }
   }
 
@@ -232,48 +248,78 @@ export default function LicenseKeysTable() {
 
   return (
     <>
-      <div className="flex flex-col-reverse md:flex-row md:justify-between gap-3 items-start mb-4">
-        <div className="flex space-x-3">
-          <FiltersPopover />
-          <Button variant="outline" className="text-base px-3 py-1.5 h-auto">Set Can Regenerate</Button>
-        </div>
-        <div className="flex shadow-xs rounded-md w-full lg:w-1/3">
-          <div className="relative flex items-center w-full -me-[1px] z-1">
-            <Input
-              placeholder="Search with email..."
-              className="rounded-e-none shadow-none md:text-base h-auto px-3 py-1.5 pe-9"
-              disabled={isFetchingLK || isSearching}
-              ref={searchRef}
-              onKeyUp={handleEnterSearch}
-            />
-            {searchedLicenseKey ? (
-              <TooltipProvider>
-                <Tooltip delayDuration={1000}>
-                  <TooltipTrigger asChild>
-                    <Button
-                      className="absolute right-2 w-4 h-5 p-0 z-1"
-                      variant="ghost"
-                      onClick={handleClearSearchInput}
-                      disabled={isSearching}
-                    >
-                      <X className="size-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent className="px-3 py-2 pb-2.5 text-sm">
-                    <p>Clear search input</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            ) : null}
+      <div className="flex flex-col lg:flex-row lg:justify-between gap-3 items-start mb-4">
+        <div className="flex space-x-6">
+          <TooltipWrapper text="Create license key">
+            <Button asChild variant="outline" className="md:w-auto h-auto text-base px-3 py-1.5">
+              <Link href="/license-key/new"><Plus />Create</Link>
+            </Button>
+          </TooltipWrapper>
+
+          <div className="flex space-x-3">
+            <FiltersPopover />
+            <Button variant="outline" className="text-base px-3 py-1.5 h-auto">Set Can Regenerate</Button>
           </div>
-          <Button
-            variant="secondary"
-            className="border shadow-none rounded-s-none h-auto text-base px-3 py-1.5 focus:z-2"
-            disabled={isFetchingLK || isSearching}
-            onClick={handleSubmitSearch}
-          >
-            <Search />
-          </Button>
+        </div>
+        <div className="flex space-x-3 max-lg:w-full w-2/5">
+          <div className="flex shadow-xs rounded-md flex-1">
+            <div className="relative flex items-center -me-[1px] z-1 flex-1">
+              <Input
+                placeholder="Search with email..."
+                className="rounded-e-none shadow-none md:text-base h-auto px-3 py-1.5 pe-9"
+                disabled={isFetchingLK || isSearching}
+                ref={searchRef}
+                onKeyUp={handleEnterSearch}
+              />
+              {searchedLicenseKey ? (
+                <TooltipWrapper text="Clear search input">
+                  <Button
+                    className="absolute right-2 w-4 h-5 p-0 z-1"
+                    variant="ghost"
+                    onClick={handleClearSearchInput}
+                    disabled={isSearching}
+                  >
+                    <X className="size-4" />
+                  </Button>
+                </TooltipWrapper>
+              ) : null}
+            </div>
+            <Button
+              variant="secondary"
+              className="border shadow-none rounded-s-none h-auto text-base px-3 py-1.5 focus:z-2"
+              disabled={isFetchingLK || isSearching}
+              onClick={handleSearch}
+            >
+              <Search />
+            </Button>
+          </div>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <TooltipWrapper text="Manage columns">
+                <Button variant="outline" className="px-3 py-1.5 h-auto">
+                  <Columns />
+                </Button>
+              </TooltipWrapper>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="min-w-50">
+              <DropdownMenuLabel className="text-muted-foreground text-[15px]">Columns</DropdownMenuLabel>
+              {Object.entries(columnVisibility).map((column) => (
+                <DropdownMenuCheckboxItem
+                  key={column[0]}
+                  className="capitalize text-base hover:cursor-pointer"
+                  checked={column[1]}
+                  onCheckedChange={(value) =>
+                    setColumnVisibility({
+                      ...columnVisibility,
+                      [column[0]]: value,
+                    })}
+                >
+                  {column[0].replace('_', ' ')}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
@@ -288,13 +334,15 @@ export default function LicenseKeysTable() {
         <DataTable
           licenseKey={licenseKey}
           pageInfo={pageInfo}
-          onPaginationChange={handlePagination}
-          pagination={pagination}
+          tableState={{ pagination, rowSelection, columnVisibility }}
+          tableHandler={{ 
+            onPaginationChange: handlePagination,
+            onRowSelectionChange: setRowSelection,
+            onColumnVisibilityChange: setColumnVisibility,
+            onDelete: deleteMutation.mutate,
+          }}
           isPlaceholderData={isPlaceholderDataLK}
-          searchKey={searchRef?.current?.value}
-          deleteMutation={deleteMutation}
-          onRowSelectionChange={setRowSelection}
-          rowSelection={rowSelection}
+          hasSearched={!!searchedLicenseKey}
         />
       )}
 

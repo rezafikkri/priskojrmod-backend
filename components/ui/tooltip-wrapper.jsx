@@ -8,9 +8,9 @@ import {
 export default function TooltipWrapper({ children, text }) {
   return (
     <TooltipProvider>
-      <Tooltip delayDuration={1000}>
+      <Tooltip>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent className="px-3 py-2 pb-2.5 text-sm">
+        <TooltipContent className="font-semibold py-2 px-2">
           <p>{text}</p>
         </TooltipContent>
       </Tooltip>

@@ -20,7 +20,7 @@ export default function FiltersPopover() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" className="text-base px-3 py-1.5 h-auto"><Filter /> Filter</Button>
+        <Button variant="outline" className="text-base px-3 py-1.5 h-auto"><Filter />Filter</Button>
       </PopoverTrigger>
       <PopoverContent
         className="w-80 space-y-5"

@@ -31,7 +31,7 @@ async function main() {
 
   for (let i = 0; i < 124; i++) {
     const email = faker.internet.email().toLowerCase();
-    const currentTime = BigInt(Math.floor((Date.now() / 1000) + (60 * 60 * 24 * i)));
+    const currentTime = BigInt(Math.floor((Date.now() / 1000) - (60 * 60 * 24 * i)));
     const payload = generateLicenseKeyPayload(email);
     const key = generateJwtKey(payload);
 
