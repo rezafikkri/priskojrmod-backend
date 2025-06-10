@@ -40,6 +40,9 @@ export default function LicenseKeysTable() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchedLicenseKey, setSearchedLicenseKey] = useState(null);
   const searchRef = useRef(null);
+  // filters state
+  const [filters, setFilters] = useState(null);
+  const [isFilterActive, setIsFilterActive] = useState(false);
   // table state
   const [pagination, setPagination] = useState({
     pageIndex: 0,
@@ -60,7 +63,30 @@ export default function LicenseKeysTable() {
     setPagination(paginationData);
   }
 
-  async function handleSearch() {
+  // add secretKeyId and canRegenerate filters
+  function addFiltersToURL(url, appliedFilters) {
+    if (!appliedFilters) return url;
+
+    let newUrl = url;
+    if (appliedFilters.secretKeyId !== 'all') {
+      newUrl += `&ski=${appliedFilters.secretKeyId}`;
+    }
+    if (appliedFilters.canRegenerate !== 'all') {
+      newUrl += `&cr=${appliedFilters.canRegenerate}`;
+    }
+    return newUrl;
+  }
+
+  // set isFilterActive when apply and clear
+  function syncIsFilterActive(appliedFilters) {
+    if (appliedFilters && !isFilterActive) {
+      setIsFilterActive(true);
+    } else if (!appliedFilters && isFilterActive) {
+      setIsFilterActive(false);
+    }
+  }
+
+  async function handleSearch(appliedFilters) {
     if (!isRerender.current) {
       isRerender.current = true;
     }
@@ -69,13 +95,25 @@ export default function LicenseKeysTable() {
     if (!keyResult.success) return false;
     const parsedKey = keyResult.data;
     
-    setIsSearching(true);
     try {
       const result = await queryClient.fetchQuery({
-        queryKey: ['licenseKeysSearch', parsedKey],
+        queryKey: ['licenseKeysSearch', parsedKey, appliedFilters],
         queryFn: async () => {
-          const res = await fetch(`/api/license-keys?sk=${parsedKey}`);
+          setIsSearching(true);
+          // if previoesly searchedLicenseKey is null, then show skeleton loading
+          // for all table, besides that, then show toast loading only
+          let toastId;
+          if (searchedLicenseKey) {
+            toastId = toast.loading('Searching License Keys...');
+          }
+          const res = await fetch(addFiltersToURL(`/api/license-keys?sk=${parsedKey}`, appliedFilters));
           const resJson = await res.json();
+
+          if (toastId) {
+            toast.dismiss(toastId);
+          }
+
+          setIsSearching(false);
           return resJson;
         },
         staleTime: 10000,
@@ -85,12 +123,11 @@ export default function LicenseKeysTable() {
     } catch (err) {
       console.error(err);
     }
-    setIsSearching(false);
   }
 
   function handleEnterSearch(e) {
     if (e.key === 'Enter') {
-      handleSearch();
+      handleSearch(filters);
     }
   }
 
@@ -112,14 +149,14 @@ export default function LicenseKeysTable() {
     isPlaceholderData: isPlaceholderDataLK,
     isStale: isStaleLK,
   } = useQuery({
-    queryKey: ['licenseKeys', pagination.pageIndex],
+    queryKey: ['licenseKeys', pagination.pageIndex, filters],
     queryFn: async () => {
       let toastId;
       if (isRerender.current) {
         toastId = toast.loading('Loading License Keys...');
       }
 
-      const res = await fetch(`/api/license-keys?pi=${pagination.pageIndex}`);
+      const res = await fetch(addFiltersToURL(`/api/license-keys?pi=${pagination.pageIndex}`, filters));
       const resJson = await res.json();
 
       if (toastId) {
@@ -214,6 +251,47 @@ export default function LicenseKeysTable() {
     },
   });
 
+  async function handleFilter({
+    action,
+    newFilters,
+  }) {
+    if (!isRerender.current) {
+      isRerender.current = true;
+    }
+
+    if (action === 'apply') {
+      if (!searchedLicenseKey) {
+        await queryClient.invalidateQueries({
+          queryKey: ['licenseKeys', pagination.pageIndex, newFilters],
+        });
+      } else {
+        await queryClient.invalidateQueries({
+          queryKey: ['licenseKeysSearch', searchRef.current.value, newFilters],
+        });
+        handleSearch(newFilters);
+      }
+
+      // set filters in the future
+      setFilters(newFilters);
+    } else {
+      if (!searchedLicenseKey) {
+        await queryClient.invalidateQueries({
+          queryKey: ['licenseKeys', pagination.pageIndex, null],
+        });
+      } else {
+        await queryClient.invalidateQueries({
+          queryKey: ['licenseKeysSearch', searchRef.current.value, null],
+        });
+        handleSearch(null);
+      }
+
+      // set filters untuk request kedepannya
+      setFilters(null);
+    }
+
+    syncIsFilterActive(newFilters);
+  }
+
   // if after delete action, pagination changed
   useEffect(() => {
     if (isPaginationChangeWhenDelete.current && !isStaleLK) {
@@ -252,8 +330,16 @@ export default function LicenseKeysTable() {
           </TooltipWrapper>
 
           <div className="flex space-x-3">
-            <FiltersPopover />
-            <Button variant="outline" className="text-base px-3 py-1.5 h-auto">Set Can Regenerate</Button>
+            <FiltersPopover
+              onFilter={handleFilter}
+              isFilterActive={isFilterActive}
+              disabled={isFetchingLK || isSearching}
+            />
+            <Button
+              variant="outline"
+              className="text-base px-3 py-1.5 h-auto"
+              disabled={isFetchingLK || isSearching || Object.keys(rowSelection).length <= 0}
+            >Set Can Regenerate</Button>
           </div>
         </div>
         <div className="flex space-x-3 max-lg:w-full w-2/5">
@@ -265,6 +351,7 @@ export default function LicenseKeysTable() {
                 disabled={isFetchingLK || isSearching}
                 ref={searchRef}
                 onKeyUp={handleEnterSearch}
+                autoComplete="off"
               />
               {searchedLicenseKey ? (
                 <TooltipWrapper text="Clear search input">
@@ -283,7 +370,7 @@ export default function LicenseKeysTable() {
               variant="secondary"
               className="border shadow-none rounded-s-none h-auto text-base px-3 py-1.5 focus:z-2"
               disabled={isFetchingLK || isSearching}
-              onClick={handleSearch}
+              onClick={() => handleSearch(filters)}
             >
               <Search />
             </Button>
@@ -318,7 +405,9 @@ export default function LicenseKeysTable() {
         </div>
       </div>
 
-      {(statusLK === 'pending') || (isFetchingLK && !isRerender.current) || isSearching ? (
+      {statusLK === 'pending'
+        || (isFetchingLK && !isRerender.current)
+        || (isSearching && !searchedLicenseKey) ? (
         <TablePaginationSekeleton pagination={!isSearching} />
       ) : isErrorLK ? (
         <Alert variant="destructive" className="border-destructive/50 text-base">
