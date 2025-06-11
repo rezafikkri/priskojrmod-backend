@@ -16,7 +16,7 @@ import {
   Alert,
   AlertTitle,
 } from '@/components/ui/alert';
-import { removeLicenseKey } from '@/actions/license-key-actions';
+import { removeLicenseKey, setCanRegenerateKeys } from '@/actions/license-key-actions';
 import { toast } from 'sonner';
 import { searchKeySchema } from '@/lib/validators/base-validator';
 import { Input } from '../ui/input';
@@ -55,8 +55,10 @@ export default function LicenseKeysTable() {
     created_at: false,
     updated_at: false,
   });
+  // set can regenerate state
+  const [isRegenerating, setIsRegenerating] = useState(false);
 
-  function handlePagination(paginationData) {
+  function handlePaginationChange(paginationData) {
     if (!isRerender.current) {
       isRerender.current = true;
     }
@@ -87,10 +89,6 @@ export default function LicenseKeysTable() {
   }
 
   async function handleSearch(appliedFilters) {
-    if (!isRerender.current) {
-      isRerender.current = true;
-    }
-
     const keyResult = searchKeySchema.safeParse(searchRef.current.value);
     if (!keyResult.success) return false;
     const parsedKey = keyResult.data;
@@ -119,6 +117,10 @@ export default function LicenseKeysTable() {
         staleTime: 10000,
         gcTime: 10000,
       });
+
+      if (!isRerender.current) {
+        isRerender.current = true;
+      }
       setSearchedLicenseKey(result.data);
     } catch (err) {
       console.error(err);
@@ -198,7 +200,7 @@ export default function LicenseKeysTable() {
         queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
         queryClient.invalidateQueries({ queryKey: ['licenseKeys'] });
       } else {
-        const licenseKey = queryClient.getQueryData(['licenseKeys', pagination.pageIndex]);
+        const licenseKey = queryClient.getQueryData(['licenseKeys', pagination.pageIndex, filters]);
         const newLicenseKeys = licenseKey.data.licenseKeys.filter(lk => lk.id !== deleteData.id);
         const newRowCount = licenseKey.data.rowCount - 1;
 
@@ -292,6 +294,43 @@ export default function LicenseKeysTable() {
     syncIsFilterActive(newFilters);
   }
 
+  async function handleSetCanRegenerate() {
+    const rowSelections = Object.keys(rowSelection);
+    if (rowSelections.length <= 0) return false;
+
+    if (!isRerender.current) {
+      isRerender.current = true;
+    }
+
+    setIsRegenerating(true);
+    // show loading
+    const toastId = toast.loading('Enabling Regeneration...');
+
+    // not use try/catch because in actions already using try/catch
+    const setCanRegenerateRes = await setCanRegenerateKeys(rowSelections);
+    if (setCanRegenerateRes.status === 'success') {
+      await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] });
+      await queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
+      setRowSelection({});
+
+      if (setCanRegenerateRes.data.count > 0) {
+        toast.success(`Regeneration enabled successfully for ${setCanRegenerateRes.data.count} license keys.`, {
+          id: toastId,
+        });
+      } else {
+        toast.info('No license keys were updated. They may have already been deleted.', {
+          id: toastId,
+        });
+      }
+    } else {
+      toast.error(setCanRegenerateRes.message, {
+        id: toastId,
+      });
+    }
+
+    setIsRegenerating(false);
+  }
+
   // if after delete action, pagination changed
   useEffect(() => {
     if (isPaginationChangeWhenDelete.current && !isStaleLK) {
@@ -338,7 +377,11 @@ export default function LicenseKeysTable() {
             <Button
               variant="outline"
               className="text-base px-3 py-1.5 h-auto"
-              disabled={isFetchingLK || isSearching || Object.keys(rowSelection).length <= 0}
+              disabled={isFetchingLK
+                || isSearching
+                || Object.keys(rowSelection).length <= 0
+                || isRegenerating}
+              onClick={handleSetCanRegenerate}
             >Set Can Regenerate</Button>
           </div>
         </div>
@@ -420,7 +463,7 @@ export default function LicenseKeysTable() {
           pageInfo={pageInfo}
           tableState={{ pagination, rowSelection, columnVisibility }}
           tableHandler={{ 
-            onPaginationChange: handlePagination,
+            onPaginationChange: handlePaginationChange,
             onRowSelectionChange: setRowSelection,
             onColumnVisibilityChange: setColumnVisibility,
             onDelete: deleteMutation.mutate,
