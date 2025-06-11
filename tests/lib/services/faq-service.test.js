@@ -85,6 +85,7 @@ describe('createFaq function', () => {
     expect(pjmeDBPrismaClient.Faq.create).toHaveBeenCalledWith({
       data: {
         created_at: BigInt(Math.floor(new Date().getTime() / 1000)),
+        updated_at: BigInt(Math.floor(new Date().getTime() / 1000)),
         translations: {
           create: [
             { language: Language.ID, title: 'Judul ID', content: 'Konten ID' },
@@ -142,6 +143,9 @@ describe('updateFaq function', () => {
   });
 
   it('Should call pjmeDBPrismaClient.Faq.update function correctly', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(1744853503149);
+
     const verifySession = (await import('@/lib/verifySession')).default;
     const pjmeDBPrismaClient = (await import('@/lib/pjme-prisma-client')).default;
 
@@ -163,21 +167,28 @@ describe('updateFaq function', () => {
       },
     });
 
-    expect(pjmeDBPrismaClient.$transaction).toHaveBeenCalled();
-    expect(pjmeDBPrismaClient.FaqTranslation.update).toBeCalledTimes(2);
-    expect(pjmeDBPrismaClient.FaqTranslation.update).toHaveBeenCalledWith({
-      where: { id: 1, faq_id: 123 },
+    expect(pjmeDBPrismaClient.Faq.update).toHaveBeenCalledWith({
+      where: { id: 123 },
       data: {
-        title: 'Judul ID',
-        content: 'Konten ID',
-      },
-      select: { id: true },
-    });
-    expect(pjmeDBPrismaClient.FaqTranslation.update).toHaveBeenCalledWith({
-      where: { id: 2, faq_id: 123 },
-      data: {
-        title: 'Title EN',
-        content: 'Content EN',
+        updated_at: BigInt(Math.floor(new Date().getTime() / 1000)),
+        translations: {
+          update: [
+            {
+              where: { id: 1 },
+              data: {
+                title: 'Judul ID',
+                content: 'Konten ID',
+              },
+            },
+            {
+              where: { id: 2 },
+              data: {
+                title: 'Title EN',
+                content: 'Content EN',
+              },
+            },
+          ],
+        },
       },
       select: { id: true },
     });
