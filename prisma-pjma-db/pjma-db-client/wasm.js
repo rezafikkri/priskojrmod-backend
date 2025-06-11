@@ -124,8 +124,9 @@ exports.Prisma.SecretKeyLicenseScalarFieldEnum = {
   id: 'id',
   product_id: 'product_id',
   key: 'key',
+  app_name: 'app_name',
   created_at: 'created_at',
-  app_name: 'app_name'
+  regenerated_at: 'regenerated_at'
 };
 
 exports.Prisma.LicenseKeyScalarFieldEnum = {

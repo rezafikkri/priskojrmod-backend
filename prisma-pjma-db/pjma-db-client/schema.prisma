@@ -19,11 +19,12 @@ datasource db {
 }
 
 model SecretKeyLicense {
-  id         BigInt @id @default(autoincrement())
-  product_id String @unique @db.Uuid
-  key        String @db.VarChar(100)
-  created_at BigInt
-  app_name   String @db.VarChar(50)
+  id             BigInt  @id @default(autoincrement())
+  product_id     String  @unique @db.Uuid
+  key            String  @db.VarChar(100)
+  app_name       String  @db.VarChar(50)
+  created_at     BigInt
+  regenerated_at BigInt?
 
   license_key LicenseKey[]
 
