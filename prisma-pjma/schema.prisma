@@ -44,6 +44,5 @@ model LicenseKey {
   updated_at        BigInt
   regenerated_at    BigInt?
 
-  @@index([email])
   @@map("license_keys")
 }
