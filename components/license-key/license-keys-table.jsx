@@ -197,8 +197,8 @@ export default function LicenseKeysTable() {
           ...searchedLicenseKey,
           licenseKeys: searchedLicenseKey.licenseKeys.filter(slk => slk.id !== deleteData.id),
         });
-        queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
-        queryClient.invalidateQueries({ queryKey: ['licenseKeys'] });
+        await queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
+        await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] });
       } else {
         const licenseKey = queryClient.getQueryData(['licenseKeys', pagination.pageIndex, filters]);
         const newLicenseKeys = licenseKey.data.licenseKeys.filter(lk => lk.id !== deleteData.id);
@@ -218,7 +218,7 @@ export default function LicenseKeysTable() {
               },
             };
           });
-          queryClient.invalidateQueries({ queryKey: ['licenseKeys'] });
+          await queryClient.invalidateQueries({ queryKey: ['licenseKeys'] });
         } else {
           if (newLicenseKeys.length <= 0 && newRowCount > 0) {
             isPaginationChangeWhenDelete.current = true;
@@ -239,7 +239,7 @@ export default function LicenseKeysTable() {
           }
         }
 
-        queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
+        await queryClient.invalidateQueries({ queryKey: ['licenseKeysSearch'] });
       }
 
       toast.success(`License Key for ${deleteData.email} was successfully deleted.`, { id: toastId });
