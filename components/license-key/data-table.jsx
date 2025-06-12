@@ -201,7 +201,7 @@ export default function DataTable({
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className={`px-3 py-2.5 text-zinc-600 dark:text-zinc-400 h-auto ${getTableHeaderWidth(header.id)} ${header.id === 'select' ? '' : ''} ${header.id === 'actions' ? 'text-right' : ''}`}
+                    className={`px-3 py-2.5 text-zinc-600 dark:text-zinc-400 h-auto ${getTableHeaderWidth(header.id)} ${header.id === 'actions' ? 'text-right' : ''}`}
                   >
                     {header.isPlaceholder
                       ? null
@@ -225,7 +225,7 @@ export default function DataTable({
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' } ${cell.column.id === 'select' ? '' : ''}`}
+                      className={`p-3 ${cell.column.id === 'actions' ? 'text-right' : '' }`}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>

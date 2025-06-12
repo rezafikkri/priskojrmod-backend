@@ -23,7 +23,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '../ui/button';
-import { MoreHorizontal } from 'lucide-react';
+import { MoreHorizontal, Minus } from 'lucide-react';
 import { toast } from 'sonner';
 import { removeSecretKey } from '@/actions/secret-key-actions';
 import DeleteDialog from './delete-dialog';
@@ -65,14 +65,17 @@ export default function DataTable({ secretKeys: data }) {
       header: 'App Name',
     },
     {
-      accessorKey: 'key',
-      header: 'Secret Key',
-      cell: ({ row }) => row.getValue('key').substring(0, 40) + '...',
-    },
-    {
       accessorKey: 'created_at',
       header: () => 'Created At',
       cell: ({ row }) => formatDateTimeWIB(row.getValue('created_at')),
+    },
+    {
+      accessorKey: 'regenerated_at',
+      header: () => 'Regenerated At',
+      cell: ({ row }) => 
+        row.getValue('regenerated_at')
+          ? formatDateTimeWIB(row.getValue('regenerated_at'))
+          : <Minus className="size-4 text-zinc-300" />,
     },
     {
       id: 'actions',
@@ -91,7 +94,7 @@ export default function DataTable({ secretKeys: data }) {
                 className="w-full text-base"
                 asChild
               >
-                <button onClick={() => navigator.clipboard.writeText(row.getValue('key'))}>
+                <button onClick={() => navigator.clipboard.writeText(row.original.key)}>
                   Copy Secret Key
                 </button>
               </DropdownMenuItem>
