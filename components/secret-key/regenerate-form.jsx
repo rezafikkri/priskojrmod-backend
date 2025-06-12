@@ -19,11 +19,14 @@ import Link from 'next/link';
 import random32Bytes from '@/actions/random-32-bytes-actions';
 import { regenerateSecretKeySchema } from '@/lib/validators/secret-key-validator';
 import { toast } from 'sonner';
+import { applyRegeneratedSecretKey } from '@/actions/secret-key-actions';
 
-export default function RegenerateForm() {
+export default function RegenerateForm({ secretKey }) {
+  const [oldKey, setOldKey] = useState(secretKey.key);
   const form = useForm({
     resolver: zodResolver(regenerateSecretKeySchema),
     defaultValues: {
+      id: secretKey.id,
       key: '',
     },
   });
@@ -31,13 +34,14 @@ export default function RegenerateForm() {
   const [loadingKey, setLoadingKey] = useState(false);
 
   async function handleSubmit(data) {
-    // const addRes = await addSecretKey(data);
-    // if (addRes.status === 'success') {
-    //   form.reset();
-    //   toast.success('Secret Key created successfully.');
-    // } else {
-    //   toast.error(addRes.message);
-    // }
+    const applyRes = await applyRegeneratedSecretKey(data);
+    form.reset();
+    if (applyRes.status === 'success') {
+      setOldKey(applyRes.data.key);
+      toast.success('Secret key regenerated successfully.');
+    } else {
+      toast.error(applyRes.message);
+    }
   }
 
   async function handleGenerateKey() {
@@ -56,7 +60,7 @@ export default function RegenerateForm() {
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 lg:max-w-2/3 mb-10">
           <FormItem>
             <FormLabel className="text-base">Application Name</FormLabel>
-            <p>Sider Manager</p>
+            <p>{secretKey.app_name}</p>
           </FormItem>
 
           <FormField
@@ -65,6 +69,9 @@ export default function RegenerateForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-base">Secret Key</FormLabel>
+                <p className="text-sm text-muted-foreground">
+                  Old key: <span className="font-mono">{oldKey}</span>
+                </p>
                 <div className="flex w-full items-center">
                   <FormControl>
                     <Input
