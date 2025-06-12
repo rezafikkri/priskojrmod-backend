@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import FormSkeleton from '@/components/loadings/form-skeleton';
 
 export const metadata = {
-  title: 'Edit Category - Prisko Jr Mod',
+  title: 'Edit Category',
 };
 
 export default async function CategoryEditPage({ params }) {

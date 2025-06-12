@@ -5,7 +5,7 @@ import FormSkeleton from '@/components/loadings/form-skeleton';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Terms Of Service - Prisko Jr Mod',
+  title: 'Terms Of Service',
 };
 
 export default function TermsOfServicePage() {

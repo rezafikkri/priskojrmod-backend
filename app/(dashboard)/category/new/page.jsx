@@ -1,7 +1,7 @@
 import CreateForm from '@/components/category/create-form';
 
 export const metadata = {
-  title: 'Create Category - Prisko Jr Mod',
+  title: 'Create Category',
 };
 
 export default function CategoryCreatePage() {

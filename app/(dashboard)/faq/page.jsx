@@ -7,7 +7,7 @@ import { Suspense } from 'react';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'FAQs - Prisko Jr Mod',
+  title: 'FAQs',
 };
 
 export default function FaqListPage() {
