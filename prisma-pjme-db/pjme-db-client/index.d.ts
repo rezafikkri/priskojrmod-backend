@@ -5270,10 +5270,14 @@ export namespace Prisma {
 
   export type OwnerAvgAggregateOutputType = {
     id: number | null
+    created_at: number | null
+    updated_at: number | null
   }
 
   export type OwnerSumAggregateOutputType = {
     id: number | null
+    created_at: bigint | null
+    updated_at: bigint | null
   }
 
   export type OwnerMinAggregateOutputType = {
@@ -5282,6 +5286,8 @@ export namespace Prisma {
     last_name: string | null
     sm_username: string | null
     picture: string | null
+    created_at: bigint | null
+    updated_at: bigint | null
   }
 
   export type OwnerMaxAggregateOutputType = {
@@ -5290,6 +5296,8 @@ export namespace Prisma {
     last_name: string | null
     sm_username: string | null
     picture: string | null
+    created_at: bigint | null
+    updated_at: bigint | null
   }
 
   export type OwnerCountAggregateOutputType = {
@@ -5298,16 +5306,22 @@ export namespace Prisma {
     last_name: number
     sm_username: number
     picture: number
+    created_at: number
+    updated_at: number
     _all: number
   }
 
 
   export type OwnerAvgAggregateInputType = {
     id?: true
+    created_at?: true
+    updated_at?: true
   }
 
   export type OwnerSumAggregateInputType = {
     id?: true
+    created_at?: true
+    updated_at?: true
   }
 
   export type OwnerMinAggregateInputType = {
@@ -5316,6 +5330,8 @@ export namespace Prisma {
     last_name?: true
     sm_username?: true
     picture?: true
+    created_at?: true
+    updated_at?: true
   }
 
   export type OwnerMaxAggregateInputType = {
@@ -5324,6 +5340,8 @@ export namespace Prisma {
     last_name?: true
     sm_username?: true
     picture?: true
+    created_at?: true
+    updated_at?: true
   }
 
   export type OwnerCountAggregateInputType = {
@@ -5332,6 +5350,8 @@ export namespace Prisma {
     last_name?: true
     sm_username?: true
     picture?: true
+    created_at?: true
+    updated_at?: true
     _all?: true
   }
 
@@ -5427,6 +5447,8 @@ export namespace Prisma {
     last_name: string
     sm_username: string
     picture: string
+    created_at: bigint
+    updated_at: bigint
     _count: OwnerCountAggregateOutputType | null
     _avg: OwnerAvgAggregateOutputType | null
     _sum: OwnerSumAggregateOutputType | null
@@ -5454,6 +5476,8 @@ export namespace Prisma {
     last_name?: boolean
     sm_username?: boolean
     picture?: boolean
+    created_at?: boolean
+    updated_at?: boolean
     products?: boolean | Owner$productsArgs<ExtArgs>
     _count?: boolean | OwnerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["owner"]>
@@ -5464,6 +5488,8 @@ export namespace Prisma {
     last_name?: boolean
     sm_username?: boolean
     picture?: boolean
+    created_at?: boolean
+    updated_at?: boolean
   }, ExtArgs["result"]["owner"]>
 
   export type OwnerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5472,6 +5498,8 @@ export namespace Prisma {
     last_name?: boolean
     sm_username?: boolean
     picture?: boolean
+    created_at?: boolean
+    updated_at?: boolean
   }, ExtArgs["result"]["owner"]>
 
   export type OwnerSelectScalar = {
@@ -5480,9 +5508,11 @@ export namespace Prisma {
     last_name?: boolean
     sm_username?: boolean
     picture?: boolean
+    created_at?: boolean
+    updated_at?: boolean
   }
 
-  export type OwnerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "first_name" | "last_name" | "sm_username" | "picture", ExtArgs["result"]["owner"]>
+  export type OwnerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "first_name" | "last_name" | "sm_username" | "picture" | "created_at" | "updated_at", ExtArgs["result"]["owner"]>
   export type OwnerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | Owner$productsArgs<ExtArgs>
     _count?: boolean | OwnerCountOutputTypeDefaultArgs<ExtArgs>
@@ -5501,6 +5531,8 @@ export namespace Prisma {
       last_name: string
       sm_username: string
       picture: string
+      created_at: bigint
+      updated_at: bigint
     }, ExtArgs["result"]["owner"]>
     composites: {}
   }
@@ -5930,6 +5962,8 @@ export namespace Prisma {
     readonly last_name: FieldRef<"Owner", 'String'>
     readonly sm_username: FieldRef<"Owner", 'String'>
     readonly picture: FieldRef<"Owner", 'String'>
+    readonly created_at: FieldRef<"Owner", 'BigInt'>
+    readonly updated_at: FieldRef<"Owner", 'BigInt'>
   }
     
 
@@ -26220,7 +26254,9 @@ export namespace Prisma {
     first_name: 'first_name',
     last_name: 'last_name',
     sm_username: 'sm_username',
-    picture: 'picture'
+    picture: 'picture',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
   };
 
   export type OwnerScalarFieldEnum = (typeof OwnerScalarFieldEnum)[keyof typeof OwnerScalarFieldEnum]
@@ -26679,6 +26715,8 @@ export namespace Prisma {
     last_name?: StringFilter<"Owner"> | string
     sm_username?: StringFilter<"Owner"> | string
     picture?: StringFilter<"Owner"> | string
+    created_at?: BigIntFilter<"Owner"> | bigint | number
+    updated_at?: BigIntFilter<"Owner"> | bigint | number
     products?: ProductListRelationFilter
   }
 
@@ -26688,6 +26726,8 @@ export namespace Prisma {
     last_name?: SortOrder
     sm_username?: SortOrder
     picture?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     products?: ProductOrderByRelationAggregateInput
   }
 
@@ -26700,6 +26740,8 @@ export namespace Prisma {
     last_name?: StringFilter<"Owner"> | string
     sm_username?: StringFilter<"Owner"> | string
     picture?: StringFilter<"Owner"> | string
+    created_at?: BigIntFilter<"Owner"> | bigint | number
+    updated_at?: BigIntFilter<"Owner"> | bigint | number
     products?: ProductListRelationFilter
   }, "id">
 
@@ -26709,6 +26751,8 @@ export namespace Prisma {
     last_name?: SortOrder
     sm_username?: SortOrder
     picture?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     _count?: OwnerCountOrderByAggregateInput
     _avg?: OwnerAvgOrderByAggregateInput
     _max?: OwnerMaxOrderByAggregateInput
@@ -26725,6 +26769,8 @@ export namespace Prisma {
     last_name?: StringWithAggregatesFilter<"Owner"> | string
     sm_username?: StringWithAggregatesFilter<"Owner"> | string
     picture?: StringWithAggregatesFilter<"Owner"> | string
+    created_at?: BigIntWithAggregatesFilter<"Owner"> | bigint | number
+    updated_at?: BigIntWithAggregatesFilter<"Owner"> | bigint | number
   }
 
   export type CustomerWhereInput = {
@@ -27866,6 +27912,8 @@ export namespace Prisma {
     last_name: string
     sm_username: string
     picture: string
+    created_at: bigint | number
+    updated_at: bigint | number
     products?: ProductCreateNestedManyWithoutOwnerInput
   }
 
@@ -27875,6 +27923,8 @@ export namespace Prisma {
     last_name: string
     sm_username: string
     picture: string
+    created_at: bigint | number
+    updated_at: bigint | number
     products?: ProductUncheckedCreateNestedManyWithoutOwnerInput
   }
 
@@ -27883,6 +27933,8 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     sm_username?: StringFieldUpdateOperationsInput | string
     picture?: StringFieldUpdateOperationsInput | string
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     products?: ProductUpdateManyWithoutOwnerNestedInput
   }
 
@@ -27892,6 +27944,8 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     sm_username?: StringFieldUpdateOperationsInput | string
     picture?: StringFieldUpdateOperationsInput | string
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     products?: ProductUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
@@ -27901,6 +27955,8 @@ export namespace Prisma {
     last_name: string
     sm_username: string
     picture: string
+    created_at: bigint | number
+    updated_at: bigint | number
   }
 
   export type OwnerUpdateManyMutationInput = {
@@ -27908,6 +27964,8 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     sm_username?: StringFieldUpdateOperationsInput | string
     picture?: StringFieldUpdateOperationsInput | string
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type OwnerUncheckedUpdateManyInput = {
@@ -27916,6 +27974,8 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     sm_username?: StringFieldUpdateOperationsInput | string
     picture?: StringFieldUpdateOperationsInput | string
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type CustomerCreateInput = {
@@ -29044,16 +29104,31 @@ export namespace Prisma {
     _max?: NestedEnumCurrencyCodeFilter<$PrismaModel>
   }
 
+  export type BigIntFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  }
+
   export type OwnerCountOrderByAggregateInput = {
     id?: SortOrder
     first_name?: SortOrder
     last_name?: SortOrder
     sm_username?: SortOrder
     picture?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type OwnerAvgOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type OwnerMaxOrderByAggregateInput = {
@@ -29062,6 +29137,8 @@ export namespace Prisma {
     last_name?: SortOrder
     sm_username?: SortOrder
     picture?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type OwnerMinOrderByAggregateInput = {
@@ -29070,10 +29147,30 @@ export namespace Prisma {
     last_name?: SortOrder
     sm_username?: SortOrder
     picture?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type OwnerSumOrderByAggregateInput = {
     id?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedBigIntFilter<$PrismaModel>
+    _max?: NestedBigIntFilter<$PrismaModel>
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -29089,17 +29186,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type BigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
   }
 
   export type SortOrderInput = {
@@ -29164,22 +29250,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
   }
 
   export type LicenseTranslationListRelationFilter = {
@@ -30068,6 +30138,14 @@ export namespace Prisma {
     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
   }
 
+  export type BigIntFieldUpdateOperationsInput = {
+    set?: bigint | number
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
+  }
+
   export type ProductUpdateManyWithoutOwnerNestedInput = {
     create?: XOR<ProductCreateWithoutOwnerInput, ProductUncheckedCreateWithoutOwnerInput> | ProductCreateWithoutOwnerInput[] | ProductUncheckedCreateWithoutOwnerInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutOwnerInput | ProductCreateOrConnectWithoutOwnerInput[]
@@ -30098,14 +30176,6 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
-  }
-
-  export type BigIntFieldUpdateOperationsInput = {
-    set?: bigint | number
-    increment?: bigint | number
-    decrement?: bigint | number
-    multiply?: bigint | number
-    divide?: bigint | number
   }
 
   export type ProductCreateNestedManyWithoutLicenseInput = {
@@ -30886,6 +30956,33 @@ export namespace Prisma {
     _max?: NestedEnumCurrencyCodeFilter<$PrismaModel>
   }
 
+  export type NestedBigIntFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  }
+
+  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedBigIntFilter<$PrismaModel>
+    _max?: NestedBigIntFilter<$PrismaModel>
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -30898,17 +30995,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedBigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -30937,22 +31023,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
   }
 
   export type NestedEnumLanguageFilter<$PrismaModel = never> = {
@@ -31547,6 +31617,8 @@ export namespace Prisma {
     last_name: string
     sm_username: string
     picture: string
+    created_at: bigint | number
+    updated_at: bigint | number
   }
 
   export type OwnerUncheckedCreateWithoutProductsInput = {
@@ -31555,6 +31627,8 @@ export namespace Prisma {
     last_name: string
     sm_username: string
     picture: string
+    created_at: bigint | number
+    updated_at: bigint | number
   }
 
   export type OwnerCreateOrConnectWithoutProductsInput = {
@@ -31739,6 +31813,8 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     sm_username?: StringFieldUpdateOperationsInput | string
     picture?: StringFieldUpdateOperationsInput | string
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type OwnerUncheckedUpdateWithoutProductsInput = {
@@ -31747,6 +31823,8 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     sm_username?: StringFieldUpdateOperationsInput | string
     picture?: StringFieldUpdateOperationsInput | string
+    created_at?: BigIntFieldUpdateOperationsInput | bigint | number
+    updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type LicenseUpsertWithoutProductsInput = {

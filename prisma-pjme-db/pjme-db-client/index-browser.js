@@ -141,7 +141,9 @@ exports.Prisma.OwnerScalarFieldEnum = {
   first_name: 'first_name',
   last_name: 'last_name',
   sm_username: 'sm_username',
-  picture: 'picture'
+  picture: 'picture',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.CustomerScalarFieldEnum = {
