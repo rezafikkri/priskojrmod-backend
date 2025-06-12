@@ -4,6 +4,8 @@ import { Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Categories - Prisko Jr Mod',
 };
