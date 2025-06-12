@@ -29,6 +29,7 @@ import { removeSecretKey } from '@/actions/secret-key-actions';
 import DeleteDialog from './delete-dialog';
 import { formatDateTimeWIB } from '@/lib/format-date';
 import { getTableHeaderWidth } from '@/lib/utils';
+import Link from 'next/link';
 
 export default function DataTable({ secretKeys: data }) {
   const [secretKeys, setSecretKeys] = useState(data);
@@ -84,7 +85,7 @@ export default function DataTable({ secretKeys: data }) {
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="min-w-50">
               <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
               <DropdownMenuItem
                 className="w-full text-base"
@@ -93,6 +94,9 @@ export default function DataTable({ secretKeys: data }) {
                 <button onClick={() => navigator.clipboard.writeText(row.getValue('key'))}>
                   Copy Secret Key
                 </button>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild className="text-base hover:cursor-pointer">
+                <Link href={`/secret-key/${row.original.id}/regenerate`}>Regenerate</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator className="-mx-1.5" />
               <DropdownMenuItem

@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 import TableSekeleton from '@/components/loadings/table-skeleton';
 
 export const metadata = {
-  title: 'Secret Key - Prisko Jr Mod',
+  title: 'Secret Key',
 };
 
 export default async function SecretKeyListPage() {
