@@ -28,33 +28,34 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 import { formatDateTimeWIB } from '@/lib/format-date';
 import { getTableHeaderWidth } from '@/lib/utils';
+import { removeOwner } from '@/actions/owner-actions';
 
 export default function DataTable({ owners: data }) {
   const [owners, setOwners] = useState(data)
 
   async function handleDelete(id) {
-    // const targetRow = document.querySelector(`#row${id}`);
-    // const targetActionBtn = targetRow.querySelector('td > button');
-    // targetRow.classList.add('opacity-50');
-    // targetActionBtn.setAttribute('disabled', true);
-    // // show loading
-    // const toastId = toast.loading('Deleting Category...');
-    // 
-    // const removeRes = await removeCategory(id);
-    //
-    // targetRow.classList.remove('opacity-50');
-    // targetActionBtn.removeAttribute('disabled');
-    //
-    // if (removeRes.status === 'success') {
-    //   setCategories(categories.filter(category => category.id !== id));
-    //   toast.success('Category deleted successfully.', {
-    //     id: toastId,
-    //   });
-    // } else {
-    //   toast.error(removeRes.message, {
-    //     id: toastId,
-    //   });
-    // }
+    const targetRow = document.querySelector(`#row${id}`);
+    const targetActionBtn = targetRow.querySelector('td > button');
+    targetRow.classList.add('opacity-50');
+    targetActionBtn.setAttribute('disabled', true);
+    // show loading
+    const toastId = toast.loading('Deleting Owner...');
+
+    const removeRes = await removeOwner(id);
+
+    targetRow.classList.remove('opacity-50');
+    targetActionBtn.removeAttribute('disabled');
+
+    if (removeRes.status === 'success') {
+      setOwners(owners.filter(owner => owner.id !== id));
+      toast.success('Owner deleted successfully.', {
+        id: toastId,
+      });
+    } else {
+      toast.error(removeRes.message, {
+        id: toastId,
+      });
+    }
   }
 
   const columns = useMemo(() => [
