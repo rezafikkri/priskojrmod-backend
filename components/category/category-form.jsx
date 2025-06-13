@@ -16,5 +16,5 @@ export default async function CategoryForm({ id }) {
     </Alert>
   );
 
-  return <EditForm category={category} />
+  return <EditForm category={category} />;
 }
