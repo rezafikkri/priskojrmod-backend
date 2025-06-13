@@ -77,8 +77,8 @@ export default function FormFields({
             </>
           )}
 
-          <Button asChild variant="outline" className="me-3 mb-0 h-auto text-base px-3 py-1.5">
-            <Link href="/license"><ArrowLeft className="icon" />Back</Link>
+          <Button asChild variant="outline" className="me-3 mb-0 h-auto text-base px-3 py-1.5 inline-block">
+            <Link href="/license"><ArrowLeft className="icon" /> Back</Link>
           </Button>
           <div className="relative inline-flex">
             <Button

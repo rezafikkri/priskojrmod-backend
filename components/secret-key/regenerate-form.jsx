@@ -103,8 +103,8 @@ export default function RegenerateForm({ secretKey }) {
             )}
           />
 
-          <Button asChild variant="outline" className="me-3 mb-0 h-auto text-base px-3 py-1.5">
-            <Link href="/secret-key"><ArrowLeft className="icon" />Back</Link>
+          <Button asChild variant="outline" className="me-3 mb-0 h-auto text-base px-3 py-1.5 inline-block">
+            <Link href="/secret-key"><ArrowLeft className="icon" /> Back</Link>
           </Button>
           <div className="relative inline-block">
             <Button

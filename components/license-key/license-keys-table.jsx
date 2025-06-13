@@ -363,8 +363,8 @@ export default function LicenseKeysTable() {
       <div className="flex flex-col lg:flex-row lg:justify-between gap-3 items-start mb-4">
         <div className="flex space-x-6">
           <TooltipWrapper text="Create license key">
-            <Button asChild variant="outline" className="md:w-auto h-auto text-base px-3 py-1.5">
-              <Link href="/license-key/new"><Plus />Create</Link>
+            <Button asChild variant="outline" className="md:w-auto h-auto text-base px-3 py-1.5 inline-block">
+              <Link href="/license-key/new"><Plus className="icon" /> Create</Link>
             </Button>
           </TooltipWrapper>
 

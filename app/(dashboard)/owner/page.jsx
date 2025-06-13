@@ -18,7 +18,7 @@ export default function OwnerListPage() {
       <h1 className="text-2xl mb-1 font-bold">Owners</h1>
       <h2 className="text-zinc-700 dark:text-zinc-300/80 mb-7">Official ownership data of digital products sold on the website.</h2>
 
-      <TooltipWrapper text="Create Owner">
+      <TooltipWrapper text="Create owner">
         <Button asChild variant="outline" className="mb-5 h-auto inline-block text-base px-3 py-1.5">
           <Link href="/owner/new"><Plus className="icon" /> Create</Link>
         </Button>
