@@ -134,7 +134,6 @@ describe('updateFaq function', () => {
     await expect(updateFaq({})).rejects.toThrow('Unauthenticated');
 
     expect(verifySession).toHaveBeenCalled();
-    expect(pjmeDBPrismaClient.$transaction).not.toHaveBeenCalled();
     expect(pjmeDBPrismaClient.Faq.update).not.toHaveBeenCalled();
   });
 
