@@ -59,7 +59,7 @@ export default function DataTable({ owners: data }) {
 
   const columns = useMemo(() => [
     {
-      accessorKey: 'name',
+      accessorKey: 'first_name',
       header: 'Name',
     },
     {
