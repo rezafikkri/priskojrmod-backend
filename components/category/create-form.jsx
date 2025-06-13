@@ -25,5 +25,5 @@ export default function CreateForm() {
     }
   }
 
-  return <FormFields mode="create" form={form} onSubmit={handleSubmit} />
+  return <FormFields mode="create" form={form} onSubmit={handleSubmit} />;
 }
