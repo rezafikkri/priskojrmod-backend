@@ -27,10 +27,6 @@ beforeAll(() => {
         delete: vi.fn(),
         update: vi.fn(),
       },
-      $transaction: vi.fn(),
-      FaqTranslation: {
-        update: vi.fn(),
-      },
     },
   }));
 });
@@ -129,7 +125,7 @@ describe('deleteFaq function', () => {
 });
 
 describe('updateFaq function', () => {
-  it('Should call verifySession function, not call pjmeDBPrismaClient.AboutUs.$transaction and pjmeDBPrismaClient.AboutUs.update function and throw Error with "Unauthenticated" message', async () => {
+  it('Should call verifySession function, not call pjmeDBPrismaClient.Faq.update function and throw Error with "Unauthenticated" message', async () => {
     const verifySession = (await import('@/lib/verifySession')).default;
     const pjmeDBPrismaClient = (await import('@/lib/pjme-prisma-client')).default;
 
