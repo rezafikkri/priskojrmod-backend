@@ -18,9 +18,9 @@ export default function CategoryListPage() {
       <h1 className="text-2xl mb-7 font-bold">Categories</h1>
 
       <TooltipWrapper text="Create category">
-      <Button asChild variant="outline" className="mb-5 h-auto inline-block text-base px-3 py-1.5">
-        <Link href="/category/new"><Plus className="icon" /> Create</Link>
-      </Button>
+        <Button asChild variant="outline" className="mb-5 h-auto inline-block text-base px-3 py-1.5">
+          <Link href="/category/new"><Plus className="icon" /> Create</Link>
+        </Button>
       </TooltipWrapper>
 
       <Suspense fallback={<TableSekeleton />}>
