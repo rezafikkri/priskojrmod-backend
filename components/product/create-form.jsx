@@ -27,10 +27,12 @@ import { Button } from '../ui/button';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import { addLicenseKey } from '@/actions/license-key-actions';
 import { useQueryClient } from '@tanstack/react-query';
+import { Separator } from '../ui/separator';
+import { ArrowRight } from 'lucide-react';
+import { Progress } from '../ui/progress';
+import { Check } from 'lucide-react';
 
-export default function CreateForm({
-  secretKeys
-}) {
+export default function CreateForm() {
   // Get QueryClient from the context
   const queryClient = useQueryClient();
 
@@ -59,40 +61,34 @@ export default function CreateForm({
 
   return (
     <>
+      <div className="flex gap-5 mb-5 lg:max-w-2/3 font-medium text-zinc-700/90 dark:text-zinc-200">
+        <section className="flex items-center space-x-2">
+          <div className="rounded-sm size-6 flex-none text-sm flex justify-center items-center bg-zinc-200/50 dark:bg-zinc-800/80">
+            <Check className="size-4" />
+          </div>
+          <h3>Basic</h3>
+        </section>
+        <section className="flex items-center space-x-2 flex-1">
+          <div className="rounded-sm size-6 flex-none text-sm flex justify-center items-center bg-primary text-primary-foreground">
+            <span>2</span>
+          </div>
+          <h3 className="me-4">Content</h3>
+          <Progress value={80} className="h-1" />
+        </section>
+        <section className="flex items-center space-x-2 opacity-50">
+          <div className="rounded-sm size-6 flex-none text-sm flex justify-center items-center bg-zinc-200/60 dark:bg-zinc-700/60">3</div>
+          <h3>Extras</h3>
+        </section>
+        <section className="flex items-center space-x-2 opacity-50">
+          <div className="rounded-sm size-6 flex-none text-sm flex justify-center items-center bg-zinc-200/60 dark:bg-zinc-700/60">4</div>
+          <h3>Pricing</h3>
+        </section>
+      </div>
+
+      <Separator className="lg:max-w-2/3 mb-7" />
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 lg:max-w-2/3 mb-10">
-          <FormField
-            control={form.control}
-            name="secret_key_id"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-base">Secret Key</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  value={field.value} disabled={isSubmitting}
-                >
-                  <FormControl>
-                    <SelectTrigger className="w-full shadow-none text-base h-auto! px-3 py-1.5">
-                      <SelectValue placeholder="Select a secret key" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {secretKeys.map(secretKey => (
-                      <SelectItem
-                        key={secretKey.id}
-                        value={secretKey.id}
-                        className="text-base"
-                      >
-                        {secretKey.app_name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormDescription>Select secret key based on application name.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <FormField
             control={form.control}
             name="name"
@@ -159,10 +155,10 @@ export default function CreateForm({
           <div className="relative inline-flex">
             <Button
               type="submit"
-              className={`disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''} h-auto text-base px-3 py-1.5 border border-primary`}
+              className={`disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''} h-auto text-base px-3 py-1.5 border border-primary inline-block`}
               disabled={isSubmitting}
             >
-              <span className={isSubmitting ? 'opacity-0' : ''}>Create</span>
+              <span className={isSubmitting ? 'opacity-0' : ''}>Next <ArrowRight className="icon" /></span>
             </Button>
             {isSubmitting && 
               <div className="absolute h-full top-0 left-0 right-0 flex justify-center items-center">
