@@ -162,18 +162,18 @@ model ProductTranslation {
 }
 
 model ProductDiscount {
-  id         String @id @default(uuid(7)) @db.Uuid
+  id         Int    @id @default(autoincrement()) @db.SmallInt
   product_id String @unique @db.Uuid
   discount   String @db.VarChar(4)
   expired_at BigInt
 
   product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
 
-  @@map("product_discounts")
+  @@map("product_discount")
 }
 
 model ProductCoupon {
-  id         String @id @default(uuid(7)) @db.Uuid
+  id         Int    @id @default(autoincrement()) @db.SmallInt
   product_id String @unique @db.Uuid
   code       String @db.VarChar(150)
   discount   String @db.VarChar(4)
@@ -181,7 +181,7 @@ model ProductCoupon {
 
   product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
 
-  @@map("product_coupons")
+  @@map("product_coupon")
 }
 
 model ProductImage {
