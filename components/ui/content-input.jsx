@@ -13,6 +13,7 @@ export default function ContentInput({
   activeLang,
   isResetEditor,
   description,
+  label = 'Content',
 }) {
   const { errors, isSubmitting } = formState;
   const isContentError = Boolean(errors.content && errors.content[activeLang]);
@@ -20,7 +21,7 @@ export default function ContentInput({
   return (
     <FormItem>
       <FormLabel className="text-base">
-        Content
+        {label}
         <Badge variant="secondary">{activeLang.toUpperCase()}</Badge>
       </FormLabel>
       <FormControl>
@@ -34,7 +35,7 @@ export default function ContentInput({
       <FormDescription>{description}</FormDescription>
       {isContentError && (
         <p className="text-destructive text-sm">
-          {errors.content[activeLang].message}
+          {errors[field.name][activeLang].message}
         </p>
       )}
     </FormItem>

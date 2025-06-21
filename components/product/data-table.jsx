@@ -82,6 +82,14 @@ export default function DataTable({
               </DropdownMenuItem>
               <DropdownMenuSeparator className="-mx-1.5" />
               <DropdownMenuItem
+                className="w-full text-base"
+                asChild
+              >
+                <button onClick={() => navigator.clipboard.writeText(row.original.key)}>
+                  Pin Product
+                </button>
+              </DropdownMenuItem>
+              <DropdownMenuItem
                 className="w-full text-base focus:bg-red-100/70 dark:focus:bg-red-300/10"
                 asChild
               >
