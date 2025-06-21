@@ -127,10 +127,11 @@ model Product {
   license_id    Int
   name          String    @db.VarChar(150)
   slug          String    @unique @db.VarChar(150)
-  description   String
-  changelog     String?
   price_type    PriceType
   download_link String?   @db.VarChar(255)
+  is_published  Boolean   @default(false)
+  is_pinned     Boolean   @default(false)
+  created_at    BigInt
   released_at   BigInt
   updated_at    BigInt
 
@@ -139,12 +140,25 @@ model Product {
   owner    Owner    @relation(fields: [owner_id], references: [id])
   license  License  @relation(fields: [license_id], references: [id])
 
-  product_discounts ProductDiscount?
-  product_coupons   ProductCoupon?
-  product_images    ProductImage[]
-  product_variants  ProductVariant[]
+  translations ProductTranslation[]
+  discounts ProductDiscount?
+  coupons   ProductCoupon?
+  images    ProductImage[]
+  variants  ProductVariant[]
 
   @@map("products")
+}
+
+model ProductTranslation {
+  id            String    @id @default(uuid(7)) @db.Uuid
+  product_id    String    @db.Uuid
+  language      Language
+  description   String
+  changelog     String?
+
+  product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
+
+  @@map("product_translations")
 }
 
 model ProductDiscount {
@@ -190,7 +204,7 @@ model ProductVariant {
   download_link String? @db.VarChar(255)
 
   product        Product        @relation(fields: [product_id], references: [id], onDelete: Cascade)
-  product_prices ProductPrice[]
+  prices ProductPrice[]
 
   @@map("product_variants")
 }

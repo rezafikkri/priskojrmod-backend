@@ -187,12 +187,21 @@ exports.Prisma.ProductScalarFieldEnum = {
   license_id: 'license_id',
   name: 'name',
   slug: 'slug',
-  description: 'description',
-  changelog: 'changelog',
   price_type: 'price_type',
   download_link: 'download_link',
+  is_published: 'is_published',
+  is_pinned: 'is_pinned',
+  created_at: 'created_at',
   released_at: 'released_at',
   updated_at: 'updated_at'
+};
+
+exports.Prisma.ProductTranslationScalarFieldEnum = {
+  id: 'id',
+  product_id: 'product_id',
+  language: 'language',
+  description: 'description',
+  changelog: 'changelog'
 };
 
 exports.Prisma.ProductDiscountScalarFieldEnum = {
@@ -322,6 +331,7 @@ exports.Prisma.ModelName = {
   LicenseTranslation: 'LicenseTranslation',
   Category: 'Category',
   Product: 'Product',
+  ProductTranslation: 'ProductTranslation',
   ProductDiscount: 'ProductDiscount',
   ProductCoupon: 'ProductCoupon',
   ProductImage: 'ProductImage',
