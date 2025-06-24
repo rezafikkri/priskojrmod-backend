@@ -16,7 +16,8 @@ export default function ContentInput({
   label = 'Content',
 }) {
   const { errors, isSubmitting } = formState;
-  const isContentError = Boolean(errors.content && errors.content[activeLang]);
+  const inputName = field.name.split('.')[0];
+  const isContentError = Boolean(errors[inputName] && errors[inputName][activeLang]);
 
   return (
     <FormItem>
@@ -35,7 +36,7 @@ export default function ContentInput({
       <FormDescription>{description}</FormDescription>
       {isContentError && (
         <p className="text-destructive text-sm">
-          {errors[field.name][activeLang].message}
+          {errors[inputName][activeLang].message}
         </p>
       )}
     </FormItem>

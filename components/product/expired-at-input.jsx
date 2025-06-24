@@ -35,9 +35,13 @@ export default function ExpiredAtInput({
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   function handleDateChange({ date, expiredAtField }) {
-    const newDate = new Date(expiredAtField.value);
-    newDate.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
-    expiredAtField.onChange(newDate);
+    if (!date) {
+      expiredAtField.onChange('');
+    } else {
+      const newDate = new Date(expiredAtField.value);
+      newDate.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+      expiredAtField.onChange(newDate);
+    }
     setIsCalendarOpen(false);
   }
 

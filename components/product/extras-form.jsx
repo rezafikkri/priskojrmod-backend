@@ -21,33 +21,21 @@ import ImageFields from './image-fields';
 import { Image } from 'lucide-react';
 import ExpiredAtInput from './expired-at-input';
 import { Percent } from 'lucide-react';
+import { createProductExtrasClientSchema } from '@/lib/validators/product-validator';
+import { useCreateProductStore } from '@/lib/providers/create-product-store-provider';
+import { v4 } from 'uuid';
 
 export default function ExtrasForm({
   onNextStep,
   onPrevStep,
 }) {
+  const extras = useCreateProductStore(state => state.extras);
+  const setExtras = useCreateProductStore(state => state.setExtras);
   const form = useForm({
-    // resolver: zodResolver(categorySchema),
-    defaultValues: {
-      variants: [
-        {
-          name: '',
-          download_link: '',
-        },
-      ],
-      images: [],
-      discount: {
-        value: '',
-        expired_at: '',
-      },
-      coupon: {
-        code: '',
-        discount: '',
-        expired_at: '',
-      },
-    },
+    resolver: zodResolver(createProductExtrasClientSchema),
+    defaultValues: extras,
   });
-  const isSubmitting = form.formState.isSubmitting;
+  const { isSubmitting, errors } = form.formState;
   const {
     fields: variants,
     remove: removeVariant,
@@ -66,6 +54,14 @@ export default function ExtrasForm({
     name: 'images',
   });
 
+  function handleAddVariant() {
+    appendVariant({
+      id: v4(),
+      name: '',
+      download_link: '',
+    });
+  }
+
   function handleSetAsThumbnail({ index, image }) {
     for (const [currentIndex, image] of images.entries()) {
       if (image.isThumbnail) {
@@ -82,11 +78,15 @@ export default function ExtrasForm({
     });
   }
 
-  async function handleNext(data) {
+  function handleNext(data) {
+    console.dir(data);
+    setExtras(data);
     onNextStep();
   }
 
-  async function handlePrev() {
+  function handlePrev() {
+    const data = form.getValues();
+    setExtras(data);
     onPrevStep();
   }
 
@@ -146,7 +146,7 @@ export default function ExtrasForm({
                     <Button
                       type="button"
                       variant="secondary"
-                      onClick={() => appendVariant({ name: '', download_link: '' })}
+                      onClick={handleAddVariant}
                     >
                       <Plus />
                     </Button>
@@ -194,7 +194,7 @@ export default function ExtrasForm({
                 key={image.id}
               >
                 <div className="absolute right-2 top-2 space-x-2 items-center invisible opacity-0 group-hover:visible group-hover:opacity-100 animate-in fade-in duration-200">
-                  {!image.isThumbnail && (
+                  {!image.is_thumbnail && (
                     <TooltipWrapper text="Set as thumbnail">
                       <Button
                         variant="outline"
@@ -226,7 +226,7 @@ export default function ExtrasForm({
                   width={image.width}
                   height={image.height}
                 />
-                {image.isThumbnail && (
+                {image.is_thumbnail && (
                   <span
                     className="absolute bottom-2 left-2 text-xs bg-zinc-100 dark:bg-zinc-900 rounded-sm py-0.5 px-1 invisible opacity-0 group-hover:visible group-hover:opacity-100 animate-in fade-in duration-200"
                   >
@@ -238,6 +238,12 @@ export default function ExtrasForm({
           </div>
 
           <ImageFields onAppend={appendImage} images={images} />
+
+          {errors?.images && (
+            <p className="dark:text-red-500/85 text-destructive text-sm">
+              At least one image is required
+            </p>
+          )}
         </section>
         <Separator />
         <section className="space-y-6 mb-9">

@@ -22,30 +22,45 @@ import {
 import PriceInput from './price-input';
 import { Checkbox } from '../ui/checkbox';
 import { Button } from '../ui/button';
-import { ArrowLeft } from 'lucide-react';
-import { Separator } from '../ui/separator';
+import { ArrowLeft, Loader2 } from 'lucide-react';
+import { useCreateProductStore } from '@/lib/providers/create-product-store-provider';
+import { createProductPricingClientSchema } from '@/lib/validators/product-validator';
 
 export default function PricingForm({
   onPrevStep,
+  onResetStep,
 }) {
+  const pricing = useCreateProductStore(state => state.pricing);
+  const setPricing = useCreateProductStore(state => state.setPricing);
+  const clearDraft = useCreateProductStore(state => state.clearDraft);
+  const basic = useCreateProductStore(state => state.basic);
+  const content = useCreateProductStore(state => state.content);
+  const extras = useCreateProductStore(state => state.extras);
+
   function getDefaultPrices(priceType) {
     if (priceType === PriceType.FREE) return [];
 
-    return [
-      { variantId: '1', variantName: 'Pro', price: '', currency_code: CurrencyCode.IDR },
-      { variantId: '1', variantName: 'Pro', price: '', currency_code: CurrencyCode.USD },
-      { variantId: '2', variantName: 'Enterprise', price: '', currency_code: CurrencyCode.IDR },
-      { variantId: '2', variantName: 'Enterprise', price: '', currency_code: CurrencyCode.USD },
-    ];
+    let prices = [];
+    for (const variant of extras.variants) {
+      prices.push({
+        variantId: variant.id,
+        variantName: variant.name,
+        price: '',
+        currency_code: CurrencyCode.IDR,
+      });
+      prices.push({
+        variantId: variant.id,
+        variantName: variant.name,
+        price: '',
+        currency_code: CurrencyCode.USD,
+      });
+    }
+    return prices;
   }
 
   const form = useForm({
-    // resolver: zodResolver(categorySchema),
-    defaultValues: {
-      price_type: '',
-      prices: [],
-      is_published: false,
-    },
+    resolver: zodResolver(createProductPricingClientSchema),
+    defaultValues: pricing,
   });
   const isSubmitting = form.formState.isSubmitting;
   const {
@@ -61,11 +76,48 @@ export default function PricingForm({
     replacePrices(getDefaultPrices(selectedValue));
   }
 
-  async function handleSubmit() {
+  async function handleSubmit(data) {
+    let product = {
+      ...basic,
+      ...content,
+      ...extras,
+      variants: extras.variants.map(variant => ({ ...variant })),
+      price_type: data.price_type,
+      is_published: data.is_published,
+    };
 
+    // if price type == paid
+    if (data.price_type === PriceType.PAID) {
+      product.variants = product.variants.map(variant => {
+        let newVariant = { ...variant, prices: [] };
+        for (const [i, price] of data.prices.entries()) {
+          if (variant.id === price.variantId) {
+            newVariant.prices.push({
+              price: price.price,
+              currency_code: price.currency_code,
+            });
+            newVariant.prices.push({
+              price: data.prices[i + 1].price,
+              currency_code: data.prices[i + 1].currency_code,
+            });
+            break;
+          }
+        }
+        delete newVariant.id;
+        return newVariant;
+      });
+    } else {
+      product.variants = product.variants.map(variant => {
+        delete variant.id;
+        return variant;
+      });
+    }
+    console.dir(product);
   }
 
   function handlePrev() {
+    const data = form.getValues();
+    setPricing(data);
     onPrevStep();
   }
 

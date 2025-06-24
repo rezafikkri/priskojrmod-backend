@@ -9,7 +9,11 @@ import ContentForm from './content-form';
 import ExtrasForm from './extras-form';
 import PricingForm from './pricing-form';
 
-export default function CreateForm() {
+export default function CreateForm({
+  categories,
+  owners,
+  licenses,
+}) {
   const [formSteps, setFormSteps] = useState([
     {
       label: 'Basic',
@@ -73,6 +77,21 @@ export default function CreateForm() {
     }));
   };
 
+  const handleResetStep = () => {
+    setFormSteps(formSteps.map(step => {
+      if (step.label === 'Basic') {
+        return {
+          ...step,
+          status: 'active',
+        };
+      }
+      return {
+        ...step,
+        status: 'nonactive',
+      };
+    }));
+  };
+
   return (
     <>
       <div className="flex gap-4 mb-5 lg:max-w-2/3 font-medium text-zinc-700/90 dark:text-zinc-200 items-center">
@@ -93,13 +112,19 @@ export default function CreateForm() {
         if (step.status === 'active') {
           switch (step.label) {
             case 'Basic':
-              return <BasicForm key={step.label} onNextStep={handleNextStep} />;
+              return <BasicForm
+                key={step.label}
+                onNextStep={handleNextStep}
+                categories={categories}
+                owners={owners}
+                licenses={licenses}
+              />;
             case 'Content':
               return <ContentForm key={step.label} onNextStep={handleNextStep} onPrevStep={handlePrevStep} />;
             case 'Extras':
               return <ExtrasForm key={step.label} onNextStep={handleNextStep} onPrevStep={handlePrevStep} />;
             case 'Pricing':
-              return <PricingForm key={step.label} onPrevStep={handlePrevStep} />;
+              return <PricingForm key={step.label} onPrevStep={handlePrevStep} onResetStep={handleResetStep} />;
           }
         }
         return null;

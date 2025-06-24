@@ -45,7 +45,7 @@ export default function PriceInput({
                 <p>{price.variantName}</p>
               </FormItem>
 
-              <div className="flex gap-3">
+              <div className="flex gap-3 items-start">
                 <FormField
                   control={form.control}
                   name={`prices.${index}.price`}
