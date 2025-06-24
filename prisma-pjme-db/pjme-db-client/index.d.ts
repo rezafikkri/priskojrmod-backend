@@ -13341,25 +13341,27 @@ export namespace Prisma {
 
   export type ProductDiscountAvgAggregateOutputType = {
     id: number | null
+    discount: number | null
     expired_at: number | null
   }
 
   export type ProductDiscountSumAggregateOutputType = {
     id: number | null
+    discount: number | null
     expired_at: bigint | null
   }
 
   export type ProductDiscountMinAggregateOutputType = {
     id: number | null
     product_id: string | null
-    discount: string | null
+    discount: number | null
     expired_at: bigint | null
   }
 
   export type ProductDiscountMaxAggregateOutputType = {
     id: number | null
     product_id: string | null
-    discount: string | null
+    discount: number | null
     expired_at: bigint | null
   }
 
@@ -13374,11 +13376,13 @@ export namespace Prisma {
 
   export type ProductDiscountAvgAggregateInputType = {
     id?: true
+    discount?: true
     expired_at?: true
   }
 
   export type ProductDiscountSumAggregateInputType = {
     id?: true
+    discount?: true
     expired_at?: true
   }
 
@@ -13493,7 +13497,7 @@ export namespace Prisma {
   export type ProductDiscountGroupByOutputType = {
     id: number
     product_id: string
-    discount: string
+    discount: number
     expired_at: bigint
     _count: ProductDiscountCountAggregateOutputType | null
     _avg: ProductDiscountAvgAggregateOutputType | null
@@ -13566,7 +13570,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       product_id: string
-      discount: string
+      discount: number
       expired_at: bigint
     }, ExtArgs["result"]["productDiscount"]>
     composites: {}
@@ -13994,7 +13998,7 @@ export namespace Prisma {
   interface ProductDiscountFieldRefs {
     readonly id: FieldRef<"ProductDiscount", 'Int'>
     readonly product_id: FieldRef<"ProductDiscount", 'String'>
-    readonly discount: FieldRef<"ProductDiscount", 'String'>
+    readonly discount: FieldRef<"ProductDiscount", 'Int'>
     readonly expired_at: FieldRef<"ProductDiscount", 'BigInt'>
   }
     
@@ -14424,11 +14428,13 @@ export namespace Prisma {
 
   export type ProductCouponAvgAggregateOutputType = {
     id: number | null
+    discount: number | null
     expired_at: number | null
   }
 
   export type ProductCouponSumAggregateOutputType = {
     id: number | null
+    discount: number | null
     expired_at: bigint | null
   }
 
@@ -14436,7 +14442,7 @@ export namespace Prisma {
     id: number | null
     product_id: string | null
     code: string | null
-    discount: string | null
+    discount: number | null
     expired_at: bigint | null
   }
 
@@ -14444,7 +14450,7 @@ export namespace Prisma {
     id: number | null
     product_id: string | null
     code: string | null
-    discount: string | null
+    discount: number | null
     expired_at: bigint | null
   }
 
@@ -14460,11 +14466,13 @@ export namespace Prisma {
 
   export type ProductCouponAvgAggregateInputType = {
     id?: true
+    discount?: true
     expired_at?: true
   }
 
   export type ProductCouponSumAggregateInputType = {
     id?: true
+    discount?: true
     expired_at?: true
   }
 
@@ -14583,7 +14591,7 @@ export namespace Prisma {
     id: number
     product_id: string
     code: string
-    discount: string
+    discount: number
     expired_at: bigint
     _count: ProductCouponCountAggregateOutputType | null
     _avg: ProductCouponAvgAggregateOutputType | null
@@ -14661,7 +14669,7 @@ export namespace Prisma {
       id: number
       product_id: string
       code: string
-      discount: string
+      discount: number
       expired_at: bigint
     }, ExtArgs["result"]["productCoupon"]>
     composites: {}
@@ -15090,7 +15098,7 @@ export namespace Prisma {
     readonly id: FieldRef<"ProductCoupon", 'Int'>
     readonly product_id: FieldRef<"ProductCoupon", 'String'>
     readonly code: FieldRef<"ProductCoupon", 'String'>
-    readonly discount: FieldRef<"ProductCoupon", 'String'>
+    readonly discount: FieldRef<"ProductCoupon", 'Int'>
     readonly expired_at: FieldRef<"ProductCoupon", 'BigInt'>
   }
     
@@ -28416,7 +28424,7 @@ export namespace Prisma {
     NOT?: ProductDiscountWhereInput | ProductDiscountWhereInput[]
     id?: IntFilter<"ProductDiscount"> | number
     product_id?: UuidFilter<"ProductDiscount"> | string
-    discount?: StringFilter<"ProductDiscount"> | string
+    discount?: IntFilter<"ProductDiscount"> | number
     expired_at?: BigIntFilter<"ProductDiscount"> | bigint | number
     product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
   }
@@ -28435,7 +28443,7 @@ export namespace Prisma {
     AND?: ProductDiscountWhereInput | ProductDiscountWhereInput[]
     OR?: ProductDiscountWhereInput[]
     NOT?: ProductDiscountWhereInput | ProductDiscountWhereInput[]
-    discount?: StringFilter<"ProductDiscount"> | string
+    discount?: IntFilter<"ProductDiscount"> | number
     expired_at?: BigIntFilter<"ProductDiscount"> | bigint | number
     product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
   }, "id" | "product_id">
@@ -28458,7 +28466,7 @@ export namespace Prisma {
     NOT?: ProductDiscountScalarWhereWithAggregatesInput | ProductDiscountScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"ProductDiscount"> | number
     product_id?: UuidWithAggregatesFilter<"ProductDiscount"> | string
-    discount?: StringWithAggregatesFilter<"ProductDiscount"> | string
+    discount?: IntWithAggregatesFilter<"ProductDiscount"> | number
     expired_at?: BigIntWithAggregatesFilter<"ProductDiscount"> | bigint | number
   }
 
@@ -28469,7 +28477,7 @@ export namespace Prisma {
     id?: IntFilter<"ProductCoupon"> | number
     product_id?: UuidFilter<"ProductCoupon"> | string
     code?: StringFilter<"ProductCoupon"> | string
-    discount?: StringFilter<"ProductCoupon"> | string
+    discount?: IntFilter<"ProductCoupon"> | number
     expired_at?: BigIntFilter<"ProductCoupon"> | bigint | number
     product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
   }
@@ -28490,7 +28498,7 @@ export namespace Prisma {
     OR?: ProductCouponWhereInput[]
     NOT?: ProductCouponWhereInput | ProductCouponWhereInput[]
     code?: StringFilter<"ProductCoupon"> | string
-    discount?: StringFilter<"ProductCoupon"> | string
+    discount?: IntFilter<"ProductCoupon"> | number
     expired_at?: BigIntFilter<"ProductCoupon"> | bigint | number
     product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
   }, "id" | "product_id">
@@ -28515,7 +28523,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"ProductCoupon"> | number
     product_id?: UuidWithAggregatesFilter<"ProductCoupon"> | string
     code?: StringWithAggregatesFilter<"ProductCoupon"> | string
-    discount?: StringWithAggregatesFilter<"ProductCoupon"> | string
+    discount?: IntWithAggregatesFilter<"ProductCoupon"> | number
     expired_at?: BigIntWithAggregatesFilter<"ProductCoupon"> | bigint | number
   }
 
@@ -29688,7 +29696,7 @@ export namespace Prisma {
   }
 
   export type ProductDiscountCreateInput = {
-    discount: string
+    discount: number
     expired_at: bigint | number
     product: ProductCreateNestedOneWithoutDiscountsInput
   }
@@ -29696,12 +29704,12 @@ export namespace Prisma {
   export type ProductDiscountUncheckedCreateInput = {
     id?: number
     product_id: string
-    discount: string
+    discount: number
     expired_at: bigint | number
   }
 
   export type ProductDiscountUpdateInput = {
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
     product?: ProductUpdateOneRequiredWithoutDiscountsNestedInput
   }
@@ -29709,32 +29717,32 @@ export namespace Prisma {
   export type ProductDiscountUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     product_id?: StringFieldUpdateOperationsInput | string
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type ProductDiscountCreateManyInput = {
     id?: number
     product_id: string
-    discount: string
+    discount: number
     expired_at: bigint | number
   }
 
   export type ProductDiscountUpdateManyMutationInput = {
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type ProductDiscountUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     product_id?: StringFieldUpdateOperationsInput | string
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type ProductCouponCreateInput = {
     code: string
-    discount: string
+    discount: number
     expired_at: bigint | number
     product: ProductCreateNestedOneWithoutCouponsInput
   }
@@ -29743,13 +29751,13 @@ export namespace Prisma {
     id?: number
     product_id: string
     code: string
-    discount: string
+    discount: number
     expired_at: bigint | number
   }
 
   export type ProductCouponUpdateInput = {
     code?: StringFieldUpdateOperationsInput | string
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
     product?: ProductUpdateOneRequiredWithoutCouponsNestedInput
   }
@@ -29758,7 +29766,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     product_id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
@@ -29766,13 +29774,13 @@ export namespace Prisma {
     id?: number
     product_id: string
     code: string
-    discount: string
+    discount: number
     expired_at: bigint | number
   }
 
   export type ProductCouponUpdateManyMutationInput = {
     code?: StringFieldUpdateOperationsInput | string
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
@@ -29780,7 +29788,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     product_id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
@@ -30944,6 +30952,7 @@ export namespace Prisma {
 
   export type ProductDiscountAvgOrderByAggregateInput = {
     id?: SortOrder
+    discount?: SortOrder
     expired_at?: SortOrder
   }
 
@@ -30963,6 +30972,7 @@ export namespace Prisma {
 
   export type ProductDiscountSumOrderByAggregateInput = {
     id?: SortOrder
+    discount?: SortOrder
     expired_at?: SortOrder
   }
 
@@ -30976,6 +30986,7 @@ export namespace Prisma {
 
   export type ProductCouponAvgOrderByAggregateInput = {
     id?: SortOrder
+    discount?: SortOrder
     expired_at?: SortOrder
   }
 
@@ -30997,6 +31008,7 @@ export namespace Prisma {
 
   export type ProductCouponSumOrderByAggregateInput = {
     id?: SortOrder
+    discount?: SortOrder
     expired_at?: SortOrder
   }
 
@@ -33141,13 +33153,13 @@ export namespace Prisma {
   }
 
   export type ProductDiscountCreateWithoutProductInput = {
-    discount: string
+    discount: number
     expired_at: bigint | number
   }
 
   export type ProductDiscountUncheckedCreateWithoutProductInput = {
     id?: number
-    discount: string
+    discount: number
     expired_at: bigint | number
   }
 
@@ -33158,14 +33170,14 @@ export namespace Prisma {
 
   export type ProductCouponCreateWithoutProductInput = {
     code: string
-    discount: string
+    discount: number
     expired_at: bigint | number
   }
 
   export type ProductCouponUncheckedCreateWithoutProductInput = {
     id?: number
     code: string
-    discount: string
+    discount: number
     expired_at: bigint | number
   }
 
@@ -33374,13 +33386,13 @@ export namespace Prisma {
   }
 
   export type ProductDiscountUpdateWithoutProductInput = {
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type ProductDiscountUncheckedUpdateWithoutProductInput = {
     id?: IntFieldUpdateOperationsInput | number
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
@@ -33397,14 +33409,14 @@ export namespace Prisma {
 
   export type ProductCouponUpdateWithoutProductInput = {
     code?: StringFieldUpdateOperationsInput | string
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type ProductCouponUncheckedUpdateWithoutProductInput = {
     id?: IntFieldUpdateOperationsInput | number
     code?: StringFieldUpdateOperationsInput | string
-    discount?: StringFieldUpdateOperationsInput | string
+    discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
