@@ -13,7 +13,7 @@ import {
 } from '../ui/form';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
-import { Plus, Trash, ArrowLeft, ArrowRight, Loader2 } from 'lucide-react';
+import { Plus, Trash, ArrowLeft, ArrowRight } from 'lucide-react';
 import TooltipWrapper from '../ui/tooltip-wrapper';
 import { Separator } from '../ui/separator';
 import { Fragment } from 'react';
@@ -21,7 +21,7 @@ import ImageFields from './image-fields';
 import { Image } from 'lucide-react';
 import ExpiredAtInput from './expired-at-input';
 import { Percent } from 'lucide-react';
-import { createProductExtrasClientSchema } from '@/lib/validators/product-validator';
+import { createProductExtrasSchema } from '@/lib/validators/product-validator';
 import { useCreateProductStore } from '@/lib/providers/create-product-store-provider';
 import { v4 } from 'uuid';
 
@@ -32,10 +32,10 @@ export default function ExtrasForm({
   const extras = useCreateProductStore(state => state.extras);
   const setExtras = useCreateProductStore(state => state.setExtras);
   const form = useForm({
-    resolver: zodResolver(createProductExtrasClientSchema),
+    resolver: zodResolver(createProductExtrasSchema),
     defaultValues: extras,
   });
-  const { isSubmitting, errors } = form.formState;
+  const errors = form.formState.errors;
   const {
     fields: variants,
     remove: removeVariant,
@@ -64,22 +64,21 @@ export default function ExtrasForm({
 
   function handleSetAsThumbnail({ index, image }) {
     for (const [currentIndex, image] of images.entries()) {
-      if (image.isThumbnail) {
+      if (image.is_thumbnail) {
         updateImage(currentIndex, {
           ...image,
-          isThumbnail: false,
+          is_thumbnail: false,
         });
         break;
       }
     }
     updateImage(index, {
       ...image,
-      isThumbnail: true,
+      is_thumbnail: true,
     });
   }
 
   function handleNext(data) {
-    console.dir(data);
     setExtras(data);
     onNextStep();
   }
@@ -109,7 +108,6 @@ export default function ExtrasForm({
                         <FormLabel className="text-base">Name</FormLabel>
                         <FormControl>
                           <Input
-                            disabled={isSubmitting}
                             {...field}
                             className="shadow-none md:text-base h-auto px-3 py-1.5"
                           />
@@ -128,7 +126,6 @@ export default function ExtrasForm({
                         <FormControl>
                           <Input
                             type="url"
-                            disabled={isSubmitting}
                             {...field}
                             className="shadow-none md:text-base h-auto px-3 py-1.5"
                           />
@@ -190,7 +187,7 @@ export default function ExtrasForm({
               </div>
             ) : images.map((image, index) => (
               <div
-                className={`rounded-md border bg-gray-100 dark:bg-zinc-900/50 overflow-hidden relative group ${image.isThumbnail ? 'border-green-500 dark:border-green-600 border-2' : ''}`}
+                className={`rounded-md border bg-gray-100 dark:bg-zinc-900/50 overflow-hidden relative group ${image.is_thumbnail ? 'border-green-500 dark:border-green-600 border-2' : ''}`}
                 key={image.id}
               >
                 <div className="absolute right-2 top-2 space-x-2 items-center invisible opacity-0 group-hover:visible group-hover:opacity-100 animate-in fade-in duration-200">
@@ -262,7 +259,6 @@ export default function ExtrasForm({
                   <FormControl>
                     <Input
                       type="number"
-                      disabled={isSubmitting}
                       {...field}
                       className="shadow-none md:text-base h-auto px-3 py-1.5 rounded-e-none z-1"
                     />
@@ -302,7 +298,7 @@ export default function ExtrasForm({
                 <FormItem className="flex-1">
                   <FormLabel className="text-base">Code</FormLabel>
                   <FormControl>
-                    <Input disabled={isSubmitting} {...field} className="md:text-base h-auto px-3 py-1.5 shadow-none" />
+                    <Input {...field} className="md:text-base h-auto px-3 py-1.5 shadow-none" />
                   </FormControl>
                   <FormDescription>Enter the coupon code in UPPERCASE (e.g. SAVE-20-NOW).</FormDescription>
                   <FormMessage />
@@ -319,7 +315,6 @@ export default function ExtrasForm({
                     <FormControl>
                       <Input
                         type="number"
-                        disabled={isSubmitting}
                         {...field}
                         className="shadow-none md:text-base h-auto px-3 py-1.5 rounded-e-none z-1"
                       />
@@ -353,22 +348,13 @@ export default function ExtrasForm({
         >
           <ArrowLeft className="icon" /> Previous
         </Button>
-        <div className="relative inline-block">
-          <Button
-            type="submit"
-            className={`h-auto text-base px-3 py-1.5 disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''} border border-primary inline-block`}
-            disabled={isSubmitting}
-          >
-            <span className={isSubmitting ? 'opacity-0' : ''}>
-              Next <ArrowRight className="icon" />
-            </span>
-          </Button>
-          {isSubmitting && (
-            <div className="absolute h-full top-0 left-0 right-0 flex justify-center items-center">
-              <Loader2 className="animate-spin text-primary-foreground" size={16} />
-            </div>
-          )}
-        </div>
+
+        <Button
+          type="submit"
+          className={`h-auto text-base px-3 py-1.5 border border-primary inline-block`}
+        >
+          Next <ArrowRight className="icon" />
+        </Button>
       </form>
     </Form>
   );

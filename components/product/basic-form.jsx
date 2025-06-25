@@ -21,7 +21,7 @@ import {
 } from '../ui/select';
 import Link from 'next/link';
 import { Button } from '../ui/button';
-import { Loader2, ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { createProductBasicSchema } from '@/lib/validators/product-validator';
 import { useCreateProductStore } from '@/lib/providers/create-product-store-provider';
 
@@ -44,7 +44,6 @@ export default function BasicForm({
       download_link: basic.download_link,
     },
   });
-  const isSubmitting = form.formState.isSubmitting;
 
   function handleNext(data) {
     setBasic(data);
@@ -65,7 +64,7 @@ export default function BasicForm({
             <FormItem>
               <FormLabel className="text-base">Name</FormLabel>
               <FormControl>
-                <Input disabled={isSubmitting} {...field} className="md:text-base h-auto px-3 py-1.5 shadow-none" />
+                <Input {...field} className="md:text-base h-auto px-3 py-1.5 shadow-none" />
               </FormControl>
               <FormDescription>Enter the product name.</FormDescription>
               <FormMessage />
@@ -170,12 +169,11 @@ export default function BasicForm({
               <FormLabel className="text-base">Download Link</FormLabel>
               <FormControl>
                 <Input
-                  disabled={isSubmitting}
                   className="md:text-base h-auto px-3 py-1.5 shadow-none"
                   {...field}
                 />
               </FormControl>
-              <FormDescription>Enter a direct download link for the product's main file.</FormDescription>
+              <FormDescription>Enter a direct download link for the product's main file. Leave empty if the file will be delivered manually after purchase (e.g. via email or Google Drive).</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -189,22 +187,13 @@ export default function BasicForm({
             <ArrowLeft className="icon" /> Back
           </Link>
         </Button>
-        <div className="relative inline-block">
-          <Button
-            type="submit"
-            className={`h-auto text-base px-3 py-1.5 disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''} border border-primary inline-block`}
-            disabled={isSubmitting}
-          >
-            <span className={isSubmitting ? 'opacity-0' : ''}>
-              Next <ArrowRight className="icon" />
-            </span>
-          </Button>
-          {isSubmitting && (
-            <div className="absolute h-full top-0 left-0 right-0 flex justify-center items-center">
-              <Loader2 className="animate-spin text-primary-foreground" size={16} />
-            </div>
-          )}
-        </div>
+
+        <Button
+          type="submit"
+          className={`h-auto text-base px-3 py-1.5 border border-primary inline-block`}
+        >
+          Next <ArrowRight className="icon" />
+        </Button>
       </form>
     </Form>
   );

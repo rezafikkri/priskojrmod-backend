@@ -24,7 +24,9 @@ import { Checkbox } from '../ui/checkbox';
 import { Button } from '../ui/button';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { useCreateProductStore } from '@/lib/providers/create-product-store-provider';
-import { createProductPricingClientSchema } from '@/lib/validators/product-validator';
+import { createProductPricingSchema } from '@/lib/validators/product-validator';
+import { addProduct } from '@/actions/product-actions';
+import { toast } from 'sonner';
 
 export default function PricingForm({
   onPrevStep,
@@ -59,7 +61,7 @@ export default function PricingForm({
   }
 
   const form = useForm({
-    resolver: zodResolver(createProductPricingClientSchema),
+    resolver: zodResolver(createProductPricingSchema),
     defaultValues: pricing,
   });
   const isSubmitting = form.formState.isSubmitting;
@@ -82,6 +84,18 @@ export default function PricingForm({
       ...content,
       ...extras,
       variants: extras.variants.map(variant => ({ ...variant })),
+      discount: {
+        ...extras.discount,
+        expired_at: extras.discount.expired_at !== ''
+          ? Math.floor(extras.discount.expired_at.getTime() / 1000)
+          : '',
+      },
+      coupon: {
+        ...extras.coupon,
+        expired_at: extras.coupon.expired_at !== ''
+          ? Math.floor(extras.coupon.expired_at.getTime() / 1000)
+          : '',
+      },
       price_type: data.price_type,
       is_published: data.is_published,
     };
@@ -112,7 +126,17 @@ export default function PricingForm({
         return variant;
       });
     }
-    console.dir(product);
+
+    const addRes = await addProduct(product);
+    if (addRes.status === 'success') {
+      toast.success('Product created successfully.');
+
+      // reset step and form
+      clearDraft();
+      onResetStep();
+    } else {
+      toast.error(addRes.message);
+    }
   }
 
   function handlePrev() {
@@ -133,6 +157,7 @@ export default function PricingForm({
               <Select
                 onValueChange={(priceType) => handlePriceTypeChange({ selectedValue: priceType, field: field })}
                 defaultValue={field.value}
+                disabled={isSubmitting}
               >
                 <FormControl>
                   <SelectTrigger className="shadow-none text-base h-auto! px-3 py-1.5 w-full">

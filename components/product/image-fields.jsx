@@ -13,7 +13,7 @@ export default function ImageFields({
   images,
 }) {
   function computeHasThumbnail() {
-    return images.some(image => image.isThumbnail);
+    return images.some(image => image.is_thumbnail);
   }
 
   const [hasThumbnail, setHasThumbnail] = useState(computeHasThumbnail);
@@ -102,7 +102,7 @@ export default function ImageFields({
           className="text-base dark:data-[error=true]:text-red-500/90 data-[error=true]:text-destructive"
           data-error={!!errors?.url}
         >
-          Url
+          URL
         </Label>
         <Input
           type="text"

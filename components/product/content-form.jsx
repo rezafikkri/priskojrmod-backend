@@ -9,7 +9,7 @@ import { Language } from '@/constants/enums';
 import { zodResolver } from '@hookform/resolvers/zod';
 import FormLanguageToggle from '../ui/form-language-toggle';
 import { Button } from '../ui/button';
-import { Loader2, ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { createProductContentSchema } from '@/lib/validators/product-validator';
 import { useCreateProductStore } from '@/lib/providers/create-product-store-provider';
 
@@ -24,7 +24,7 @@ export default function ContentForm({
     resolver: zodResolver(createProductContentSchema),
     defaultValues: content,
   });
-  const { isSubmitting, errors } = form.formState;
+  const errors = form.formState.errors;
 
   function handleNext(data) {
     setContent(data);
@@ -88,22 +88,13 @@ export default function ContentForm({
           >
             <ArrowLeft className="icon" /> Previous
           </Button>
-          <div className="relative inline-block">
-            <Button
-              type="submit"
-              className={`h-auto text-base px-3 py-1.5 disabled:opacity-100 ${isSubmitting ? 'transition-none' : ''} border border-primary inline-block`}
-              disabled={isSubmitting}
-            >
-              <span className={isSubmitting ? 'opacity-0' : ''}>
-                Next <ArrowRight className="icon" />
-              </span>
-            </Button>
-            {isSubmitting && (
-              <div className="absolute h-full top-0 left-0 right-0 flex justify-center items-center">
-                <Loader2 className="animate-spin text-primary-foreground" size={16} />
-              </div>
-            )}
-          </div>
+
+          <Button
+            type="submit"
+            className={`h-auto text-base px-3 py-1.5 border border-primary inline-block`}
+          >
+            Next <ArrowRight className="icon" />
+          </Button>
         </form>
       </Form>
     </>
