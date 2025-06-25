@@ -11179,8 +11179,8 @@ export namespace Prisma {
     owner?: boolean | OwnerDefaultArgs<ExtArgs>
     license?: boolean | LicenseDefaultArgs<ExtArgs>
     translations?: boolean | Product$translationsArgs<ExtArgs>
-    discounts?: boolean | Product$discountsArgs<ExtArgs>
-    coupons?: boolean | Product$couponsArgs<ExtArgs>
+    discount?: boolean | Product$discountArgs<ExtArgs>
+    coupon?: boolean | Product$couponArgs<ExtArgs>
     images?: boolean | Product$imagesArgs<ExtArgs>
     variants?: boolean | Product$variantsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -11252,8 +11252,8 @@ export namespace Prisma {
     owner?: boolean | OwnerDefaultArgs<ExtArgs>
     license?: boolean | LicenseDefaultArgs<ExtArgs>
     translations?: boolean | Product$translationsArgs<ExtArgs>
-    discounts?: boolean | Product$discountsArgs<ExtArgs>
-    coupons?: boolean | Product$couponsArgs<ExtArgs>
+    discount?: boolean | Product$discountArgs<ExtArgs>
+    coupon?: boolean | Product$couponArgs<ExtArgs>
     images?: boolean | Product$imagesArgs<ExtArgs>
     variants?: boolean | Product$variantsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -11279,8 +11279,8 @@ export namespace Prisma {
       owner: Prisma.$OwnerPayload<ExtArgs>
       license: Prisma.$LicensePayload<ExtArgs>
       translations: Prisma.$ProductTranslationPayload<ExtArgs>[]
-      discounts: Prisma.$ProductDiscountPayload<ExtArgs> | null
-      coupons: Prisma.$ProductCouponPayload<ExtArgs> | null
+      discount: Prisma.$ProductDiscountPayload<ExtArgs> | null
+      coupon: Prisma.$ProductCouponPayload<ExtArgs> | null
       images: Prisma.$ProductImagePayload<ExtArgs>[]
       variants: Prisma.$ProductVariantPayload<ExtArgs>[]
     }
@@ -11698,8 +11698,8 @@ export namespace Prisma {
     owner<T extends OwnerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OwnerDefaultArgs<ExtArgs>>): Prisma__OwnerClient<$Result.GetResult<Prisma.$OwnerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     license<T extends LicenseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LicenseDefaultArgs<ExtArgs>>): Prisma__LicenseClient<$Result.GetResult<Prisma.$LicensePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     translations<T extends Product$translationsArgs<ExtArgs> = {}>(args?: Subset<T, Product$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    discounts<T extends Product$discountsArgs<ExtArgs> = {}>(args?: Subset<T, Product$discountsArgs<ExtArgs>>): Prisma__ProductDiscountClient<$Result.GetResult<Prisma.$ProductDiscountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    coupons<T extends Product$couponsArgs<ExtArgs> = {}>(args?: Subset<T, Product$couponsArgs<ExtArgs>>): Prisma__ProductCouponClient<$Result.GetResult<Prisma.$ProductCouponPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    discount<T extends Product$discountArgs<ExtArgs> = {}>(args?: Subset<T, Product$discountArgs<ExtArgs>>): Prisma__ProductDiscountClient<$Result.GetResult<Prisma.$ProductDiscountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    coupon<T extends Product$couponArgs<ExtArgs> = {}>(args?: Subset<T, Product$couponArgs<ExtArgs>>): Prisma__ProductCouponClient<$Result.GetResult<Prisma.$ProductCouponPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     images<T extends Product$imagesArgs<ExtArgs> = {}>(args?: Subset<T, Product$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     variants<T extends Product$variantsArgs<ExtArgs> = {}>(args?: Subset<T, Product$variantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductVariantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -12165,9 +12165,9 @@ export namespace Prisma {
   }
 
   /**
-   * Product.discounts
+   * Product.discount
    */
-  export type Product$discountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Product$discountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ProductDiscount
      */
@@ -12184,9 +12184,9 @@ export namespace Prisma {
   }
 
   /**
-   * Product.coupons
+   * Product.coupon
    */
-  export type Product$couponsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Product$couponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ProductCoupon
      */
@@ -28260,8 +28260,8 @@ export namespace Prisma {
     owner?: XOR<OwnerScalarRelationFilter, OwnerWhereInput>
     license?: XOR<LicenseScalarRelationFilter, LicenseWhereInput>
     translations?: ProductTranslationListRelationFilter
-    discounts?: XOR<ProductDiscountNullableScalarRelationFilter, ProductDiscountWhereInput> | null
-    coupons?: XOR<ProductCouponNullableScalarRelationFilter, ProductCouponWhereInput> | null
+    discount?: XOR<ProductDiscountNullableScalarRelationFilter, ProductDiscountWhereInput> | null
+    coupon?: XOR<ProductCouponNullableScalarRelationFilter, ProductCouponWhereInput> | null
     images?: ProductImageListRelationFilter
     variants?: ProductVariantListRelationFilter
   }
@@ -28286,8 +28286,8 @@ export namespace Prisma {
     owner?: OwnerOrderByWithRelationInput
     license?: LicenseOrderByWithRelationInput
     translations?: ProductTranslationOrderByRelationAggregateInput
-    discounts?: ProductDiscountOrderByWithRelationInput
-    coupons?: ProductCouponOrderByWithRelationInput
+    discount?: ProductDiscountOrderByWithRelationInput
+    coupon?: ProductCouponOrderByWithRelationInput
     images?: ProductImageOrderByRelationAggregateInput
     variants?: ProductVariantOrderByRelationAggregateInput
   }
@@ -28315,8 +28315,8 @@ export namespace Prisma {
     owner?: XOR<OwnerScalarRelationFilter, OwnerWhereInput>
     license?: XOR<LicenseScalarRelationFilter, LicenseWhereInput>
     translations?: ProductTranslationListRelationFilter
-    discounts?: XOR<ProductDiscountNullableScalarRelationFilter, ProductDiscountWhereInput> | null
-    coupons?: XOR<ProductCouponNullableScalarRelationFilter, ProductCouponWhereInput> | null
+    discount?: XOR<ProductDiscountNullableScalarRelationFilter, ProductDiscountWhereInput> | null
+    coupon?: XOR<ProductCouponNullableScalarRelationFilter, ProductCouponWhereInput> | null
     images?: ProductImageListRelationFilter
     variants?: ProductVariantListRelationFilter
   }, "id" | "slug">
@@ -29521,8 +29521,8 @@ export namespace Prisma {
     owner: OwnerCreateNestedOneWithoutProductsInput
     license: LicenseCreateNestedOneWithoutProductsInput
     translations?: ProductTranslationCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponCreateNestedOneWithoutProductInput
     images?: ProductImageCreateNestedManyWithoutProductInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
   }
@@ -29543,8 +29543,8 @@ export namespace Prisma {
     released_at: bigint | number
     updated_at: bigint | number
     translations?: ProductTranslationUncheckedCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
     images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
   }
@@ -29565,8 +29565,8 @@ export namespace Prisma {
     owner?: OwnerUpdateOneRequiredWithoutProductsNestedInput
     license?: LicenseUpdateOneRequiredWithoutProductsNestedInput
     translations?: ProductTranslationUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUpdateOneWithoutProductNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
   }
@@ -29587,8 +29587,8 @@ export namespace Prisma {
     released_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: ProductTranslationUncheckedUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
     images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   }
@@ -29698,7 +29698,7 @@ export namespace Prisma {
   export type ProductDiscountCreateInput = {
     discount: number
     expired_at: bigint | number
-    product: ProductCreateNestedOneWithoutDiscountsInput
+    product: ProductCreateNestedOneWithoutDiscountInput
   }
 
   export type ProductDiscountUncheckedCreateInput = {
@@ -29711,7 +29711,7 @@ export namespace Prisma {
   export type ProductDiscountUpdateInput = {
     discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
-    product?: ProductUpdateOneRequiredWithoutDiscountsNestedInput
+    product?: ProductUpdateOneRequiredWithoutDiscountNestedInput
   }
 
   export type ProductDiscountUncheckedUpdateInput = {
@@ -29744,7 +29744,7 @@ export namespace Prisma {
     code: string
     discount: number
     expired_at: bigint | number
-    product: ProductCreateNestedOneWithoutCouponsInput
+    product: ProductCreateNestedOneWithoutCouponInput
   }
 
   export type ProductCouponUncheckedCreateInput = {
@@ -29759,7 +29759,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     discount?: IntFieldUpdateOperationsInput | number
     expired_at?: BigIntFieldUpdateOperationsInput | bigint | number
-    product?: ProductUpdateOneRequiredWithoutCouponsNestedInput
+    product?: ProductUpdateOneRequiredWithoutCouponNestedInput
   }
 
   export type ProductCouponUncheckedUpdateInput = {
@@ -31991,32 +31991,32 @@ export namespace Prisma {
     update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutTranslationsInput, ProductUpdateWithoutTranslationsInput>, ProductUncheckedUpdateWithoutTranslationsInput>
   }
 
-  export type ProductCreateNestedOneWithoutDiscountsInput = {
-    create?: XOR<ProductCreateWithoutDiscountsInput, ProductUncheckedCreateWithoutDiscountsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutDiscountsInput
+  export type ProductCreateNestedOneWithoutDiscountInput = {
+    create?: XOR<ProductCreateWithoutDiscountInput, ProductUncheckedCreateWithoutDiscountInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutDiscountInput
     connect?: ProductWhereUniqueInput
   }
 
-  export type ProductUpdateOneRequiredWithoutDiscountsNestedInput = {
-    create?: XOR<ProductCreateWithoutDiscountsInput, ProductUncheckedCreateWithoutDiscountsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutDiscountsInput
-    upsert?: ProductUpsertWithoutDiscountsInput
+  export type ProductUpdateOneRequiredWithoutDiscountNestedInput = {
+    create?: XOR<ProductCreateWithoutDiscountInput, ProductUncheckedCreateWithoutDiscountInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutDiscountInput
+    upsert?: ProductUpsertWithoutDiscountInput
     connect?: ProductWhereUniqueInput
-    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutDiscountsInput, ProductUpdateWithoutDiscountsInput>, ProductUncheckedUpdateWithoutDiscountsInput>
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutDiscountInput, ProductUpdateWithoutDiscountInput>, ProductUncheckedUpdateWithoutDiscountInput>
   }
 
-  export type ProductCreateNestedOneWithoutCouponsInput = {
-    create?: XOR<ProductCreateWithoutCouponsInput, ProductUncheckedCreateWithoutCouponsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutCouponsInput
+  export type ProductCreateNestedOneWithoutCouponInput = {
+    create?: XOR<ProductCreateWithoutCouponInput, ProductUncheckedCreateWithoutCouponInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutCouponInput
     connect?: ProductWhereUniqueInput
   }
 
-  export type ProductUpdateOneRequiredWithoutCouponsNestedInput = {
-    create?: XOR<ProductCreateWithoutCouponsInput, ProductUncheckedCreateWithoutCouponsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutCouponsInput
-    upsert?: ProductUpsertWithoutCouponsInput
+  export type ProductUpdateOneRequiredWithoutCouponNestedInput = {
+    create?: XOR<ProductCreateWithoutCouponInput, ProductUncheckedCreateWithoutCouponInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutCouponInput
+    upsert?: ProductUpsertWithoutCouponInput
     connect?: ProductWhereUniqueInput
-    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutCouponsInput, ProductUpdateWithoutCouponsInput>, ProductUncheckedUpdateWithoutCouponsInput>
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutCouponInput, ProductUpdateWithoutCouponInput>, ProductUncheckedUpdateWithoutCouponInput>
   }
 
   export type ProductCreateNestedOneWithoutImagesInput = {
@@ -32590,8 +32590,8 @@ export namespace Prisma {
     owner: OwnerCreateNestedOneWithoutProductsInput
     license: LicenseCreateNestedOneWithoutProductsInput
     translations?: ProductTranslationCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponCreateNestedOneWithoutProductInput
     images?: ProductImageCreateNestedManyWithoutProductInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
   }
@@ -32611,8 +32611,8 @@ export namespace Prisma {
     released_at: bigint | number
     updated_at: bigint | number
     translations?: ProductTranslationUncheckedCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
     images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
   }
@@ -32760,8 +32760,8 @@ export namespace Prisma {
     category: CategoryCreateNestedOneWithoutProductsInput
     license: LicenseCreateNestedOneWithoutProductsInput
     translations?: ProductTranslationCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponCreateNestedOneWithoutProductInput
     images?: ProductImageCreateNestedManyWithoutProductInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
   }
@@ -32781,8 +32781,8 @@ export namespace Prisma {
     released_at: bigint | number
     updated_at: bigint | number
     translations?: ProductTranslationUncheckedCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
     images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
   }
@@ -32828,8 +32828,8 @@ export namespace Prisma {
     category: CategoryCreateNestedOneWithoutProductsInput
     owner: OwnerCreateNestedOneWithoutProductsInput
     translations?: ProductTranslationCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponCreateNestedOneWithoutProductInput
     images?: ProductImageCreateNestedManyWithoutProductInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
   }
@@ -32849,8 +32849,8 @@ export namespace Prisma {
     released_at: bigint | number
     updated_at: bigint | number
     translations?: ProductTranslationUncheckedCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
     images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
   }
@@ -32988,8 +32988,8 @@ export namespace Prisma {
     owner: OwnerCreateNestedOneWithoutProductsInput
     license: LicenseCreateNestedOneWithoutProductsInput
     translations?: ProductTranslationCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponCreateNestedOneWithoutProductInput
     images?: ProductImageCreateNestedManyWithoutProductInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
   }
@@ -33009,8 +33009,8 @@ export namespace Prisma {
     released_at: bigint | number
     updated_at: bigint | number
     translations?: ProductTranslationUncheckedCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
     images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
   }
@@ -33489,8 +33489,8 @@ export namespace Prisma {
     category: CategoryCreateNestedOneWithoutProductsInput
     owner: OwnerCreateNestedOneWithoutProductsInput
     license: LicenseCreateNestedOneWithoutProductsInput
-    discounts?: ProductDiscountCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponCreateNestedOneWithoutProductInput
     images?: ProductImageCreateNestedManyWithoutProductInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
   }
@@ -33510,8 +33510,8 @@ export namespace Prisma {
     created_at: bigint | number
     released_at: bigint | number
     updated_at: bigint | number
-    discounts?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
     images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
   }
@@ -33547,8 +33547,8 @@ export namespace Prisma {
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     owner?: OwnerUpdateOneRequiredWithoutProductsNestedInput
     license?: LicenseUpdateOneRequiredWithoutProductsNestedInput
-    discounts?: ProductDiscountUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUpdateOneWithoutProductNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
   }
@@ -33568,13 +33568,13 @@ export namespace Prisma {
     created_at?: BigIntFieldUpdateOperationsInput | bigint | number
     released_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
-    discounts?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
     images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   }
 
-  export type ProductCreateWithoutDiscountsInput = {
+  export type ProductCreateWithoutDiscountInput = {
     id?: string
     name: string
     slug: string
@@ -33590,12 +33590,12 @@ export namespace Prisma {
     owner: OwnerCreateNestedOneWithoutProductsInput
     license: LicenseCreateNestedOneWithoutProductsInput
     translations?: ProductTranslationCreateNestedManyWithoutProductInput
-    coupons?: ProductCouponCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponCreateNestedOneWithoutProductInput
     images?: ProductImageCreateNestedManyWithoutProductInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
   }
 
-  export type ProductUncheckedCreateWithoutDiscountsInput = {
+  export type ProductUncheckedCreateWithoutDiscountInput = {
     id?: string
     category_id: number
     admin_id: string
@@ -33611,28 +33611,28 @@ export namespace Prisma {
     released_at: bigint | number
     updated_at: bigint | number
     translations?: ProductTranslationUncheckedCreateNestedManyWithoutProductInput
-    coupons?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
     images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
   }
 
-  export type ProductCreateOrConnectWithoutDiscountsInput = {
+  export type ProductCreateOrConnectWithoutDiscountInput = {
     where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutDiscountsInput, ProductUncheckedCreateWithoutDiscountsInput>
+    create: XOR<ProductCreateWithoutDiscountInput, ProductUncheckedCreateWithoutDiscountInput>
   }
 
-  export type ProductUpsertWithoutDiscountsInput = {
-    update: XOR<ProductUpdateWithoutDiscountsInput, ProductUncheckedUpdateWithoutDiscountsInput>
-    create: XOR<ProductCreateWithoutDiscountsInput, ProductUncheckedCreateWithoutDiscountsInput>
+  export type ProductUpsertWithoutDiscountInput = {
+    update: XOR<ProductUpdateWithoutDiscountInput, ProductUncheckedUpdateWithoutDiscountInput>
+    create: XOR<ProductCreateWithoutDiscountInput, ProductUncheckedCreateWithoutDiscountInput>
     where?: ProductWhereInput
   }
 
-  export type ProductUpdateToOneWithWhereWithoutDiscountsInput = {
+  export type ProductUpdateToOneWithWhereWithoutDiscountInput = {
     where?: ProductWhereInput
-    data: XOR<ProductUpdateWithoutDiscountsInput, ProductUncheckedUpdateWithoutDiscountsInput>
+    data: XOR<ProductUpdateWithoutDiscountInput, ProductUncheckedUpdateWithoutDiscountInput>
   }
 
-  export type ProductUpdateWithoutDiscountsInput = {
+  export type ProductUpdateWithoutDiscountInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -33648,12 +33648,12 @@ export namespace Prisma {
     owner?: OwnerUpdateOneRequiredWithoutProductsNestedInput
     license?: LicenseUpdateOneRequiredWithoutProductsNestedInput
     translations?: ProductTranslationUpdateManyWithoutProductNestedInput
-    coupons?: ProductCouponUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUpdateOneWithoutProductNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
   }
 
-  export type ProductUncheckedUpdateWithoutDiscountsInput = {
+  export type ProductUncheckedUpdateWithoutDiscountInput = {
     id?: StringFieldUpdateOperationsInput | string
     category_id?: IntFieldUpdateOperationsInput | number
     admin_id?: StringFieldUpdateOperationsInput | string
@@ -33669,12 +33669,12 @@ export namespace Prisma {
     released_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: ProductTranslationUncheckedUpdateManyWithoutProductNestedInput
-    coupons?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
     images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   }
 
-  export type ProductCreateWithoutCouponsInput = {
+  export type ProductCreateWithoutCouponInput = {
     id?: string
     name: string
     slug: string
@@ -33690,12 +33690,12 @@ export namespace Prisma {
     owner: OwnerCreateNestedOneWithoutProductsInput
     license: LicenseCreateNestedOneWithoutProductsInput
     translations?: ProductTranslationCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountCreateNestedOneWithoutProductInput
     images?: ProductImageCreateNestedManyWithoutProductInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
   }
 
-  export type ProductUncheckedCreateWithoutCouponsInput = {
+  export type ProductUncheckedCreateWithoutCouponInput = {
     id?: string
     category_id: number
     admin_id: string
@@ -33711,28 +33711,28 @@ export namespace Prisma {
     released_at: bigint | number
     updated_at: bigint | number
     translations?: ProductTranslationUncheckedCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
     images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
   }
 
-  export type ProductCreateOrConnectWithoutCouponsInput = {
+  export type ProductCreateOrConnectWithoutCouponInput = {
     where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutCouponsInput, ProductUncheckedCreateWithoutCouponsInput>
+    create: XOR<ProductCreateWithoutCouponInput, ProductUncheckedCreateWithoutCouponInput>
   }
 
-  export type ProductUpsertWithoutCouponsInput = {
-    update: XOR<ProductUpdateWithoutCouponsInput, ProductUncheckedUpdateWithoutCouponsInput>
-    create: XOR<ProductCreateWithoutCouponsInput, ProductUncheckedCreateWithoutCouponsInput>
+  export type ProductUpsertWithoutCouponInput = {
+    update: XOR<ProductUpdateWithoutCouponInput, ProductUncheckedUpdateWithoutCouponInput>
+    create: XOR<ProductCreateWithoutCouponInput, ProductUncheckedCreateWithoutCouponInput>
     where?: ProductWhereInput
   }
 
-  export type ProductUpdateToOneWithWhereWithoutCouponsInput = {
+  export type ProductUpdateToOneWithWhereWithoutCouponInput = {
     where?: ProductWhereInput
-    data: XOR<ProductUpdateWithoutCouponsInput, ProductUncheckedUpdateWithoutCouponsInput>
+    data: XOR<ProductUpdateWithoutCouponInput, ProductUncheckedUpdateWithoutCouponInput>
   }
 
-  export type ProductUpdateWithoutCouponsInput = {
+  export type ProductUpdateWithoutCouponInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -33748,12 +33748,12 @@ export namespace Prisma {
     owner?: OwnerUpdateOneRequiredWithoutProductsNestedInput
     license?: LicenseUpdateOneRequiredWithoutProductsNestedInput
     translations?: ProductTranslationUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUpdateOneWithoutProductNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
   }
 
-  export type ProductUncheckedUpdateWithoutCouponsInput = {
+  export type ProductUncheckedUpdateWithoutCouponInput = {
     id?: StringFieldUpdateOperationsInput | string
     category_id?: IntFieldUpdateOperationsInput | number
     admin_id?: StringFieldUpdateOperationsInput | string
@@ -33769,7 +33769,7 @@ export namespace Prisma {
     released_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: ProductTranslationUncheckedUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
     images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   }
@@ -33790,8 +33790,8 @@ export namespace Prisma {
     owner: OwnerCreateNestedOneWithoutProductsInput
     license: LicenseCreateNestedOneWithoutProductsInput
     translations?: ProductTranslationCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponCreateNestedOneWithoutProductInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
   }
 
@@ -33811,8 +33811,8 @@ export namespace Prisma {
     released_at: bigint | number
     updated_at: bigint | number
     translations?: ProductTranslationUncheckedCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
   }
 
@@ -33848,8 +33848,8 @@ export namespace Prisma {
     owner?: OwnerUpdateOneRequiredWithoutProductsNestedInput
     license?: LicenseUpdateOneRequiredWithoutProductsNestedInput
     translations?: ProductTranslationUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUpdateOneWithoutProductNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
   }
 
@@ -33869,8 +33869,8 @@ export namespace Prisma {
     released_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: ProductTranslationUncheckedUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   }
 
@@ -33890,8 +33890,8 @@ export namespace Prisma {
     owner: OwnerCreateNestedOneWithoutProductsInput
     license: LicenseCreateNestedOneWithoutProductsInput
     translations?: ProductTranslationCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponCreateNestedOneWithoutProductInput
     images?: ProductImageCreateNestedManyWithoutProductInput
   }
 
@@ -33911,8 +33911,8 @@ export namespace Prisma {
     released_at: bigint | number
     updated_at: bigint | number
     translations?: ProductTranslationUncheckedCreateNestedManyWithoutProductInput
-    discounts?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
-    coupons?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
+    discount?: ProductDiscountUncheckedCreateNestedOneWithoutProductInput
+    coupon?: ProductCouponUncheckedCreateNestedOneWithoutProductInput
     images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
   }
 
@@ -33970,8 +33970,8 @@ export namespace Prisma {
     owner?: OwnerUpdateOneRequiredWithoutProductsNestedInput
     license?: LicenseUpdateOneRequiredWithoutProductsNestedInput
     translations?: ProductTranslationUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUpdateOneWithoutProductNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
   }
 
@@ -33991,8 +33991,8 @@ export namespace Prisma {
     released_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: ProductTranslationUncheckedUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
     images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
   }
 
@@ -34457,8 +34457,8 @@ export namespace Prisma {
     owner?: OwnerUpdateOneRequiredWithoutProductsNestedInput
     license?: LicenseUpdateOneRequiredWithoutProductsNestedInput
     translations?: ProductTranslationUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUpdateOneWithoutProductNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
   }
@@ -34478,8 +34478,8 @@ export namespace Prisma {
     released_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: ProductTranslationUncheckedUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
     images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   }
@@ -34531,8 +34531,8 @@ export namespace Prisma {
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     license?: LicenseUpdateOneRequiredWithoutProductsNestedInput
     translations?: ProductTranslationUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUpdateOneWithoutProductNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
   }
@@ -34552,8 +34552,8 @@ export namespace Prisma {
     released_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: ProductTranslationUncheckedUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
     images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   }
@@ -34612,8 +34612,8 @@ export namespace Prisma {
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     owner?: OwnerUpdateOneRequiredWithoutProductsNestedInput
     translations?: ProductTranslationUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUpdateOneWithoutProductNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
   }
@@ -34633,8 +34633,8 @@ export namespace Prisma {
     released_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: ProductTranslationUncheckedUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
     images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   }
@@ -34706,8 +34706,8 @@ export namespace Prisma {
     owner?: OwnerUpdateOneRequiredWithoutProductsNestedInput
     license?: LicenseUpdateOneRequiredWithoutProductsNestedInput
     translations?: ProductTranslationUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUpdateOneWithoutProductNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
   }
@@ -34727,8 +34727,8 @@ export namespace Prisma {
     released_at?: BigIntFieldUpdateOperationsInput | bigint | number
     updated_at?: BigIntFieldUpdateOperationsInput | bigint | number
     translations?: ProductTranslationUncheckedUpdateManyWithoutProductNestedInput
-    discounts?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
-    coupons?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
+    discount?: ProductDiscountUncheckedUpdateOneWithoutProductNestedInput
+    coupon?: ProductCouponUncheckedUpdateOneWithoutProductNestedInput
     images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   }

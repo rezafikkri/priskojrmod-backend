@@ -141,8 +141,8 @@ model Product {
   license  License  @relation(fields: [license_id], references: [id])
 
   translations ProductTranslation[]
-  discounts    ProductDiscount?
-  coupons      ProductCoupon?
+  discount     ProductDiscount?
+  coupon       ProductCoupon?
   images       ProductImage[]
   variants     ProductVariant[]
 

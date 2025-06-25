@@ -141,20 +141,20 @@ model Product {
   license  License  @relation(fields: [license_id], references: [id])
 
   translations ProductTranslation[]
-  discounts ProductDiscount?
-  coupons   ProductCoupon?
-  images    ProductImage[]
-  variants  ProductVariant[]
+  discount     ProductDiscount?
+  coupon       ProductCoupon?
+  images       ProductImage[]
+  variants     ProductVariant[]
 
   @@map("products")
 }
 
 model ProductTranslation {
-  id            String    @id @default(uuid(7)) @db.Uuid
-  product_id    String    @db.Uuid
-  language      Language
-  description   String
-  changelog     String?
+  id          String   @id @default(uuid(7)) @db.Uuid
+  product_id  String   @db.Uuid
+  language    Language
+  description String
+  changelog   String?
 
   product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
 
@@ -203,8 +203,8 @@ model ProductVariant {
   name          String  @db.VarChar(100)
   download_link String? @db.VarChar(255)
 
-  product        Product        @relation(fields: [product_id], references: [id], onDelete: Cascade)
-  prices ProductPrice[]
+  product Product        @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  prices  ProductPrice[]
 
   @@map("product_variants")
 }
