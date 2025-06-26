@@ -23,10 +23,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '../ui/button';
-import { MoreHorizontal } from 'lucide-react';
+import { MoreHorizontal, Check } from 'lucide-react';
+import Dot from '../icon/Dot';
 import Link from 'next/link';
 import { formatDateTimeWIB } from '@/lib/format-date';
 import { getTableHeaderWidth } from '@/lib/utils';
+import { CurrencyCode, PriceType } from '@/constants/enums';
 
 export default function DataTable({
   products,
@@ -35,6 +37,7 @@ export default function DataTable({
 }) {
   const [deleteData, setDeleteData] = useState(null);
   const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
+  const [priceCurrency, setPriceCurrency] = useState(CurrencyCode.IDR);
 
   const columns = useMemo(() => [
     {
@@ -42,12 +45,55 @@ export default function DataTable({
       header: 'Name',
     },
     {
-      accessorKey: 'price_range',
-      header: 'Price',
+      accessorKey: 'prices',
+      header: () => (
+        <>
+          <span>Price</span>
+          <div className="ms-4 inline-block space-x-1">
+            <Button
+              variant="outline"
+              className={`px-2 py-0.5 text-xs h-auto shadow-none ${priceCurrency === CurrencyCode.IDR ? 'text-accent-foreground bg-accent' : ''}`}
+              onClick={() => setPriceCurrency(CurrencyCode.IDR)}
+            >
+              IDR
+            </Button>
+            <Button
+              variant="outline"
+              className={`px-2 py-0.5 text-xs h-auto shadow-none ${priceCurrency === CurrencyCode.USD ? 'text-accent-foreground bg-accent' : ''}`}
+              onClick={() => setPriceCurrency(CurrencyCode.USD)}
+            >
+              USD
+            </Button>
+          </div>
+        </>
+      ),
+      cell: ({ row }) => {
+        if (row.original.price_type === PriceType.PAID) {
+          const prices = row.getValue('prices')[priceCurrency];
+          let locale = priceCurrency === CurrencyCode.IDR ? 'id-ID' : 'en-US';
+
+          if (prices.min === prices.max) {
+            return `${priceCurrency} ${prices.min.toLocaleString(locale)}`;
+          }
+          return (
+            <>
+              {priceCurrency} <span className="tabular-nums">{prices.min.toLocaleString(locale)}</span>-<span className="tabular-nums">{prices.max.toLocaleString(locale)}</span>
+            </>
+          );
+        }
+        return PriceType.FREE[0].toUpperCase() + PriceType.FREE.substring(1);
+      },
     },
     {
-      accessorKey: 'published',
-      header: 'Published',
+      accessorKey: 'is_published',
+      header: <div className="text-center">Published</div>,
+      cell: ({ row }) => (
+        <div className="text-center">{
+          row.getValue('is_published')
+            ? <Check className="size-4 inline-block" />
+            : <Dot className="size-4 text-zinc-300/50 dark:text-zinc-800 inline-block" />
+        }</div>
+      ),
     },
     {
       accessorKey: 'released_at',
@@ -75,20 +121,28 @@ export default function DataTable({
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="min-w-50">
               <DropdownMenuLabel className="text-muted-foreground text-[15px]">Actions</DropdownMenuLabel>
               <DropdownMenuItem asChild className="text-base py-2 hover:cursor-pointer">
                 <Link href={`/product/${row.original.id}/edit`}>Edit</Link>
               </DropdownMenuItem>
-              <DropdownMenuSeparator className="-mx-1.5" />
               <DropdownMenuItem
                 className="w-full text-base"
                 asChild
               >
-                <button onClick={() => navigator.clipboard.writeText(row.original.key)}>
-                  Pin Product
+                <button>
+                  Pin
                 </button>
               </DropdownMenuItem>
+              <DropdownMenuItem
+                className="w-full text-base"
+                asChild
+              >
+                <button>
+                  {row.getValue('is_published') ? 'Unpublish' : 'Publish'}
+                </button>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator className="-mx-1.5" />
               <DropdownMenuItem
                 className="w-full text-base focus:bg-red-100/70 dark:focus:bg-red-300/10"
                 asChild
@@ -102,7 +156,7 @@ export default function DataTable({
         );
       },
     }
-  ], [products]);
+  ], [products, priceCurrency]);
   const table = useReactTable({
     data: products,
     columns,
